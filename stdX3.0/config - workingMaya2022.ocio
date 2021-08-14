@@ -1,0 +1,317 @@
+ocio_profile_version: 1
+
+search_path: show:luts
+strictparsing: true
+luma: [0.2126, 0.7152, 0.0722]
+
+roles:
+  color_picking: Color_sRGB_Texture
+  color_timing: Cineon
+  compositing_log: Cineon
+  compositing_linear: Linear
+  data: Raw_Float
+  default: Raw_Float
+  matte_paint: Filmic_sRGB
+  reference: Raw_Float
+  scene_linear: Linear
+  texture_paint: Color_sRGB_Texture
+  rendering: Linear
+  mari_monitor: Filmic_sRGB
+  mari_color_picker: Linear
+  mari_blending: Linear 
+  mari_int8: Color_sRGB_Texture
+  mari_int16: Color_sRGB_Texture
+
+displays:
+  sRGB-monitor:
+    - !<View> {name: Filmic, colorspace: Filmic_sRGB}
+    - !<View> {name: sRGB, colorspace: sRGB}
+    - !<View> {name: rec709, colorspace: rec709}
+    - !<View> {name: Look-Filmic, colorspace: Filmic_sRGB, look: +Client_LUT_cin-Shaper}
+    - !<View> {name: Look-sRGB, colorspace: sRGB, look: +Client_LUT_cin-Shaper}
+    - !<View> {name: Look-rec709, colorspace: rec709,  look: +Client_LUT_cin-Shaper}
+    - !<View> {name: Log, colorspace: Cineon}
+    - !<View> {name: Raw, colorspace: Raw_Float}
+
+active_views: [Filmic, sRGB, rec709, Look-Filmic, Look-sRGB, Look-rec709, Log, Raw]
+
+looks:
+  - !<Look>
+    name: Client_LUT_cin-Shaper
+    process_space: Cineon
+    transform: !<FileTransform> {src: show_cin.cube, interpolation: linear}
+
+  - !<Look>
+    name: Client_LUT_LogC-Shaper
+    process_space: ARRI_AlexaV3_LogC
+    transform: !<FileTransform> {src: show_cin.cube, interpolation: linear}
+
+colorspaces:
+  - !<ColorSpace>
+    name: Raw_Float
+    family: Rendering
+    equalitygroup: 
+    bitdepth: 32f
+    description: |
+      ncf :nc,Non-color used to store non-color data such as depth or surface normals
+    isdata: true
+    allocation: uniform
+
+  - !<ColorSpace>
+    name: Linear
+    family: Rendering
+    equalitygroup: 
+    bitdepth: 32f
+    description: |
+      Linear :linear show space
+    isdata: false
+    allocation: lg2
+    allocationvars: [-13, 4]
+
+  - !<ColorSpace>
+    name: Filmic_sRGB
+    family: Output
+    equalitygroup: 
+    bitdepth: 16ui
+    description: |
+      vd16 : The simple video conversion from a gamma 2.2 srgb space
+    isdata: false
+    allocation: uniform
+    to_reference: !<GroupTransform>
+      children:
+        - !<MatrixTransform> {matrix: [1, 0.03, 0.03, 0, 0.03, 1, 0.03, 0, 0.03, 0.03, 1, 0, 0, 0, 0, 1]}
+        - !<FileTransform> {src: vd16.spi1d, interpolation: nearest}
+
+  - !<ColorSpace>
+    name: Filmic_sRGB_LUT
+    family: Output
+    equalitygroup: 
+    bitdepth: 16ui
+    description: |
+      vd16_LUT : vd16 color space with a 3d lut "look" applied before in linear space
+    isdata: false
+    allocation: uniform
+    from_reference: !<GroupTransform>
+      children:
+        - !<MatrixTransform> {matrix: [0.95, 0.05, 0.05, 0, 0.05, 0.95, 0.05, 0, 0.05, 0.05, 0.95, 0, 0, 0, 0, 1]}
+        - !<FileTransform> {src: show_look.cube, interpolation: linear}
+        - !<FileTransform> {src: vd16.spi1d, interpolation: nearest}
+
+  - !<ColorSpace>
+    name: Color_sRGB_Texture
+    family: Rendering
+    equalitygroup: 
+    bitdepth: 16ui
+    description: |
+      dt16 :diffuse texture conversion
+    isdata: false
+    allocation: uniform
+    to_reference: !<GroupTransform>
+      children:
+        - !<FileTransform> {src: dt.spimtx, interpolation: nearest}
+        - !<ColorSpaceTransform> {src: Filmic_sRGB, dst: Linear}
+
+  - !<ColorSpace>
+    name: _dif_
+    family: Rendering
+    equalitygroup: 
+    bitdepth: 16ui
+    description: |
+      dt16 :diffuse texture conversion
+    isdata: false
+    allocation: uniform
+    to_reference: !<GroupTransform>
+      children:
+        - !<FileTransform> {src: dt.spimtx, interpolation: nearest}
+        - !<ColorSpaceTransform> {src: Filmic_sRGB, dst: Linear}
+
+  - !<ColorSpace>
+    name: sRGB
+    family: Output
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Standard RGB Display Space
+    isdata: false
+    allocation: uniform
+    allocationvars: [-0.125, 1.125]
+    to_reference: !<FileTransform> {src: srgb.spi1d, interpolation: linear}
+
+  - !<ColorSpace>
+    name: rec709
+    family: Output
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Rec. 709 (Full Range) Display Space
+    isdata: false
+    allocation: uniform
+    allocationvars: [-0.125, 1.125]
+    to_reference: !<FileTransform> {src: rec709.spi1d, interpolation: linear}
+
+  - !<ColorSpace>
+    name: Cineon
+    family: Camera
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Cineon (Log Film Scan)
+    isdata: false
+    allocation: uniform
+    allocationvars: [-0.125, 1.125]
+    to_reference: !<FileTransform> {src: cineon.spi1d, interpolation: linear}
+
+  - !<ColorSpace>
+    name: Sony_Panalog
+    family: Camera
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Sony/Panavision Genesis Log Space
+    isdata: false
+    allocation: uniform
+    allocationvars: [-0.125, 1.125]
+    to_reference: !<FileTransform> {src: panalog.spi1d, interpolation: linear}
+
+  - !<ColorSpace>
+    name: REDLog
+    family: Camera
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      RED Log Space
+    isdata: false
+    allocation: uniform
+    allocationvars: [-0.125, 1.125]
+    to_reference: !<FileTransform> {src: redlog.spi1d, interpolation: linear}
+
+  - !<ColorSpace>
+    name: ViperLog
+    family: Camera
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Viper Log Space
+    isdata: false
+    allocation: uniform
+    allocationvars: [-0.125, 1.125]
+    to_reference: !<FileTransform> {src: viperlog.spi1d, interpolation: linear}
+
+  - !<ColorSpace>
+    name: ARRI_AlexaV3_LogC
+    family: Camera
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Alexa Log C
+    isdata: false
+    allocation: uniform
+    allocationvars: [-0.125, 1.125]
+    to_reference: !<FileTransform> {src: alexalogc.spi1d, interpolation: linear}
+
+  - !<ColorSpace>
+    name: Sony_SLog
+    family: Camera
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Sony SLog
+    isdata: false
+    allocation: uniform
+    allocationvars: [-0.125, 1.125]
+    to_reference: !<FileTransform> {src: slog.spi1d, interpolation: linear}
+
+  - !<ColorSpace>
+    name: Sony_SLog1
+    family: Camera
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Sony SLog1
+    isdata: false
+    allocation: uniform
+    allocationvars: [-0.125, 1.125]
+    to_reference: !<FileTransform> {src: slog1.spi1d, interpolation: linear}
+
+  - !<ColorSpace>
+    name: Sony_SLog2
+    family: Camera
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Sony SLog2
+    isdata: false
+    allocation: uniform
+    allocationvars: [-0.125, 1.125]
+    to_reference: !<FileTransform> {src: slog2.spi1d, interpolation: linear}
+
+  - !<ColorSpace>
+    name: Sony_SLog3
+    family: Camera
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Sony SLog3
+    isdata: false
+    allocation: uniform
+    allocationvars: [-0.125, 1.125]
+    to_reference: !<FileTransform> {src: slog3.spi1d, interpolation: linear}
+
+  - !<ColorSpace>
+    name: Canon_CLog
+    family: Camera
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Canon CLog
+    isdata: false
+    allocation: uniform
+    allocationvars: [-0.0684932, 1.08676]
+    to_reference: !<FileTransform> {src: clog.spi1d, interpolation: linear}
+
+  - !<ColorSpace>
+    name: GoPro_Protune
+    family: Camera
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      GoPro Protune
+    isdata: false
+    allocation: uniform
+    allocationvars: [-0.125, 1.125]
+    to_reference: !<FileTransform> {src: protune.spi1d, interpolation: linear}
+
+  - !<ColorSpace>
+    name: p3dci8
+    family: Output
+    equalitygroup: 
+    bitdepth: 8ui
+    description: |
+      p3dci8 : 8 Bit int rgb display space for gamma 2.6 P3 projection.
+    isdata: false
+    allocation: uniform
+    from_reference: !<GroupTransform>
+      children:
+        - !<ColorSpaceTransform> {src: Linear, dst: Filmic_sRGB}
+        - !<ExponentTransform> {value: [2.2, 2.2, 2.2, 1]}
+        - !<FileTransform> {src: srgb_to_p3d65.spimtx, interpolation: linear}
+        - !<FileTransform> {src: p3d65_to_pdci.spimtx, interpolation: linear}
+        - !<FileTransform> {src: htr_dlp_tweak.spimtx, interpolation: linear}
+        - !<ExponentTransform> {value: [2.6, 2.6, 2.6, 1], direction: inverse}
+        - !<FileTransform> {src: correction.spi1d, cccid: forward, interpolation: linear}
+
+  - !<ColorSpace>
+    name: xyz16
+    family: Output
+    equalitygroup: 
+    bitdepth: 16ui
+    description: |
+      xyz16 : 16 Bit int space for DCP creation.
+    isdata: false
+    allocation: uniform
+    from_reference: !<GroupTransform>
+      children:
+        - !<ColorSpaceTransform> {src: Linear, dst: p3dci8}
+        - !<ExponentTransform> {value: [2.6, 2.6, 2.6, 1]}
+        - !<FileTransform> {src: p3_to_xyz16_corrected_wp.spimtx, interpolation: unknown}
+        - !<ExponentTransform> {value: [2.6, 2.6, 2.6, 1], direction: inverse}
