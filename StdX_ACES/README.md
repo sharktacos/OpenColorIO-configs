@@ -9,6 +9,8 @@ Defined as color picking role to pick colors in sRGB/Rec.709 primaries with slig
 
 <b>Input - Premiere Pro - ACEScg</b><br>
 Input color space for Premiere Pro for EXR files in ACES-2065-1 AP0 color space. Premiere adds a BT.1886 2.4 gamma to EXR files, so this removes that to properly bring the file into scene-linear. Using OCIO you'll want to use this color space for the in and ACEScct for the out in order to grade in log.  
+
+<b>EOTF</b><br>
   
 
 
