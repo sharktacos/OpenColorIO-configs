@@ -27,7 +27,6 @@ displays:
   sRGB monitor:
     - !<View> {name: "Look: Medium Contrast", colorspace: Output - sRGB - Look medium contrast}
     - !<View> {name: "Look: High Contrast", colorspace: Output - sRGB - Look high contrast}
-#    - !<View> {name: "Look: IPP2", colorspace: Output - IPP2 Look - sRGB}
     - !<View> {name: "ACES Standard RRT", colorspace: Output - sRGB}
     - !<View> {name: Show, colorspace: Output - sRGB, look: +LMT_show}
     - !<View> {name: un-tone-mapped, colorspace: Output - Nuke_sRGB}
@@ -61,11 +60,6 @@ looks:
     name: LMT_color-medContrast
     process_space: Utility - Log2 48 nits Shaper - AP1
     transform: !<FileTransform> {src: LMT_medium_v12_48n-log2-AP1.cube, interpolation: linear} 
-
-  - !<Look>
-    name: LMT_OpenDRT
-    process_space: Utility - Log2 48 nits Shaper - AP1
-    transform: !<FileTransform> {src: testing/OpenDRT.LMT_48n-log2-AP1.cube, interpolation: linear}	
 
   - !<Look>
     name: LMT_IPP2
@@ -168,44 +162,6 @@ colorspaces:
         - !<FileTransform> {src: Log2_48_nits_Shaper.RRT.sRGB.spi3d, interpolation: tetrahedral}
 
   - !<ColorSpace>
-    name: Output - OpenDRT - sRGB
-    family: Output
-    equalitygroup: ""
-    bitdepth: 32f
-    description: OpenDRT with LMT (DF)
-    isdata: false
-    allocation: uniform
-    allocationvars: [0, 1]
-    from_reference: !<GroupTransform>
-      children:
-#        - !<ColorSpaceTransform> {src: ACES - ACEScg, dst: Utility - Log2 48 nits Shaper}
-#        - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear, direction: inverse}
-        - !<FileTransform> {src: testing/OpenDRT2.cube, interpolation: tetrahedral}
-#        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_OpenDRT}
-#        - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear, direction: inverse}
-
-
-  - !<ColorSpace>
-    name: Output - IPP2 Look - sRGB
-    family: Output
-    equalitygroup: ""
-    bitdepth: 32f
-    description: ACES 1.0 Output - sRGB Transform with LMT (DF)
-    isdata: false
-    allocation: uniform
-    allocationvars: [0, 1]
-    to_reference: !<GroupTransform>
-      children:
-        - !<FileTransform> {src: InvRRT.sRGB.Log2_48_nits_Shaper.spi3d, interpolation: tetrahedral}
-        - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear}
-        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, direction: inverse, looks: LMT_IPP2}
-    from_reference: !<GroupTransform>
-      children:
-        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_IPP2}
-        - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear, direction: inverse}
-        - !<FileTransform> {src: Log2_48_nits_Shaper.RRT.sRGB.spi3d, interpolation: tetrahedral}
-
-  - !<ColorSpace>
     name: Output - sRGB - Look medium contrast
     family: Output
     equalitygroup: ""
@@ -224,27 +180,6 @@ colorspaces:
         - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_color-medContrast}
         - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear, direction: inverse}
         - !<FileTransform> {src: Log2_48_nits_Shaper.RRT.sRGB.spi3d, interpolation: tetrahedral}
-
-  - !<ColorSpace>
-    name: Output Test - sRGB - Look medium contrast
-    family: Output/Extra
-    equalitygroup: ""
-    bitdepth: 32f
-    description: ACES 1.0 Output - sRGB Transform with LMT (DF)
-    isdata: false
-    allocation: uniform
-    allocationvars: [0, 1]
-    to_reference: !<GroupTransform>
-      children:
-        - !<FileTransform> {src: InvRRT.sRGB.Log2_48_nits_Shaper.spi3d, interpolation: tetrahedral}
-        - !<FileTransform> {src: testing/LMT_color-medContrast_v11_48Log-shaperCS.cube, interpolation: linear} 
-        - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear}
-    from_reference: !<GroupTransform>
-      children:
-        - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear, direction: inverse}
-        - !<FileTransform> {src: testing/LMT_color-medContrast_v11_48Log-shaperCS.cube, interpolation: linear} 
-        - !<FileTransform> {src: Log2_48_nits_Shaper.RRT.sRGB.spi3d, interpolation: tetrahedral}
-
 
   - !<ColorSpace>
     name: Output - sRGB - Look high contrast
@@ -374,23 +309,6 @@ colorspaces:
     to_reference: !<GroupTransform>
       children:
         - !<FileTransform> {src: ACEScct_to_linear.spi1d, interpolation: linear}
-        - !<MatrixTransform> {matrix: [0.695452, 0.140679, 0.163869, 0, 0.0447946, 0.859671, 0.0955343, 0, -0.00552588, 0.00402521, 1.0015, 0, 0, 0, 0, 1]}
-
-  - !<ColorSpace>
-    name: ACES - ACESproxy
-    family: ACES
-    equalitygroup: ""
-    bitdepth: 32f
-    description: |
-      The ACESproxy color space
-      
-      ACES Transform ID : ACEScsc.Academy.ACESproxy10i_to_ACES
-    isdata: false
-    allocation: uniform
-    allocationvars: [0, 1]
-    to_reference: !<GroupTransform>
-      children:
-        - !<FileTransform> {src: ACESproxy_to_linear.spi1d, interpolation: linear}
         - !<MatrixTransform> {matrix: [0.695452, 0.140679, 0.163869, 0, 0.0447946, 0.859671, 0.0955343, 0, -0.00552588, 0.00402521, 1.0015, 0, 0, 0, 0, 1]}
 
   - !<ColorSpace>
@@ -1666,20 +1584,6 @@ colorspaces:
 # extra Outputs
 #######################################
 
-  - !<ColorSpace>
-    name: DT-matrix
-    family: Utility/Aliases/Extra
-    equalitygroup: ""
-    bitdepth: 32f
-    description: DT color space for inverse of Output- sRGB. Depreciated (DF) 
-    isdata: false
-    allocation: uniform
-    allocationvars: [0, 1]
-    to_reference: !<GroupTransform>
-      children:
-        - !<MatrixTransform> {matrix: [ 0.8119545, 0, 0, 0, 0, 0.8119545, 0, 0, 0, 0, 0.8119545, 0, 0, 0, 0, 1 ]}
-        - !<FileTransform> {src: InvRRT.sRGB.Log2_48_nits_Shaper.spi3d, interpolation: tetrahedral}
-        - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear}
 
   - !<ColorSpace>
     name: Output - Nuke_sRGB
