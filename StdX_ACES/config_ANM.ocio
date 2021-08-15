@@ -11,7 +11,7 @@ description: An ACES config generated from python
 
 
 roles:
-  color_picking: pickRGB709-M
+  color_picking: Pick - sRGBlin desat
   color_timing: ACES - ACEScct
   compositing_linear: ACES - ACEScg
   compositing_log: ACES - ACEScct
@@ -97,56 +97,34 @@ colorspaces:
   - !<ColorSpace>
     name: dif
     family: Utility/Aliases
-    equalitygroup: ""
+    equalitygroup: sRGB - Texture
     bitdepth: 32f
-    description: DT color space for inverse of Output- sRGB. (DF) 
+    description: |
+      The sRGB - Texture color space
     isdata: false
     allocation: uniform
     allocationvars: [0, 1]
-    to_reference: !<GroupTransform>
-      children:
-        - !<MatrixTransform> {matrix: [ 0.8119545, 0, 0, 0, 0, 0.8119545, 0, 0, 0, 0, 0.8119545, 0, 0, 0, 0, 1 ]}
-        - !<FileTransform> {src: InvRRT.sRGB.Log2_48_nits_Shaper.spi3d, interpolation: tetrahedral}
-        - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear}
+    from_reference: !<ColorSpaceTransform> {src: ACES - ACES2065-1, dst: Utility - sRGB - Texture}
 
   - !<ColorSpace>
     name: BaseColor
     family: Utility/Aliases
-    equalitygroup: ""
+    equalitygroup: sRGB - Texture
     bitdepth: 32f
-    description: DT color space for inverse of Output- sRGB. (DF) 
+    description: |
+      The sRGB - Texture color space
     isdata: false
     allocation: uniform
     allocationvars: [0, 1]
-    to_reference: !<GroupTransform>
-      children:
-        - !<MatrixTransform> {matrix: [ 0.8119545, 0, 0, 0, 0, 0.8119545, 0, 0, 0, 0, 0.8119545, 0, 0, 0, 0, 1 ]}
-        - !<FileTransform> {src: InvRRT.sRGB.Log2_48_nits_Shaper.spi3d, interpolation: tetrahedral}
-        - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear}
+    from_reference: !<ColorSpaceTransform> {src: ACES - ACES2065-1, dst: Utility - sRGB - Texture}
 
   - !<ColorSpace>
-    name: pickRGB709
+    name: Pick - sRGBlin desat
     family: Utility/Aliases
     equalitygroup: Linear - sRGB
     bitdepth: 32f
-    description: Color picking in sRGB/Rec.709 primaries (DF)
+    description: Color picking in sRGB/Rec.709 primaries with slight desaturation (0.85 based on rec709 luma) (DF)
     isdata: false
-    allocation: lg2
-    allocationvars: [-8, 5, 0.00390625]
-    to_reference: !<GroupTransform>
-      children:
-        - !<MatrixTransform> {matrix: [ 0.88189, 0.10728, 0.01083, 0, 0.03189, 0.95728, 0.01083, 0, 0.03189, 0.10728, 0.86083, 0, 0, 0, 0, 1 ]}
-        - !<ColorSpaceTransform> {src: ACES - ACES2065-1, dst: Utility - Linear - sRGB}
-
-  - !<ColorSpace>
-    name: pickRGB709-M
-    family: Utility/Aliases
-    equalitygroup: Linear - sRGB
-    bitdepth: 32f
-    description: Color picking in RGB Rec.709 space via matrix (DF)
-    isdata: false
-#    allocation: lg2
-#    allocationvars: [-8, 5, 0.00390625]
     to_reference: !<GroupTransform>
       children:
         - !<MatrixTransform> {matrix: [ 0.88189, 0.10728, 0.01083, 0, 0.03189, 0.95728, 0.01083, 0, 0.03189, 0.10728, 0.86083, 0, 0, 0, 0, 1 ]}
@@ -1687,6 +1665,21 @@ colorspaces:
 
 # extra Outputs
 #######################################
+
+  - !<ColorSpace>
+    name: DT-matrix
+    family: Utility/Aliases/Extra
+    equalitygroup: ""
+    bitdepth: 32f
+    description: DT color space for inverse of Output- sRGB. Depreciated (DF) 
+    isdata: false
+    allocation: uniform
+    allocationvars: [0, 1]
+    to_reference: !<GroupTransform>
+      children:
+        - !<MatrixTransform> {matrix: [ 0.8119545, 0, 0, 0, 0, 0.8119545, 0, 0, 0, 0, 0.8119545, 0, 0, 0, 0, 1 ]}
+        - !<FileTransform> {src: InvRRT.sRGB.Log2_48_nits_Shaper.spi3d, interpolation: tetrahedral}
+        - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear}
 
   - !<ColorSpace>
     name: Output - Nuke_sRGB
