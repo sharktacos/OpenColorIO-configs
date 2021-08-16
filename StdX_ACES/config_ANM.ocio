@@ -28,6 +28,7 @@ displays:
     - !<View> {name: "Look: Medium Contrast", colorspace: Output - sRGB - Look medium contrast}
     - !<View> {name: "Look: High Contrast", colorspace: Output - sRGB - Look high contrast}
     - !<View> {name: "ACES Standard RRT", colorspace: Output - sRGB}
+    - !<View> {name: "ACES Standard RRT +Gamut", colorspace: Output - sRGB, look: +LMT_gamut-compress}
     - !<View> {name: Show, colorspace: Output - sRGB, look: +LMT_show}
     - !<View> {name: un-tone-mapped, colorspace: Output - un-tone-mapped EOTF - sRGB 2.2}
     - !<View> {name: Raw, colorspace: Utility - Raw}
@@ -42,19 +43,24 @@ displays:
 
 
 active_displays: [sRGB monitor, BT.1886/Rec.709 2.4 video]
-active_views: ["Look: Medium Contrast", "Look: High Contrast", "ACES Standard RRT", Show, un-tone-mapped, Raw, Log]
+active_views: ["Look: Medium Contrast", "Look: High Contrast", "ACES Standard RRT", "ACES Standard RRT +Gamut", Show, un-tone-mapped, Raw, Log]
 
 	
 looks:
   - !<Look>
+    name: LMT_gamut-compress
+    process_space: Utility - Log2 48 nits Shaper - AP1
+    transform: !<FileTransform> {src: LMT_gamut_48n-log2-AP1.cube, interpolation: linear}  
+	
+  - !<Look>
     name: LMT_color-hiContrast
     process_space: Utility - Log2 48 nits Shaper - AP1
-    transform: !<FileTransform> {src: LMT_high_v13_48n-log2-AP1.cube, interpolation: linear}  
+    transform: !<FileTransform> {src: LMT_high_v15_48n-log2-AP1.cube, interpolation: linear}  
 
   - !<Look>
     name: LMT_color-medContrast
     process_space: Utility - Log2 48 nits Shaper - AP1
-    transform: !<FileTransform> {src: LMT_medium_v13_48n-log2-AP1.cube, interpolation: linear} 
+    transform: !<FileTransform> {src: LMT_medium_v15_48n-log2-AP1.cube, interpolation: linear} 
 
   - !<Look>
     name: LMT_IPP2
@@ -167,8 +173,10 @@ colorspaces:
         - !<FileTransform> {src: InvRRT.sRGB.Log2_48_nits_Shaper.spi3d, interpolation: tetrahedral}
         - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear}
         - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, direction: inverse, looks: LMT_color-medContrast}
+        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_gamut-compress}
     from_reference: !<GroupTransform>
       children:
+        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_gamut-compress}
         - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_color-medContrast}
         - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear, direction: inverse}
         - !<FileTransform> {src: Log2_48_nits_Shaper.RRT.sRGB.spi3d, interpolation: tetrahedral}
@@ -187,8 +195,10 @@ colorspaces:
         - !<FileTransform> {src: InvRRT.sRGB.Log2_48_nits_Shaper.spi3d, interpolation: tetrahedral}
         - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear}
         - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, direction: inverse, looks: LMT_color-hiContrast}
+        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_gamut-compress}
     from_reference: !<GroupTransform>
       children:
+        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_gamut-compress}
         - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_color-hiContrast}
         - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear, direction: inverse}
         - !<FileTransform> {src: Log2_48_nits_Shaper.RRT.sRGB.spi3d, interpolation: tetrahedral}
@@ -202,10 +212,6 @@ colorspaces:
     isdata: false
     allocation: uniform
     allocationvars: [0, 1]
-    to_reference: !<GroupTransform>
-      children:
-        - !<FileTransform> {src: EOTF_sRGB_48n-log2_to_AP1.cube, interpolation: tetrahedral}
-        - !<ColorSpaceTransform> {src: Utility - Log2 48 nits Shaper, dst: ACES - ACES2065-1}
     from_reference: !<GroupTransform>
       children:
         - !<ColorSpaceTransform> {src: ACES - ACES2065-1, dst: Utility - Log2 48 nits Shaper}
@@ -248,8 +254,10 @@ colorspaces:
         - !<FileTransform> {src: InvRRT.Rec.709.Log2_48_nits_Shaper.spi3d, interpolation: tetrahedral}
         - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear}
         - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, direction: inverse, looks: LMT_color-medContrast}
+        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_gamut-compress}
     from_reference: !<GroupTransform>
       children:
+        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_gamut-compress}
         - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_color-medContrast}
         - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear, direction: inverse}
         - !<FileTransform> {src: Log2_48_nits_Shaper.RRT.Rec.709.spi3d, interpolation: tetrahedral}
@@ -268,8 +276,10 @@ colorspaces:
         - !<FileTransform> {src: InvRRT.Rec.709.Log2_48_nits_Shaper.spi3d, interpolation: tetrahedral}
         - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear}
         - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, direction: inverse, looks: LMT_color-hiContrast}
+        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_gamut-compress}
     from_reference: !<GroupTransform>
       children:
+        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_gamut-compress}
         - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_color-hiContrast}
         - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear, direction: inverse}
         - !<FileTransform> {src: Log2_48_nits_Shaper.RRT.Rec.709.spi3d, interpolation: tetrahedral}
@@ -283,10 +293,6 @@ colorspaces:
     isdata: false
     allocation: uniform
     allocationvars: [0, 1]
-    to_reference: !<GroupTransform>
-      children:
-        - !<FileTransform> {src: EOTF_BT1886_48n-log2_to_AP1.cube, interpolation: tetrahedral}
-        - !<ColorSpaceTransform> {src: Utility - Log2 48 nits Shaper, dst: ACES - ACES2065-1}
     from_reference: !<GroupTransform>
       children:
         - !<ColorSpaceTransform> {src: ACES - ACES2065-1, dst: Utility - Log2 48 nits Shaper}
@@ -416,8 +422,9 @@ colorspaces:
 # Cameras
 ###################################
 
+
   - !<ColorSpace>
-    name: Input - Premiere Pro - ACEScg
+    name: Input - Premiere Pro - AP0 2.4 gamma
     family: Input/Generic
     equalitygroup: ""
     bitdepth: 32f
@@ -427,8 +434,21 @@ colorspaces:
     allocationvars: [-8, 5, 0.00390625]
     to_reference: !<GroupTransform>
       children:
-        - !<MatrixTransform> {matrix: [0.695452, 0.140679, 0.163869, 0, 0.0447946, 0.859671, 0.0955343, 0, -0.00552588, 0.00402521, 1.0015, 0, 0, 0, 0, 1]}
         - !<ExponentTransform> {value: [2.4, 2.4, 2.4, 1]}
+
+  - !<ColorSpace>
+    name: Input - Premiere Pro - AP0 2.2 gamma
+    family: Input/Generic
+    equalitygroup: ""
+    bitdepth: 32f
+    description: ACEScg with gamma 2.4 for Premiere Pro (DF)
+    isdata: false
+    allocation: uniform
+    allocationvars: [0, 1]
+    to_reference: !<GroupTransform>
+      children:
+        - !<ExponentTransform> {value: [2.2, 2.2, 2.2, 1]}
+
 
   - !<ColorSpace>
     name: Input - ARRI - V3 LogC (EI160) - Wide Gamut
