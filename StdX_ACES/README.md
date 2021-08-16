@@ -1,5 +1,12 @@
 <h1>ACES-stdX config modifications</h1>
 <h2>Look Transforms</h2>
+<b>Gamut Compression</b><br> 
+Look transforms include an implementation of the <a href="https://github.com/ampas/aces-vwg-gamut-mapping-2020">ACES gamut compression algorythm</a> as a 3D LUT. The algorithm is not fully implementable as a 3D LUT, and a proper implementation <a href="https://github.com/AcademySoftwareFoundation/OpenColorIO-Config-ACES/releases/tag/v0.1.1">would be done in CTL (Color Transformation Language)</a> which is supported in OCIO v2. Since Foundry Nuke and Houdini do not currently support OCIO v2, a LUT based approximation is used here. Here's a comparision of how the different approaches look:<p>
+  
+  
+  
+
+
 <h2>Roles and rules</h2>
 <b>dif</b>, <b>BaseColor</b> and <b>hdr</b> color spaces act as aliases using OCIO rule name matching which assigns an input color space if its name appears in the image name. Therefore textures with "dif" (shirt_dif_v02.png) or "BaseColor" in their name will automatically be assigned the <i>Utility - sRGB - texture</i> color space. Likewise if "hdr" is in the file name the <i>scene-liner sRGB</i> color space will be assigned. All other textures (bump, normal, masks, displacement, etc.) will automatically be assigned the <i>Utility - Raw</i> color space (the default role).<p> 
   
