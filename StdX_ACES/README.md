@@ -9,10 +9,10 @@ Here are those images with the gamut compress algorthm applied (implemented usin
     
    <img src="../docs/img/Gamut_nk.png"> <p>  
      
-Compare that to the LUT implemenation used in this config. You can see for example that the spotlight is going to white, illustrating the limits of what a 3D LUT can do.<p>
+Compare that to the LUT implemenation used in this config. You can see for example that the spotlight on the bottom left image is going to white a bit, illustrating the limits of what a 3D LUT can do.<p>
 <img src="../docs/img/Gamut_lut.png"> <p> 
       
-However, compared to the older "Blue Light Artifact Fix" the results are clearly superior. Ironically the "blue fix" is making blue appear magenta<p>
+However, compared to the older Blue Light Artifact Fix, pictured below, the results are clearly superior. Ironically the "blue fix" is making blue appear magenta<p>
 <img src="../docs/img/Gamut_bluefix.png"> <p>  
 
 
