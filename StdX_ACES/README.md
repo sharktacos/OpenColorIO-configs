@@ -1,10 +1,19 @@
 <h1>ACES-stdX config modifications</h1>
 <h2>Look Transforms</h2>
 <b>Gamut Compression</b><br> 
-Look transforms include an implementation of the <a href="https://github.com/ampas/aces-vwg-gamut-mapping-2020">ACES gamut compression algorythm</a> as a 3D LUT. The algorithm is not fully implementable as a 3D LUT, and a proper implementation <a href="https://github.com/AcademySoftwareFoundation/OpenColorIO-Config-ACES/releases/tag/v0.1.1">would be done in CTL (Color Transformation Language)</a> which is supported in OCIO v2. Since Foundry Nuke and Houdini do not currently support OCIO v2, a LUT based approximation is used here. Here's a comparision of how the different approaches look:<p>
+Look transforms include an implementation of the <a href="https://github.com/ampas/aces-vwg-gamut-mapping-2020">ACES gamut compression algorythm</a> as a 3D LUT. The algorithm is not fully implementable as a 3D LUT, and a proper implementation <a href="https://github.com/AcademySoftwareFoundation/OpenColorIO-Config-ACES/releases/tag/v0.1.1">would be done in CTL (Color Transformation Language)</a> which is supported in OCIO v2. Since Foundry Nuke and Houdini do not currently support OCIO v2, a LUT based approximation is used here. Here's a comparision of how the different approaches look, beginning with several images with out of gamut colors illustrating the problem:<p>
   
-  
-  
+  <img src="../docs/img/Gamut_rrt.png"> <p>
+    
+Here are those images with the gamut compress algorthm applied (implemented using the <a href="https://github.com/jedypod/gamut-compress">Nuke blinkscript tool</a>):<p>
+    
+   <img src="../docs/img/Gamut_nk.png"> <p>  
+     
+Compare that to the LUT implemenation used in this config. You can see for example that the spotlight is going to white, illustrating the limits of what a 3D LUT can do.<p>
+<img src="../docs/img/Gamut_lut.png"> <p> 
+      
+However, compared to the older "Blue Light Artifact Fix" the results are clearly superior. Ironically the "blue fix" is making blue appear magenta<p>
+<img src="../docs/img/Gamut_bluefix.png"> <p>  
 
 
 <h2>Roles and rules</h2>
