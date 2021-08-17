@@ -3,7 +3,7 @@
 
 ocio_profile_version: 1
 
-search_path: "show:studio:luts:aces_vwg_gm"
+search_path: "show:studio:luts"
 strictparsing: true
 luma: [0.2126, 0.7152, 0.0722]
 
@@ -25,47 +25,41 @@ roles:
 
 displays:
   sRGB monitor:
-    - !<View> {name: "Look: Medium Contrast", colorspace: Output - sRGB - Look medium contrast}
-    - !<View> {name: "Look: High Contrast", colorspace: Output - sRGB - Look high contrast}
-    - !<View> {name: "ACES Standard RRT", colorspace: Output - sRGB}
-    - !<View> {name: "ACES Standard RRT +Gamut", colorspace: Output - sRGB, look: +LMT_gamut-compress}
+    - !<View> {name: Neutral Look, colorspace: Output - sRGB - Look Neutral}
+    - !<View> {name: Filmic Look, colorspace: Output - sRGB - Look Filmic}
+    - !<View> {name: ACES Standard RRT, colorspace: Output - sRGB}
     - !<View> {name: Show, colorspace: Output - sRGB, look: +LMT_show}
     - !<View> {name: un-tone-mapped, colorspace: Output - un-tone-mapped EOTF - sRGB 2.2}
     - !<View> {name: Raw, colorspace: Utility - Raw}
     - !<View> {name: Log, colorspace: Input - ADX - ADX10}
 
   BT.1886/Rec.709 2.4 video:
-    - !<View> {name: "Look: Medium Contrast", colorspace: Output - Rec.709 - Look medium contrast}
-    - !<View> {name: "Look: High Contrast", colorspace: Output - Rec.709 - Look high contrast}
-    - !<View> {name: "ACES Standard RRT", colorspace: Output - Rec.709}
-    - !<View> {name: "Show", colorspace: Output - Rec.709, look: +LMT_show}
-    - !<View> {name: "un-tone-mapped", colorspace: Output - un-tone-mapped EOTF - BT.1886/Rec.709 2.4}
+    - !<View> {name: Neutral Look, colorspace: Output - Rec.709 - Look Neutral}
+    - !<View> {name: Filmic Look, colorspace: Output - Rec.709 - Look Filmic}
+    - !<View> {name: ACES Standard RRT, colorspace: Output - Rec.709}
+    - !<View> {name: Show, colorspace: Output - Rec.709, look: +LMT_show}
+    - !<View> {name: un-tone-mapped, colorspace: Output - un-tone-mapped EOTF - BT.1886/Rec.709 2.4}
 
 
 active_displays: [sRGB monitor, BT.1886/Rec.709 2.4 video]
-active_views: ["Look: Medium Contrast", "Look: High Contrast", "ACES Standard RRT", "ACES Standard RRT +Gamut", Show, un-tone-mapped, Raw, Log]
+active_views: [Neutral Look, Filmic Look, ACES Standard RRT, Show, un-tone-mapped, Raw, Log]
 
 	
 looks:
   - !<Look>
-    name: LMT_gamut-compress
+    name: LMT_gamut_compress_module
     process_space: Utility - Log2 48 nits Shaper - AP1
-    transform: !<FileTransform> {src: LMT_gamut_48n-log2-AP1.cube, interpolation: linear}  
+    transform: !<FileTransform> {src: LMT_gamut_compress_AP1_shaper.cube, interpolation: linear}  
+
+  - !<Look>
+    name: LMT_filmic_base
+    process_space: Utility - Log2 48 nits Shaper - AP1
+    transform: !<FileTransform> {src: LMT_filmic_AP1_shaper_v18.cube, interpolation: linear} 
 	
   - !<Look>
-    name: LMT_color-hiContrast
+    name: LMT_neutral_base
     process_space: Utility - Log2 48 nits Shaper - AP1
-    transform: !<FileTransform> {src: LMT_high_v15_48n-log2-AP1.cube, interpolation: linear}  
-
-  - !<Look>
-    name: LMT_color-medContrast
-    process_space: Utility - Log2 48 nits Shaper - AP1
-    transform: !<FileTransform> {src: LMT_medium_v15_48n-log2-AP1.cube, interpolation: linear} 
-
-  - !<Look>
-    name: LMT_IPP2
-    process_space: Input - RED - REDLog3G10 - REDWideGamutRGB
-    transform: !<FileTransform> {src: testing/T-RED_Tone.cube, interpolation: linear}	
+    transform: !<FileTransform> {src: LMT_neutral_AP1_shaper_v17.cube, interpolation: linear} 
 
   - !<Look>
     name: LMT_show
@@ -160,7 +154,7 @@ colorspaces:
         - !<FileTransform> {src: Log2_48_nits_Shaper.RRT.sRGB.spi3d, interpolation: tetrahedral}
 
   - !<ColorSpace>
-    name: Output - sRGB - Look medium contrast
+    name: Output - sRGB - Look Neutral
     family: Output
     equalitygroup: ""
     bitdepth: 32f
@@ -168,21 +162,15 @@ colorspaces:
     isdata: false
     allocation: uniform
     allocationvars: [0, 1]
-    to_reference: !<GroupTransform>
-      children:
-        - !<FileTransform> {src: InvRRT.sRGB.Log2_48_nits_Shaper.spi3d, interpolation: tetrahedral}
-        - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear}
-        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, direction: inverse, looks: LMT_color-medContrast}
-        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_gamut-compress}
     from_reference: !<GroupTransform>
       children:
-        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_gamut-compress}
-        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_color-medContrast}
+        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_gamut_compress_module}
+        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_neutral_base}
         - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear, direction: inverse}
         - !<FileTransform> {src: Log2_48_nits_Shaper.RRT.sRGB.spi3d, interpolation: tetrahedral}
 
   - !<ColorSpace>
-    name: Output - sRGB - Look high contrast
+    name: Output - sRGB - Look Filmic
     family: Output
     equalitygroup: ""
     bitdepth: 32f
@@ -190,16 +178,10 @@ colorspaces:
     isdata: false
     allocation: uniform
     allocationvars: [0, 1]
-    to_reference: !<GroupTransform>
-      children:
-        - !<FileTransform> {src: InvRRT.sRGB.Log2_48_nits_Shaper.spi3d, interpolation: tetrahedral}
-        - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear}
-        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, direction: inverse, looks: LMT_color-hiContrast}
-        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_gamut-compress}
     from_reference: !<GroupTransform>
       children:
-        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_gamut-compress}
-        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_color-hiContrast}
+        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_gamut_compress_module}
+        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_filmic_base}
         - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear, direction: inverse}
         - !<FileTransform> {src: Log2_48_nits_Shaper.RRT.sRGB.spi3d, interpolation: tetrahedral}
 
@@ -215,7 +197,7 @@ colorspaces:
     from_reference: !<GroupTransform>
       children:
         - !<ColorSpaceTransform> {src: ACES - ACES2065-1, dst: Utility - Log2 48 nits Shaper}
-        - !<FileTransform> {src: invEOTF_sRGB_48n-log2_to_AP1.cube, interpolation: linear}
+        - !<FileTransform> {src: invEOTF_sRGB_AP1_shaper.cube, interpolation: linear}
 
 # Rec.709
 
@@ -241,7 +223,7 @@ colorspaces:
         - !<FileTransform> {src: Log2_48_nits_Shaper.RRT.Rec.709.spi3d, interpolation: tetrahedral}
 
   - !<ColorSpace>
-    name: Output - Rec.709 - Look medium contrast
+    name: Output - Rec.709 - Look Neutral
     family: Output
     equalitygroup: ""
     bitdepth: 32f
@@ -249,21 +231,15 @@ colorspaces:
     isdata: false
     allocation: uniform
     allocationvars: [0, 1]
-    to_reference: !<GroupTransform>
-      children:
-        - !<FileTransform> {src: InvRRT.Rec.709.Log2_48_nits_Shaper.spi3d, interpolation: tetrahedral}
-        - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear}
-        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, direction: inverse, looks: LMT_color-medContrast}
-        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_gamut-compress}
     from_reference: !<GroupTransform>
       children:
-        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_gamut-compress}
-        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_color-medContrast}
+        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_gamut_compress_module}
+        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_neutral_base}
         - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear, direction: inverse}
         - !<FileTransform> {src: Log2_48_nits_Shaper.RRT.Rec.709.spi3d, interpolation: tetrahedral}
 
   - !<ColorSpace>
-    name: Output - Rec.709 - Look high contrast
+    name: Output - Rec.709 - Look Filmic
     family: Output
     equalitygroup: ""
     bitdepth: 32f
@@ -271,16 +247,10 @@ colorspaces:
     isdata: false
     allocation: uniform
     allocationvars: [0, 1]
-    to_reference: !<GroupTransform>
-      children:
-        - !<FileTransform> {src: InvRRT.Rec.709.Log2_48_nits_Shaper.spi3d, interpolation: tetrahedral}
-        - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear}
-        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, direction: inverse, looks: LMT_color-hiContrast}
-        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_gamut-compress}
     from_reference: !<GroupTransform>
       children:
-        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_gamut-compress}
-        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_color-hiContrast}
+        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_gamut_compress_module}
+        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_filmic_base}
         - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear, direction: inverse}
         - !<FileTransform> {src: Log2_48_nits_Shaper.RRT.Rec.709.spi3d, interpolation: tetrahedral}
 
@@ -296,7 +266,7 @@ colorspaces:
     from_reference: !<GroupTransform>
       children:
         - !<ColorSpaceTransform> {src: ACES - ACES2065-1, dst: Utility - Log2 48 nits Shaper}
-        - !<FileTransform> {src: invEOTF_BT1886_48n-log2_to_AP1.cube, interpolation: linear}
+        - !<FileTransform> {src: invEOTF_BT1886_AP1_shaper.cube, interpolation: linear}
 
 
 		
