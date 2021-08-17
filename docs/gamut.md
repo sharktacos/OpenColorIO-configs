@@ -1,5 +1,7 @@
  <h3>Gamut Compression</h3>
  
+The config's look transforms include an implementation of the <a href="https://github.com/ampas/aces-vwg-gamut-mapping-2020">ACES gamut compression algorithm</a> as a 3D LUT. The algorithm is not fully implementable as a 3D LUT, and a proper implementation <a href="https://github.com/AcademySoftwareFoundation/OpenColorIO-Config-ACES/releases/tag/v0.1.1">would be done in CTL (Color Transformation Language)</a> which is supported in OCIO v2. Since Foundry Nuke and Houdini do not currently support OCIO v2, a LUT based approximation is used here.<p>
+ 
  Let's begin with several images with out of gamut colors, illustrating the problem. 
  Note for instance the blobs of blue on the roof of the bar scene (bottom right), the loss of detail in the red areas in the top two images in thier faces and clothing, 
  and the crazy banding or posterizing happening on the spotlight behind the head of the woman (bottom left image).<p>
