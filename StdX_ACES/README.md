@@ -1,6 +1,7 @@
-<h1>ACES-stdX config modifications</h1>
-<h2>Look Transforms</h2>
-<b>Gamut Compression</b><br> 
+Here's an overview of the modifications made in this config to the standard ACES 1.1 config.
+
+<h1>Look Transforms</h1>
+</h2>Gamut Compression</h2>
 Look transforms include an implementation of the <a href="https://github.com/ampas/aces-vwg-gamut-mapping-2020">ACES gamut compression algorithm</a> as a 3D LUT. The algorithm is not fully implementable as a 3D LUT, and a proper implementation <a href="https://github.com/AcademySoftwareFoundation/OpenColorIO-Config-ACES/releases/tag/v0.1.1">would be done in CTL (Color Transformation Language)</a> which is supported in OCIO v2. Since Foundry Nuke and Houdini do not currently support OCIO v2, a LUT based approximation is used here.<p>
   
   Check out some <a href="https://github.com/sharktacos/OpenColorIO-configs/blob/main/docs/gamut.md">pretty pictures</a> showing the gamut compression implementation.<p>
