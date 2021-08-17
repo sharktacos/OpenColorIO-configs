@@ -19,4 +19,3 @@ programs that do not support OCIO, such as Davinci Resolve.
 
 ![blue](img/Gamut_bluefix.png)
 
-
