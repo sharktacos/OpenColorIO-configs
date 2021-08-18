@@ -8,11 +8,15 @@ The config has several view transforms:
    is intended as a neutral starting point for color grading and lookdev work. It reduces contrast (by a factor of 0.85 in log space) pulling the shadows and highlights slightly out of the toe and shoulder curves, to make more of the shot range visible. 
 - **Filmic Look**
    is intended for shot work and has a similar filmic look to the standard ACES 1.0 RRT, with a little less contrast, resulting of less crushing of shadows. 
-- **ACES Standard RRT**
-is included for reference and should be used as the color space for 8-bit images (jpg, png, etc), such as matte paintings. When selected as the input color space this will be read in with the inverse transform before applying the selected look.
-- **Show** is for the show specific look LUT.
-- **Un-tone-mapped**,  **Raw**,  **Log**
-   These last three view transforms are parallel to the Maya 2022 default ACES config and are used for diagnostic purposes. Un-tone-mapped is equivalent to the Nuke default view transform which clips values over 1.
+- **Show** is for the show specific look LUT decided on by the director.
+
+The remaining view transforms are the same as the default Maya 2022 config.
+
+- **ACES 1.0 SDR-video**
+- **Un-tone-mapped** 
+- **Raw** 
+- **Log**
+  
 
 # Highlight Desaturation
 
