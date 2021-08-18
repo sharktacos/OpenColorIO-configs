@@ -2,7 +2,7 @@
 
 [ACES Next](https://community.acescentral.com/c/aces-development-acesnext/67) has identified several changes and improvements to the Output Transform that will be available at some furture date. Inspired by that work,  this config is to attempt to implement some of those changes as Look Transforms, to the extent that this is possible, as a stop-gap until ACES 2.0 is released.
 
-# View Transforms
+# Look Transforms
   
 The config adds three Look Transforms to the view transforms included the ACES config included in Maya 2022:
 
@@ -18,7 +18,6 @@ The *Filmic* and *Neutral* Look Transforms consist of three elements:
   - [highlight desaturation](../docs/highlight.md)
   - chromaticity adjustments
   
-
 The remaining view transforms are the same as the default Maya 2022 config.
 
 - **ACES 1.0 SDR-video**
