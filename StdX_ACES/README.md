@@ -20,6 +20,7 @@ The config has several view transforms:
    ![clouds](https://github.com/sharktacos/OpenColorIO-configs/blob/main/docs/img/clouds.png)
    
 - **ACES Standard RRT**
+- **Show**
 - **Un-tone-mapped**
 - **Raw**
 - **Log**
