@@ -1,14 +1,23 @@
-Here's an overview of the modifications made in this config to the standard ACES 1.1 config.
+# Motivation
+
+[ACES Next](https://community.acescentral.com/c/aces-development-acesnext/67) has identified several changes and improvements to the Output Transform that will be available at some furture date. Inspired by that work,  this config is to attempt to implement some of those changes as Look Transforms, to the extent that this is possible, as a stop-gap until ACES 2.0 is released.
 
 # View Transforms
   
-The config has several view transforms:
+The config adds three Look Transforms to the view transforms included the ACES config included in Maya 2022:
 
 - **Neutral Look**
    is intended as a neutral starting point for color grading and lookdev work. It reduces contrast (by a factor of 0.85 in log space) pulling the shadows and highlights slightly out of the toe and shoulder curves, to make more of the shot range visible. 
 - **Filmic Look**
    is intended for shot work and has a similar filmic look to the standard ACES 1.0 RRT, with a little less contrast, resulting of less crushing of shadows. 
-- **Show** is for the show specific look LUT decided on by the director.
+- **Show** is for the show specific look LUT decided on by the director. This could optionally be combined with the Filmic or Neutral Look if desired.
+
+The *Filmic* and *Neutral* Look Transforms consist of three elements:
+  - tonemapping contrast
+  - [gamut compression](../docs/gamut.md)
+  - highlight desaturation
+  - chromaticity adjustments
+  
 
 The remaining view transforms are the same as the default Maya 2022 config.
 
@@ -28,10 +37,6 @@ This flourescent "yellow highlighter" look can be particularly unpleasant in clo
    
    ![clouds](../docs/img/clouds.png)
    
-
-
-  
-
   
 ## Gamut Compression
 
