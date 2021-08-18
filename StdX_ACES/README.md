@@ -3,16 +3,14 @@ Here's an overview of the modifications made in this config to the standard ACES
 # View Transforms
   
 The config has several view transforms:
-  
-  ![view](https://github.com/sharktacos/OpenColorIO-configs/blob/main/docs/img/viewTransforms.jpg)
 
 - **Neutral Look**
    is intended as a neutral starting point for color grading and lookdev work. It reduces contrast (by a factor of 0.85 in log space) pulling the shadows and highlights slightly out of the toe and shoulder curves, to make more of the shot range visible. 
 - **Filmic Look**
    is intended for shot work and has a similar filmic look to the standard ACES 1.0 RRT, with a little less contrast, resulting of less crushing of shadows. 
 - **ACES Standard RRT**
-is included for reference and should be used as the color space for 8-bit sRGB images, such as matte paintings. 
-- **Show** is for the show LUT.
+is included for reference and should be used as the color space for 8-bit images (jpg, png, etc), such as matte paintings. When selected as the input color space this will be read in with the inverse transform before applying the selected look.
+- **Show** is for the show specific look LUT.
 - **Un-tone-mapped**,  **Raw**,  **Log**
    These last three view transforms are parallel to the Maya 2022 default ACES config and are used for diagnostic purposes. Un-tone-mapped is equivalent to the Nuke default view transform which clips values over 1.
 
@@ -20,11 +18,11 @@ is included for reference and should be used as the color space for 8-bit sRGB i
 
 Both the Filmic and Neutral looks handle warm light temperatures such as sunshine, fire, and tungsten light bulbs differently than the ACES RRT which renders these in an unnatural over-saturated way. 
    
-   ![light](https//github.com/sharktacos/OpenColorIO-configs/blob/main/docs/img/yellow.jpg)
+   ![light](../docs/img/yellow.jpg)
    
 This flourescent "yellow highlighter" look can be particularly unpleasant in clouds.
    
-   ![clouds](https://github.com/sharktacos/OpenColorIO-configs/blob/main/docs/img/clouds.png)
+   ![clouds](../docs/img/clouds.png)
    
 
 
