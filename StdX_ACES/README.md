@@ -31,6 +31,7 @@ Instructions for use of the config's Look Transforms is various software, includ
 
 - [Maya](../docs/Maya.md)
 - [Nuke](../docs/Nuke.md)
+- [Mari](../docs/Mari.md)
 - [Substance Painter](../docs/Substance.md)
 - [Premiere Pro](../docs/Premiere.md)
 - [Davinci Resolve](../docs/Resolve.md)
