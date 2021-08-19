@@ -15,7 +15,4 @@ This is done with a Nuke node provided by the amazing [Jed Smith](https://github
 <blockquote><img src="https://render.githubusercontent.com/render/math?math=y = p\left(\frac{x}{p}\right)^{v}"><br>
 <sub>x=input, y=output, p=pivot, v=value</sub><br> </blockquote>
 
-So for the Filmic Look, keeping the pivot at 0.18 and contrast at 0.9 we get:
-<img src="https://render.githubusercontent.com/render/math?math=y = 0.18\left(\frac{x}{0.18}\right)^{0.9}">
 
-Additionally, based on a suggestion of [Alex Fry](https://community.acescentral.com/t/aces-background-document/3568/12), the Neutral Look has a slight saturation boost (1.1) applied to the midtones in Tlog space (again using a Nuke tool from Jed called LogZonesat) in order to compensate for the loss of saturation with lowered contrast, so the saturation levels of the two transforms appear equal.
