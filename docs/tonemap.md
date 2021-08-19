@@ -4,19 +4,18 @@ Perhaps the top request of the ACES Output Transform (RRT) is that it be more ne
 
 > “The defined ACES rendering intent has been questioned by a number of expert users... It is not uncommon to hear people saying they do not like the cumulative effects: crushing effect on shadows, and heavy highlight roll off, with too much look”
 
-The two Look Transforms therefore lower the contrast of the tonecurve, the Filmic is 0.9 and Neutral is 0.8. This pulls the shadows and highlights slightly out of the toe and shoulder curves, resulting of less crushing of shadows and more gentle highlight rolloff. Note in the images below the details visible in the shadow areas compared to the ACES 1.0 Output Transform:
+The two Look Transforms therefore lower the contrast of the tonecurve, the **Filmic** is 0.9 and **Neutral** is 0.8. This pulls the shadows and highlights slightly out of the toe and shoulder curves, resulting in less crushing of shadows and more gentle highlight rolloff. Note in the images below the details visible in the shadow areas compared to the ACES 1.0 Output Transform:
 
-[rrt](img/tone_filmic9.png)
+![rrt](img/tone_rrt.png)
+![rrt](img/tone_filmic9.png)
+![rrt](img/tone_neutral8.png)
 
-A bit of math: The RRT tonemapping converts scene-linear data to display-linear data. This should only be done once, so modifying the contrast in a Look Transform needs to be done in scene-linear. Using a “gamma” function here doesn’t work well because it does different things to values above 1 and below 1, and of course EXR files have plenty of values above 1. The function for contrast is 
+This is done with a Nuke node provided by the amazing [Jed Smith](https://github.com/jedypod) which adjusts the contrast of the ACES tone curve, keeping the pivot at 0.18 for middle grey. Here's the explanation provided by Jed as to how this works (Hold on tight, this gets pretty technical!) The RRT tonemapping converts scene-linear data to display-linear data. This should only be done once, so modifying the contrast in a Look Transform needs to be done in scene-linear. Using a “gamma” function here doesn’t work well because it does different things to values above 1 and below 1, and of course EXR files have plenty of values above 1. The function for contrast is 
 
-
-is done with a linear grade which modfies the tonecurve, keeping its pivot at 0.18. If you like math formulas, here's the function for contrast: 
-
-  <blockquote><img src="https://render.githubusercontent.com/render/math?math=y = p\left(\frac{x}{p}\right)^{v}"><br>
+<blockquote><img src="https://render.githubusercontent.com/render/math?math=y = p\left(\frac{x}{p}\right)^{v}"><br>
 <sub>x=input, y=output, p=pivot, v=value</sub><br> </blockquote>
 
+So for the Filmic Look, keeping the pivot at 0.18 and contrast at 0.9 we get:
+<img src="https://render.githubusercontent.com/render/math?math=y = 0.18\left(\frac{x}{0.18}\right)^{0.9}">
 
-
-Neutral Look is intended as a neutral starting point for color grading and lookdev work. It reduces contrast (by a factor of 0.85 in log space) pulling the shadows and highlights slightly out of the toe and shoulder curves, to make more of the shot range visible.
-Filmic Look is intended for shot work and has a similar filmic look to the standard ACES 1.0 RRT, with a little less contrast, resulting of less crushing of shadows.
+Additionally, based on a suggestion of [Alex Fry](https://community.acescentral.com/t/aces-background-document/3568/12), the Neutral Look has a slight saturation boost (1.1) applied to the midtones in Tlog space (again using a Nuke tool from Jed called LogZonesat) in order to compensate for the loss of saturation with lowered contrast, so the saturation levels of the two transforms appear equal. This is 
