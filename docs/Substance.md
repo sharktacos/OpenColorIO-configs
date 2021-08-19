@@ -11,11 +11,11 @@ These files need to be coppied into the Substnace Painter shelf folder. On Windo
 
 In the Display Settings, enable Activate Post Effects and Tone Mapping. Set *function* to Log and slide the *mapping factor* to the max (63.99). This will tonemap scene linear into a 0-1 range.
 
-![sp1](docs/img/substance_painter_aces_setup_01_tonemapping.png)
+![sp1](img/substance_painter_aces_setup_01_tonemapping.png)
 
 Check *activate color profile* and choose the colorlut profile you just put there.
 
-![sp2](docs/img/Substance2.jpg)
+![sp2](img/Substance2.jpg)
 
 Note these view tranforms assume you are working in sRGB scene-linear in Substance Painter, and that the HDR enviornment maps are all in sRGB scene-linear (the default). 
 
