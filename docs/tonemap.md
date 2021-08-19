@@ -4,7 +4,7 @@ Perhaps the top request of the ACES Output Transform (RRT) is that it be more ne
 
 > “The defined ACES rendering intent has been questioned by a number of expert users... It is not uncommon to hear people saying they do not like the cumulative effects: crushing effect on shadows, and heavy highlight roll off, with too much look”
 
-The two Look Transforms therefore lower the contrast of the tonecurve, the **Filmic** is 0.9 and **Neutral** is 0.8. This pulls the shadows and highlights slightly out of the toe and shoulder curves, resulting in less crushing of shadows and more gentle highlight rolloff. Note in the images below the details visible in the shadow areas compared to the ACES 1.0 Output Transform:
+The two Look Transforms therefore lower the contrast of the tone curve, the **Filmic** is 0.9 and **Neutral** is 0.8. This pulls the shadows and highlights slightly out of the toe and shoulder curves, resulting in less crushing of shadows and more gentle highlight rolloff. Note in the images below the details visible in the shadow areas compared to the ACES 1.0 Output Transform:
 
 ![rrt](img/tone_rrt.png)
 ![rrt](img/tone_filmic9.png)
@@ -18,4 +18,4 @@ This is done with a Nuke node provided by the amazing [Jed Smith](https://github
 So for the Filmic Look, keeping the pivot at 0.18 and contrast at 0.9 we get:
 <img src="https://render.githubusercontent.com/render/math?math=y = 0.18\left(\frac{x}{0.18}\right)^{0.9}">
 
-Additionally, based on a suggestion of [Alex Fry](https://community.acescentral.com/t/aces-background-document/3568/12), the Neutral Look has a slight saturation boost (1.1) applied to the midtones in Tlog space (again using a Nuke tool from Jed called LogZonesat) in order to compensate for the loss of saturation with lowered contrast, so the saturation levels of the two transforms appear equal. This is 
+Additionally, based on a suggestion of [Alex Fry](https://community.acescentral.com/t/aces-background-document/3568/12), the Neutral Look has a slight saturation boost (1.1) applied to the midtones in Tlog space (again using a Nuke tool from Jed called LogZonesat) in order to compensate for the loss of saturation with lowered contrast, so the saturation levels of the two transforms appear equal.
