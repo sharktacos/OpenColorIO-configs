@@ -16,7 +16,7 @@ The *Filmic* and *Neutral* Look Transforms consist of three elements:
   - [tonemapping contrast](../docs/tonemap.md)
   - [gamut compression](../docs/gamut.md)
   - [highlight desaturation](../docs/highlight.md)
-  - chromaticity adjustments
+  - [chromaticity adjustments](../docs/chroma.md)
   
 The remaining view transforms are the same as the default Maya 2022 config.
 
