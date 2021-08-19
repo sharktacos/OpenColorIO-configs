@@ -30,7 +30,7 @@ The remaining view transforms are the same as the default Maya 2022 config.
 Instructions for use of the config's Look Transforms is various software, including those that do not support OCIO:
 
 - [Maya](../docs/Maya.md)
-- **Nuke**
+- [Nuke](../docs/Nuke.md)
 - [Substance Painter](../docs/Substance.md)
 - [Premiere Pro](../docs/Premiere.md)
 - [Davinci Resolve](../docs/Resolve.md)
