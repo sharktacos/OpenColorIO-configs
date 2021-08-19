@@ -14,7 +14,7 @@ Compare that to the LUT implementation used in this config, shown below. For the
 
 ![lut](img/Gamut_lut.png)
       
-Nevertheless, despite these minor differences, compared to the older Blue Light Artifact Fix, pictured below, the results of the gamut compression LUT are clearly superior. Ironically the "blue fix" is making blue appear magenta. Obviously using a 3D LUT is an interim solution, but this is clearly a huge gain compared to the current availalbe solutions. One can also use this LUT in
+Nevertheless, despite these minor differences, compared to the older Blue Light Artifact Fix, pictured below, the results of the gamut compression LUT are clearly superior. Ironically the "blue fix" is making blue appear magenta. Obviously using a 3D LUT is an interim solution, but this is clearly a huge gain compared to the current available solutions. One can also use this LUT in
 programs that do not support OCIO, such as Davinci Resolve.
 
 ![blue](img/Gamut_bluefix.png)

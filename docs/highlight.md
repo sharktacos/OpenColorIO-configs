@@ -3,7 +3,7 @@ Both the Filmic and Neutral looks handle warm light temperatures such as sunshin
    ![light](img/kelvin_rrt.png)
    ![light2](img/kelvin_filmic.png)
    
-A good deal of this is already done by the [gamut compression](gamut.md). The zoneSat just gives it a little nudge on its path to white as the luminance approaches display max. Here's a look at the affect of each part:
+A good deal of this is already done by the [gamut compression](gamut.md). The zoneSat just gives it a little nudge on its path to white as the luminance approaches display max. Here's a look at the effect of each part:
 
    ![light3](img/kelvin_base.png)
    ![light4](img/kelvin_gamut.png)

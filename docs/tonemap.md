@@ -1,4 +1,4 @@
-# Tonemapping Contrast
+# Lower Contrast Tone Mapping
 
 Perhaps the top request of the ACES Output Transform (RRT) is that it be more neutral with less contrast. The [ACES Retrospective and Enhancements](https://community.acescentral.com/uploads/default/original/1X/38d7ee7ca7720701873914094d6f4a1d4ca031ef.pdf) paper states for example,
 
