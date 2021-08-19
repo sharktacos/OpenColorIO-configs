@@ -15,4 +15,8 @@ Because ACES works in a wider gamut linear space, HDR maps that were made with s
 
 That’s a lot of choices. To make this easier we use customized roles in our ACES config. Maya is thus set up to use Utility–Raw as the default input transform (since most texture maps are in this color space) and will automatically assign the *Utility– sRGB - Texture* color space to texture maps containing “dif” or "BaseColor" in the filename (for example Car_door_dif_v01.jpg as opposed to Car_door_bmp_v02.jpg). Likewise,  texture files containing “hdr” in the filename will automatically get the  *Utility – Linear – sRGB* color space. This works with a simple checkbox in Maya’s color management prefs to “use OCIO input color space rules”. So as long as you follow some simple naming conventions for your texture maps, the config will automagically assign the correct color space.
 
+- **Pick - sRGBlin desat**
+
+Defined as color picking role to pick colors in sRGB/Rec.709 primaries with slight desaturation (0.85 based on rec709 luma) resulting in colors having around 0.95 max saturation. Standard computer color pickers lead artists to pick extremely saturated neon colors. With the Rec2020 gamut of ACEScg this is exaserbated with colors on the edge of the AP1 gamut that are only found in lasers, and are not plausible values for the colors of reflective objects. The motivation is to have a color picker which encourages artists to pick painterly colors, meaning one has to lower the luminance to achieve deeply saturated colors.
+
 
