@@ -27,8 +27,8 @@ displays:
   sRGB monitor:
     - !<View> {name: Neutral Look, colorspace: Output - sRGB - Look Neutral}
     - !<View> {name: Filmic Look, colorspace: Output - sRGB - Look Filmic}
-    - !<View> {name: ACES Standard RRT, colorspace: Output - sRGB}
-    - !<View> {name: Show, colorspace: Output - sRGB, look: +LMT_show}
+    - !<View> {name: Show Look, colorspace: Output - sRGB, look: +LMT_show}
+    - !<View> {name: ACES 1.0 SDR-video, colorspace: Output - sRGB}
     - !<View> {name: un-tone-mapped, colorspace: Output - un-tone-mapped EOTF - sRGB 2.2}
     - !<View> {name: Raw, colorspace: Utility - Raw}
     - !<View> {name: Log, colorspace: Input - ADX - ADX10}
@@ -36,13 +36,13 @@ displays:
   BT.1886/Rec.709 2.4 video:
     - !<View> {name: Neutral Look, colorspace: Output - Rec.709 - Look Neutral}
     - !<View> {name: Filmic Look, colorspace: Output - Rec.709 - Look Filmic}
-    - !<View> {name: ACES Standard RRT, colorspace: Output - Rec.709}
-    - !<View> {name: Show, colorspace: Output - Rec.709, look: +LMT_show}
+    - !<View> {name: Show Look, colorspace: Output - Rec.709, look: +LMT_show}
+    - !<View> {name: ACES 1.0 SDR-video, colorspace: Output - Rec.709}
     - !<View> {name: un-tone-mapped, colorspace: Output - un-tone-mapped EOTF - BT.1886/Rec.709 2.4}
 
 
 active_displays: [sRGB monitor, BT.1886/Rec.709 2.4 video]
-active_views: [Neutral Look, Filmic Look, ACES Standard RRT, Show, un-tone-mapped, Raw, Log]
+active_views: [Neutral Look, Filmic Look, Show Look, ACES 1.0 SDR-video, un-tone-mapped, Raw, Log]
 
 	
 looks:
@@ -54,12 +54,12 @@ looks:
   - !<Look>
     name: LMT_filmic_base
     process_space: Utility - Log2 48 nits Shaper - AP1
-    transform: !<FileTransform> {src: LMT_filmic_AP1_shaper_v22.cube, interpolation: linear} 
+    transform: !<FileTransform> {src: LMT_filmic_AP1_shaper_v26.cube, interpolation: linear} 
 	
   - !<Look>
     name: LMT_neutral_base
     process_space: Utility - Log2 48 nits Shaper - AP1
-    transform: !<FileTransform> {src: LMT_neutral_AP1_shaper_v22.cube, interpolation: linear} 
+    transform: !<FileTransform> {src: LMT_neutral_AP1_shaper_v26.cube, interpolation: linear} 
 
   - !<Look>
     name: LMT_show
