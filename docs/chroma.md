@@ -10,5 +10,9 @@ However viewed through the ACES 1.0 Output Transform below there are a number of
 
 ![sph1a](img/spheres_rrt.png)
 
-Viewed through the Filmic Look Transform, while not perfect, we see significant improvment. The "notorious six" is still there, but the blue looks dramtically better. If you look hard you can still see it is skewing into magenta, but much less dramtically. This visual improvment is a by-product of the [gamma compression](gamut.md) and the [highlight desaturation](highlight.md).
+Viewed through the Filmic Look Transform, while not perfect, we see significant improvment. The "notorious six" is still there, but the red and blue columns are dramtically improved. 
+
+![sph1a](img/spheres_filmic.png)
+
+This visual improvment is a welcome by-product of the [gamma compression](gamut.md) and the [highlight desaturation](highlight.md). 
 
