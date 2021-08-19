@@ -7,9 +7,9 @@
 The config adds three Look Transforms to the view transforms included the ACES config included in Maya 2022:
 
 - **Neutral Look**
-   is intended as a neutral starting point for color grading and lookdev work. It reduces contrast (by a factor of 0.85 in log space) pulling the shadows and highlights slightly out of the toe and shoulder curves, to make more of the shot range visible. 
+   is intended as a neutral starting point for color grading and lookdev work. It reduces contrast (by a factor of 0.8 in log space) pulling the shadows and highlights slightly out of the toe and shoulder curves, to make more of the shot range visible. 
 - **Filmic Look**
-   is intended for shot work and has a similar filmic look to the standard ACES 1.0 RRT, with a little less contrast, resulting of less crushing of shadows. 
+   is intended for shot work and has a similar filmic look to the standard ACES 1.0 RRT, with a little less contrast (0.9), resulting of less crushing of shadows. 
 - **Show** is for the show specific look LUT decided on by the director. This could optionally be combined with the Filmic or Neutral Look if desired.
 
 The *Filmic* and *Neutral* Look Transforms provide following improvments to the RRT:
