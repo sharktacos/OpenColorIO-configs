@@ -29,11 +29,11 @@ The remaining view transforms are the same as the default Maya 2022 config.
 
 Instructions for use of the config's Look Transforms is various software, including those that do not support OCIO:
 
-- **Maya**
+- [Maya](../docs/Maya.md)
 - **Nuke**
 - **Substance Painter**
-- **Premiere Pro**
-- **Davinci Resolve**
+- [Premiere Pro](../docs/Premiere.md)
+- [Davinci Resolve](../docs/Resolve.md)
   
   
 ## Color Spaces
