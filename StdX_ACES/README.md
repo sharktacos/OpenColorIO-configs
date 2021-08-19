@@ -35,8 +35,6 @@ Instructions for use of the config's Look Transforms is various software, includ
 - **Premiere Pro**
 - **Davinci Resolve**
   
-# Roles and rules 
-**dif**, **BaseColor** and **hdr** color spaces act as aliases using OCIO rule name matching which assigns an input color space if its name appears in the image name. Therefore textures with "dif" (shirt_dif_v02.png) or "BaseColor" in their name will automatically be assigned the *Utility - sRGB - texture* color space. Likewise if "hdr" is in the file name the *scene-linear sRGB* color space will be assigned. All other textures (bump, normal, masks, displacement, etc.) will automatically be assigned the *Utility - Raw* color space (the default role).<p> 
   
 ## Color Spaces
 **Pick - sRGBlin desat**
