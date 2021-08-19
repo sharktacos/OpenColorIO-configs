@@ -36,10 +36,6 @@ Instructions for use of the config's Look Transforms is various software, includ
 - [Davinci Resolve](../docs/Resolve.md)
   
   
-## Color Spaces
-**Pick - sRGBlin desat**
-  
-Defined as color picking role to pick colors in sRGB/Rec.709 primaries with slight desaturation (0.85 based on rec709 luma) resulting in colors having around 0.95 max saturation. Standard computer color pickers lead artists to pick extremely saturated neon colors. With the Rec2020 gamut of ACEScg this is exaserbated. The motivation is to have a color picker which encourages artists to pick painterly colors, meaning one has to lower the luminance to achieve deeply saturated colors.<p>
 
 
 
