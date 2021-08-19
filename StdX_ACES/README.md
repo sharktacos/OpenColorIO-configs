@@ -13,10 +13,10 @@ The config adds three Look Transforms to the view transforms included the ACES c
 - **Show** is for the show specific look LUT decided on by the director. This could optionally be combined with the Filmic or Neutral Look if desired.
 
 The *Filmic* and *Neutral* Look Transforms consist of three elements:
-  - [tonemapping contrast](../docs/tonemap.md)
-  - [gamut compression](../docs/gamut.md)
-  - [highlight desaturation](../docs/highlight.md)
-  - [chromaticity adjustments](../docs/chroma.md)
+  - [Tone Mapping Contrast](../docs/tonemap.md)
+  - [Gamut Compression](../docs/gamut.md)
+  - [Highlight Desaturation](../docs/highlight.md)
+  - [Hue Shifts](../docs/chroma.md)
   
 The remaining view transforms are the same as the default Maya 2022 config.
 
