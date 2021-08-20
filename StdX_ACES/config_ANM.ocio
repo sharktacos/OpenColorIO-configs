@@ -79,7 +79,7 @@ looks:
 colorspaces:
   - !<ColorSpace>
     name: Raw
-    family: Utility/Aliases
+    family: Input/File-io
     equalitygroup: Raw
     bitdepth: 32f
     description: |
@@ -90,7 +90,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: dif
-    family: Utility/Aliases
+    family: Input/File-io
     equalitygroup: sRGB - Texture
     bitdepth: 32f
     description: |
@@ -102,7 +102,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: BaseColor
-    family: Utility/Aliases
+    family: Input/File-io
     equalitygroup: sRGB - Texture
     bitdepth: 32f
     description: |
@@ -114,7 +114,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Pick - sRGBlin desat
-    family: Utility/Aliases
+    family: Input/File-io
     equalitygroup: Linear - sRGB
     bitdepth: 32f
     description: Color picking in sRGB/Rec.709 primaries with slight desaturation (0.85 based on rec709 luma) (DF)
@@ -126,7 +126,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: hdr
-    family: Utility/Aliases
+    family: Input/File-io
     equalitygroup: Linear - sRGB
     bitdepth: 32f
     description: |
@@ -139,7 +139,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: DT
-    family: Utility/Aliases
+    family: Input/File-io
     equalitygroup: ""
     bitdepth: 32f
     description: DT color space for inverse of Output- sRGB with matrix to keep colors below 1. (depreciated)(DF)
