@@ -17,11 +17,21 @@ roles:
   compositing_log: ACES - ACEScct
   data: Utility - Raw
   default: Utility - Raw
+#Nuke 8-bit default used for 8-bit files to get display-refered inverse transform of display. 
   matte_paint: Output - sRGB
   reference: Utility - Raw
   rendering: ACES - ACEScg
   scene_linear: ACES - ACEScg
+#Nuke 16-bit log default. Used for log matte painting files.
   texture_paint: ACES - ACEScct
+  mari_monitor: Output - sRGB - Look Neutral
+  mari_scaler_monitor: Utility - Raw
+  mari_color_picker: Utility - Linear - sRGB 
+  mari_blending: ACES - ACEScg 
+  mari_int8: Utility - sRGB - Texture
+  mari_int16: ACES - ACEScct
+  mari_int_scalar: Utility - Raw
+  mari_float: ACES - ACEScg
 
 displays:
   sRGB monitor:
@@ -54,12 +64,12 @@ looks:
   - !<Look>
     name: LMT_filmic_base
     process_space: Utility - Log2 48 nits Shaper - AP1
-    transform: !<FileTransform> {src: LMT_filmic_AP1_shaper_v26.cube, interpolation: linear} 
+    transform: !<FileTransform> {src: LMT_filmic_AP1_shaper_v27.cube, interpolation: linear} 
 	
   - !<Look>
     name: LMT_neutral_base
     process_space: Utility - Log2 48 nits Shaper - AP1
-    transform: !<FileTransform> {src: LMT_neutral_AP1_shaper_v26.cube, interpolation: linear} 
+    transform: !<FileTransform> {src: LMT_neutral_AP1_shaper_v27.cube, interpolation: linear} 
 
   - !<Look>
     name: LMT_show
@@ -125,6 +135,22 @@ colorspaces:
     allocation: lg2
     allocationvars: [-8, 5, 0.00390625]
     from_reference: !<ColorSpaceTransform> {src: ACES - ACES2065-1, dst: Utility - Linear - sRGB}
+
+
+  - !<ColorSpace>
+    name: DT
+    family: Utility/Aliases
+    equalitygroup: ""
+    bitdepth: 32f
+    description: DT color space for inverse of Output- sRGB with matrix to keep colors below 1. (depreciated)(DF)
+    isdata: false
+    allocation: uniform
+    allocationvars: [0, 1]
+    to_reference: !<GroupTransform>
+      children:
+        - !<MatrixTransform> {matrix: [ 0.811410665512, 0, 0, 0, 0, 0.811410665512, 0, 0, 0, 0, 0.811410665512, 0, 0, 0, 0, 1 ]}
+        - !<FileTransform> {src: InvRRT.sRGB.Log2_48_nits_Shaper.spi3d, interpolation: tetrahedral}
+        - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear}
 
 
 # Display/Outputs
