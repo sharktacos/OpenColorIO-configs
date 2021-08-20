@@ -260,7 +260,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Log film scan (ADX10)
-    family: Input/Camera
+    family: Input/ADX
     description: |
       ADX10 Academy Density Encoding
     isdata: false
@@ -268,6 +268,38 @@ colorspaces:
     encoding: log
     to_reference: !<BuiltinTransform> {style: "ADX10_to_ACES2065-1"}
 
+  - !<ColorSpace>
+    name: AP0 2.4 gamma
+    family: Input/Generic
+    equalitygroup: ""
+    bitdepth: 32f
+    description: AP0 with 2.4 gamma. For Premiere Pro
+    isdata: false
+    encoding: sdr-video
+    allocation: uniform
+    to_scene_reference: !<ExponentTransform> {value: [2.4, 2.4, 2.4, 1], negativeStyle: NEGATIVE_MIRROR}
+
+  - !<ColorSpace>
+    name: AP0 2.2 gamma
+    family: Input/Generic
+    equalitygroup: ""
+    bitdepth: 32f
+    description: AP0 with 2.2 gamma.  For Premiere Pro
+    isdata: false
+    encoding: sdr-video
+    allocation: uniform
+    to_scene_reference: !<ExponentTransform> {value: [2.2, 2.2, 2.2, 1], negativeStyle: NEGATIVE_MIRROR}
+
+  - !<ColorSpace>
+    name: AP0 sRGB EOTF
+    family: Input/Generic
+    equalitygroup: ""
+    bitdepth: 32f
+    description: AP0 with sRGB EOTF.  For Premiere Pro
+    isdata: false
+    encoding: sdr-video
+    allocation: uniform
+    to_scene_reference: !<ExponentWithLinearTransform> {gamma: 2.4, offset: 0.055}
 
 
 # Cameras #
@@ -359,33 +391,6 @@ display_colorspaces:
         - !<ExponentTransform> {value: 2.4, direction: inverse}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
-  - !<ColorSpace>
-    name: AdobeRGB
-    family: Output
-    description: |
-      AdobeRGB
-    isdata: false
-    categories: [ file-io ]
-    encoding: sdr-video
-    from_display_reference: !<GroupTransform>
-      children:
-        - !<MatrixTransform> {matrix: [ 2.041587903811, -0.565006974279, -0.344731350778, 0, -0.969243636281, 1.875967501508, 0.041555057407, 0, 0.013444280632, -0.118362392231, 1.015174994391, 0, 0, 0, 0, 1 ]}
-        - !<ExponentTransform> {value: 2.19921875, direction: inverse}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
-
-  - !<ColorSpace>
-    name: DCI-P3 D65
-    family: Output
-    description: |
-      DCI-P3 monitor with D65 white point and 2.6 gamma
-    isdata: false
-    categories: [ file-io ]
-    encoding: sdr-video
-    from_display_reference: !<GroupTransform>
-      children:
-        - !<MatrixTransform> {matrix: [ 2.493496911941, -0.931383617919, -0.402710784451, 0, -0.829488969562, 1.762664060318, 0.023624685842, 0, 0.035845830244, -0.076172389268, 0.956884524008, 0, 0, 0, 0, 1 ]}
-        - !<ExponentTransform> {value: 2.6, direction: inverse}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
 named_transforms:
 
