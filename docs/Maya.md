@@ -1,6 +1,8 @@
 # Maya
 
-In Maya for Arnold the OCIO config is loaded in the Color Management section of the Maya Preferences. Note that we are using both the OCIO configuration and the color space rules.
+In Maya for Arnold the OCIO config is loaded in the Color Management section of the Maya Preferences. Note that we are using both the OCIO configuration and the color space rules. So make sure to click "add color space name rule" if it's not already active.
+
+![maya](img/maya1.jpg)
 
 For a linear workflow with ACES  we need to define the following color spaces in Maya:
 
