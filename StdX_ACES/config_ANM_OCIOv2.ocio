@@ -15,20 +15,20 @@ roles:
   aces_interchange: ACES2065-1
   cie_xyz_d65_interchange: CIE-XYZ D65
   
-  color_picking: Pick - sRGBlin desat
-  # color_picking: pickRGB709
+#  color_picking: Pick - sRGBlin desat
+  color_picking: pickRGB709
   
   color_timing: ACES - ACEScct
   compositing_linear: ACES - ACEScg
   compositing_log: ACES - ACEScct
   data: Utility - Raw
   default: Utility - Raw
-#Nuke 8-bit default used for 8-bit files to get display-refered inverse transform of display. 
+#    Nuke 8-bit default used for 8-bit files to get display-refered inverse transform of display. #
   matte_paint: Output - sRGB
   reference: Utility - Raw
   rendering: ACES - ACEScg
   scene_linear: ACES - ACEScg
-#Nuke 16-bit log default. Used for log matte painting files.
+#    Nuke 16-bit log default. Used for log matte painting files. #
   texture_paint: ACES - ACEScct
   mari_monitor: Output - sRGB - Look Neutral
   mari_scaler_monitor: Utility - Raw
@@ -38,9 +38,6 @@ roles:
   mari_int16: ACES - ACEScct
   mari_int_scalar: Utility - Raw
   mari_float: ACES - ACEScg
-  
-
- 
 
 
 file_rules:
@@ -174,30 +171,6 @@ colorspaces:
         - !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: sRGB, view: "ACES 1.0 SDR-video"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 0.98, max_out_value: 0.98}
 
-  - !<ColorSpace>
-    name: Color sRGB texture (DT full)
-    family: Input/File-io
-    description: |
-      Inverse of Output - sRGB with rangeTransform for energy conservation. For sRGB color textures.
-    isdata: false
-    categories: [ file-io ]
-    encoding: sdr-video
-    to_reference: !<GroupTransform>
-      children:
-        - !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: sRGB, view: "ACES 1.0 SDR-video"}
-        - !<ExposureContrastTransform> {style: linear, exposure: -0.1, contrast: 1.0, gamma: 1.0, pivot: 0.18}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 0.98, max_out_value: 0.98}
-
-  - !<ColorSpace>
-    name: pickLin2020
-    description: |
-      Linear color picking with slight desaturation (sat 0.85 based on rec2020 luma 0.2627 0.678 0.0593)
-    isdata: false
-    encoding: scene-linear
-    to_reference: !<GroupTransform>
-      children:
-        - !<MatrixTransform> {matrix: [ 0.9, 0.05, 0.05, 0, 0.05, 0.9, 0.05, 0, 0.05, 0.05, 0.9, 0, 0, 0, 0, 1 ]}
-        - !<MatrixTransform> {matrix: [ 0.695452241357, 0.140678696470, 0.163869062172, 0, 0.044794563372, 0.859671118456, 0.095534318172, 0, -0.005525882558, 0.004025210306, 1.001500672252, 0, 0, 0, 0, 1 ]}
 
   - !<ColorSpace>
     name: pickRGB709
@@ -214,32 +187,22 @@ colorspaces:
         - !<MatrixTransform> {matrix:  [ 0.439632981919, 0.382988698152, 0.177378319929, 0, 0.089776442959, 0.813439428749, 0.096784128292, 0, 0.017541170383, 0.111546553302, 0.870912276314, 0, 0, 0, 0, 1 ]}
 
   - !<ColorSpace>
-    name: pickRGB333
+    name: scene-linear Rec.709-sRGB
+    aliases: [ hdr ]
     family: Input/File-io
+    equalitygroup: ""
     bitdepth: 32f
     description: |
-      color picking of sRGB primaries with slight desaturation (sat 0.85)
+      Scene-linear Rec.709 or sRGB primaries to ACES primaries
     isdata: false
+    categories: [ file-io, working-space, scene_linear_working_space ]
     encoding: scene-linear
-    to_reference: !<GroupTransform>
-      children:
-        - !<MatrixTransform> {matrix: [ 0.9, 0.05, 0.05, 0, 0.05, 0.9, 0.05, 0, 0.05, 0.05, 0.9, 0, 0, 0, 0, 1 ]}
-        - !<MatrixTransform> {matrix:  [ 0.439632981919, 0.382988698152, 0.177378319929, 0, 0.089776442959, 0.813439428749, 0.096784128292, 0, 0.017541170383, 0.111546553302, 0.870912276314, 0, 0, 0, 0, 1 ]}
+    to_reference: !<MatrixTransform> {matrix: [ 0.439632981919, 0.382988698152, 0.177378319929, 0, 0.089776442959, 0.813439428749, 0.096784128292, 0, 0.017541170383, 0.111546553302, 0.870912276314, 0, 0, 0, 0, 1 ]}
 
-- !<ColorSpace>
-    name: Utility - Log2 48 nits Shaper - AP1
-    family: Utility/Extra
-    equalitygroup: Log2 48 nits Shaper - AP1
-    bitdepth: 32f
-    description: |
-      The Log2 48 nits Shaper - AP1 color space
-    isdata: false
-    allocation: uniform
-    allocationvars: [0, 1]
-    to_reference: !<GroupTransform>
-      children:
-        - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear}
-        - !<MatrixTransform> {matrix: [0.695452, 0.140679, 0.163869, 0, 0.0447946, 0.859671, 0.0955343, 0, -0.00552588, 0.00402521, 1.0015, 0, 0, 0, 0, 1]}
+
+
+
+# ACES #
 
   - !<ColorSpace>
     name: ACEScg
@@ -253,18 +216,6 @@ colorspaces:
     encoding: scene-linear
     to_reference: !<MatrixTransform> {matrix: [ 0.695452241357, 0.140678696470, 0.163869062172, 0, 0.044794563372, 0.859671118456, 0.095534318172, 0, -0.005525882558, 0.004025210306, 1.001500672252, 0, 0, 0, 0, 1 ]}
 
-  - !<ColorSpace>
-    name: scene-linear Rec.709-sRGB
-    aliases: [ hdr ]
-    family: Input/File-io
-    equalitygroup: ""
-    bitdepth: 32f
-    description: |
-      Scene-linear Rec.709 or sRGB primaries to ACES primaries
-    isdata: false
-    categories: [ file-io, working-space, scene_linear_working_space ]
-    encoding: scene-linear
-    to_reference: !<MatrixTransform> {matrix: [ 0.439632981919, 0.382988698152, 0.177378319929, 0, 0.089776442959, 0.813439428749, 0.096784128292, 0, 0.017541170383, 0.111546553302, 0.870912276314, 0, 0, 0, 0, 1 ]}
 
   - !<ColorSpace>
     name: ACES2065-1
@@ -297,34 +248,26 @@ colorspaces:
     encoding: log
     to_scene_reference: !<BuiltinTransform> {style: "ACEScc_to_ACES2065-1"}
 
-
-
-
-# Other linear #
+  - !<ColorSpace>
+    name: Inverse sRGB Output
+    family: Input/File-io
+    description: |
+      sRGB monitor (piecewise EOTF)
+    isdata: false
+    categories: [ file-io ]
+    encoding: sdr-video
+    to_reference: !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: sRGB, view: "ACES 1.0 SDR-video"}
 
   - !<ColorSpace>
-    name: scene-linear DCI-P3 D65
-    family: Input/File-io
-    equalitygroup: ""
-    bitdepth: 32f
+    name: Log film scan (ADX10)
+    family: Input/Camera
     description: |
-      P3 primaries (D65 whitepoint) to ACES primaries
+      ADX10 Academy Density Encoding
     isdata: false
-    categories: [ file-io, working-space, scene_linear_working_space ]
-    encoding: scene-linear
-    to_reference: !<MatrixTransform> {matrix: [ 0.518933487598, 0.286256586387, 0.194809926015, 0, 0.073859383047, 0.819845163937, 0.106295453016, 0, -0.000307011368, 0.043807050254, 0.956499961115, 0, 0, 0, 0, 1 ]}
+    categories: [ file-io ]
+    encoding: log
+    to_reference: !<BuiltinTransform> {style: "ADX10_to_ACES2065-1"}
 
-  - !<ColorSpace>
-    name: scene-linear Rec.2020
-    family: Input/File-io
-    equalitygroup: ""
-    bitdepth: 32f
-    description: |
-      Scene-linear Rec 2020/UHDTV primaries to ACES2065-1
-    isdata: false
-    categories: [ file-io, working-space, scene_linear_working_space ]
-    encoding: scene-linear
-    to_reference: !<MatrixTransform> {matrix: [ 0.679085634707, 0.157700914643, 0.163213450650, 0, 0.046002003080, 0.859054673003, 0.094943323917, 0, -0.000573943188, 0.028467768408, 0.972106174780, 0, 0, 0, 0, 1 ]}
 
 
 # Cameras #
@@ -359,25 +302,6 @@ colorspaces:
     encoding: log
     to_reference: !<BuiltinTransform> {style: "SONY_SLOG3-SGAMUT3_to_ACES2065-1"}
 
-  - !<ColorSpace>
-    name: Log film scan (ADX10)
-    family: Input/Camera
-    description: |
-      ADX10 Academy Density Encoding
-    isdata: false
-    categories: [ file-io ]
-    encoding: log
-    to_reference: !<BuiltinTransform> {style: "ADX10_to_ACES2065-1"}
-
-  - !<ColorSpace>
-    name: Inverse sRGB Output
-    family: Input/File-io
-    description: |
-      sRGB monitor (piecewise EOTF)
-    isdata: false
-    categories: [ file-io ]
-    encoding: sdr-video
-    to_reference: !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: sRGB, view: "ACES 1.0 SDR-video"}
 
 
 
