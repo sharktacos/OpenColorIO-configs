@@ -12,7 +12,7 @@ In the Sequence Settings turn  **Max Bit Depth** on if reading EXR files. Otherw
    1. Grade in Luminare (in ACEScct log space)
    1.  **OCIO display** (in: ACEScct, out: Filmic Look)
    
-   ![img](docs/img/Premiere.jpg)
+   ![img](img/Premiere.jpg)
  
 Note that because Premiere adds a gamma adjustment to EXR files to bring it into its BT.1886/Rec.709 working space the config has a color space made for reading EXR files into Premiere: *Input - Premiere Pro - AP0 2.4 gamma* and *Input - Premiere Pro - AP0 2.4 gamma* which would be used as the input color space above. 
 
