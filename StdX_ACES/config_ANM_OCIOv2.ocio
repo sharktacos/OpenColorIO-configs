@@ -1,8 +1,6 @@
 # Maya 2022 default config.
 # Modified by Derek for StudioX
-#
-# version: 2021-01-21
-#
+
 
 ocio_profile_version: 2
 
@@ -11,17 +9,38 @@ name: Maya_2022_default
 
 environment: {}
 
-search_path: "ctfs:aces_vwg_gm:luts"
+search_path: "ctfs:show:studio:luts"
 
 roles:
   aces_interchange: ACES2065-1
   cie_xyz_d65_interchange: CIE-XYZ D65
-  color_timing: ACEScct
-  color_picking: pickRGB709
-  compositing_log: ACEScct
-  data: Raw
-  default: Raw
-  scene_linear: ACEScg
+  
+  color_picking: Pick - sRGBlin desat
+  # color_picking: pickRGB709
+  
+  color_timing: ACES - ACEScct
+  compositing_linear: ACES - ACEScg
+  compositing_log: ACES - ACEScct
+  data: Utility - Raw
+  default: Utility - Raw
+#Nuke 8-bit default used for 8-bit files to get display-refered inverse transform of display. 
+  matte_paint: Output - sRGB
+  reference: Utility - Raw
+  rendering: ACES - ACEScg
+  scene_linear: ACES - ACEScg
+#Nuke 16-bit log default. Used for log matte painting files.
+  texture_paint: ACES - ACEScct
+  mari_monitor: Output - sRGB - Look Neutral
+  mari_scaler_monitor: Utility - Raw
+  mari_color_picker: Utility - Linear - sRGB 
+  mari_blending: ACES - ACEScg 
+  mari_int8: Utility - sRGB - Texture
+  mari_int16: ACES - ACEScct
+  mari_int_scalar: Utility - Raw
+  mari_float: ACES - ACEScg
+  
+
+ 
 
 
 file_rules:
@@ -31,19 +50,15 @@ file_rules:
   - !<Rule> {name: exr, colorspace: Raw, pattern: "*", extension: exr}
   - !<Rule> {name: ColorSpaceNamePathSearch}
   - !<Rule> {name: Default, colorspace: default}
-
-
+    
+    
 shared_views:
 
-  - !<View>
-    name: ACES 1.0 SDR-video
-    view_transform: ACES 1.0 SDR-video
-    display_colorspace: <USE_DISPLAY_NAME>
-  - !<View> {name: Neutral, view_transform: ACES 1.0 SDR-video, looks: +LMT_neutral_tonemap, display_colorspace: <USE_DISPLAY_NAME>}
-  - !<View> {name: Look, view_transform: ACES 1.0 SDR-video, looks: +ACES-LMT - Blue light artifact fix, display_colorspace: <USE_DISPLAY_NAME>}
+  - !<View> {name: Neutral Look, view_transform: Look Neutral, display_colorspace: <USE_DISPLAY_NAME>}
+  - !<View> {name: Filmic Look, view_transform: Look Filmic, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: Show, view_transform: ACES 1.0 SDR-video, looks: +Client_LUT, display_colorspace: <USE_DISPLAY_NAME>}
+  - !<View> {name: ACES 1.0 SDR-video, view_transform: ACES 1.0 SDR-video, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: Un-tone-mapped, view_transform: Un-tone-mapped, display_colorspace: <USE_DISPLAY_NAME>}
-  - !<View> {name: Unity neutral tone-map, view_transform: Unity neutral tone-map, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: Log, colorspace: ACEScct}
   - !<View> {name: Raw, colorspace: Raw}
 
@@ -51,15 +66,12 @@ shared_views:
 displays:
 
   sRGB:
-    - !<Views> [ACES 1.0 SDR-video, Neutral, Look, Show, Un-tone-mapped, Unity neutral tone-map, Log, Raw]
+    - !<Views> [Neutral Look, Filmic Look, ACES 1.0 SDR-video, Show, Un-tone-mapped, Log, Raw]
   Gamma 2.2 / Rec.709:
-    - !<Views> [ACES 1.0 SDR-video, Un-tone-mapped, Unity neutral tone-map, Log, Raw]
+    - !<Views> [Neutral Look, Filmic Look, ACES 1.0 SDR-video, Show, Un-tone-mapped, Log, Raw]
   Rec.1886 / Rec.709 video:
-    - !<Views> [ACES 1.0 SDR-video, Un-tone-mapped, Unity neutral tone-map, Log, Raw]
-  AdobeRGB:
-    - !<Views> [ACES 1.0 SDR-video, Un-tone-mapped, Unity neutral tone-map, Log, Raw]
-  DCI-P3 D65:
-    - !<Views> [ACES 1.0 SDR-video, Un-tone-mapped, Unity neutral tone-map, Log, Raw]
+    - !<Views> [Neutral Look, Filmic Look, ACES 1.0 SDR-video, Show, Un-tone-mapped, Log, Raw]
+
 
 
 view_transforms:
@@ -72,9 +84,6 @@ view_transforms:
     name: ACES 1.0 SDR-video
     from_scene_reference: !<GroupTransform>
       children:
-#        - !<FileTransform> {src: LMT.Academy.GamutCompress.ctl}
-#        - !<BuiltinTransform> {style: "ACES-LMT - GAMUT_MAP_13"}
-#        - !<BuiltinTransform> {style: "ACES-OUTPUT - ACES2065-1_to_CIE-XYZ-D65 - SDR-VIDEO_1.0"}
         - !<FileTransform> {src: ACES_to_CIE-XYZ_1.0.ctf}
         - !<MatrixTransform> {matrix: [1.660585326491, -0.315295560826, -0.241509327608, 0, -0.659926063224, 1.608391469566, 0.017298594705, 0, 0.009002569138, -0.003566876390, 0.913643312763, 0, 0, 0, 0, 1]}
         - !<FixedFunctionTransform> {style: ACES_DarkToDim10}
@@ -82,36 +91,54 @@ view_transforms:
         - !<MatrixTransform> {matrix: [0.652237541886, 0.128236136000, 0.169982249166, 0, 0.267672180125, 0.674339988802, 0.057987831073, 0, -0.005381815766, 0.001369060209, 1.093070506317, 0, 0, 0, 0, 1]}
 
   - !<ViewTransform>
-    name: Unity neutral tone-map
-    from_scene_reference: !<FileTransform> {src: Unity_neutral_viewtransform.ctf}
+    name: Look Neutral
+    from_scene_reference: !<GroupTransform>
+      children:
+         children:
+        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_gamut_compress_module}
+        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_neutral_base}  
+        - !<FileTransform> {src: ACES_to_CIE-XYZ_1.0.ctf}
+        - !<MatrixTransform> {matrix: [1.660585326491, -0.315295560826, -0.241509327608, 0, -0.659926063224, 1.608391469566, 0.017298594705, 0, 0.009002569138, -0.003566876390, 0.913643312763, 0, 0, 0, 0, 1]}
+        - !<FixedFunctionTransform> {style: ACES_DarkToDim10}
+        - !<MatrixTransform> {matrix: [0.949056010175, 0.047185723607, 0.003758266219, 0, 0.019056010175, 0.977185723607, 0.003758266219, 0, 0.019056010175, 0.047185723607, 0.933758266219, 0, 0, 0, 0, 1]}
+        - !<MatrixTransform> {matrix: [0.652237541886, 0.128236136000, 0.169982249166, 0, 0.267672180125, 0.674339988802, 0.057987831073, 0, -0.005381815766, 0.001369060209, 1.093070506317, 0, 0, 0, 0, 1]}
+
+  - !<ViewTransform>
+    name: Look Filmic
+    from_scene_reference: !<GroupTransform>
+      children:
+         children:
+        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_gamut_compress_module}
+        - !<LookTransform> {src: ACES - ACES2065-1, dst: ACES - ACES2065-1, looks: LMT_filmic_base}  
+        - !<FileTransform> {src: ACES_to_CIE-XYZ_1.0.ctf}
+        - !<MatrixTransform> {matrix: [1.660585326491, -0.315295560826, -0.241509327608, 0, -0.659926063224, 1.608391469566, 0.017298594705, 0, 0.009002569138, -0.003566876390, 0.913643312763, 0, 0, 0, 0, 1]}
+        - !<FixedFunctionTransform> {style: ACES_DarkToDim10}
+        - !<MatrixTransform> {matrix: [0.949056010175, 0.047185723607, 0.003758266219, 0, 0.019056010175, 0.977185723607, 0.003758266219, 0, 0.019056010175, 0.047185723607, 0.933758266219, 0, 0, 0, 0, 1]}
+        - !<MatrixTransform> {matrix: [0.652237541886, 0.128236136000, 0.169982249166, 0, 0.267672180125, 0.674339988802, 0.057987831073, 0, -0.005381815766, 0.001369060209, 1.093070506317, 0, 0, 0, 0, 1]}
+
 
 looks:
 
+ - !<Look>
+    name: LMT_gamut_compress_module
+    process_space: ACEScc
+    transform: !<FileTransform> {src: LMT_gamut_compress_AP1_shaper.cube, interpolation: linear}  
+
   - !<Look>
-    name: ACES-LMT - Blue light artifact fix
-    description: |
-      LMT for desaturating blue hues to reduce clipping artifacts
-    process_space: ACES2065-1
-    transform: !<BuiltinTransform> {style: "ACES-LMT - BLUE_LIGHT_ARTIFACT_FIX"}
+    name: LMT_filmic_base
+    process_space: ACEScc
+    transform: !<FileTransform> {src: LMT_filmic_AP1_shaper_v27.cube, interpolation: linear} 
+	
+  - !<Look>
+    name: LMT_neutral_base
+    process_space: ACEScc
+    transform: !<FileTransform> {src: LMT_neutral_AP1_shaper_v27.cube, interpolation: linear} 
 
   - !<Look>
     name: Client_LUT
-    process_space: ACEScct
+    process_space: ACEScc
     transform: !<FileTransform> {src: show_ACEScc.cube, interpolation: linear}
 
-  - !<Look>
-    name: LMT_neutral_tonemap
-    process_space: ACEScct
-    transform: !<FileTransform> {src: LMT_neutralTonemap.cc}  
-
-# - !<Look>
-#    name: LMT - Gamut Compress
-#    process_space: ACES - ACES2065-1
-#    description: |
-#      LMT to bring out-of-gamut scene-referred values into AP1
-#      
-#      ACEStransformID: urn:ampas:aces:transformId:v1.5:LMT.Academy.GamutCompress.a1.3.0
-#    transform: !<BuiltinTransform> {style: ACES-LMT - GAMUT_MAP_13}
 
 inactive_colorspaces: [CIE-XYZ D65]
 
@@ -122,8 +149,19 @@ colorspaces:
 # Rendering #
 
   - !<ColorSpace>
+    name: Raw
+    family: Input/File-io
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Raw (no color processing)
+    isdata: true
+    categories: [ file-io ]
+    encoding: data
+  
+  - !<ColorSpace>
     name: Color sRGB texture (DT Dim)
-    aliases: [ dif, BaseColor ]
+#    aliases: [ dif, BaseColor ]
     family: Input/File-io
     description: |
       sRGB monitor (piecewise EOTF)
@@ -188,16 +226,20 @@ colorspaces:
         - !<MatrixTransform> {matrix: [ 0.9, 0.05, 0.05, 0, 0.05, 0.9, 0.05, 0, 0.05, 0.05, 0.9, 0, 0, 0, 0, 1 ]}
         - !<MatrixTransform> {matrix:  [ 0.439632981919, 0.382988698152, 0.177378319929, 0, 0.089776442959, 0.813439428749, 0.096784128292, 0, 0.017541170383, 0.111546553302, 0.870912276314, 0, 0, 0, 0, 1 ]}
 
-  - !<ColorSpace>
-    name: Raw
-    family: Input/File-io
-    equalitygroup: ""
+- !<ColorSpace>
+    name: Utility - Log2 48 nits Shaper - AP1
+    family: Utility/Extra
+    equalitygroup: Log2 48 nits Shaper - AP1
     bitdepth: 32f
     description: |
-      Raw (no color processing)
-    isdata: true
-    categories: [ file-io ]
-    encoding: data
+      The Log2 48 nits Shaper - AP1 color space
+    isdata: false
+    allocation: uniform
+    allocationvars: [0, 1]
+    to_reference: !<GroupTransform>
+      children:
+        - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear}
+        - !<MatrixTransform> {matrix: [0.695452, 0.140679, 0.163869, 0, 0.0447946, 0.859671, 0.0955343, 0, -0.00552588, 0.00402521, 1.0015, 0, 0, 0, 0, 1]}
 
   - !<ColorSpace>
     name: ACEScg
@@ -352,7 +394,7 @@ display_colorspaces:
 
   - !<ColorSpace>
     name: sRGB
-#    aliases: [ dif, BaseColor ]
+    aliases: [ dif, BaseColor ]
     family: Output
     description: |
       sRGB monitor (piecewise EOTF)
