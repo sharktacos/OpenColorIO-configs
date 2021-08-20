@@ -1,6 +1,10 @@
 # Davinci Resolve
 
-First the *Filmic* and *Neutral* Look LUTS, located in the "studio" folder of the config, need to be placed in the into the Davinci Resolve LUT directory which you can get to by clicking "Open LUT folder" in the Preferences, copying the files, and then clicking "update lists" to refesh. The two .cube LUT files are called:
+ACES is loaded in the Color Management section of the Project Settings.
+
+![Resolve](img/Resolve4.jpg)
+
+To use the *Filmic* and *Neutral* Look LUTS, located in the "studio" folder of the config, need to be placed in the into the Davinci Resolve LUT directory which you can get to by clicking "Open LUT folder" in the Preferences, copying the files, and then clicking "update lists" to refesh. The two .cube LUT files are called:
 
 [studio/LMT_filmic_AP1_shaper.cube](../StdX_ACES/studio/LMT_filmic_AP1_shaper_v27.cube)
 
