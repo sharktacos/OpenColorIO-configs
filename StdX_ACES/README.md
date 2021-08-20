@@ -31,11 +31,9 @@ Instructions for use of the config's Look Transforms is various software, includ
 
 - [Maya](../docs/Maya.md) (OCIOv2)
 - [Premiere Pro](../docs/Premiere.md) (OCIOv2)
-
 - [Nuke](../docs/Nuke.md) (OCIOv1)
 - [Mari](../docs/Mari.md) (OCIOv1)
 - Houdini (OCIOv1)
-
 - [Substance Painter](../docs/Substance.md) (no OCIO)
 - [Davinci Resolve](../docs/Resolve.md) (no OCIO)
   
