@@ -1,6 +1,8 @@
 # Photoshop
 
-There is a free [OCIO plugin for Photoshop](http://fnordware.blogspot.com/2017/02/opencolorio-for-photoshop.html) which lets you apply OCIO transforms as a filter, baking it into the file, which is a destructive workflow and thus undesirable. What you can do with the plugin however, is write out ICC profiles. This config contains ICC profiles for all of the Look Transforms for the various workflows, which are described below. These ICC profiles are located in the  ````software/Photoshop```` in the config. To install the icc profile on Windows, right-click the file and choose install profile. On a Mac copy the profiles into the ````/Users/[username]/Library/ColorSync/Profiles```` folder.
+There is a free [OCIO plugin for Photoshop](http://fnordware.blogspot.com/2017/02/opencolorio-for-photoshop.html) which lets you apply OCIO transforms as a filter, baking it into the file, which is a destructive workflow and thus undesirable. What you can do with the plugin however, is write out ICC profiles. 
+
+This config contains ICC profiles for all of the Look Transforms for the various workflows, which are described below. These ICC profiles are located in the  ````software/Photoshop```` in the config. To install the icc profile on Windows, right-click the file and choose install profile. On a Mac copy the profiles into the ````/Users/[username]/Library/ColorSync/Profiles```` folder.
 
 ## EXR Files in Photoshop
 
@@ -8,7 +10,7 @@ Photoshop has a very limited toolset in 32 bit mode (meaning most of your favior
 
 ## Matte Painting DPX log footage
 
-Let's assume that we are beginning with a 10-bit Log DPX film plate in ACEScct color space.  Photoshop will read this in 16-bit integer mode displaying the log image in raw which will look washed out:
+Let's assume that we are beginning with a 10-bit Log DPX film plate in ACEScct color space that you will be adding your matte painting to.  Photoshop will read this in 16-bit integer mode displaying the log image in raw which will look washed out:
 
 <img src="img/Photoshop1.png" alt="Photoshop" width="80%"/>
 
@@ -25,23 +27,4 @@ Note that if you wish to paste an sRGB image such as a PNG or JPG from a digital
 
 The file can be saved in PSD format while working, and will embed the ICC profile information into the file. For delivery to comp, all layers should be flattened and saved as DPX. This gives a DPX roundtrip from Nuke to Photoshop and back. 
 
-## Painting sRGB Texture Maps
 
-Currently the ACES Output Transform (RRT) has a number of [hue shifts and skews](chroma.md), which will affect images going from sRGB space to ACEScg. If you need to paint a texture map in Photoshop, it's therefore good to see how it will appear through the display transform for a WYSIWYG workflow, just as you can in a 3D paint program like [Mari](Mari.md) or [Substance Painter](Substance.md). Here's the Digital Emily2 texture map in Photoshop. This is a PNG file converted from the scene-linear sRGB/Rec709 EXR file. This is a crop of the texture map so we can focus on the color appearance.
-
-<img src="img/Photoshop_swatch1.png" alt="Photoshop" width="70%"/>
-
-Now we apply the ICC profile to go from ````sRGB texture to ACES 1.0 sRGB Display````. The face gets a greenish-yellow hue shift that many have described as "ghoulish". (Note that this hue shift is fixed in the forthcoming ACESNext Output Transform!)
-
-<img src="img/Photoshop_swatch2.png" alt="Photoshop" width="70%"/>
-
-Now that we can see the texture map through the ACES Display Transform we can adjust it as desired and know 
-
-
-We can switch to the Neutral Look Transform ICC profile to reduce the crushed shadows areas. For the hue shifts we can do some Photoshop image adjustments (color balance, healing brush, masks, etc.) until we get the texture looking a little less zombie-like, like this maybe...
-
-<img src="img/Photoshop5.png" alt="Photoshop" width="70%"/>
-
-You can then save out the texture as a regular PNG or JPG. Just for fun here's that adjusted texture map rendered out.
-
-<img src="img/Photoshop7.png" alt="Photoshop" width="70%"/>
