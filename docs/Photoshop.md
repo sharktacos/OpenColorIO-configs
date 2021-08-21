@@ -27,13 +27,16 @@ The file can be saved in PSD format while working, and will embed the ICC profil
 
 ## Painting sRGB Texture Maps
 
-Currently the ACES Output Transform (RRT) has a number of [hue shifts and skews](chroma.md), which will affect images going from sRGB space to ACEScg. If you need to paint a texture map in Photoshop, it's therefore good to see how it will appear through the display transform for a WYSIWYG workflow, just as you can in a 3D paint program like [Mari](Mari.md) or [Substance Painter](Substance.md). Here's the Digital Emily2 texture map in Photoshop. This is a PNG file converted from the scene-linear sRGB/Rec709 EXR file.
+Currently the ACES Output Transform (RRT) has a number of [hue shifts and skews](chroma.md), which will affect images going from sRGB space to ACEScg. If you need to paint a texture map in Photoshop, it's therefore good to see how it will appear through the display transform for a WYSIWYG workflow, just as you can in a 3D paint program like [Mari](Mari.md) or [Substance Painter](Substance.md). Here's the Digital Emily2 texture map in Photoshop. This is a PNG file converted from the scene-linear sRGB/Rec709 EXR file. This is a crop of the texture map so we can focus on the color appearance.
 
-<img src="img/Photoshop3.png" alt="Photoshop" width="70%"/>
+<img src="img/Photoshop_swatch1.png" alt="Photoshop" width="70%"/>
 
 Now we apply the ICC profile to go from ````sRGB texture to ACES 1.0 sRGB Display````. The face gets a greenish-yellow hue shift that many have described as "ghoulish". (Note that this hue shift is fixed in the forthcoming ACESNext Output Transform!)
 
-<img src="img/Photoshop4.png" alt="Photoshop" width="70%"/>
+<img src="img/Photoshop_swatch2.png" alt="Photoshop" width="70%"/>
+
+Now that we can see the texture map through the ACES Display Transform we can adjust it as desired and know 
+
 
 We can switch to the Neutral Look Transform ICC profile to reduce the crushed shadows areas. For the hue shifts we can do some Photoshop image adjustments (color balance, healing brush, masks, etc.) until we get the texture looking a little less zombie-like, like this maybe...
 
