@@ -39,10 +39,6 @@ We can switch to the Neutral Look Transform ICC profile to reduce the crushed sh
 
 ![psd5](img/Photoshop5.png)
 
-You can then save out the texture as a regular PNG or JPG. Just for fun here's what the adjusted texture map looks like without the ICC profile (i.e. not viewed through the ACES Display Transform).
-
-![psd6](img/Photoshop6.png)
-
-And here's that adjusted texture map rendered out.
+You can then save out the texture as a regular PNG or JPG. Just for fun here's that adjusted texture map rendered out.
 
 ![psd7](img/Photoshop7.png)
