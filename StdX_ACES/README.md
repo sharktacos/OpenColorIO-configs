@@ -36,6 +36,7 @@ Instructions for use of the config's Look Transforms is various software, includ
 - Houdini (OCIOv1)
 - [Substance Painter](../docs/Substance.md) (no OCIO)
 - [Davinci Resolve](../docs/Resolve.md) (no OCIO)
+- [Photoshop](../docs/Photoshop_v2.md) (no OCIO)
   
   
 
