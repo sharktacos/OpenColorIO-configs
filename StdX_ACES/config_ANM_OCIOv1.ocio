@@ -11,7 +11,7 @@ description: An ACES config Modified by Derek Flood for StudioX
 
 
 roles:
-  color_picking: Pick - sRGBlin desat
+  color_picking: hdr
   color_timing: ACEScct
   compositing_linear: ACEScg
   compositing_log: ACEScct
@@ -118,6 +118,27 @@ colorspaces:
     from_reference: !<ColorSpaceTransform> {src: ACES2065-1, dst: sRGB - Texture}
 
   - !<ColorSpace>
+    name: Output - Photoshop log
+    family: Output
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      ACES 1.0 Output - AP1 Output Transform
+      
+      ACES Transform ID : ODT.AnimalLogic.AP1_48nits.a1.0.3
+    isdata: false
+    allocation: uniform
+    allocationvars: [0, 1]
+    to_reference: !<GroupTransform>
+      children:
+        - !<FileTransform> {src: InvRRT.AP1.Log2_48_nits_Shaper_AL.spi3d, interpolation: tetrahedral}
+        - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear_AL.spi1d, interpolation: linear}
+    from_reference: !<GroupTransform>
+      children:
+        - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear_AL.spi1d, interpolation: linear, direction: inverse}
+        - !<FileTransform> {src: Log2_48_nits_Shaper.RRT.AP1_AL.spi3d, interpolation: tetrahedral}
+
+  - !<ColorSpace>
     name: Pick - sRGBlin desat
     family: File-io
     equalitygroup: scene-linear Rec.709-sRGB
@@ -127,10 +148,10 @@ colorspaces:
     to_reference: !<GroupTransform>
       children:
         - !<MatrixTransform> {matrix: [ 0.88189, 0.10728, 0.01083, 0, 0.03189, 0.95728, 0.01083, 0, 0.03189, 0.10728, 0.86083, 0, 0, 0, 0, 1 ]}
-        - !<MatrixTransform> {matrix: [ 0.439632981919, 0.382988698152, 0.177378319929, 0, 0.089776442959, 0.813439428749, 0.096784128292, 0, 0.017541170383, 0.111546553302, 0.870912276314, 0, 0, 0, 0, 1 ]}
+        - !<ColorSpaceTransform> {src: ACES2065-1, dst: scene-linear Rec.709-sRGB}
 
   - !<ColorSpace>
-    name: hdr/Alias
+    name: hdr
     family: File-io
     equalitygroup: scene-linear Rec.709-sRGB
     bitdepth: 32f

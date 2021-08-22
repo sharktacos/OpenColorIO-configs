@@ -6,7 +6,7 @@
 
 ocio_profile_version: 2
 
-description: Maya 2022 default config
+description: Maya 2022 default config, modified by Derek Flood for StudioX
 name: Maya_2022_default
 
 environment: {}
@@ -115,6 +115,58 @@ looks:
 inactive_colorspaces: [CIE-XYZ D65]
 
 
+display_colorspaces:
+
+  - !<ColorSpace>
+    name: CIE-XYZ D65
+    family: Output
+    description: |
+      Display connection space, CIE XYZ with D65 adopted white point
+    encoding: display-linear
+    isdata: false
+
+  - !<ColorSpace>
+    name: sRGB
+    family: Output
+    description: |
+      sRGB monitor (piecewise EOTF)
+    isdata: false
+#    categories: [ file-io ]
+    encoding: sdr-video
+    from_display_reference: !<GroupTransform>
+      children:
+        - !<MatrixTransform> {matrix: [ 3.240969941905, -1.537383177570, -0.498610760293, 0, -0.969243636281, 1.875967501508, 0.041555057407, 0, 0.055630079697, -0.203976958889, 1.056971514243, 0, 0, 0, 0, 1 ]}
+        - !<ExponentWithLinearTransform> {gamma: 2.4, offset: 0.055, direction: inverse}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: Gamma 2.2 / Rec.709
+    family: Output
+    description: |
+      Gamma 2.2 monitor with Rec.709 or sRGB primaries
+    isdata: false
+#    categories: [ file-io ]
+    encoding: sdr-video
+    from_display_reference: !<GroupTransform>
+      children:
+        - !<MatrixTransform> {matrix: [ 3.240969941905, -1.537383177570, -0.498610760293, 0, -0.969243636281, 1.875967501508, 0.041555057407, 0, 0.055630079697, -0.203976958889, 1.056971514243, 0, 0, 0, 0, 1 ]}
+        - !<ExponentTransform> {value: 2.2, direction: inverse}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: Rec.1886 / Rec.709 video
+    family: Output
+    description: |
+      Rec.709 broadcast monitor with Rec.1886 gamma (2.4)
+    isdata: false
+#    categories: [ file-io ]
+    encoding: sdr-video
+    from_display_reference: !<GroupTransform>
+      children:
+        - !<MatrixTransform> {matrix: [ 3.240969941905, -1.537383177570, -0.498610760293, 0, -0.969243636281, 1.875967501508, 0.041555057407, 0, 0.055630079697, -0.203976958889, 1.056971514243, 0, 0, 0, 0, 1 ]}
+        - !<ExponentTransform> {value: 2.4, direction: inverse}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
 
 colorspaces:
 
@@ -122,20 +174,37 @@ colorspaces:
 
 
   - !<ColorSpace>
-    name: Color sRGB texture (DT Dim)
-#    aliases: [ dif, BaseColor ]
+    name: Color sRGB - Texture
+    aliases: [ dif, BaseColor ]
     family: Input/File-io
     description: |
-      sRGB monitor (piecewise EOTF)
+      sRGB texture color space (piecewise sRGB EOTF)
     isdata: false
     categories: [ file-io ]
     encoding: sdr-video
     to_reference: !<GroupTransform>
       children:
+        - !<ExponentWithLinearTransform> {gamma: 2.4, offset: 0.055}
+        - !<MatrixTransform> {matrix:  [ 0.439632981919, 0.382988698152, 0.177378319929, 0, 0.089776442959, 0.813439428749, 0.096784128292, 0, 0.017541170383, 0.111546553302, 0.870912276314, 0, 0, 0, 0, 1 ]}
+
+
+
+  - !<ColorSpace>
+    name: Color sRGB Texture (DT) sat 1.1
+    aliases: [ dt ]
+    family: Input/File-io
+    description: |
+      Diffuse Texture (DT) color space for inverse of Output - sRGB 
+      with matrix to keep colors below 1 and another with a mild saturation boost to compensate 
+      (saturation 1.1 based on Rec.709 luma 0.2126 0.7152 0.0722) 
+    isdata: false
+    categories: [ file-io ]
+    encoding: sdr-video
+    to_reference: !<GroupTransform>
+      children:
+        - !<MatrixTransform> {matrix: [ 1.07874, -0.07152, -0.00722, 0, -0.02126, 1.02848, -0.00722, 0, -0.02126, -0.07152, 1.09278, 0, 0, 0, 0, 1 ]}
         - !<MatrixTransform> {matrix: [ 0.8119545, 0, 0, 0, 0, 0.8119545, 0, 0, 0, 0, 0.8119545, 0, 0, 0, 0, 1 ]}
         - !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: sRGB, view: "ACES 1.0 SDR-video"}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 0.98, max_out_value: 0.98}
-
 
   - !<ColorSpace>
     name: pickRGB709
@@ -150,7 +219,6 @@ colorspaces:
       children:
         - !<MatrixTransform> {matrix: [ 0.88189, 0.10728, 0.01083, 0, 0.03189, 0.95728, 0.01083, 0, 0.03189, 0.10728, 0.86083, 0, 0, 0, 0, 1 ]}
         - !<MatrixTransform> {matrix:  [ 0.439632981919, 0.382988698152, 0.177378319929, 0, 0.089776442959, 0.813439428749, 0.096784128292, 0, 0.017541170383, 0.111546553302, 0.870912276314, 0, 0, 0, 0, 1 ]}
-
 
   - !<ColorSpace>
     name: Raw
@@ -240,6 +308,7 @@ colorspaces:
     bitdepth: 32f
     description: AP0 with 2.4 gamma.
     isdata: false
+#    categories: [ file-io ]
     encoding: sdr-video
     allocation: uniform
 #    to_scene_reference: !<ExponentTransform> {value: [2.4, 2.4, 2.4, 1], negativeStyle: NEGATIVE_MIRROR}
@@ -252,6 +321,7 @@ colorspaces:
     bitdepth: 32f
     description: AP0 with 2.2 gamma.
     isdata: false
+#    categories: [ file-io ]
     encoding: sdr-video
     allocation: uniform
 #    to_scene_reference: !<ExponentTransform> {value: [2.2, 2.2, 2.2, 1], negativeStyle: NEGATIVE_MIRROR}
@@ -264,6 +334,7 @@ colorspaces:
     bitdepth: 32f
     description: AP0 with sRGB EOTF
     isdata: false
+#    categories: [ file-io ]
     encoding: sdr-video
     allocation: uniform
     to_scene_reference: !<ExponentWithLinearTransform> {gamma: 2.4, offset: 0.055}
@@ -277,7 +348,7 @@ colorspaces:
     description: |
       Alexa-v3-LogC-EI800 (no camera black) to ACES2065-1 (SUP v3 color science)
     isdata: false
-    categories: [ file-io ]
+#    categories: [ file-io ]
     encoding: log
     to_reference: !<BuiltinTransform> {style: "ARRI_ALEXA-LOGC-EI800-AWG_to_ACES2065-1"}
 
@@ -287,7 +358,7 @@ colorspaces:
     description: |
       RED Log3G10 / REDWideGamutRGB (no camera black)
     isdata: false
-    categories: [ file-io ]
+#    categories: [ file-io ]
     encoding: log
     to_reference: !<BuiltinTransform> {style: "RED_LOG3G10-RWG_to_ACES2065-1"}
 
@@ -297,7 +368,7 @@ colorspaces:
     description: |
       Sony SLog3 / SGamut3 (no camera black)
     isdata: false
-    categories: [ file-io ]
+#    categories: [ file-io ]
     encoding: log
     to_reference: !<BuiltinTransform> {style: "SONY_SLOG3-SGAMUT3_to_ACES2065-1"}
 
@@ -314,59 +385,6 @@ colorspaces:
 
 
 
-
-display_colorspaces:
-
-  - !<ColorSpace>
-    name: CIE-XYZ D65
-    family: Output
-    description: |
-      Display connection space, CIE XYZ with D65 adopted white point
-    encoding: display-linear
-    isdata: false
-
-  - !<ColorSpace>
-    name: sRGB
-    aliases: [ dif, BaseColor ]
-    family: Output
-    description: |
-      sRGB monitor (piecewise EOTF)
-    isdata: false
-    categories: [ file-io ]
-    encoding: sdr-video
-    from_display_reference: !<GroupTransform>
-      children:
-        - !<MatrixTransform> {matrix: [ 3.240969941905, -1.537383177570, -0.498610760293, 0, -0.969243636281, 1.875967501508, 0.041555057407, 0, 0.055630079697, -0.203976958889, 1.056971514243, 0, 0, 0, 0, 1 ]}
-        - !<ExponentWithLinearTransform> {gamma: 2.4, offset: 0.055, direction: inverse}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
-
-  - !<ColorSpace>
-    name: Gamma 2.2 / Rec.709
-    family: Output
-    description: |
-      Gamma 2.2 monitor with Rec.709 or sRGB primaries
-    isdata: false
-    categories: [ file-io ]
-    encoding: sdr-video
-    from_display_reference: !<GroupTransform>
-      children:
-        - !<MatrixTransform> {matrix: [ 3.240969941905, -1.537383177570, -0.498610760293, 0, -0.969243636281, 1.875967501508, 0.041555057407, 0, 0.055630079697, -0.203976958889, 1.056971514243, 0, 0, 0, 0, 1 ]}
-        - !<ExponentTransform> {value: 2.2, direction: inverse}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
-
-  - !<ColorSpace>
-    name: Rec.1886 / Rec.709 video
-    family: Output
-    description: |
-      Rec.709 broadcast monitor with Rec.1886 gamma (2.4)
-    isdata: false
-    categories: [ file-io ]
-    encoding: sdr-video
-    from_display_reference: !<GroupTransform>
-      children:
-        - !<MatrixTransform> {matrix: [ 3.240969941905, -1.537383177570, -0.498610760293, 0, -0.969243636281, 1.875967501508, 0.041555057407, 0, 0.055630079697, -0.203976958889, 1.056971514243, 0, 0, 0, 0, 1 ]}
-        - !<ExponentTransform> {value: 2.4, direction: inverse}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
 
 named_transforms:
