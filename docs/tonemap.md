@@ -4,7 +4,7 @@ Perhaps the top request of the ACES Output Transform (RRT) is that it be more ne
 
 > “The defined ACES rendering intent has been questioned by a number of expert users... It is not uncommon to hear people saying they do not like the cumulative effects: crushing effect on shadows, and heavy highlight roll off, with too much look”
 
-The two Look Transforms therefore lower the contrast of the ACES tone curve, the **Filmic** is 0.9 and **Neutral** is 0.8. This pulls the shadows and highlights slightly out of the toe and shoulder curves, resulting in less crushing of shadows and more gentle highlight rolloff. Note in the images below the details visible in the shadow areas compared to the ACES 1.0 Output Transform:
+The two Look Transforms therefore lower the contrast of the ACES tone curve, the **Filmic** is 0.9 and **Neutral** is 0.8. This pulls the shadows and highlights slightly out of the toe and shoulder curves, resulting in less crushing of shadows and more gentle highlight rolloff. The idea being to have the **Filmic LMT** make the ACES Output Transform have "slightly less contrast" and the **Neutral LMT** has even less in order to serve as a neutral starting point for DI and Lookdev. Note in the images below the details visible in the shadow areas compared to the ACES 1.0 Output Transform:
 
 ![rrt](img/tone_rrt.png)
 ![rrt](img/tone_filmic9.png)
