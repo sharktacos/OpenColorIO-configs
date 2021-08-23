@@ -29,3 +29,5 @@ Then just click on the node and choose your LUT from the contextual menu. The LU
 The “process node LUTs in” in the ACES Color management Settings should be set to AP1 when using these .cube LUTs with the shaper built in (Log2 48 nits shaper ACEScc). 
 
 ![Resolve](img/Resolve3.jpg)
+
+[Back to main](../StdX_ACES)
