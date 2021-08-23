@@ -6,7 +6,19 @@ This config contains ICC profiles for all of the Look Transforms for the various
 
 ## EXR Files in Photoshop
 
-Photoshop has a very limited toolset in 32 bit mode (meaning most of your faviorite tools in Photoshop wont be available). So if you're wanting to edit scene-linear EXR files, a better option is Affinity Photo, which is free.
+Photoshop has a very limited toolset in 32 bit mode (meaning most of your faviorite tools in Photoshop wont be available). So if you're wanting to edit scene-linear EXR files, a better option may be Affinity Photo, which is free and works with OCIO.
+
+[Alex Fry](https://community.acescentral.com/t/aces-photoshop-friendly-workflows/1369/31) has provided a workflow for EXR files in Photoshop: 
+
+Open an ACEScg exr in photoshop. Assign an ICC profile to change the color space to ACEScg:<br>
+**Edit > Assign Profile > “ACES CG Linear (Academy Color Encoding System AP1)”**
+
+(Note that if you instead pick “ACEScg ACES Working Space AMPAS S-2014-004” you will need to uncheck “Compensate for Scene-referred Profiles” in **Edit > Color Settings**)
+
+ Then use a LUT to view with an ACES Output Transform: **Layer > New Adjustment Layer > Color Lookup > Load 3D LUT** and load the .csp LUT from the config's ````software/Photoshop```` folder. These .csp LUTs are all updated for the ACES 1.2 Output Transform (the one from Alex is for ACES 1.0.3).
+   
+   If you are saving the file as EXR, make sure to first disable the LUT, otherwise it will be baked into the file.
+
 
 ## Matte Painting DPX log footage
 
