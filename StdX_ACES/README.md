@@ -29,7 +29,7 @@ The remaining view transforms are the same as the default Maya 2022 config.
 
 # Software
 
-Instructions for use of the config's Look Transforms is various software, including those that do not support OCIO:
+Instructions for use of the config's Look Transforms in various software, including those that do not support OCIO:
 
 - [Maya](../docs/Maya.md) (OCIOv2)
 - [Premiere Pro](../docs/Premiere.md) (OCIOv2)
