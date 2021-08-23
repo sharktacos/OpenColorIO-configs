@@ -19,3 +19,5 @@ Note that because Premiere adds a gamma adjustment to EXR files to bring it into
 ## Reading Apple Prores clips (color space: AP1 ACEScct)
 
 An alternte approach to the above EXR workflow is to instead use Prores movie files in ACEScct log. These would again be read into Premiere with the OCIO config, with the input space set to ACEScct. This will likely improve interactive speed in Premiere.
+
+[Back to main](../StdX_ACES)
