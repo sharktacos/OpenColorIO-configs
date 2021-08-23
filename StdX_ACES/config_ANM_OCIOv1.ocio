@@ -139,7 +139,7 @@ colorspaces:
         - !<FileTransform> {src: Log2_48_nits_Shaper.RRT.AP1_AL.spi3d, interpolation: tetrahedral}
 
   - !<ColorSpace>
-    name: Pick - sRGBlin desat
+    name: Pick Rec709-sRGB Desat
     family: File-io
     equalitygroup: scene-linear Rec.709-sRGB
     bitdepth: 32f
@@ -216,7 +216,6 @@ colorspaces:
     allocationvars: [0, 1]
     from_reference: !<GroupTransform>
       children:
-#        - !<LookTransform> {src: ACES2065-1, dst: ACES2065-1, looks: LMT_gamut_compress}
         - !<LookTransform> {src: ACES2065-1, dst: ACES2065-1, looks: LMT_neutral}
         - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear, direction: inverse}
         - !<FileTransform> {src: Log2_48_nits_Shaper.RRT.sRGB.spi3d, interpolation: tetrahedral}
@@ -232,7 +231,6 @@ colorspaces:
     allocationvars: [0, 1]
     from_reference: !<GroupTransform>
       children:
-#        - !<LookTransform> {src: ACES2065-1, dst: ACES2065-1, looks: LMT_gamut_compress}
         - !<LookTransform> {src: ACES2065-1, dst: ACES2065-1, looks: LMT_filmic}
         - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear, direction: inverse}
         - !<FileTransform> {src: Log2_48_nits_Shaper.RRT.sRGB.spi3d, interpolation: tetrahedral}
@@ -285,7 +283,6 @@ colorspaces:
     allocationvars: [0, 1]
     from_reference: !<GroupTransform>
       children:
-#        - !<LookTransform> {src: ACES2065-1, dst: ACES2065-1, looks: LMT_gamut_compress}
         - !<LookTransform> {src: ACES2065-1, dst: ACES2065-1, looks: LMT_neutral}
         - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear, direction: inverse}
         - !<FileTransform> {src: Log2_48_nits_Shaper.RRT.Rec.709.spi3d, interpolation: tetrahedral}
@@ -301,7 +298,6 @@ colorspaces:
     allocationvars: [0, 1]
     from_reference: !<GroupTransform>
       children:
-#        - !<LookTransform> {src: ACES2065-1, dst: ACES2065-1, looks: LMT_gamut_compress}
         - !<LookTransform> {src: ACES2065-1, dst: ACES2065-1, looks: LMT_filmic}
         - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear, direction: inverse}
         - !<FileTransform> {src: Log2_48_nits_Shaper.RRT.Rec.709.spi3d, interpolation: tetrahedral}
@@ -429,32 +425,6 @@ colorspaces:
 
 # Cameras #
 
-
-  - !<ColorSpace>
-    name: Premiere Pro - AP0 2.4 gamma
-    family: Input/Generic
-    equalitygroup: ""
-    bitdepth: 32f
-    description: ACEScg with gamma 2.4 for Premiere Pro (DF)
-    isdata: false
-    allocation: lg2
-    allocationvars: [-8, 5, 0.00390625]
-    to_reference: !<GroupTransform>
-      children:
-        - !<ExponentTransform> {value: [2.4, 2.4, 2.4, 1]}
-
-  - !<ColorSpace>
-    name: Premiere Pro - AP0 2.2 gamma
-    family: Input/Generic
-    equalitygroup: ""
-    bitdepth: 32f
-    description: ACEScg with gamma 2.4 for Premiere Pro (DF)
-    isdata: false
-    allocation: uniform
-    allocationvars: [0, 1]
-    to_reference: !<GroupTransform>
-      children:
-        - !<ExponentTransform> {value: [2.2, 2.2, 2.2, 1]}
 
   - !<ColorSpace>
     name: ARRI V3 LogC (EI800) - Wide Gamut

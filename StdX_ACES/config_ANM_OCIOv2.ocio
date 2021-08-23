@@ -17,7 +17,7 @@ roles:
   aces_interchange: ACES2065-1
   cie_xyz_d65_interchange: CIE-XYZ D65
   color_timing: ACEScct
-  color_picking: pickRGB709
+  color_picking: Pick Rec709-sRGB Desat
   compositing_linear: ACEScg  
   compositing_log: ACEScct
   data: Raw
@@ -175,7 +175,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Color sRGB - Texture
-    aliases: [ dif, BaseColor ]
+#    aliases: [ dif, BaseColor ]
     family: Input/File-io
     description: |
       sRGB texture color space (piecewise sRGB EOTF)
@@ -190,13 +190,10 @@ colorspaces:
 
 
   - !<ColorSpace>
-    name: Color sRGB Texture (DT) sat 1.1
-    aliases: [ dt ]
+    name: Color sRGB Texture (DT)
+    aliases: [ dif, BaseColor ]
     family: Input/File-io
-    description: |
-      Diffuse Texture (DT) color space for inverse of Output - sRGB 
-      with matrix to keep colors below 1 and another with a mild saturation boost to compensate 
-      (saturation 1.1 based on Rec.709 luma 0.2126 0.7152 0.0722) 
+    description: Inverse of Output - sRGB with matrix to keep colors below 1 with saturation boost of 1.1 with Rec.709 luma
     isdata: false
     categories: [ file-io ]
     encoding: sdr-video
@@ -207,7 +204,7 @@ colorspaces:
         - !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: sRGB, view: "ACES 1.0 SDR-video"}
 
   - !<ColorSpace>
-    name: pickRGB709
+    name: Pick Rec709-sRGB Desat
     aliases: [ picker ]
     family: Input/File-io
     bitdepth: 32f
@@ -308,7 +305,7 @@ colorspaces:
     bitdepth: 32f
     description: AP0 with 2.4 gamma.
     isdata: false
-#    categories: [ file-io ]
+    categories: [ advanced-2d ]
     encoding: sdr-video
     allocation: uniform
 #    to_scene_reference: !<ExponentTransform> {value: [2.4, 2.4, 2.4, 1], negativeStyle: NEGATIVE_MIRROR}
@@ -321,7 +318,7 @@ colorspaces:
     bitdepth: 32f
     description: AP0 with 2.2 gamma.
     isdata: false
-#    categories: [ file-io ]
+    categories: [ advanced-2d ]
     encoding: sdr-video
     allocation: uniform
 #    to_scene_reference: !<ExponentTransform> {value: [2.2, 2.2, 2.2, 1], negativeStyle: NEGATIVE_MIRROR}
@@ -334,7 +331,7 @@ colorspaces:
     bitdepth: 32f
     description: AP0 with sRGB EOTF
     isdata: false
-#    categories: [ file-io ]
+    categories: [ advanced-2d ]
     encoding: sdr-video
     allocation: uniform
     to_scene_reference: !<ExponentWithLinearTransform> {gamma: 2.4, offset: 0.055}
