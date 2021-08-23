@@ -16,7 +16,7 @@ The config adds three Look Transforms to the view transforms included the ACES c
    is intended for shot work and has a similar filmic look to the standard ACES 1.0 RRT, with slightly reduced contrast. 
 - **Show** is for the show specific look LUT decided on by the director. This could optionally be combined with the Filmic or Neutral Look if desired.
 
-The *Filmic* and *Neutral* Look Transforms provide following improvments to the RRT:
+The *Filmic* and *Neutral* Look Transforms provide the following improvments to the RRT:
   - [Lower Contrast Tone Mapping](docs/tonemap.md)
   - [Gamut Compression](docs/gamut.md)
   - [Highlight Desaturation](docs/highlight.md)
