@@ -1,10 +1,12 @@
+# StudioX ACES config
+
 An OpenColorIO config based on the [ACES 1.2 Config](https://github.com/colour-science/OpenColorIO-Configs/tree/feature/aces-1.2-config/aces_1.2) and the [OCIOv2 demo config](https://opencolorio.readthedocs.io/en/latest/configurations/ocio_v2_demo.html) with added Look Transforms.
 
-# Motivation
+## Motivation
 
 [ACES Next](https://community.acescentral.com/c/aces-development-acesnext/67) has identified several changes and improvements to the Output Transform that will be available at some furture date. Inspired by that work,  this config is to attempt to implement some of those changes as Look Transforms, to the extent that this is possible, as a stop-gap until ACES 2.0 is released.
 
-# Look Transforms
+## Look Transforms
   
 The config adds three Look Transforms to the view transforms included the ACES config included in Maya 2022:
 
@@ -27,7 +29,7 @@ The remaining view transforms are the same as the default Maya 2022 config.
 - **Raw** 
 - **Log**
 
-# Software
+## Software
 
 Instructions for use of the config's Look Transforms in various software, including those that do not support OCIO:
 
