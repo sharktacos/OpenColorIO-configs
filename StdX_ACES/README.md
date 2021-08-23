@@ -35,7 +35,7 @@ Instructions for use of the config's Look Transforms in various software, includ
 - [Premiere Pro](../docs/Premiere.md) (OCIOv2)
 - [Nuke](../docs/Nuke.md) (OCIOv1)
 - [Mari](../docs/Mari.md) (OCIOv1)
-- Houdini 
+- [Houdini](https://www.sidefx.com/docs/houdini/io/ocio.html) 
 - [Substance Painter](../docs/Substance.md) 
 - [Davinci Resolve](../docs/Resolve.md) 
 - [Photoshop](../docs/Photoshop_v2.md) 
