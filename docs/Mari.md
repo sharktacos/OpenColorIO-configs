@@ -13,6 +13,6 @@ Open the color picker by clicking the foreground color swatch and set *Canvas* t
 
 ![mari2](img/mari3.jpg)
 
-
+[Back to main](../StdX_ACES)
 
 

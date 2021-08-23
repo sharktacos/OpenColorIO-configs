@@ -45,3 +45,5 @@ We can switch to the Neutral Look Transform ICC profile to reduce the crushed sh
 You can then save out the texture as a regular PNG or JPG. Just for fun here's that adjusted texture map rendered out.
 
 <img src="img/Photoshop7.png" alt="Photoshop" width="70%"/>
+
+[Back to main](../StdX_ACES)

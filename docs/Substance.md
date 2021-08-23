@@ -19,7 +19,4 @@ Check *activate color profile* and choose the colorlut profile you just put ther
 
 Note these view transforms assume you are in sRGB scene-linear working space in Substance Painter, and that the HDR environment maps are all in sRGB scene-linear (which is the default). When sampling colors, make sure to pick them from the Base Color not the material material.
 
-
-
-
-
+[Back to main](../StdX_ACES)

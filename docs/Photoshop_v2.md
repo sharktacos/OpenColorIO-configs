@@ -39,4 +39,4 @@ Note that if you wish to paste an sRGB image such as a PNG or JPG from a digital
 
 The file can be saved in PSD format while working, and will embed the ICC profile information into the file. For delivery to comp, all layers should be flattened and saved as DPX. This gives a DPX roundtrip from Nuke to Photoshop and back. 
 
-
+[Back to main](../StdX_ACES)

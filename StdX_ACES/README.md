@@ -1,3 +1,5 @@
+An OpenColorIO config based on the [ACES 1.2 Config](https://github.com/colour-science/OpenColorIO-Configs/tree/feature/aces-1.2-config/aces_1.2) and the [OCIOv2 demo config](https://opencolorio.readthedocs.io/en/latest/configurations/ocio_v2_demo.html) with added Look Transforms.
+
 # Motivation
 
 [ACES Next](https://community.acescentral.com/c/aces-development-acesnext/67) has identified several changes and improvements to the Output Transform that will be available at some furture date. Inspired by that work,  this config is to attempt to implement some of those changes as Look Transforms, to the extent that this is possible, as a stop-gap until ACES 2.0 is released.
@@ -7,12 +9,12 @@
 The config adds three Look Transforms to the view transforms included the ACES config included in Maya 2022:
 
 - **Neutral Look**
-   is intended as a neutral starting point for color grading and lookdev work. It reduces contrast (by a factor of 0.8 in log space) pulling the shadows and highlights slightly out of the toe and shoulder curves, to make more of the shot range visible. 
+   is intended as a neutral starting point for color grading and lookdev work. 
 - **Filmic Look**
-   is intended for shot work and has a similar filmic look to the standard ACES 1.0 RRT, with a little less contrast (0.9), resulting of less crushing of shadows. 
+   is intended for shot work and has a similar filmic look to the standard ACES 1.0 RRT, with slightly reduced contrast. 
 - **Show** is for the show specific look LUT decided on by the director. This could optionally be combined with the Filmic or Neutral Look if desired.
 
-The *Filmic* and *Neutral* Look Transforms provide following improvments to the RRT:
+The *Filmic* and *Neutral* Look Transforms provide the following improvments to the RRT:
   - [Lower Contrast Tone Mapping](../docs/tonemap.md)
   - [Gamut Compression](../docs/gamut.md)
   - [Highlight Desaturation](../docs/highlight.md)
@@ -27,16 +29,16 @@ The remaining view transforms are the same as the default Maya 2022 config.
 
 # Software
 
-Instructions for use of the config's Look Transforms is various software, including those that do not support OCIO:
+Instructions for use of the config's Look Transforms in various software, including those that do not support OCIO:
 
-- [Maya](../docs/Maya.md) (OCIOv2)
-- [Premiere Pro](../docs/Premiere.md) (OCIOv2)
-- [Nuke](../docs/Nuke.md) (OCIOv1)
-- [Mari](../docs/Mari.md) (OCIOv1)
-- Houdini (OCIOv1)
-- [Substance Painter](../docs/Substance.md) (no OCIO)
-- [Davinci Resolve](../docs/Resolve.md) (no OCIO)
-- [Photoshop](../docs/Photoshop_v2.md) (no OCIO)
+- [Maya](../docs/Maya.md) 
+- [Nuke](../docs/Nuke.md) 
+- [Mari](../docs/Mari.md) 
+- [Substance Painter](../docs/Substance.md) 
+- [Houdini](https://www.sidefx.com/docs/houdini/io/ocio.html) 
+- [Davinci Resolve](../docs/Resolve.md) 
+- [Premiere Pro](../docs/Premiere.md) 
+- [Photoshop](../docs/Photoshop_v2.md) 
   
   
 
