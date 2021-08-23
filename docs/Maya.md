@@ -10,9 +10,9 @@ For a linear workflow with ACES  we need to define the following color spaces in
 
 - *Color textures: **Color sRGB - Texture (DT)** (aliases: dif, BaseColor)*<p>
 input color space for color linearizing 8-16bit texture maps that impact the color of the render (diffuse color, sss color, specular color, etc.)<p>
-Based on the DT16 color space from the [spi-vfx config](https://opencolorio.readthedocs.io/en/latest/configurations/spi_vfx.html?highlight=DT#texture-painting) with updated matrix for ACES scene-linear color space. This is used in liu of the sRGB - Texture color space to avoid [hue shifts/skews](chroma.md) and [crushed shadows](tonemap.md) in diffuse texture maps. The DT color space faithfully preserves color using an inverse of the sRGB Output Transform, but limits the conversion into linear space so that no values above diffuse white can be created. This ensures that textures do not add light to a render. This is achieved by using a matrix transformation to limit the mapping of sRGB Output to the linear value of diffuse white. 
+**Color sRGB - Texture (DT)** is based on the **DT16** color space from the [spi-vfx config](https://opencolorio.readthedocs.io/en/latest/configurations/spi_vfx.html?highlight=DT#texture-painting). This is used in liu of the default **sRGB - Texture** color space as a stop-gap fix to avoid [hue shifts/skews](chroma.md) and [crushed shadows](tonemap.md) in diffuse texture maps caused by issues in the ACES 1.0 Output Transform. The DT color space faithfully preserves color using an inverse of the sRGB Output Transform, but limits the conversion into linear space so that no values above diffuse white can be created. This ensures that textures do not add light to a render. This is achieved by using a matrix transformation to limit the mapping of sRGB Output to the linear value of diffuse white. Observe for example the greenish-yellow skew on the skin tones in the default **sRGB texture** color space in the image below.<p>
 	
-	![DT](DT1.png)
+	![DT](img/DT1.png)
 	
 
 - *Non-color textures: **Raw***<p>
@@ -23,7 +23,7 @@ Because ACES works in a wider gamut linear space, HDR maps that were made with s
 
 That’s a lot of choices. To make this easier we use customized roles in our ACES config. Maya is thus set up to use Utility–Raw as the default input transform (since most texture maps are in this color space) and will automatically assign the *Utility– sRGB - Texture* color space to texture maps containing “dif” or "BaseColor" in the filename (for example Car_door_dif_v01.jpg as opposed to Car_door_bmp_v02.jpg). Likewise,  texture files containing “hdr” in the filename will automatically get the  *Utility – Linear – sRGB* color space. This works with a simple checkbox in Maya’s color management prefs to “use OCIO input color space rules”. So as long as you follow some simple naming conventions for your texture maps, the config will automagically assign the correct color space.
 
-- **Pick Rec709-sRGB Desat**<p>
+- * Color picking: **Pick Rec709-sRGB Desat** *<p>
 Defined as color picking role to pick colors in sRGB/Rec.709 primaries with slight desaturation (0.85 based on rec709 luma) resulting in colors having around 0.95 max saturation. Standard computer color pickers lead artists to pick extremely saturated neon colors. With the Rec2020 gamut of ACEScg this is exaserbated with colors on the edge of the AP1 gamut that are only found in lasers, and are not plausible values for the colors of reflective objects. The motivation is to have a color picker which encourages artists to pick painterly colors, meaning one has to lower the luminance to achieve deeply saturated colors.
 
 [Back to main](../StdX_ACES)
