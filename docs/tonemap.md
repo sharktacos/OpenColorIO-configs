@@ -10,7 +10,7 @@ The two Look Transforms therefore lower the contrast of the ACES tone curve, the
 ![rrt](img/tone_filmic9.png)
 ![rrt](img/tone_neutral8.png)
 
-This is done with a Nuke node provided by the amazing [Jed Smith](https://github.com/jedypod) which adjusts the contrast of the ACES tone curve, keeping the pivot at 0.18 for middle grey. Using a “gamma” function here doesn’t work well because it does different things to values above 1 and below 1, and of course EXR files have plenty of values above 1. Here's the contrast function as a [desmos plot](https://www.desmos.com/calculator/zuxtjn6wmu). 
+This is done with a Nuke node provided by the amazing [Jed Smith](https://github.com/jedypod) which adjusts the contrast of the ACES tone curve in linear space, keeping the pivot at 0.18 for middle grey. Using a “gamma” function here doesn’t work well because it does different things to values above 1 and below 1, and of course EXR files have plenty of values above 1. Here's the contrast function as a [desmos plot](https://www.desmos.com/calculator/zuxtjn6wmu). 
 
 [Back to main](../StdX_ACES)
 
