@@ -40,3 +40,15 @@ Note that if you wish to paste an sRGB image such as a PNG or JPG from a digital
 The file can be saved in PSD format while working, and will embed the ICC profile information into the file. For delivery to comp, all layers should be flattened and saved as DPX. This gives a DPX roundtrip from Nuke to Photoshop and back. 
 
 [Back to main](../StdX_ACES)
+
+## Painting sRGB Texture Maps
+
+If you need to paint a texture map in Photoshop, it's good to see how it will appear through the display transform for a WYSIWYG workflow, just as you can in a 3D paint program like [Mari](Mari.md) or [Substance Painter](Substance.md). 
+
+Similar to the matte paiting workflow above, this can be done by applying an ICC profile to the image. For example 
+
+````software/Photoshop/ACES sRGB texture to LMT-Neutral - sRGB-Display.icc```` 
+
+The file can be saved in PSD format while working, and will embed the ICC profile information into the file. For publising textures, all layers should be flattened and saved as PNG. 
+
+
