@@ -9,7 +9,7 @@ In Maya for Arnold the OCIO config is loaded in the Color Management section of 
 For a linear workflow with ACES  we need to define the following color spaces in Maya:
 
 - *Color textures: **Color sRGB - Texture** (aliases: dif, BaseColor)*<p>
-input color space for color linearizing 8-16bit texture maps that impact the color of the render (diffuse color, sss color, specular color, etc.). This is the same as default **sRGB** color space which is an invEOTF, but with the same reduced contrast as the neutral Look Transform (LMT) to avoid [crushed shadows](tonemap.md) in diffuse texture maps caused by the ACES 1.0 Output Transform.
+input color space for color linearizing 8-16bit texture maps that impact the color of the render (diffuse color, sss color, specular color, etc.). This is the same as default **sRGB** color space which is an invEOTF, but with reduced contrast (parallel to the neutral Look Transform) to avoid [crushed shadows](tonemap.md) in diffuse texture maps caused by the current ACES 1.0 Output Transform.
 	
 - *Non-color textures: **Raw***<p>
 For all the other texture maps that do not affect the color of the render (bump maps, normal maps, displacement maps, roughness maps, masks). Utility–Raw can also be used for color texture maps saved as an EXR which have already been linearized.
