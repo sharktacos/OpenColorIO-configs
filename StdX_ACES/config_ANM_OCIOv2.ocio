@@ -115,67 +115,16 @@ looks:
 inactive_colorspaces: [CIE-XYZ D65]
 
 
-display_colorspaces:
-
-  - !<ColorSpace>
-    name: CIE-XYZ D65
-    family: Output
-    description: |
-      Display connection space, CIE XYZ with D65 adopted white point
-    encoding: display-linear
-    isdata: false
-
-  - !<ColorSpace>
-    name: sRGB
-    family: Output
-    description: |
-      sRGB monitor (piecewise EOTF)
-    isdata: false
-#    categories: [ file-io ]
-    encoding: sdr-video
-    from_display_reference: !<GroupTransform>
-      children:
-        - !<MatrixTransform> {matrix: [ 3.240969941905, -1.537383177570, -0.498610760293, 0, -0.969243636281, 1.875967501508, 0.041555057407, 0, 0.055630079697, -0.203976958889, 1.056971514243, 0, 0, 0, 0, 1 ]}
-        - !<ExponentWithLinearTransform> {gamma: 2.4, offset: 0.055, direction: inverse}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
-
-  - !<ColorSpace>
-    name: Gamma 2.2 / Rec.709
-    family: Output
-    description: |
-      Gamma 2.2 monitor with Rec.709 or sRGB primaries
-    isdata: false
-#    categories: [ file-io ]
-    encoding: sdr-video
-    from_display_reference: !<GroupTransform>
-      children:
-        - !<MatrixTransform> {matrix: [ 3.240969941905, -1.537383177570, -0.498610760293, 0, -0.969243636281, 1.875967501508, 0.041555057407, 0, 0.055630079697, -0.203976958889, 1.056971514243, 0, 0, 0, 0, 1 ]}
-        - !<ExponentTransform> {value: 2.2, direction: inverse}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
-
-  - !<ColorSpace>
-    name: Rec.1886 / Rec.709 video
-    family: Output
-    description: |
-      Rec.709 broadcast monitor with Rec.1886 gamma (2.4)
-    isdata: false
-#    categories: [ file-io ]
-    encoding: sdr-video
-    from_display_reference: !<GroupTransform>
-      children:
-        - !<MatrixTransform> {matrix: [ 3.240969941905, -1.537383177570, -0.498610760293, 0, -0.969243636281, 1.875967501508, 0.041555057407, 0, 0.055630079697, -0.203976958889, 1.056971514243, 0, 0, 0, 0, 1 ]}
-        - !<ExponentTransform> {value: 2.4, direction: inverse}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
-
 
 colorspaces:
 
 # Rendering #
 
+# - !<FileTransform> {src: sRGB_texture_linContrast75.cube, interpolation: linear}
 
   - !<ColorSpace>
     name: Color sRGB - Texture
-#    aliases: [ dif, BaseColor ]
+    aliases: [ dif, BaseColor ]
     family: Input/File-io
     description: |
       sRGB texture color space (piecewise sRGB EOTF)
@@ -184,14 +133,13 @@ colorspaces:
     encoding: sdr-video
     to_reference: !<GroupTransform>
       children:
+        - !<CDLTransform> {slope: [ 0.8, 0.8, 0.8 ], offset: [ 0.06525, 0.06525, 0.06525 ], sat: 1.0 }
         - !<ExponentWithLinearTransform> {gamma: 2.4, offset: 0.055}
         - !<MatrixTransform> {matrix:  [ 0.439632981919, 0.382988698152, 0.177378319929, 0, 0.089776442959, 0.813439428749, 0.096784128292, 0, 0.017541170383, 0.111546553302, 0.870912276314, 0, 0, 0, 0, 1 ]}
 
-
-
   - !<ColorSpace>
     name: Color sRGB Texture (DT)
-    aliases: [ dif, BaseColor ]
+#    aliases: [ dif, BaseColor ]
     family: Input/File-io
     description: Inverse of Output - sRGB with matrix to keep colors below 1 with saturation boost of 1.1 with Rec.709 luma
     isdata: false
@@ -381,6 +329,57 @@ colorspaces:
 
 
 
+display_colorspaces:
+
+  - !<ColorSpace>
+    name: CIE-XYZ D65
+    family: Output
+    description: |
+      Display connection space, CIE XYZ with D65 adopted white point
+    encoding: display-linear
+    isdata: false
+
+  - !<ColorSpace>
+    name: sRGB
+    family: Output
+    description: |
+      sRGB monitor (piecewise EOTF)
+    isdata: false
+    categories: [ file-io ]
+    encoding: sdr-video
+    from_display_reference: !<GroupTransform>
+      children:
+        - !<MatrixTransform> {matrix: [ 3.240969941905, -1.537383177570, -0.498610760293, 0, -0.969243636281, 1.875967501508, 0.041555057407, 0, 0.055630079697, -0.203976958889, 1.056971514243, 0, 0, 0, 0, 1 ]}
+        - !<ExponentWithLinearTransform> {gamma: 2.4, offset: 0.055, direction: inverse}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: Gamma 2.2 / Rec.709
+    family: Output
+    description: |
+      Gamma 2.2 monitor with Rec.709 or sRGB primaries
+    isdata: false
+#    categories: [ file-io ]
+    encoding: sdr-video
+    from_display_reference: !<GroupTransform>
+      children:
+        - !<MatrixTransform> {matrix: [ 3.240969941905, -1.537383177570, -0.498610760293, 0, -0.969243636281, 1.875967501508, 0.041555057407, 0, 0.055630079697, -0.203976958889, 1.056971514243, 0, 0, 0, 0, 1 ]}
+        - !<ExponentTransform> {value: 2.2, direction: inverse}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: Rec.1886 / Rec.709 video
+    family: Output
+    description: |
+      Rec.709 broadcast monitor with Rec.1886 gamma (2.4)
+    isdata: false
+#    categories: [ file-io ]
+    encoding: sdr-video
+    from_display_reference: !<GroupTransform>
+      children:
+        - !<MatrixTransform> {matrix: [ 3.240969941905, -1.537383177570, -0.498610760293, 0, -0.969243636281, 1.875967501508, 0.041555057407, 0, 0.055630079697, -0.203976958889, 1.056971514243, 0, 0, 0, 0, 1 ]}
+        - !<ExponentTransform> {value: 2.4, direction: inverse}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
 
 
