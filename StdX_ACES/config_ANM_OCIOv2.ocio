@@ -1,8 +1,7 @@
 # Maya 2022 default config.
 # Modified by Derek for StudioX
 #
-# version: 2021-01-21
-#
+
 
 ocio_profile_version: 2
 
@@ -120,8 +119,6 @@ colorspaces:
 
 # Rendering #
 
-# - !<FileTransform> {src: sRGB_texture_linContrast75.cube, interpolation: linear}
-
   - !<ColorSpace>
     name: Color sRGB Texture
     aliases: [ dif, BaseColor ]
@@ -137,19 +134,6 @@ colorspaces:
         - !<ExponentWithLinearTransform> {gamma: 2.4, offset: 0.055}
         - !<MatrixTransform> {matrix:  [ 0.439632981919, 0.382988698152, 0.177378319929, 0, 0.089776442959, 0.813439428749, 0.096784128292, 0, 0.017541170383, 0.111546553302, 0.870912276314, 0, 0, 0, 0, 1 ]}
 
-  - !<ColorSpace>
-    name: Color sRGB Texture (DT)
-#   aliases: [ dif, BaseColor ]
-    family: Input/File-io
-    description: Inverse of Output - sRGB with matrix to keep colors below 1 with saturation boost of 1.1 with Rec.709 luma
-    isdata: false
-    categories: [ file-io ]
-    encoding: sdr-video
-    to_reference: !<GroupTransform>
-      children:
-        - !<MatrixTransform> {matrix: [ 1.07874, -0.07152, -0.00722, 0, -0.02126, 1.02848, -0.00722, 0, -0.02126, -0.07152, 1.09278, 0, 0, 0, 0, 1 ]}
-        - !<MatrixTransform> {matrix: [ 0.8119545, 0, 0, 0, 0, 0.8119545, 0, 0, 0, 0, 0.8119545, 0, 0, 0, 0, 1 ]}
-        - !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: sRGB, view: "ACES 1.0 SDR-video"}
 
   - !<ColorSpace>
     name: Pick Rec709-sRGB Desat
@@ -189,20 +173,6 @@ colorspaces:
     encoding: scene-linear
     to_reference: !<MatrixTransform> {matrix: [ 0.439632981919, 0.382988698152, 0.177378319929, 0, 0.089776442959, 0.813439428749, 0.096784128292, 0, 0.017541170383, 0.111546553302, 0.870912276314, 0, 0, 0, 0, 1 ]}
 
-  - !<ColorSpace>
-    name: sRGB Neutral
-#    aliases: [ dif, BaseColor ]
-    family: Input/File-io
-    description: |
-      sRGB texture color space (piecewise sRGB EOTF)
-    isdata: false
-    categories: [ file-io ]
-    encoding: sdr-video
-    to_reference: !<GroupTransform>
-      children:
-        - !<CDLTransform> {slope: [ 0.8, 0.8, 0.8 ], offset: [ 0.06525, 0.06525, 0.06525 ], sat: 1.0 }
-        - !<ExponentWithLinearTransform> {gamma: 2.4, offset: 0.055}
-        - !<MatrixTransform> {matrix:  [ 0.439632981919, 0.382988698152, 0.177378319929, 0, 0.089776442959, 0.813439428749, 0.096784128292, 0, 0.017541170383, 0.111546553302, 0.870912276314, 0, 0, 0, 0, 1 ]}
 
 # ACES #
 

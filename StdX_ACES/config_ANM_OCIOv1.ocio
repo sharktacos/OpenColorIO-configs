@@ -30,7 +30,7 @@ roles:
   mari_scaler_monitor: Raw
   mari_color_picker: scene-linear Rec.709-sRGB 
   mari_blending: ACEScg 
-  mari_int8: sRGB - Texture
+  mari_int8: Color sRGB - Texture
   mari_int16: ACEScct
   mari_int_scalar: Raw
   mari_float: ACEScg
@@ -96,26 +96,26 @@ colorspaces:
   - !<ColorSpace>
     name: dif
     family: File-io/Alias
-    equalitygroup: sRGB - Texture
+    equalitygroup: Color sRGB - Texture
     bitdepth: 32f
     description: |
       The sRGB - Texture color space
     isdata: false
     allocation: uniform
     allocationvars: [0, 1]
-    from_reference: !<ColorSpaceTransform> {src: ACES2065-1, dst: sRGB - Texture}
+    from_reference: !<ColorSpaceTransform> {src: ACES2065-1, dst: Color sRGB - Texture}
 
   - !<ColorSpace>
     name: BaseColor
     family: File-io/Alias
-    equalitygroup: sRGB - Texture
+    equalitygroup: Color sRGB - Texture
     bitdepth: 32f
     description: |
       The sRGB - Texture color space
     isdata: false
     allocation: uniform
     allocationvars: [0, 1]
-    from_reference: !<ColorSpaceTransform> {src: ACES2065-1, dst: sRGB - Texture}
+    from_reference: !<ColorSpaceTransform> {src: ACES2065-1, dst: Color sRGB - Texture}
 
   - !<ColorSpace>
     name: Output - Photoshop log
@@ -163,20 +163,6 @@ colorspaces:
     from_reference: !<ColorSpaceTransform> {src: ACES2065-1, dst: scene-linear Rec.709-sRGB}
 
 
-  - !<ColorSpace>
-    name: DT
-    family: File-io
-    equalitygroup: ""
-    bitdepth: 32f
-    description: DT color space for inverse of Output- sRGB with matrix to keep colors below 1. (depreciated)(DF)
-    isdata: false
-    allocation: uniform
-    allocationvars: [0, 1]
-    to_reference: !<GroupTransform>
-      children:
-        - !<MatrixTransform> {matrix: [ 0.811410665512, 0, 0, 0, 0, 0.811410665512, 0, 0, 0, 0, 0.811410665512, 0, 0, 0, 0, 1 ]}
-        - !<FileTransform> {src: InvRRT.sRGB.Log2_48_nits_Shaper.spi3d, interpolation: tetrahedral}
-        - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear}
 
 
 # Display/Outputs
@@ -685,9 +671,9 @@ colorspaces:
         - !<MatrixTransform> {matrix: [3.2096, -1.55743, -0.495805, 0, -0.970989, 1.88517, 0.0394894, 0, 0.0597193, -0.210104, 1.14312, 0, 0, 0, 0, 1]}
 
   - !<ColorSpace>
-    name: sRGB - Texture
+    name: Color sRGB - Texture
     family: File-io
-    equalitygroup: sRGB - Texture
+    equalitygroup: Color sRGB - Texture
     bitdepth: 32f
     description: |
       The sRGB - Texture color space
