@@ -17,15 +17,13 @@ The two .cube Look LUT files are called:
 
 Gamut compression is done in Davinci Resolve Studio using a DCTL file which you will find in the ````software/Resolve/GamutCompress.dctl```` folder of the config. Place this into the Davinci Resolve LUT directory as described above. 
 
-If you do not have Studio (the free version of Resolve does not support DCTL) you can use the 3D LUT gamut compression. Note that The algorithm is not fully implementable as a 3D LUT.
-
-````studio/LMT_gamut_compress_AP1_shaper.cube````
 
 ## Use
 
-Gamut compression should be applied immediately after the Input Transform (IDT) before any other grades.
+Gamut compression needs to be applied before anything else, immediately after the Input Transform (IDT) so that all grading operations are downstream of the compression.
+It can be applied to an individual clip or blanket applied to all footage since, unlike the former “Blue Light LMT” the algorithm only affect the necessary pixels of the image leaving the rest untouched.
 
-Conceptually a Look Transform (LMT) should be applied across an entire scene or show, downstream of the per shot grades, but before the Output Transform. This can be done in Resolve by applying the LUT to the timeline instead of to an individual clip. To do this, in the Color module Node Editor set the drop-down to timeline.
+Similarly, a Look Transform (LMT) conceptually should be applied across an entire scene or show, before the Output Transform. This can be done in Resolve by applying the LUT to the timeline instead of to an individual clip. To do this, in the Color module Node Editor set the drop-down to timeline. The first node would be gamut compress, with a seriel node for the Look Transform.
 
 ![Resolve](img/Resolve1.jpg)
 
