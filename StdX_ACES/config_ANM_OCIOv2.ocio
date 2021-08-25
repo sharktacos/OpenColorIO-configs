@@ -37,25 +37,25 @@ file_rules:
 
 shared_views:
 
-  - !<View> {name: Neutral Look, view_transform: ACES 1.0 SDR-video, looks: LMT_neutral, display_colorspace: <USE_DISPLAY_NAME>}
-  - !<View> {name: Filmic Look, view_transform: ACES 1.0 SDR-video, looks: LMT_filmic, display_colorspace: <USE_DISPLAY_NAME>}
+  - !<View> {name: Neutral Look, view_transform: Neutral View, display_colorspace: <USE_DISPLAY_NAME>}
+  - !<View> {name: Filmic Look, view_transform: Filmic View, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: ACES 1.0 SDR-video, view_transform: ACES 1.0 SDR-video, display_colorspace: <USE_DISPLAY_NAME>}
+  - !<View> {name: ACES Gamut Compression, view_transform: ACES Gamut View, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: Show, view_transform: ACES 1.0 SDR-video, looks: +Client_LUT, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: Un-tone-mapped, view_transform: Un-tone-mapped, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: Log, colorspace: ACEScct}
   - !<View> {name: Raw, colorspace: Raw}
 
-  
 
 
 displays:
 
   sRGB:
-    - !<Views> [Neutral Look, Filmic Look, ACES 1.0 SDR-video, Show, Un-tone-mapped, Log, Raw]
+    - !<Views> [Neutral Look, Filmic Look, ACES 1.0 SDR-video, ACES Gamut Compression, Show, Un-tone-mapped, Log, Raw]
   Gamma 2.2 / Rec.709:
-    - !<Views> [Neutral Look, Filmic Look, ACES 1.0 SDR-video, Show, Un-tone-mapped, Log, Raw]
+    - !<Views> [Neutral Look, Filmic Look, ACES 1.0 SDR-video, ACES Gamut Compression, Show, Un-tone-mapped, Log, Raw]
   Rec.1886 / Rec.709 video:
-    - !<Views> [Neutral Look, Filmic Look, ACES 1.0 SDR-video, Show, Un-tone-mapped, Log, Raw]
+    - !<Views> [Neutral Look, Filmic Look, ACES 1.0 SDR-video, ACES Gamut Compression, Show, Un-tone-mapped, Log, Raw]
 
 
 view_transforms:
@@ -75,11 +75,46 @@ view_transforms:
         - !<MatrixTransform> {matrix: [0.652237541886, 0.128236136000, 0.169982249166, 0, 0.267672180125, 0.674339988802, 0.057987831073, 0, -0.005381815766, 0.001369060209, 1.093070506317, 0, 0, 0, 0, 1]}
 
   - !<ViewTransform>
-    name: Neutral Look
+    name: ACES Gamut View
     from_scene_reference: !<GroupTransform>
       children:
-        - !<LookTransform> {src: ACES2065-1, dst: ACES2065-1, looks: LMT_gamut_compress}
+        - !<ColorSpaceTransform> {src: ACES2065-1, dst: ACEScg }
+        - !<FileTransform> {src: aces_gm_lut_shaper_to_linear_v01.spi1d, interpolation: linear, direction: inverse}
+        - !<FileTransform> {src: aces_gm_v01.cube, interpolation: tetrahedral}
+        - !<FileTransform> {src: aces_gm_lut_shaper_to_linear_v01.spi1d, interpolation: linear, direction: forward}
+        - !<ColorSpaceTransform> {src: ACEScg, dst: ACES2065-1}
+        - !<FileTransform> {src: ACES_to_CIE-XYZ_1.0.ctf}
+        - !<MatrixTransform> {matrix: [1.660585326491, -0.315295560826, -0.241509327608, 0, -0.659926063224, 1.608391469566, 0.017298594705, 0, 0.009002569138, -0.003566876390, 0.913643312763, 0, 0, 0, 0, 1]}
+        - !<FixedFunctionTransform> {style: ACES_DarkToDim10}
+        - !<MatrixTransform> {matrix: [0.949056010175, 0.047185723607, 0.003758266219, 0, 0.019056010175, 0.977185723607, 0.003758266219, 0, 0.019056010175, 0.047185723607, 0.933758266219, 0, 0, 0, 0, 1]}
+        - !<MatrixTransform> {matrix: [0.652237541886, 0.128236136000, 0.169982249166, 0, 0.267672180125, 0.674339988802, 0.057987831073, 0, -0.005381815766, 0.001369060209, 1.093070506317, 0, 0, 0, 0, 1]}
+
+  - !<ViewTransform>
+    name: Neutral View
+    from_scene_reference: !<GroupTransform>
+      children:
+        - !<ColorSpaceTransform> {src: ACES2065-1, dst: ACEScg }
+        - !<FileTransform> {src: aces_gm_lut_shaper_to_linear_v01.spi1d, interpolation: linear, direction: inverse}
+        - !<FileTransform> {src: aces_gm_v01.cube, interpolation: tetrahedral}
+        - !<FileTransform> {src: aces_gm_lut_shaper_to_linear_v01.spi1d, interpolation: linear, direction: forward}
+        - !<ColorSpaceTransform> {src: ACEScg, dst: ACES2065-1}
         - !<LookTransform> {src: ACES2065-1, dst: ACES2065-1, looks: LMT_neutral}
+        - !<FileTransform> {src: ACES_to_CIE-XYZ_1.0.ctf}
+        - !<MatrixTransform> {matrix: [1.660585326491, -0.315295560826, -0.241509327608, 0, -0.659926063224, 1.608391469566, 0.017298594705, 0, 0.009002569138, -0.003566876390, 0.913643312763, 0, 0, 0, 0, 1]}
+        - !<FixedFunctionTransform> {style: ACES_DarkToDim10}
+        - !<MatrixTransform> {matrix: [0.949056010175, 0.047185723607, 0.003758266219, 0, 0.019056010175, 0.977185723607, 0.003758266219, 0, 0.019056010175, 0.047185723607, 0.933758266219, 0, 0, 0, 0, 1]}
+        - !<MatrixTransform> {matrix: [0.652237541886, 0.128236136000, 0.169982249166, 0, 0.267672180125, 0.674339988802, 0.057987831073, 0, -0.005381815766, 0.001369060209, 1.093070506317, 0, 0, 0, 0, 1]}
+
+  - !<ViewTransform>
+    name: Filmic View
+    from_scene_reference: !<GroupTransform>
+      children:
+        - !<ColorSpaceTransform> {src: ACES2065-1, dst: ACEScg }
+        - !<FileTransform> {src: aces_gm_lut_shaper_to_linear_v01.spi1d, interpolation: linear, direction: inverse}
+        - !<FileTransform> {src: aces_gm_v01.cube, interpolation: tetrahedral}
+        - !<FileTransform> {src: aces_gm_lut_shaper_to_linear_v01.spi1d, interpolation: linear, direction: forward}
+        - !<ColorSpaceTransform> {src: ACEScg, dst: ACES2065-1}
+        - !<LookTransform> {src: ACES2065-1, dst: ACES2065-1, looks: LMT_filmic}
         - !<FileTransform> {src: ACES_to_CIE-XYZ_1.0.ctf}
         - !<MatrixTransform> {matrix: [1.660585326491, -0.315295560826, -0.241509327608, 0, -0.659926063224, 1.608391469566, 0.017298594705, 0, 0.009002569138, -0.003566876390, 0.913643312763, 0, 0, 0, 0, 1]}
         - !<FixedFunctionTransform> {style: ACES_DarkToDim10}
@@ -96,12 +131,12 @@ looks:
   - !<Look>
     name: LMT_filmic
     process_space: ACEScc
-    transform: !<FileTransform> {src: LMT_filmic_gamut_ACEScc_v27.cube, interpolation: linear} 
+    transform: !<FileTransform> {src: LMT_filmic_AP1_shaper_v27.cube, interpolation: linear} 
 	
   - !<Look>
     name: LMT_neutral
     process_space: ACEScc
-    transform: !<FileTransform> {src: LMT_neutral_gamut_ACEScc_v27.cube, interpolation: linear} 
+    transform: !<FileTransform> {src: LMT_neutral_AP1_shaper_v27.cube, interpolation: linear} 
 
   - !<Look>
     name: Client_LUT
