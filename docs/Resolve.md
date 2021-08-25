@@ -15,7 +15,9 @@ The two .cube Look LUT files are called:
 ````studio/LMT_filmic_AP1_shaper```` <br>
 ````studio/LMT_neutral_AP1_shaper````
 
-Gamut compression is done in Davinci Resolve Studio using a DCTL file which you will find in the ````software/Resolve/GamutCompress.dctl```` folder of the config. Place this into the Davinci Resolve LUT directory as described above. If you do not have Studio (the free version of Resolve does not support DCTL) you can use the 3D LUT gamut compression. Note that The algorithm is not fully implementable as a 3D LUT.
+Gamut compression is done in Davinci Resolve Studio using a DCTL file which you will find in the ````software/Resolve/GamutCompress.dctl```` folder of the config. Place this into the Davinci Resolve LUT directory as described above. 
+
+If you do not have Studio (the free version of Resolve does not support DCTL) you can use the 3D LUT gamut compression. Note that The algorithm is not fully implementable as a 3D LUT.
 
 ````studio/LMT_gamut_compress_AP1_shaper.cube````
 
