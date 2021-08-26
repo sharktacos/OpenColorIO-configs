@@ -40,7 +40,7 @@ shared_views:
   - !<View> {name: Neutral Look, view_transform: Neutral View, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: Filmic Look, view_transform: Filmic View, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: ACES 1.0 SDR-video, view_transform: ACES 1.0 SDR-video, display_colorspace: <USE_DISPLAY_NAME>}
-  - !<View> {name: ACES Gamut Compression, view_transform: ACES Gamut View, display_colorspace: <USE_DISPLAY_NAME>}
+  - !<View> {name: ACES - Gamut Compress, view_transform: ACES Gamut View, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: Show, view_transform: ACES 1.0 SDR-video, looks: +Client_LUT, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: Un-tone-mapped, view_transform: Un-tone-mapped, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: Log, colorspace: ACEScct}
@@ -51,11 +51,11 @@ shared_views:
 displays:
 
   sRGB:
-    - !<Views> [Neutral Look, Filmic Look, ACES 1.0 SDR-video, ACES Gamut Compression, Show, Un-tone-mapped, Log, Raw]
+    - !<Views> [Neutral Look, Filmic Look, ACES 1.0 SDR-video, ACES - Gamut Compress, Show, Un-tone-mapped, Log, Raw]
   Gamma 2.2 / Rec.709:
-    - !<Views> [Neutral Look, Filmic Look, ACES 1.0 SDR-video, ACES Gamut Compression, Show, Un-tone-mapped, Log, Raw]
+    - !<Views> [Neutral Look, Filmic Look, ACES 1.0 SDR-video, ACES - Gamut Compress, Show, Un-tone-mapped, Log, Raw]
   Rec.1886 / Rec.709 video:
-    - !<Views> [Neutral Look, Filmic Look, ACES 1.0 SDR-video, ACES Gamut Compression, Show, Un-tone-mapped, Log, Raw]
+    - !<Views> [Neutral Look, Filmic Look, ACES 1.0 SDR-video, ACES - Gamut Compress, Show, Un-tone-mapped, Log, Raw]
 
 
 view_transforms:
@@ -78,11 +78,7 @@ view_transforms:
     name: ACES Gamut View
     from_scene_reference: !<GroupTransform>
       children:
-        - !<ColorSpaceTransform> {src: ACES2065-1, dst: ACEScg }
-        - !<FileTransform> {src: aces_gm_lut_shaper_to_linear_v01.spi1d, interpolation: linear, direction: inverse}
-        - !<FileTransform> {src: aces_gm_v01.cube, interpolation: tetrahedral}
-        - !<FileTransform> {src: aces_gm_lut_shaper_to_linear_v01.spi1d, interpolation: linear, direction: forward}
-        - !<ColorSpaceTransform> {src: ACEScg, dst: ACES2065-1}
+        - !<LookTransform> {src: ACES2065-1, dst: ACES2065-1, looks: LMT_gamut}
         - !<FileTransform> {src: ACES_to_CIE-XYZ_1.0.ctf}
         - !<MatrixTransform> {matrix: [1.660585326491, -0.315295560826, -0.241509327608, 0, -0.659926063224, 1.608391469566, 0.017298594705, 0, 0.009002569138, -0.003566876390, 0.913643312763, 0, 0, 0, 0, 1]}
         - !<FixedFunctionTransform> {style: ACES_DarkToDim10}
@@ -93,11 +89,7 @@ view_transforms:
     name: Neutral View
     from_scene_reference: !<GroupTransform>
       children:
-        - !<ColorSpaceTransform> {src: ACES2065-1, dst: ACEScg }
-        - !<FileTransform> {src: aces_gm_lut_shaper_to_linear_v01.spi1d, interpolation: linear, direction: inverse}
-        - !<FileTransform> {src: aces_gm_v01.cube, interpolation: tetrahedral}
-        - !<FileTransform> {src: aces_gm_lut_shaper_to_linear_v01.spi1d, interpolation: linear, direction: forward}
-        - !<ColorSpaceTransform> {src: ACEScg, dst: ACES2065-1}
+        - !<LookTransform> {src: ACES2065-1, dst: ACES2065-1, looks: LMT_gamut}
         - !<LookTransform> {src: ACES2065-1, dst: ACES2065-1, looks: LMT_neutral}
         - !<FileTransform> {src: ACES_to_CIE-XYZ_1.0.ctf}
         - !<MatrixTransform> {matrix: [1.660585326491, -0.315295560826, -0.241509327608, 0, -0.659926063224, 1.608391469566, 0.017298594705, 0, 0.009002569138, -0.003566876390, 0.913643312763, 0, 0, 0, 0, 1]}
@@ -109,11 +101,7 @@ view_transforms:
     name: Filmic View
     from_scene_reference: !<GroupTransform>
       children:
-        - !<ColorSpaceTransform> {src: ACES2065-1, dst: ACEScg }
-        - !<FileTransform> {src: aces_gm_lut_shaper_to_linear_v01.spi1d, interpolation: linear, direction: inverse}
-        - !<FileTransform> {src: aces_gm_v01.cube, interpolation: tetrahedral}
-        - !<FileTransform> {src: aces_gm_lut_shaper_to_linear_v01.spi1d, interpolation: linear, direction: forward}
-        - !<ColorSpaceTransform> {src: ACEScg, dst: ACES2065-1}
+        - !<LookTransform> {src: ACES2065-1, dst: ACES2065-1, looks: LMT_gamut}
         - !<LookTransform> {src: ACES2065-1, dst: ACES2065-1, looks: LMT_filmic}
         - !<FileTransform> {src: ACES_to_CIE-XYZ_1.0.ctf}
         - !<MatrixTransform> {matrix: [1.660585326491, -0.315295560826, -0.241509327608, 0, -0.659926063224, 1.608391469566, 0.017298594705, 0, 0.009002569138, -0.003566876390, 0.913643312763, 0, 0, 0, 0, 1]}
@@ -124,9 +112,9 @@ view_transforms:
 looks:
 
   - !<Look>
-    name: LMT_gamut_compress
-    process_space: ACEScc
-    transform: !<FileTransform> {src: LMT_gamut_compress_AP1_shaper.cube, interpolation: linear}  
+    name: LMT_gamut
+    process_space: Gamut Shaper
+    transform: !<FileTransform> {src: aces_gm_v01.cube, interpolation: linear}  
 
   - !<Look>
     name: LMT_filmic
@@ -207,6 +195,21 @@ colorspaces:
     categories: [ file-io, working-space, scene_linear_working_space ]
     encoding: scene-linear
     to_reference: !<MatrixTransform> {matrix: [ 0.439632981919, 0.382988698152, 0.177378319929, 0, 0.089776442959, 0.813439428749, 0.096784128292, 0, 0.017541170383, 0.111546553302, 0.870912276314, 0, 0, 0, 0, 1 ]}
+
+  - !<ColorSpace>
+    name: Gamut Shaper
+    family: File-io/Utility
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Logarithmic function with a linear segment, reflected by its intersection point with the Y-axis, 
+      essentially mirroring the ACEScct shaper. Covers large amount of negative values for gamut mapping.
+    isdata: false
+    encoding: scene-linear
+    to_reference: !<GroupTransform>
+      children:
+        - !<FileTransform> {src: aces_gm_lut_shaper_to_linear_v01.spi1d, interpolation: linear}
+        - !<MatrixTransform> {matrix: [0.695452, 0.140679, 0.163869, 0, 0.0447946, 0.859671, 0.0955343, 0, -0.00552588, 0.00402521, 1.0015, 0, 0, 0, 0, 1]}
 
 
 # ACES #
