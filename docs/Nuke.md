@@ -4,6 +4,35 @@ Nuke currently supports OCIOv1. To load the config Press “S” to access **Pro
 
 ![nk](img/Nuke1.png)
 
+## Input Transforms
+
+In Nuke the input transform is set in the color space dropdown menu of a Read node. Knowing the right color space to choose for film plates can often be confusing. The files, typically DPX sequences or Prores clips, are often in the wrong color space. A client will for example say that the Prores movie is in Rec.709 when it is rather obviously in log, although what particular flavor of log is a mystery. Is it Cineon? Log-C? REDlog? Log3G10? If we knew the camera that was used this would be easier to determine, but this information is often unknown. To make matters worse, it's not uncommon to have a double log space applied, say cineon on top of Log-C. It's really a wild west out there. 
+
+All of that thankfully becomes much simpler with ACES. In it's the core aim of ACES to unify the workflow so that there is consistency and predicability throughout every step of the film prodction pipeline. DPX files are not used at all, and instead the far superior EXR format is used (it is superior because it contains more file information at a smaller size than a DPX, so win win). That brings us down to four color spaces.
+
+- **ACES2065-1** (**AP0** for short) - scene-linear space. This is the color space for EXR files exchanged between DI and VFX. 
+- **ACEScg** linear. The color space for CG renders, and also the working space in Nuke.
+- **ACEScc** and **ACEScct** - log space. In short these are two flavors of log that a colorist may prefer. ACEScc allows very precise control over deep shadows but can also be difficult to work with when not using the Log style grading tools. ACEScct is a more recent working space that compresses shadows similar to familiar camera log curves and which may be easier to grade. 
+
+It's good practice to apend the color space to the end of the file name for clarity: ````name_ap0.exr, name_cg.exr, name_cct.mov````. VFX would deliver the footage back to the client in the same color space it was ingested i.e. the color space on the Read and Write node should be the same so it is a no-op in and out.
+
+Check out the [pipeline](pipeline.md) doc for more details.
+
+## Display Transforms
+
+Nuke traditionally has three display transforms: sRGB, Rec.709, and BT.1886. There is often confusion regarding these. Many people think of Rec.709 as an aethetic preference, that is, they "like the look of it. It's important to understand that these refer to the type of display you are viewing. If you are working on an sRGB computer monitor then you set the  Display Transform to sRGB. If you are working on an HDTV you would set the Display Transform to Rec.709 which is the standard that HDTVs are calibrated to. The "rec" is short for "recomendation."
+
+The aim here is that when the same image is viewed side by side on a computer monitor (sRGB) and a HDTV (Rec.709) they will look the same. Rec.709 is the specification for HDTV and sRGB is the specification for a standard computer monitor. So the display transform is asking “What are you displaying this on?” Simply put, we have
+
+- Rec.709 = I’m displaying this on a TV
+- sRGB = I’m displaying this on a computer
+
+Another point of confusion is that when DI says to VFX “we are working in Rec.709 because they have monitors at the DI facility calibrated to Rec.709 this does not mean that a comper should set their display transform to Rec.709 to match. The opposite is the case, if you were to set your sRGB monitor to have a Rec.709 display transform in Nuke, this would mean the images viewed side by side *would not match*. Again, one chooses the display transform based on the calibration of the display they are using. Since we will be doing the majority of our VFX work on the sRGB monitors in the labs, our config defaults to having sRGB selected for the Display transform in both Nuke and Maya. One would only need to change this if, for example, viewing dailies in 400a on an HDTV monitor (in which case it would be set to Rec.709).
+
+Below you can see the display device in parethesis. Most are in sRGB as this is usually what you are viewing on. The equavalent to Nuke's native sRGB would be un-tone-mapped (sRGB). For an explanation of all of these do, see the [tone mapping](tonemap.md) doc. You'll find information on the gamut compression in the sction below. In red you can see the display device *Rec.1886 / Rec.709 video* which is for a Rec.709 broadcast monitor with Rec.1886 gamma (2.4). It's worth noting that when a client says they are working in Rec.709 they almost certainly mean gamma 2.4. Nuke's native Rec.709 has a gamma of aproximatly 1.95 which is much darker.
+
+![img](img/Nuke4.png)
+
 
 ## Gamut Compression and Nuke
 
@@ -22,6 +51,8 @@ Nuke is the ideal place to apply this gamut compression because the algorithm is
 ![nk](img/Nuke3.png)
 
 This Nuke node is the fully functioning gamut compression algorithm, as opposed to the 3D LUT approximation contained in the OCIO config, which again is only intended for intermediate viewing purposes. Indeed, if comp were to bake the gamut compression into the EXR plates it sends to CG there would be no need to use the gamut compress View Transform in Maya.
+
+Check out the [gamut compression](gamut.md) doc for more details and pretty pics!
 
 
 [Back to main](../StdX_ACES)
