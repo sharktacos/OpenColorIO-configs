@@ -1,19 +1,27 @@
 # Davinci Resolve
 
-## Installation
+## Using ACES
 
 ACES is loaded in the Color Management section of the Project Settings.
 
 ![Resolve](img/Resolve4.jpg)
 
-To use the *Filmic* and *Neutral* Look LUTS, located in the "studio" folder of the config, need to be placed into the Davinci Resolve LUT directory which you can get to by clicking "Open LUT folder" in the Preferences, copying the files, and then clicking "update lists" to refresh. 
+To output a VFX pull you would temporarily set the display to linear by setting the *ACES Input Device Transform* in the project settings above to "No output transform" and then on the Delivery page exporting EXR files. This will export an EXR sequence in ACES2065-1 AP0 exchange color space. It's good practice to append this to the file name, for example ````MyFilm_shot22_ap0.0001.exr````.
+
+![exr](img/Resolve.5.jpg)
+
+Note that this is not output as a DPX file, but as an EXR file. DPX encodes the 0-1 image in log format which allows for storing a wide dynamic range (i.e. multiple camera exposures) in a small file size. However DPX is limited in the range it can hold, as opposed to an EXR which can go far beyond the 0-1 range and thus have a far larger dynamic range than a DPX file can. The ACES2065-1 archival/interchange color space contains the full gamut of what is visible to the human eye which is way more than an HDTV or sRGB monitor can display. If you are concerned about file sizes you can use Piz lossless compression. These EXR files will be smaller than a DPX file and even smaller than a PNG.
+
+## Looks and Gamut Compression
+
+To use the *Filmic* and *Neutral* Look LUTS, the .cube files need to be placed into the Davinci Resolve LUT directory, which you can get to by clicking "Open LUT folder" in the Preferences, copying the files, and then clicking "update lists" to refresh. 
 
 ![Resolve](img/Resolve2.jpg)
 
 The two .cube Look LUT files are called:
 
-````studio/LMT_filmic_AP1_shaper```` <br>
-````studio/LMT_neutral_AP1_shaper````
+````studio/LMT_filmic_AP1_shaper.cube```` <br>
+````studio/LMT_neutral_AP1_shaper.cube````
 
 Gamut compression is done in Davinci Resolve Studio using a DCTL file which you will find in the ````software/Resolve/GamutCompress.dctl```` folder of the config. Place this into the Davinci Resolve LUT directory as described above. 
 
