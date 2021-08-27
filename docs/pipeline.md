@@ -2,7 +2,7 @@
 
 The workflow for ACES going from DI (for example [Davinci Resolve](Resolve.md)) to VFX ([Nuke](Nuke.md)) would be to initially input all the different camera footage using the appropriate camera manufacturer input transforms, work in ACEScc or ACEScct log space, and then output this as  ACES2065-1.  ACES2065-1 is the color space intended for transfer of files and for archiving. 
 
-````Input: RAW CAMERA   >  Working: ACEScc  >  Output:  ACES2065-1````
+````Input: RAW CAMERA   >  Working: ACEScct  >  Output:  ACES2065-1````
 
 Note that this is not output as a DPX file, but as an EXR file. DPX encodes the 0-1 image in log format which allows for storing a wide dynamic range (i.e. multiple camera exposures) in a small file size. However DPX is limited in the range it can hold, as opposed to an EXR which can go far beyond the 0-1 range and thus have a far larger dynamic range than a DPX file can. Despite the huge color gamut and dynamic range of the ACES2065-1 archival/interchange color space (it contains the full gamut of what is visible to the human eye which is way more than an HDTV or sRGB monitor can display), with Piz lossless compression these EXR files are nevertheless the same size as a DPX file if not smaller. So it’s really a win-win.
 
