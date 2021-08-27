@@ -40,13 +40,6 @@ Instructions for use of the config's Look Transforms in various software, includ
 - [Houdini](https://www.sidefx.com/docs/houdini/io/ocio.html) 
 - [Davinci Resolve](../docs/Resolve.md) 
 - [Premiere Pro](../docs/Premiere.md) 
-- [Photoshop](../docs/Photoshop_v2.md) 
+- [Photoshop](../docs/Photoshop.md) 
   
   
-
-
-
-  
-
-
-
