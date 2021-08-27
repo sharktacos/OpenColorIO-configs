@@ -39,9 +39,8 @@ shared_views:
 
   - !<View> {name: Neutral Look, view_transform: Neutral View, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: Filmic Look, view_transform: Filmic View, display_colorspace: <USE_DISPLAY_NAME>}
+  - !<View> {name: Show Look, view_transform: ACES 1.0 SDR-video, looks: Client_LUT, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: ACES 1.0 SDR-video, view_transform: ACES 1.0 SDR-video, display_colorspace: <USE_DISPLAY_NAME>}
-  - !<View> {name: ACES - Gamut Compress, view_transform: ACES Gamut View, display_colorspace: <USE_DISPLAY_NAME>}
-  - !<View> {name: Show, view_transform: ACES 1.0 SDR-video, looks: +Client_LUT, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: Un-tone-mapped, view_transform: Un-tone-mapped, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: Log, colorspace: ACEScct}
   - !<View> {name: Raw, colorspace: Raw}
@@ -51,11 +50,19 @@ shared_views:
 displays:
 
   sRGB:
-    - !<Views> [Neutral Look, Filmic Look, ACES 1.0 SDR-video, ACES - Gamut Compress, Show, Un-tone-mapped, Log, Raw]
+    - !<Views> [Neutral Look, Filmic Look, Show Look, ACES 1.0 SDR-video, Un-tone-mapped, Log, Raw]
+
+  sRGB - Gamut Compress:
+    - !<View> {name: Neutral Look, view_transform: Neutral View, looks: LMT_gamut, display_colorspace: sRGB - Gamut Compress}
+    - !<View> {name: Filmic Look, view_transform: Filmic View, looks: LMT_gamut, display_colorspace: sRGB - Gamut Compress}
+    - !<View> {name: ACES 1.0 SDR-video, view_transform: ACES 1.0 SDR-video, looks: LMT_gamut, display_colorspace: sRGB - Gamut Compress}
+    - !<Views> [Un-tone-mapped, Log, Raw]
+
   Gamma 2.2 / Rec.709:
-    - !<Views> [Neutral Look, Filmic Look, ACES 1.0 SDR-video, ACES - Gamut Compress, Show, Un-tone-mapped, Log, Raw]
+    - !<Views> [Neutral Look, Filmic Look, Show Look, ACES 1.0 SDR-video, Un-tone-mapped, Log, Raw]
+
   Rec.1886 / Rec.709 video:
-    - !<Views> [Neutral Look, Filmic Look, ACES 1.0 SDR-video, ACES - Gamut Compress, Show, Un-tone-mapped, Log, Raw]
+    - !<Views> [Neutral Look, Filmic Look, Show Look, ACES 1.0 SDR-video, Un-tone-mapped, Log, Raw]
 
 
 view_transforms:
@@ -75,21 +82,9 @@ view_transforms:
         - !<MatrixTransform> {matrix: [0.652237541886, 0.128236136000, 0.169982249166, 0, 0.267672180125, 0.674339988802, 0.057987831073, 0, -0.005381815766, 0.001369060209, 1.093070506317, 0, 0, 0, 0, 1]}
 
   - !<ViewTransform>
-    name: ACES Gamut View
-    from_scene_reference: !<GroupTransform>
-      children:
-        - !<LookTransform> {src: ACES2065-1, dst: ACES2065-1, looks: LMT_gamut}
-        - !<FileTransform> {src: ACES_to_CIE-XYZ_1.0.ctf}
-        - !<MatrixTransform> {matrix: [1.660585326491, -0.315295560826, -0.241509327608, 0, -0.659926063224, 1.608391469566, 0.017298594705, 0, 0.009002569138, -0.003566876390, 0.913643312763, 0, 0, 0, 0, 1]}
-        - !<FixedFunctionTransform> {style: ACES_DarkToDim10}
-        - !<MatrixTransform> {matrix: [0.949056010175, 0.047185723607, 0.003758266219, 0, 0.019056010175, 0.977185723607, 0.003758266219, 0, 0.019056010175, 0.047185723607, 0.933758266219, 0, 0, 0, 0, 1]}
-        - !<MatrixTransform> {matrix: [0.652237541886, 0.128236136000, 0.169982249166, 0, 0.267672180125, 0.674339988802, 0.057987831073, 0, -0.005381815766, 0.001369060209, 1.093070506317, 0, 0, 0, 0, 1]}
-
-  - !<ViewTransform>
     name: Neutral View
     from_scene_reference: !<GroupTransform>
       children:
-        - !<LookTransform> {src: ACES2065-1, dst: ACES2065-1, looks: LMT_gamut}
         - !<LookTransform> {src: ACES2065-1, dst: ACES2065-1, looks: LMT_neutral}
         - !<FileTransform> {src: ACES_to_CIE-XYZ_1.0.ctf}
         - !<MatrixTransform> {matrix: [1.660585326491, -0.315295560826, -0.241509327608, 0, -0.659926063224, 1.608391469566, 0.017298594705, 0, 0.009002569138, -0.003566876390, 0.913643312763, 0, 0, 0, 0, 1]}
@@ -101,7 +96,6 @@ view_transforms:
     name: Filmic View
     from_scene_reference: !<GroupTransform>
       children:
-        - !<LookTransform> {src: ACES2065-1, dst: ACES2065-1, looks: LMT_gamut}
         - !<LookTransform> {src: ACES2065-1, dst: ACES2065-1, looks: LMT_filmic}
         - !<FileTransform> {src: ACES_to_CIE-XYZ_1.0.ctf}
         - !<MatrixTransform> {matrix: [1.660585326491, -0.315295560826, -0.241509327608, 0, -0.659926063224, 1.608391469566, 0.017298594705, 0, 0.009002569138, -0.003566876390, 0.913643312763, 0, 0, 0, 0, 1]}
@@ -119,12 +113,12 @@ looks:
   - !<Look>
     name: LMT_filmic
     process_space: ACEScc
-    transform: !<FileTransform> {src: LMT_filmic_AP1_shaper_v27.cube, interpolation: linear} 
+    transform: !<FileTransform> {src: LMT_filmic_AP1_shaper.cube, interpolation: linear} 
 	
   - !<Look>
     name: LMT_neutral
     process_space: ACEScc
-    transform: !<FileTransform> {src: LMT_neutral_AP1_shaper_v27.cube, interpolation: linear} 
+    transform: !<FileTransform> {src: LMT_neutral_AP1_shaper.cube, interpolation: linear} 
 
   - !<Look>
     name: Client_LUT
@@ -368,6 +362,20 @@ display_colorspaces:
       sRGB monitor (piecewise EOTF)
     isdata: false
     categories: [ file-io ]
+    encoding: sdr-video
+    from_display_reference: !<GroupTransform>
+      children:
+        - !<MatrixTransform> {matrix: [ 3.240969941905, -1.537383177570, -0.498610760293, 0, -0.969243636281, 1.875967501508, 0.041555057407, 0, 0.055630079697, -0.203976958889, 1.056971514243, 0, 0, 0, 0, 1 ]}
+        - !<ExponentWithLinearTransform> {gamma: 2.4, offset: 0.055, direction: inverse}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: sRGB - Gamut Compress
+    family: Output
+    description: |
+      sRGB monitor (piecewise EOTF)
+    isdata: false
+#    categories: [ file-io ]
     encoding: sdr-video
     from_display_reference: !<GroupTransform>
       children:
