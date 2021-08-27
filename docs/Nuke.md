@@ -14,13 +14,13 @@ All of that thankfully becomes much simpler with ACES. In it's the core aim of A
 - **ACEScg** linear. The color space for CG renders, and also the working space in Nuke.
 - **ACEScc** and **ACEScct** - log space. In short these are two flavors of log that a colorist may prefer. ACEScc allows very precise control over deep shadows but can also be difficult to work with when not using the Log style grading tools. ACEScct is a more recent working space that compresses shadows similar to familiar camera log curves and which may be easier to grade. 
 
-It's good practice to apend the color space to the end of the file name for clarity: ````name_ap0.exr, name_cg.exr, name_cct.mov````. VFX would deliver the footage back to the client in the same color space it was ingested i.e. the color space on the Read and Write node should be the same so it is a no-op in and out.
+It's good practice to append the color space to the end of the file name for clarity: ````name_ap0.exr, name_cg.exr, name_cct.mov````. VFX would deliver the footage back to the client in the same color space it was ingested i.e. the color space on the Read and Write node should be the same so it is a no-op in and out.
 
 Check out the [pipeline](pipeline.md) doc for more details.
 
 ## Display Transforms
 
-Nuke traditionally has three display transforms: sRGB, Rec.709, and BT.1886. There is often confusion regarding these. Many people think of Rec.709 as an aethetic preference, that is, they "like the look of it. It's important to understand that these refer to the type of display you are viewing. If you are working on an sRGB computer monitor then you set the  Display Transform to sRGB. If you are working on an HDTV you would set the Display Transform to Rec.709 which is the standard that HDTVs are calibrated to. The "rec" is short for "recomendation."
+Nuke traditionally has three display transforms: sRGB, Rec.709, and BT.1886. There is often confusion regarding these. Many people think of Rec.709 as an aesthetic preference, that is, they "like the look of it. It's important to understand that these refer to the type of display you are viewing. If you are working on an sRGB computer monitor then you set the  Display Transform to sRGB. If you are working on an HDTV you would set the Display Transform to Rec.709 which is the standard that HDTVs are calibrated to. The "rec" is short for *recommendation*.
 
 The aim here is that when the same image is viewed side by side on a computer monitor (sRGB) and a HDTV (Rec.709) they will look the same. Rec.709 is the specification for HDTV and sRGB is the specification for a standard computer monitor. So the display transform is asking “What are you displaying this on?” Simply put, we have
 
@@ -29,7 +29,7 @@ The aim here is that when the same image is viewed side by side on a computer mo
 
 Another point of confusion is that when DI says to VFX “we are working in Rec.709 because they have monitors at the DI facility calibrated to Rec.709 this does not mean that a comper should set their display transform to Rec.709 to match. The opposite is the case, if you were to set your sRGB monitor to have a Rec.709 display transform in Nuke, this would mean the images viewed side by side *would not match*. Again, one chooses the display transform based on the calibration of the display they are using. Since we will be doing the majority of our VFX work on the sRGB monitors in the labs, our config defaults to having sRGB selected for the Display transform in both Nuke and Maya. One would only need to change this if, for example, viewing dailies in 400a on an HDTV monitor (in which case it would be set to Rec.709).
 
-Below you can see the display device in parethesis. Most are in sRGB as this is usually what you are viewing on. The equavalent to Nuke's native sRGB would be un-tone-mapped (sRGB). For an explanation of all of these do, see the [tone mapping](tonemap.md) doc. You'll find information on the gamut compression in the sction below. In red you can see the display device *Rec.1886 / Rec.709 video* which is for a Rec.709 broadcast monitor with Rec.1886 gamma (2.4). It's worth noting that when a client says they are working in Rec.709 they almost certainly mean gamma 2.4. Nuke's native Rec.709 has a gamma of aproximatly 1.95 which is much darker.
+Below you can see the display device in parenthesis. Most are in sRGB as this is usually what you are viewing on. The equivalent to Nuke's native sRGB would be un-tone-mapped (sRGB). For an explanation of all of these do, see the [tone mapping](tonemap.md) doc. You'll find information on the gamut compression in the section below. In red you can see the display device *Rec.1886 / Rec.709 video* which is for a Rec.709 broadcast monitor with Rec.1886 gamma (2.4). It's worth noting that when a client says they are working in Rec.709 they almost certainly mean gamma 2.4. Nuke's native Rec.709 has a gamma of approximately 1.95 which is much darker.
 
 ![img](img/Nuke4.png)
 
@@ -59,7 +59,7 @@ If you want to simply output a PNG sequence to make a Quicktime movie in Media E
 	
 ````Working: ACEScg >  Output: Filmic (sRGB)````
 
-If you are delivering for viewing of dailies on a braodcast HDTV monitor you would set your output to 
+If you are delivering for viewing of dailies on a broadcast HDTV monitor you would set your output to 
 
 ````Working: ACEScg >  Output: Filmic (Rec.1886/Rec.709 video)````
 
