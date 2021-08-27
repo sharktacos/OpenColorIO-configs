@@ -13,7 +13,7 @@ With tone mapping, rather than the artist needing to compensate and fight with t
 
 Where ACES comes into the picture is where we wish to marry CG images to film. We need to view renders through a filmic view transform to make them look photoreal, and we also want to view the film footage through that same filmic view transform so they can match. ACES provides that unified view transform that works in pretty much all software programs -- from film set to edit to VFX to DI.
 
-## Lower Contrast Tone Mapping
+## Lower Contrast Tone Mapping Look Transforms
 
 However there have been some complaints about the ACES view transform. Perhaps the top request of the ACES Output Transform (RRT) is that it be more neutral with less contrast. The [ACES Retrospective and Enhancements](https://community.acescentral.com/uploads/default/original/1X/38d7ee7ca7720701873914094d6f4a1d4ca031ef.pdf) paper states for example,
 
