@@ -16,7 +16,6 @@ All of that thankfully becomes much simpler with ACES. In it's the core aim of A
 
 It's good practice to append the color space to the end of the file name for clarity: ````name_ap0.exr, name_cg.exr, name_cct.mov````. VFX would deliver the footage back to the client in the same color space it was ingested i.e. the color space on the Read and Write node should be the same so it is a no-op in and out.
 
-Check out the [pipeline](pipeline.md) doc for more details.
 
 ## Display Transforms
 
