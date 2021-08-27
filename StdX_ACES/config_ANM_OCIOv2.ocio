@@ -58,8 +58,8 @@ displays:
     - !<View> {name: ACES 1.0 SDR-video, view_transform: ACES 1.0 SDR-video, looks: LMT_gamut, display_colorspace: sRGB - Gamut Compress}
     - !<Views> [Un-tone-mapped, Log, Raw]
 
-  Gamma 2.2 / Rec.709:
-    - !<Views> [Neutral Look, Filmic Look, Show Look, ACES 1.0 SDR-video, Un-tone-mapped, Log, Raw]
+#  Gamma 2.2 / Rec.709:
+#    - !<Views> [Neutral Look, Filmic Look, Show Look, ACES 1.0 SDR-video, Un-tone-mapped, Log, Raw]
 
   Rec.1886 / Rec.709 video:
     - !<Views> [Neutral Look, Filmic Look, Show Look, ACES 1.0 SDR-video, Un-tone-mapped, Log, Raw]

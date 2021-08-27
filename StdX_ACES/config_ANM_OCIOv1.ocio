@@ -16,7 +16,7 @@ roles:
   compositing_linear: ACEScg
   compositing_log: ACEScct
   data: Raw
-  default: Raw
+  default: ACES2065-1
   reference: Raw
   rendering: ACEScg
   scene_linear: ACEScg
@@ -50,7 +50,7 @@ displays:
     - !<View> {name: Filmic Look, colorspace: sRGB - Look Filmic, look: LMT_gamut}
     - !<View> {name: ACES - Gamut Compress, colorspace: sRGB - Gamut}
 
-  BT.1886/Rec.709 2.4 video:
+  Rec.1886 / Rec.709 video:
     - !<View> {name: Neutral Look, colorspace: Rec.709 - Look Neutral}
     - !<View> {name: Filmic Look, colorspace: Rec.709 - Look Filmic}
     - !<View> {name: Show Look, colorspace: Rec.709, look: LMT_show}
@@ -58,7 +58,7 @@ displays:
     - !<View> {name: un-tone-mapped, colorspace: Un-tone-mapped - BT.1886/Rec.709 2.4}
 
 
-active_displays: [sRGB monitor, sRGB - Gamut Compress, BT.1886/Rec.709 2.4 video]
+active_displays: [sRGB monitor, sRGB - Gamut Compress, Rec.1886 / Rec.709 video]
 active_views: [Neutral Look, Filmic Look, Show Look, ACES 1.0 SDR-video, ACES - Gamut Compress, un-tone-mapped, Raw, Log]
 
 	
@@ -146,7 +146,7 @@ colorspaces:
   - !<ColorSpace>
     name: Pick Rec709-sRGB Desat
     family: File-io
-    equalitygroup: scene-linear Rec.709-sRGB
+    equalitygroup: ""
     bitdepth: 32f
     description: Color picking in sRGB/Rec.709 primaries with slight desaturation (0.85 based on rec709 luma) (DF)
     isdata: false
