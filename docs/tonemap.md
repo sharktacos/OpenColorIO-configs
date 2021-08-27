@@ -19,7 +19,7 @@ However there have been some complaints about the ACES view transform. Perhaps t
 
 > “The defined ACES rendering intent has been questioned by a number of expert users... It is not uncommon to hear people saying they do not like the cumulative effects: crushing effect on shadows, and heavy highlight roll off, with too much look”
 
-The two Look Transforms provided in this config therefore lower the contrast of the ACES tone curve, the **Filmic** lowers contrast to 0.9 and **Neutral** to 0.8. This pulls the shadows and highlights slightly out of the toe and shoulder curves, resulting in less crushing of shadows and more gentle highlight rolloff. The idea being to have the **Filmic Look** make the ACES Output Transform have "slightly less contrast" and the **Neutral Look** has even less in order to serve as a *neutral* starting point for DI and Lookdev. Note in the images below the details visible in the shadow areas compared to the ACES 1.0 Output Transform:
+The two Look Transforms provided in this config are intended to address those complaints by lowering the contrast of the ACES tone curve. The **Filmic** lowers contrast to 0.9 and **Neutral** to 0.8. This pulls the shadows and highlights slightly out of the toe and shoulder curves, resulting in less crushing of shadows and more gentle highlight rolloff. The idea being to have the **Filmic Look** make the ACES Output Transform have "slightly less contrast" and the **Neutral Look** has even less in order to serve as a *neutral* starting point for DI and Lookdev. Note in the images below the details visible in the shadow areas compared to the ACES 1.0 Output Transform:
 
 ![rrt](img/tone_rrt.png)
 ![rrt](img/tone_filmic9.png)
