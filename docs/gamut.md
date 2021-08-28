@@ -22,7 +22,7 @@ Gamut compression is meant to replace the Blue Light Artifact Fix and one of the
 
 ## Pixel Healing
 
-Let's have a look at the Gamut Compression node in action in Nuke. We begin with some footage with out of gamut colors. 
+Let's have a look at the Gamut Compression node in action in Nuke. We begin with some footage with colors that are out of gamut. 
 
 ![blue](img/bluebar1.png)
 
