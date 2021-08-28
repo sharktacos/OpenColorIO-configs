@@ -34,7 +34,7 @@ Let's say we then wanted to use a Color Correct to do some despill of the blue l
 
 ![blue](img/bluebar3.png)
 
-Compare that to the same Color Correct operation without the Gamut Compression. The artifacting on the neon sign and window frame as well as the clipping of the blue light on the ceiling is back, and in fact it is accentuated. Without Gamut Compression doing just about anything on footage with these out of gamut issues can be a nightmare. It's like cooking with spoiled food.
+Compare that to the same Color Correct operation without the Gamut Compression. The artifacting on the neon sign and window frame as well as the clipping of the blue light on the ceiling is back, and in fact it is accentuated. Doing just about anything on footage with these out of gamut issues without Gamut Compression "healing the pixels" can be a nightmare. It's like cooking with spoiled food.
 
 ![blue](img/bluebar4.png)
 
