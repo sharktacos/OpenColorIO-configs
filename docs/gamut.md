@@ -22,21 +22,17 @@ Gamut compression is meant to replace the Blue Light Artifact Fix and one of the
 
 ## Pixel Healing
 
-Let's have a look at the Gamut Compression node in action in Nuke. We begin with some footage with colors that are out of gamut. Look in particular at the neon sign in the window and the ceiling above it. The neon sign has purple artifacting around it as does the window frame, and the blue light on the ceiling is clipping. 
+Let's have a look at the Gamut Compression node in action in Nuke. We begin with some footage with colors that are out of gamut. 
 
-![blue](img/bluebar1.png)
+![blue](img/guitar1.png)
 
-Next we apply the Gamut Compression node. Observe that all of the above issues are fixed.
+Let's say we wanted to use a Color Correct to do some despill of all that blue light in the shot. This looks good on the background room, but we are now seeing the out of gamut pixels more clearly on the performer. There is artifacting and posterization all over him.
 
-![blue](img/bluebar2.png)
+![blue](img/guitar2.png)
 
-Let's say we then wanted to use a Color Correct to do some despill of the blue light in the shot. Thanks to the pixel healing of the Gamut Compression this works great. This removes the blue-magenta cast across the whole image. Observe for example how the woman with the pool cue no longer has this blue-magenta cast in the image below.
+Now let's look at how that same Color Correct looks when we first apply Gamut Compression. The artifacting is gone. That's the pixel healing effect of Gamut Compression, and the reason it is applied as the first operation immediately after the input transform (i.e. right after the Read node). You want to begin working with healed pixels. Otherwise it's like cooking with spoiled food.
 
-![blue](img/bluebar3.png)
-
-Compare that to the same Color Correct operation without the Gamut Compression. The artifacting on the neon sign and window frame as well as the clipping of the blue light on the ceiling is back, and in fact it is accentuated. Doing just about anything on footage with these out of gamut issues without Gamut Compression "healing the pixels" can be a nightmare. It's like cooking with spoiled food.
-
-![blue](img/bluebar4.png)
+![blue](img/guitar3.png)
 
 
 [Back to main](../StdX_ACES)
