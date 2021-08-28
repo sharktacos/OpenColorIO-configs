@@ -21,11 +21,11 @@ Below are those images with the gamut compression algorithm applied (implemented
     
  ![nk](img/Gamut_nk.png) 
      
-Compare that to the 3D LUT implementation used in this config, shown below. Looks visually identical. So as far as a tool to temporaily visualize the result this works quite well.
+Compare that to the 3D LUT implementation used in this config, shown below. It looks visually identical. So as far as a tool to temporaily visualize the result this works quite well.
 
 ![lut](img/Gamut_lut.png)
       
-Now compare that to the older Blue Light Artifact Fix, pictured below, the results from the Gamut Compression are clearly superior. Ironically the "blue fix" is making blue appear magenta. Gamut compression is meant to replace the Blue Light Artifact Fix and one of the key differences is that the gamut compression algorthm only affects the pixels that are out of gamut, leaving the rest of the image unchanged. So it's not so much color correction, and more "pixel healing."
+Now compare that to the older Blue Light Artifact Fix, pictured below, the results from the Gamut Compression are clearly superior. Ironically the "blue fix" is making blue appear magenta. Gamut compression is meant to replace the Blue Light Artifact Fix and one of the key differences is that the gamut compression algorithm only affects the pixels that are out of gamut, leaving the rest of the image unchanged. So it's not so much color correction, and more "pixel healing."
 
 ![blue](img/Gamut_bluefix.png)
 
@@ -37,11 +37,11 @@ Let's have a look at the Gamut Compression node in action in Nuke. We begin with
 
 ![blue](img/guitar1.png)
 
-Let's say we wanted to use a Color Correct to do some despill of all that blue light in the shot. This looks good on the background room, but we are now seeing the out of gamut pixels more clearly on the performer. There is artifacting and posterization all over him.
+Let's say we wanted to use a Color Correct to do some despill of all that blue light in the shot. We can see in the image below that this is looking good on the background room, but we are now seeing the out-of-gamut pixels more clearly on the performer. There is artifacting and posterization all over him.
 
 ![blue](img/guitar2.png)
 
-Now let's look at how that same Color Correct looks when we first apply Gamut Compression. The artifacting is gone. That's the pixel healing effect of Gamut Compression, and the reason it is applied as the first operation immediately after the input transform (i.e. right after the Read node). You want to begin working with healed pixels. Otherwise it's like cooking with spoiled food.
+Now let's look at how that same Color Correct looks when we first apply Gamut Compression, pictured below. The artifacting is gone. That's the pixel healing effect of Gamut Compression, and the reason it is applied as the first operation immediately after the input transform (i.e. right after the Read node). You want to begin working with healed pixels. Otherwise it's like cooking with spoiled food.
 
 ![blue](img/guitar3.png)
 
