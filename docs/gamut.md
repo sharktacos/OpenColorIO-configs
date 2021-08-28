@@ -1,6 +1,11 @@
 # Gamut Compression
  
-The config's look transforms include an implementation of the [ACES gamut compression algorithm](https://github.com/ampas/aces-vwg-gamut-mapping-2020). Currently the proper way to do this is with a [Nuke](Nuke.md) node or with a DCTL for [Resolve Studio](Resolve.md). Implementation in OCIO is in the works for v2.1, but currently this has not been released. In the meantime gamut compression is provided in this config as a 3D LUT for viewing purposes. Because gamut compression works with negative numbers, the 3D LUT shaper needs to cover large range of negative values. This is done with a logarithmic function with a linear segment, similar to the ACEScct function, but that is also reflected by its intersection point with the Y-axis, essentially mirroring the ACEScct shaper. It's important to note however that this 3D LUT has limitations, for instance it is not invertable. We therefore only use it to view images in OCIO, and never to bake the gamut compression into the image. This again is done with the proper Nuke and DCTL nodes referenced above.
+Problems with out-of-gamut colors are caused by an image going from a large color gamut space to a smaller one. The most common example is converting a 
+film camera wide-gamut color space (say for an ARRI or RED camera)  to  the  smaller  gamut  of  the  display  devices  (for example Rec.709 video). Similarly in ACES one needs to go from the crazy big AP0 color gamut used for archive and exchange (which contains more colors than are visible to the human eye) into the smaller AP1 gamut color space used for CG/VFX work. 
+
+![gamut](img/gamuts.jpg)
+
+When converted the highly saturated bright colors that were on the edge of the larger gamut space will fall outside  the  target  color  space, resulting  in  negative color values which produce artifacts  and clipping (loss  of  texture detail, intensification  of  color  fringes, and so on). To address this the ACES community established a [Gamut Mapping Virtual  Working  Group  (VWG)](https://github.com/ampas/aces-vwg-gamut-mapping-2020) who developed a Gamut Compression algorthm, published as a [Nuke](Nuke.md) node and DCTL for [Resolve Studio](Resolve.md). Implementation in OCIO is in the works for v2.1, but currently this has not been released. In the meantime gamut compression is provided in this config as a 3D LUT for viewing purposes. Because gamut compression works with negative numbers, the 3D LUT shaper needs to cover large range of negative values. This is done with a logarithmic function with a linear segment, similar to the ACEScct function, but that is also reflected by its intersection point with the Y-axis, essentially mirroring the ACEScct shaper. It's important to note however that this 3D LUT has limitations, for instance it is not invertable. We therefore only use it to view images in OCIO, and never to bake the gamut compression into the image. This again is done with the proper Nuke and DCTL nodes referenced above.
  
 If you read through all of that you deserve to see some pretty pictures! Let's begin with several images with colors that are out of gamut, illustrating the problem. Note for instance the blobs of blue on the roof of the bar scene (bottom right), the loss of detail in the red areas in the top two images in their faces and clothing, and the crazy banding or posterizing happening on the spotlight behind the head of the woman (bottom left image).
   
@@ -22,21 +27,17 @@ Gamut compression is meant to replace the Blue Light Artifact Fix and one of the
 
 ## Pixel Healing
 
-Let's have a look at the Gamut Compression node in action in Nuke. We begin with some footage with colors that are out of gamut. Look in particular at the neon sign in the window and the ceiling above it. The neon sign has purple artifacting around it as does the window frame, and the blue light on the ceiling is clipping. 
+Let's have a look at the Gamut Compression node in action in Nuke. We begin with some footage with colors that are out of gamut. 
 
-![blue](img/bluebar1.png)
+![blue](img/guitar1.png)
 
-Next we apply the Gamut Compression node. Observe that all of the above issues are fixed.
+Let's say we wanted to use a Color Correct to do some despill of all that blue light in the shot. This looks good on the background room, but we are now seeing the out of gamut pixels more clearly on the performer. There is artifacting and posterization all over him.
 
-![blue](img/bluebar2.png)
+![blue](img/guitar2.png)
 
-Let's say we then wanted to use a Color Correct to do some despill of the blue light in the shot. Thanks to the pixel healing of the Gamut Compression this works great. This removes the blue-magenta cast across the whole image. Observe for example how the woman with the pool cue no longer has this blue-magenta cast in the image below.
+Now let's look at how that same Color Correct looks when we first apply Gamut Compression. The artifacting is gone. That's the pixel healing effect of Gamut Compression, and the reason it is applied as the first operation immediately after the input transform (i.e. right after the Read node). You want to begin working with healed pixels. Otherwise it's like cooking with spoiled food.
 
-![blue](img/bluebar3.png)
-
-Compare that to the same Color Correct operation without the Gamut Compression. The artifacting on the neon sign and window frame as well as the clipping of the blue light on the ceiling is back, and in fact it is accentuated. Doing just about anything on footage with these out of gamut issues without Gamut Compression "healing the pixels" can be a nightmare. It's like cooking with spoiled food.
-
-![blue](img/bluebar4.png)
+![blue](img/guitar3.png)
 
 
 [Back to main](../StdX_ACES)
