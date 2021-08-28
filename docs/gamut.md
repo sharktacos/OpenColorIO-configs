@@ -20,4 +20,23 @@ Now compare that to the older Blue Light Artifact Fix, pictured below, the resul
 
 Gamut compression is meant to replace the Blue Light Artifact Fix and one of the key differences is that the gamut compression algorthm only affects the pixels that are out of gamut, leaving the rest of the image unchanged. So it's not so much color correction, and more "pixel healing."
 
+## Pixel Healing
+
+Let's have a look at the Gamut Compression node in action in Nuke. We begin with some footage with colors that are out of gamut. Look in particular at the neon sign in the window and the ceiling above it. The neon sign has purple artifacting around it as does the window frame, and the blue light on the ceiling is clipping. 
+
+![blue](img/bluebar1.png)
+
+Next we apply the Gamut Compression node. Observe that all of the above issues are fixed.
+
+![blue](img/bluebar2.png)
+
+Let's say we then wanted to use a Color Correct to do some despill of the blue light in the shot. Thanks to the pixel healing of the Gamut Compression this works great. This removes the blue-magenta cast across the whole image. Observe for example how the woman with the pool cue no longer has this blue-magenta cast in the image below.
+
+![blue](img/bluebar3.png)
+
+Compare that to the same Color Correct operation without the Gamut Compression. The artifacting on the neon sign and window frame as well as the clipping of the blue light on the ceiling is back, and in fact it is accentuated. Doing just about anything on footage with these out of gamut issues without Gamut Compression "healing the pixels" can be a nightmare. It's like cooking with spoiled food.
+
+![blue](img/bluebar4.png)
+
+
 [Back to main](../StdX_ACES)
