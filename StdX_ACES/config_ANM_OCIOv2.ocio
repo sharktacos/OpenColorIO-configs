@@ -343,6 +343,45 @@ colorspaces:
     encoding: log
     to_reference: !<BuiltinTransform> {style: "ADX10_to_ACES2065-1"}
 
+# Output #
+
+#Neutral Look, Filmic Look, Show Look, ACES 1.0 SDR-video
+
+  - !<ColorSpace>
+    name: Output - Neutral Look (sRGB)
+    family: Output
+    description: Output Neutral Look (sRGB display)
+    isdata: false
+    categories: [ file-io ]
+    encoding: sdr-video
+    from_reference: !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Neutral Look"}
+
+  - !<ColorSpace>
+    name: Output - Filmic Look (sRGB)
+    family: Output
+    description: Output Neutral Look (sRGB display)
+    isdata: false
+    categories: [ file-io ]
+    encoding: sdr-video
+    from_reference: !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Filmic Look"}
+
+  - !<ColorSpace>
+    name: Output - ACES 1.0 SDR-video (sRGB)
+    family: Output
+    description: Output ACES 1.0 SDR-video (sRGB display)
+    isdata: false
+    categories: [ file-io ]
+    encoding: sdr-video
+    from_reference: !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "ACES 1.0 SDR-video"}
+
+  - !<ColorSpace>
+    name: Output - Show Look (sRGB)
+    family: Output
+    description: Output Show Look (sRGB display)
+    isdata: false
+    categories: [ file-io ]
+    encoding: sdr-video
+    from_reference: !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Show Look"}
 
 
 display_colorspaces:
