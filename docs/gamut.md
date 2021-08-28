@@ -1,7 +1,7 @@
 # Gamut Compression
  
 Problems with out-of-gamut colors are caused by an image going from a large color gamut space to a smaller one. The most common example is converting a 
-film camera wide-gamut color space (say for an ARRI or RED camera)  to  the  smaller  gamut  of  the  display  devices  (for example Rec.709 video). Similarly in ACES one needs to go from the crazy big AP0 color gamut used for archive and exchange (which contains more colors than are visible to the human eye) into the AP1 gamut color space, for example for CG/VFX work in the ACEScg color space with AP1 gamut. 
+film camera wide-gamut color space (say for an ARRI or RED camera)  to  the  smaller  gamut  of  the  display  devices  (for example Rec.709 video). Similarly in ACES one needs to go from the crazy big AP0 color gamut used for archive and exchange (which contains more colors than are visible to the human eye) into the smaller AP1 gamut color space used for CG/VFX work. 
 
 ![gamut](img/gamuts.jpg)
 
