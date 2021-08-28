@@ -11,4 +11,8 @@ A good deal of this is already done by the [gamut compression](gamut.md). The zo
    ![light4](img/kelvin_gamut.png)
    ![light5](img/kelvin_zone.png)
    
+Note for CG assets which use Kelvin blackbody color temperatures (pyro FX, light color temperature, physical sun and sky, camera white balence) many renders still do these spectra calculations in Rec.709/sRGB scene-linear, rather than in the wider gamut ACEScg scene-linear (which is comparable to Rec.2020). Consequently these saturated colors in fire and lights may be caused by this. Arnold for example does use ACEScg primaries for its blackbody node used for OpenVDB, as does Houdini. However Arnold does not currently use this for light temperature. Hopefully this will be updated soon. In the meantime you can [use a 3x3 matrix to convert from sRGB to ACEScg in Maya](https://community.acescentral.com/t/acescg-vs-linear-srgb-709-cg-rendering/1512/7) for physical sky, and use this tool to get the color value for light temperatures.
+
+
+   
 [Back to main](../StdX_ACES)
