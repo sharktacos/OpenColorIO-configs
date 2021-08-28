@@ -16,7 +16,7 @@ Compare that to the LUT implementation used in this config, shown below. Looks v
       
 Now compare that to the older Blue Light Artifact Fix, pictured below, the results are clearly superior. Ironically the "blue fix" is making blue appear magenta. 
 
-![blue](img/Gamut_bluefix.png
+![blue](img/Gamut_bluefix.png)
 
 Gamut compression is meant to replace the Blue Light Artifact Fix and one of the key differences is that the gamut compression algorthm only affects the pixels that are out of gamut, leaving the rest of the image unchanged. So it's not so much color correction, and more "pixel healing."
 
