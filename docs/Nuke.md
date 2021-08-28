@@ -6,7 +6,11 @@ Nuke currently supports OCIOv1. To load the config Press “S” to access **Pro
 
 ## Input Transforms
 
-In Nuke the input transform is set in the color space dropdown menu of a Read node. Knowing the right color space to choose for film plates can often be confusing. The files, typically DPX sequences or Prores clips, are often in the wrong color space. A client will for example say that the Prores movie is in Rec.709 when it is rather obviously in log, although what particular flavor of log is a mystery. Is it Cineon? Log-C? REDlog? Log3G10? If we knew the camera that was used this would be easier to determine, but this information is often unknown. To make matters worse, it's not uncommon to have a double log space applied, say cineon on top of Log-C. It's really a wild west out there. 
+In Nuke the input transform is set in the color space dropdown menu of a Read node. 
+
+Let's discuss some of the difficulties with inputting camera footage in VFX and how ACES greatly simplify and improve this. 
+
+Knowing the right color space to choose for film plates can often be confusing. The files, typically DPX sequences or Prores clips, are often in the wrong color space. A client will for example say that the Prores movie is in Rec.709 when it is rather obviously in log, although what particular flavor of log is a mystery. Is it Cineon? Log-C? REDlog? Log3G10? If we knew the camera that was used this would be easier to determine, but this information is often unknown. To make matters worse, it's not uncommon to have a double log space applied, say cineon on top of Log-C. It's really a wild west out there. 
 
 All of that thankfully becomes much simpler with ACES. In it's the core aim of ACES to unify the workflow so that there is consistency and predicability throughout every step of the film prodction pipeline. DPX files are not used at all, and instead the far superior EXR format is used (it is superior because it contains more file information at a smaller size than a DPX, so win win). That brings us down to four color spaces.
 
@@ -14,7 +18,7 @@ All of that thankfully becomes much simpler with ACES. In it's the core aim of A
 - **ACEScg** linear. The color space for CG renders, and also the working space in Nuke.
 - **ACEScc** and **ACEScct** - log space. In short these are two flavors of log that a colorist may prefer. ACEScc allows very precise control over deep shadows but can also be difficult to work with when not using the Log style grading tools. ACEScct is a more recent working space that compresses shadows similar to familiar camera log curves and which may be easier to grade. 
 
-It's good practice to append the color space to the end of the file name for clarity: ````name_ap0.exr, name_cg.exr, name_cct.mov````. VFX would deliver the footage back to the client in the same color space it was ingested i.e. the color space on the Read and Write node should be the same so it is a no-op in and out.
+It's good practice to append the color space to the end of the file name for clarity: ````name_ap0.exr, name_cg.exr, name_cct.mov````. VFX would deliver the footage back to the client in the same color space it was ingested i.e. the color space on the Read and Write node should be the same so it is effectively a no-op in and out.
 
 
 ## Display Transforms
