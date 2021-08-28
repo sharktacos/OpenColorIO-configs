@@ -25,7 +25,7 @@ The two Look Transforms provided in this config are intended to address those co
 ![rrt](img/tone_filmic9.png)
 ![rrt](img/tone_neutral8.png)
 
-The **Neutral Look** contrast is implemented with an ASC CDL (American Society of Cinematographers Color Decision List), inspired by Geoff Boyle's approach described on [this ACEScentral thread](https://community.acescentral.com/t/luts-that-emulate-the-aces-workflow/1334). The **Filmic Look** contrast is done with a Nuke node provided by the amazing [Jed Smith](https://github.com/jedypod) which adjusts the contrast of the ACES tone curve in linear space, keeping the pivot at 0.18 for middle grey. If you're interested in the math, here's the contrast function as a [desmos plot](https://www.desmos.com/calculator/zuxtjn6wmu). 
+The **Neutral Look** contrast is implemented with an ASC CDL (American Society of Cinematographers Color Decision List), inspired by Geoff Boyle's approach described on [this ACEScentral thread](https://community.acescentral.com/t/luts-that-emulate-the-aces-workflow/1334) of setting the contrast to 0.85 and the offset to 0.06525 in log (ACEScc) which matches the default pivot in Resolve and Baselight. The **Filmic Look** is simply a linear offset of 0.008 to lift the toe a bit to avoid crushed shadows, but otherwise maintains the ACES tone curve. 
 
 The take away is that these Look Transforms also you to work with tone mapping that does not impose a strong look to the film, but instead provides a more neutral starting point from which you can do further grading work, and at the same time allows for the proper integration of CG and film.
 
