@@ -34,7 +34,7 @@ Let's say we then wanted to use a Color Correct to do some despill of the blue l
 
 ![blue](img/bluebar3.png)
 
-Compare that to the same operation without the Gamut Compression. We're getting artifacting on the neon sign and posterization and clipping on the ceiling. Without gamut compression these can be a nighmare to deal with.
+Compare that to the same despil operation without the Gamut Compression. We're getting artifacting on the neon sign and posterization and clipping on the ceiling. Without gamut compression these can be a nighmare to deal with.
 
 ![blue](img/bluebar4.png)
 
