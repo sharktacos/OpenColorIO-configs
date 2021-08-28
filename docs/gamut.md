@@ -22,15 +22,15 @@ Gamut compression is meant to replace the Blue Light Artifact Fix and one of the
 
 ## Pixel Healing
 
-Let's have a look at the Gamut Compression node in action in Nuke. We begin with some footage with colors that are out of gamut. Look in particular at the neon sign in the window and the ceiling above it. The neon sign has purple artifacting around it, and the blue light on the ceiling is clipping. 
+Let's have a look at the Gamut Compression node in action in Nuke. We begin with some footage with colors that are out of gamut. Look in particular at the neon sign in the window and the ceiling above it. The neon sign has purple artifacting around it as does the window frame, and the blue light on the ceiling is clipping. 
 
 ![blue](img/bluebar1.png)
 
-Next we apply the Gamut Compression node.
+Next we apply the Gamut Compression node. Observe that all of the above issues are fixed.
 
 ![blue](img/bluebar2.png)
 
-And then we use a Color Correct to do some despill of the blue light. Thanks to the pixel healing of the Gamut Compression this works great. 
+Let's say we then wanted to use a Color Correct to do some despill of the blue light in the shot. Thanks to the pixel healing of the Gamut Compression this works great. 
 
 ![blue](img/bluebar3.png)
 
