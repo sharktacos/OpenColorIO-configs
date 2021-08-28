@@ -17,19 +17,19 @@ If you read through all of that you deserve to see some pretty pictures (Well, a
   
 ![rrt](img/Gamut_rrt.png)
     
-Below are those images with the gamut compression algorithm applied (implemented using the [Nuke blink script tool](https://github.com/jedypod/gamut-compress)). Wow. 
+Below are those images with the gamut compression algorithm applied (implemented using the [Nuke blink script tool](https://github.com/jedypod/gamut-compress)). All of the above artifacting is gone. 
     
  ![nk](img/Gamut_nk.png) 
      
-Compare that to the LUT implementation used in this config, shown below. Looks visually identical.  
+Compare that to the 3D LUT implementation used in this config, shown below. Looks visually identical. So as far as a tool to temporaily visualize the result this works quite well.
 
 ![lut](img/Gamut_lut.png)
       
-Now compare that to the older Blue Light Artifact Fix, pictured below, the results are clearly superior. Ironically the "blue fix" is making blue appear magenta. 
+Now compare that to the older Blue Light Artifact Fix, pictured below, the results from the Gamut Compression are clearly superior. Ironically the "blue fix" is making blue appear magenta. Gamut compression is meant to replace the Blue Light Artifact Fix and one of the key differences is that the gamut compression algorthm only affects the pixels that are out of gamut, leaving the rest of the image unchanged. So it's not so much color correction, and more "pixel healing."
 
 ![blue](img/Gamut_bluefix.png)
 
-Gamut compression is meant to replace the Blue Light Artifact Fix and one of the key differences is that the gamut compression algorthm only affects the pixels that are out of gamut, leaving the rest of the image unchanged. So it's not so much color correction, and more "pixel healing."
+
 
 ## Pixel Healing
 
