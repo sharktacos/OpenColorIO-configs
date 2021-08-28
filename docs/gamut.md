@@ -30,7 +30,7 @@ Next we apply the Gamut Compression node. Observe that all of the above issues a
 
 ![blue](img/bluebar2.png)
 
-Let's say we then wanted to use a Color Correct to do some despill of the blue light in the shot. Thanks to the pixel healing of the Gamut Compression this works great. 
+Let's say we then wanted to use a Color Correct to do some despill of the blue light in the shot. Thanks to the pixel healing of the Gamut Compression this works great. This removes the blue-magenta cast across the whole image. Observe for example how the woman with the pool cue no longer has this blue-magenta cast.
 
 ![blue](img/bluebar3.png)
 
