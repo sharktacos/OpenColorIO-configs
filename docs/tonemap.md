@@ -27,7 +27,7 @@ The two Look Transforms provided in this config are intended to address those co
 
 The **Neutral Look** contrast is implemented with an ASC CDL (American Society of Cinematographers Color Decision List), inspired by Geoff Boyle's approach described on [this ACEScentral thread](https://community.acescentral.com/t/luts-that-emulate-the-aces-workflow/1334) of setting the contrast to 0.85 and the offset to 0.06525 in log (ACEScc) which matches the default pivot in Resolve and Baselight. The **Filmic Look** is simply a linear offset of 0.008 to lift the toe a bit avoiding crushed shadows, but otherwise maintaining the ACES tone curve. 
 
-The take away is that these Look Transforms also you to work with tone mapping that does not impose a strong look to the film, but instead provides a more neutral starting point from which you can do further grading work, and at the same time allows for the proper integration of CG and film.
+The take away is that these Look Transforms allow you to work with tone mapping which doesn't impose a strong look, but instead provides a more neutral starting point from which you can do further grading work, and at the same time allows for the proper photographic integration of CG and film.
 
 [Back to main](../StdX_ACES)
 
