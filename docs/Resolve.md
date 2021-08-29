@@ -15,20 +15,6 @@ However, while everyone is happy with these ACES Input Transforms, a lot of colo
 ![pic](img/Resolve12.png)
 
 
-## Using ACES
-
-ACES is loaded in the Color Management section of the Project Settings.
-
-![Resolve](img/Resolve4.jpg)
-
-To output a VFX pull you would temporarily set the display to linear by setting the *ACES Output Device Transform* in the project settings above to "No output transform" which will export the sequence in ACES2065-1 AP0 exchange color space. It's good practice to append this to the file name, for example ````MyFilm_shot22_ap0.0001.exr````. Then on the Delivery page export EXR files in 16-bit half float (which Davinci calls "RGB half"). 
-
-![exr](img/Resolve5.jpg)
-
-Note that sequences in ACES are not output as DPX files, but as OpenEXR format. DPX is an older method which encodes the 0-1 image in log format allowing for storing a wide dynamic range (i.e. multiple camera exposures) in a small file size. However DPX is limited in the range it can hold, as opposed to an EXR which can go far beyond the 0-1 range and thus have a far larger dynamic range than a DPX file can. The ACES2065-1 archival/interchange color space contains the full gamut of what is visible to the human eye which is way more than an HDTV or sRGB monitor can display. If you are concerned about file sizes you can use Piz lossless compression. These EXR files will be smaller than a DPX file and even smaller than a PNG.
-
-When you are done you can set the *ACES Output Device Transform* back, which brings us to the next topic...
-
 ## Viewing Looks in the *ACES Output Device Transform*
 
 To use the *Filmic* and *Neutral* Look LUTS, the .cube files need to be placed into the Davinci Resolve LUT directory, which you can get to by clicking "Open LUT folder" in the Preferences, copying the files, and then clicking "update lists" to refresh. 
@@ -63,5 +49,13 @@ To apply these, just click on the node and choose your LUT from the contextual m
 The “process node LUTs in” in the ACES Color management Settings should be set to AP1 when using these .cube LUTs with the shaper built in (Log2 48 nits shaper ACEScc). 
 
 ![Resolve](img/Resolve3.jpg)
+
+## Delivering to VFX
+
+To output a VFX pull you would disable any Look Transforms, and temporarily set the display to linear by setting the *ACES Output Device Transform* in the project settings to "No output transform." This will export the sequence in ACES2065-1 AP0 exchange color space. It's good practice to append this to the file name, for example ````MyFilm_shot22_ap0.0001.exr```` and also to communicate the Look Transforms (if any) that are being used. Then on the Delivery page export EXR files in 16-bit half float (which Davinci calls "RGB half"). 
+
+![exr](img/Resolve5.jpg)
+
+Note that sequences in ACES are not output as DPX files, but as OpenEXR format. DPX is an older method which encodes the 0-1 image in log format allowing for storing a wide dynamic range (i.e. multiple camera exposures) in a small file size. However DPX is limited in the range it can hold, as opposed to an EXR which can go far beyond the 0-1 range and thus have a far larger dynamic range than a DPX file can. The ACES2065-1 archival/interchange color space contains the full gamut of what is visible to the human eye which is way more than an HDTV or sRGB monitor can display. If you are concerned about file sizes you can use Piz lossless compression. These EXR files will be smaller than a DPX file and even smaller than a PNG.
 
 [Back to main](../StdX_ACES)
