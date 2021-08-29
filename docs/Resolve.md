@@ -4,11 +4,11 @@
 
 Traditionally colorists work in what is called *display-referred* workflow, meaning meaning the colorist needs to *refer* to the *display* and basically just eyeball footage from different cameras to get them to match, hoping the resulting film will look the same later on other monitors and projectors. If one were for example reading in footage from a RED camera, they would read in the raw camera file in IPP2 using Log3G10 REDwideGamutRGB and see an image like this.
 
-![pic](Resolve10.png)
+![pic](img/Resolve10.png)
 
 The colorist would begin with this washed out image in log space, and grade it manually until it looked nice. ACES instead works in a *scene-referred* workflow, meaning film footage is input using the mathematical transform provided by the camera maufacturer to read in the raw footage and make it look nice. Here's that same RED footage in ACES.
 
-![pic](Resolve11.png)
+![pic](img/Resolve11.png)
 
 An advantage to this *scene-referred* approach is that  means if you shoot footage of the same scene using different cameras, these can all be read into ACES using the scientific specifications of each particular camera, and all look the same side by side, the idea being that any camera pointed at the same scene would ostensibly generate the same image in scene-referred linear space. 
  
@@ -16,7 +16,7 @@ The colorist can then focus on the artistic look of the film, beginning with a d
 
 However, while everyone is happy with these Input Transforms, a lot of colorists (DITs) are not as happy with the ACES Output Transform and find that has too much of a "look" on it. They would prefer a more *neutral* starting point to begin their grading work from. That's the motivation for the [Look Transforms](tonemap.md) of this config. Here's the image with the **Neutral Look** transform applied.
 
-![pic](Resolve12.png)
+![pic](img/Resolve12.png)
 
 
 ## Using ACES
