@@ -52,7 +52,7 @@ The “process node LUTs in” in the ACES Color management Settings should be s
 
 ## Delivering to VFX
 
-To output a VFX pull you would first disable any Look Transforms that you do not intend to bake into the footage. Alternativly, you could opt to bake the grade into the footage or write it out as a LUT.
+To output a VFX pull you would first disable any Look Transforms that you do not intend to bake into the footage. If desired you can also write out a 3D LUT to pass to VFX to use as a *Shot LUT*. This will include all enabled grades both in the timeline and the clip so it will combine the Look Transform with your shot grade into a single LUT. This LUT will be in ACEScc processing space.
 
 Next, temporarily set the display to linear by setting the *ACES Output Device Transform* in the project settings to "No output transform." This will export the sequence in ACES2065-1 AP0 exchange color space. It's good practice to append this to the file name, for example ````MyFilm_shot22_ap0.0001.exr```` and also to communicate the Look Transforms (if any) that are being used. Then on the Delivery page export EXR files in 16-bit half float (which Davinci calls "RGB half"). 
 
