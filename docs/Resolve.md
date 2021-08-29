@@ -2,19 +2,30 @@
 
 ## scene-referred vs display-referred 
 
-ACES works in a *scene-referred* workflow, meaning film footage is input using the mathematical transfer functions supplied by camera manufacturers which “reverse engineer” the encoding of each camera and bring it back into the linear light values of the physical real-world *scene* the camera was pointing at. 
+Traditionally colorists work in what is called a *display-referred* workflow, meaning the colorist needs to *refer* to the *display* and basically just eyeball footage from different cameras to get them to match, hoping the resulting film will look the same later on other monitors and projectors. If one were for example reading in footage from a RED camera, they would read in the raw camera file in IPP2 using Log3G10 REDwideGamutRGB and see an image like this. The colorist would begin with this washed out image in log space, and grade it manually until it looked nice.
 
-Traditionally, colorists have instead worked in what is called a *display-referred* workflow, meaning the colorist needs to *refer* to the *display* and basically just eyeball footage from different cameras to get them to match, hoping the resulting film will look the same later on other monitors and projectors. This quote from the Davinci Resolve manual explains,
+![pic](img/Resolve10.png)
 
-> “The default DaVinci YRGB color science setting, which is what Resolve has always used, relies on what is called “Display Referred” color management. This means that Resolve has no information about how the source media used in the Timeline is supposed to look; you can only judge color accuracy via the calibrated broadcast display you’re outputting to. Essentially, you are the color management, in conjunction with a trustworthy broadcast display that’s been calibrated to ensure accuracy.”
+ ACES instead works in a *scene-referred* workflow, meaning film footage is input using the mathematical transform provided by the camera maufacturer to read in the raw footage and make it look nice. Here's that same RED footage in ACES.
 
-Because ACES uses a *scene-referred* workflow based on mathematical transfer functions, this means if you shoot footage of the same scene using different cameras, these can all be read into ACES using the scientific specifications of each particular camera, and all look the same side by side, the idea being that any camera pointed at the same scene would ostensibly generate the same image in scene-referred linear space. No tweaking or eyeballing required. The colorist can then focus on the artistic look of the film, beginning with a digital image that has been digitally “developed” according to the exact mathematical specifications of each particular camera manufacturer. In other words, the scene-referred workflow uses math and physics to get color to look the same consistently (scene-referred), rather than guesswork (display-referred). This consistency of color from start to finish of the film making process is the primary aim of ACES. It uses science in service of artistic vision.
+![pic](img/Resolve11.png)
+
+An advantage to this *scene-referred* approach is that  means if you shoot footage of the same scene using different cameras, these can all be read into ACES using the scientific specifications of each particular camera, and all look the same side by side, the idea being that any camera pointed at the same scene would ostensibly generate the same image in scene-referred linear space. 
+ 
+The colorist can then focus on the artistic look of the film, beginning with a digital image that has been digitally “developed” according to the exact mathematical specifications of each particular camera manufacturer. 
+
+However, while everyone is happy with these Input Transforms, a lot of colorists (DITs) are not as happy with the ACES Output Transform and find that has too much of a "look" on it. They would prefer a more *neutral* starting point to begin their grading work from. That's the motivation for the [Look Transforms](tonemap.md) of this config. Here's the image with the **Neutral Look** transform applied.
+
+![pic](img/Resolve12.png)
+
 
 ## Using ACES
 
 ACES is loaded in the Color Management section of the Project Settings.
 
 ![Resolve](img/Resolve4.jpg)
+
+As shown above, the process would be to read in the raw camera footage, 
 
 To output a VFX pull you would temporarily set the display to linear by setting the *ACES Output Device Transform* in the project settings above to "No output transform" which will export the sequence in ACES2065-1 AP0 exchange color space. It's good practice to append this to the file name, for example ````MyFilm_shot22_ap0.0001.exr````. Then on the Delivery page export EXR files in 16-bit half float (which Davinci calls "RGB half"). 
 
