@@ -1,5 +1,15 @@
 # Davinci Resolve
 
+## scene-referred vs display-referred 
+
+ACES works in a *scene-referred* workflow, meaning film footage is input using the mathematical transfer functions supplied by camera manufacturers which “reverse engineer” the encoding of each camera and bring it back into the linear light values of the physical real-world *scene* the camera was pointing at. 
+
+Traditionally, colorists have instead worked in what is called a *display-referred* workflow, meaning the colorist needs to *refer* to the *display* and basically just eyeball footage from different cameras to get them to match, hoping the resulting film will look the same later on other monitors and projectors. This quote from the Davinci Resolve manual explains,
+
+> “The default DaVinci YRGB color science setting, which is what Resolve has always used, relies on what is called “Display Referred” color management. This means that Resolve has no information about how the source media used in the Timeline is supposed to look; you can only judge color accuracy via the calibrated broadcast display you’re outputting to. Essentially, you are the color management, in conjunction with a trustworthy broadcast display that’s been calibrated to ensure accuracy.”
+
+Because ACES uses a *scene-referred* workflow based on mathematical transfer functions, this means if you shoot footage of the same scene using different cameras, these can all be read into ACES using the scientific specifications of each particular camera, and all look the same side by side, the idea being that any camera pointed at the same scene would ostensibly generate the same image in scene-referred linear space. No tweaking or eyeballing required. The colorist can then focus on the artistic look of the film, beginning with a digital image that has been digitally “developed” according to the exact mathematical specifications of each particular camera manufacturer. In other words, the scene-referred workflow uses math and physics to get color to look the same consistently (scene-referred), rather than guesswork (display-referred). This consistency of color from start to finish of the film making process is the primary aim of ACES. It uses science in service of artistic vision.
+
 ## Using ACES
 
 ACES is loaded in the Color Management section of the Project Settings.
