@@ -80,8 +80,8 @@ looks:
 
   - !<Look>
     name: LMT_show
-    process_space: ACEScct
-    transform: !<FileTransform> {src: LMT_show_cct.cube, interpolation: linear} 
+    process_space: ACEScc
+    transform: !<FileTransform> {src: Shot_LMT_cc.cube, interpolation: linear} 
 
 
 

@@ -123,7 +123,7 @@ looks:
   - !<Look>
     name: Client_LUT
     process_space: ACEScc
-    transform: !<FileTransform> {src: show_ACEScc.cube, interpolation: linear}
+    transform: !<FileTransform> {src: Shot_LMT_cc.cube, interpolation: linear}
 
 
 
