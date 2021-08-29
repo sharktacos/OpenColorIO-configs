@@ -2,19 +2,15 @@
 
 ## scene-referred vs display-referred 
 
-Traditionally colorists work in what is called a *display-referred* workflow, meaning the colorist needs to *refer* to the *display* and basically just eyeball footage from different cameras to get them to match, hoping the resulting film will look the same later on other monitors and projectors. If one were for example reading in footage from a RED camera, they would read in the raw camera file in IPP2 using Log3G10 REDwideGamutRGB and see an image like this. The colorist would begin with this washed out image in log space, and grade it manually until it looked nice.
+Traditionally colorists work in what is called a *display-referred* workflow, meaning the colorist needs to *refer* to the *display* and basically just eyeball footage to manually get it to look good. If one were for example reading in footage from a RED camera, they would read in the raw camera file in IPP2 using Log3G10 REDwideGamutRGB and see the washed out image below. The colorist would begin with this washed out image in log space, and grade it manually until it looked nice.
 
 ![pic](img/Resolve10.png)
 
- ACES instead works in a *scene-referred* workflow, meaning film footage is input using the mathematical transform provided by the camera maufacturer to read in the raw footage and make it look nice. Here's that same RED footage in ACES.
+ACES instead works in a *scene-referred* workflow, meaning film footage is input using the mathematical transform provided by the camera maufacturer to read in the raw footage. Here's that same RED footage in ACES. This is the starting point that the colorist then begins with, allowing them to focus on the artistic look of the film, beginning with a digital image that has been digitally “developed” according to the exact mathematical specifications of each particular camera manufacturer. 
 
 ![pic](img/Resolve11.png)
 
-An advantage to this *scene-referred* approach is that  means if you shoot footage of the same scene using different cameras, these can all be read into ACES using the scientific specifications of each particular camera, and all look the same side by side, the idea being that any camera pointed at the same scene would ostensibly generate the same image in scene-referred linear space. 
- 
-The colorist can then focus on the artistic look of the film, beginning with a digital image that has been digitally “developed” according to the exact mathematical specifications of each particular camera manufacturer. 
-
-However, while everyone is happy with these Input Transforms, a lot of colorists (DITs) are not as happy with the ACES Output Transform and find that has too much of a "look" on it. They would prefer a more *neutral* starting point to begin their grading work from. That's the motivation for the [Look Transforms](tonemap.md) of this config. Here's the image with the **Neutral Look** transform applied.
+However, while everyone is happy with these ACES Input Transforms, a lot of colorists (DITs) are not as happy with the ACES Output Transform which they find has too much of a "look" on it. They would prefer a more *neutral* starting point to begin their grading work from. That's the motivation for the [Look Transforms](tonemap.md) of this config. Here's a side by side comparison of the ACES Output Transform and the **Neutral Look** transform.
 
 ![pic](img/Resolve12.png)
 
@@ -24,8 +20,6 @@ However, while everyone is happy with these Input Transforms, a lot of colorists
 ACES is loaded in the Color Management section of the Project Settings.
 
 ![Resolve](img/Resolve4.jpg)
-
-As shown above, the process would be to read in the raw camera footage, 
 
 To output a VFX pull you would temporarily set the display to linear by setting the *ACES Output Device Transform* in the project settings above to "No output transform" which will export the sequence in ACES2065-1 AP0 exchange color space. It's good practice to append this to the file name, for example ````MyFilm_shot22_ap0.0001.exr````. Then on the Delivery page export EXR files in 16-bit half float (which Davinci calls "RGB half"). 
 
