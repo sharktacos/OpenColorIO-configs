@@ -2,11 +2,11 @@
 
 ## scene-referred vs display-referred 
 
-Traditionally colorists work in what is called *display-referred* workflow, meaning meaning the colorist needs to *refer* to the *display* and basically just eyeball footage from different cameras to get them to match, hoping the resulting film will look the same later on other monitors and projectors. If one were for example reading in footage from a RED camera, they would read in the raw camera file in IPP2 using Log3G10 REDwideGamutRGB and see an image like this.
+Traditionally colorists work in what is called a *display-referred* workflow, meaning the colorist needs to *refer* to the *display* and basically just eyeball footage from different cameras to get them to match, hoping the resulting film will look the same later on other monitors and projectors. If one were for example reading in footage from a RED camera, they would read in the raw camera file in IPP2 using Log3G10 REDwideGamutRGB and see an image like this. The colorist would begin with this washed out image in log space, and grade it manually until it looked nice.
 
 ![pic](img/Resolve10.png)
 
-The colorist would begin with this washed out image in log space, and grade it manually until it looked nice. ACES instead works in a *scene-referred* workflow, meaning film footage is input using the mathematical transform provided by the camera maufacturer to read in the raw footage and make it look nice. Here's that same RED footage in ACES.
+ ACES instead works in a *scene-referred* workflow, meaning film footage is input using the mathematical transform provided by the camera maufacturer to read in the raw footage and make it look nice. Here's that same RED footage in ACES.
 
 ![pic](img/Resolve11.png)
 
