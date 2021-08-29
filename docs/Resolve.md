@@ -1,51 +1,5 @@
 # Davinci Resolve
 
-## VFX Pulls
-
-![pipeline](pipeline.jpg)
-
-Edit and Dailies typically work with lower resolution proxy files. Similar to *conform*, a *VFX pull* is where these proxy files are swapped out for the high res files used for the final delivery to DI and also the high res files that VFX needs to do its thing. A VFX pull would thus come from Dailies or Editorial 
-
-VFX pulls should be debayered from the original raw camera files and exported as 16-bit EXR in the ACES AP0 exchange format (ACES2066-1). Netflix has a great [step-by-step guide for Reso]ve(https://partnerhelp.netflixstudios.com/hc/en-us/articles/360002088888-Color-Managed-Workflow-in-Resolve-ACES-) that will walk you through the process in detail. Here we will focus on a few specifics related to our VFX pipeline and educating clients unfamilar with ACES and color managed workflows.
-
-Note that traditional 10-bit DPX files are not recommended, as they are unable to contain all the information captured by modern digital cameras. OpenEXR in contrast contains 30+ stops of exposure, and is the official ACES container format for the ACES2065-1 archival/interchange color space which contains the full gamut of what is visible to the human eye. If you are concerned about file sizes you can use PIZ lossless compression. The resulting EXR files will be *smaller* than a DPX file and even smaller than a PNG!
-
-All color correction and grades should be *disabled* for a VFX pull. An easy way to do this is to turn "Enable Flat Pass" in the Resolve Delivery options (again, see the above step-by-step guide). The goal is to apply the VFX as if it was filmed that way, so only the pixels that have VFX on them are changed, ensuring a perfect round-trip integration with the rest of the film footage. 
-
-VFX pulls should include dailies color reference (QuickTime or reference frames) along with any CDLs and/or LUTs used in the dailies process. A .cube 3D LUT can be exported from Resolve, and will include all enabled grades, both in the timeline and the clips, so it will combine the Look Transform with your shot grade into a single LUT. This can be used as the *Shot LUT* for dailies. 
-
-Editorial should provide proxy media format requirements for VFX proxy media that is to be delivered by the VFX vendor for inclusion in the offline project. This again involves applying the CDL or LUT in the defined working color space in order to match original dailies color.
-
---
-
-Discuss who is doing the VFX pulls, 
-
-[netfix](https://partnerhelp.netflixstudios.com/hc/en-us/articles/360000611467-VFX-Best-Practices):
-VFX pulls and final deliveries must be in one of the following file formats:
-
-   
-    
-    Round-trip tests between VFX vendors, editorial and the DI vendor must be performed early in the process to verify color pipeline consistency.
-    
- 
-
-To avoid debayering inconsistencies, we recommend that pulls are debayered and exported from the DI facility or a dedicated vendor who is aligned with the DI facility’s pipeline and setup.
-
-
-
-    
-    If required by the VFX vendor, any balancing or neutral grading should be performed using debayered plates in a scene-referred color space, and corrections should be limited to reversible non-destructive operations, such as the ones that are available in CDLs (slope, offset, power and saturation). 
-
-Editorial
-
-    Editorial should provide proxy media format requirements for VFX proxy media that is to be delivered by the VFX vendor for inclusion in the offline project. 
-    This format may differ from the format requested for studio reviews. The DI facility can provide detailed instructions for accurately rendering proper color into proxy files.
-        In a color-managed pipeline, this most commonly involves applying CDL and LUT in the defined working color space in order to match original dailies color.
-        
-        
-        showID_seq_scene_shotID# AGM_TCC_065_0010
-
-
 
 ## scene-referred vs display-referred 
 
@@ -97,14 +51,7 @@ The “process node LUTs in” in the ACES Color management Settings should be s
 
 ![Resolve](img/Resolve3.jpg)
 
-## Delivering to VFX
 
-To output a VFX pull you would first disable any Look Transforms that you do not intend to bake into the footage. If desired you can also write out a 3D LUT to pass to VFX to use as a *Shot LUT*. This will include all enabled grades both in the timeline and the clip so it will combine the Look Transform with your shot grade into a single LUT. This LUT will be in ACEScc processing space.
 
-Next, temporarily set the display to linear by setting the *ACES Output Device Transform* in the project settings to "No output transform." This will export the sequence in ACES2065-1 AP0 exchange color space. It's good practice to append this to the file name, for example ````MyFilm_shot22_ap0.0001.exr```` and also to communicate the Look Transforms (if any) that are being used. Then on the Delivery page export EXR files in 16-bit half float (which Davinci calls "RGB half"). 
-
-![exr](img/Resolve5.jpg)
-
-Note that sequences in ACES are not output as DPX files, but as OpenEXR format. DPX is an older method which encodes the 0-1 image in log format allowing for storing a wide dynamic range (i.e. multiple camera exposures) in a small file size. However DPX is limited in the range it can hold, as opposed to an EXR which can go far beyond the 0-1 range and thus have a far larger dynamic range than a DPX file can. The ACES2065-1 archival/interchange color space contains the full gamut of what is visible to the human eye which is way more than an HDTV or sRGB monitor can display. If you are concerned about file sizes you can use Piz lossless compression. These EXR files will be smaller than a DPX file and even smaller than a PNG.
 
 [Back to main](../StdX_ACES)
