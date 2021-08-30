@@ -93,7 +93,11 @@ Check out the [gamut compression](gamut.md) doc for more details and pretty pics
 
 ## VFX Pulls
 
-![pipeline](img/pipeline.jpg)
+<p align="center">
+<img src="img/pipeline.jpg">
+</p
+ 
+
 
 Edit and Dailies typically work with lower resolution proxy files. Similar to the *conform*, a *VFX pull* is where these proxy files are swapped out for the high res files used for the final delivery to DI. The basic idea is that VFX returns the plate, with the VFX on it, *as if it were filmed that way*.
 
