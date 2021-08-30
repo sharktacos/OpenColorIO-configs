@@ -41,31 +41,27 @@ Below you can see the display device in parenthesis. Most are in sRGB as this is
 
 Based on the above understandings, let's step back and overview the input and output pipeline. Remember in Nuke the input color space is set in the Read node and the output color space is set in the Write node.
 
-The workflow for ACES going from DI (for example [Davinci Resolve](Resolve.md)) to VFX would be to initially input all the different camera footage using the appropriate camera manufacturer input transforms, work in ACEScc or ACEScct log space, and then output this as  ACES2065-1.  ACES2065-1 is the color space intended for transfer of files and for archiving. 
-
-````Input: RAW CAMERA   >  Working: ACEScct  >  Output:  ACES2065-1````
-
-Therefore, the ACES pipeline for compositing when receiving ACES footage would be:
+VFX pulls will be in ACES2065-1 the ACES exchange color space. 
 
 ````Input: ACES2065-1  >  Working: ACEScg  >  Display: sRGB````
-
-Likewise, the delivery of VFX to DI from Nuke would be written  to ACES2065-1 (that is,  ACES2065-1 would be the color space on the Nuke write node). 
-
-````Input: ACES2065-1 > Working: ACEScg  > Output: ACES2065-1````
-
-As you can see, once the footage is input in and converted into ACES, one does not need to keep track of all the different color spaces because it’s always in the ACES exchange color space.
 
 For reading renders into Nuke, since the EXR files are already in ACEScg the input (i.e the color space of the read node) would be  ACEScg.
 	
 ````Input: ACEScg  >  Working: ACEScg >  Display: sRGB````
 
-If you want to simply output a PNG sequence to make a Quicktime movie in Media Encoder (or output a Quicktime movie directly from Nuke) then the display transform is baked into the media (as set on the color space of the Nuke write node). This is the process of delivery and involves leaving the wide gamut working space of ACES, and encoding the image with the limited display space of the intended viewing device. The idea is that you want people to view things the same way you see them. So if you are viewing *Filmic (sRGB)* and what to make a movie to be viewed on the web you would choose that in the color space for your write node for output.
+For VFX delivery of plates the ACES2065-1 exchange color space is again used (that is,  ACES2065-1 would be the color space on the Nuke write node). 
+
+````Input: ACES2065-1 > Working: ACEScg  > Output: ACES2065-1````
+
+As you can see, once the footage is input in and converted into ACES, one does not need to keep track of all the different color spaces because it’s always in the ACES exchange color space.
+
+If you want to simply output a PNG sequence to make a Quicktime movie in Media Encoder (or output a Quicktime movie directly from Nuke) then the display transform is baked into the media (as set on the color space of the Nuke write node). This involves leaving the wide gamut working space of ACES, and encoding the image with the limited display space of the intended viewing device. The idea is that you want people to view things the same way you see them. So if you are viewing *Filmic (sRGB)* and what to make a movie to be viewed on the web you would choose that in the color space for your write node for output.
 	
 ````Working: ACEScg >  Output: Filmic (sRGB)````
 
-If you are delivering for viewing of dailies on a broadcast HDTV monitor you would set your output to 
+Similrly, if you are delivering a proxy movie for viewing of dailies using the client LUT for viewing on a broadcast HDTV monitor you would set your output to 
 
-````Working: ACEScg >  Output: Filmic (Rec.1886/Rec.709 video)````
+````Working: ACEScg >  Output: Shot LUT (Rec.1886/Rec.709 video)````
 
 
 ## Gamut Compression and Nuke
