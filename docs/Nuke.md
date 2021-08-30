@@ -41,7 +41,7 @@ Below you can see the display device in parenthesis. Most are in sRGB as this is
 
 Based on the above understandings, let's step back and overview the input and output pipeline. Remember in Nuke the input color space is set in the Read node and the output color space is set in the Write node.
 
-VFX pulls will be in ACES2065-1 the ACES exchange color space. 
+VFX pulls will be in ACES2065-1 the ACES exchange color space and viewed on a computer monitor. 
 
 ````Input: ACES2065-1  >  Working: ACEScg  >  Display: sRGB````
 
@@ -59,7 +59,7 @@ If you want to simply output a PNG sequence to make a Quicktime movie in Media E
 	
 ````Working: ACEScg >  Output: Filmic (sRGB)````
 
-Similrly, if you are delivering a proxy movie for viewing of dailies using the client LUT for viewing on a broadcast HDTV monitor you would set your output to 
+Similarly, if you are delivering a proxy movie for Dailies using the client LUT for viewing on a broadcast HDTV monitor you would set your output to 
 
 ````Working: ACEScg >  Output: Shot LUT (Rec.1886/Rec.709 video)````
 
