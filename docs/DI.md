@@ -1,6 +1,5 @@
 # Davinci Resolve
 
-
 ## scene-referred vs display-referred 
 
 Traditionally colorists work in what is called a *display-referred* workflow, meaning the colorist needs to *refer* to the *display* and basically just eyeball footage to manually get it to look good. If one were for example reading in footage from a RED camera, they would read in the raw camera file in IPP2 using Log3G10 REDwideGamutRGB and see the washed out image below. The colorist would begin with this washed out image in log space, and grade it manually until it looked nice.
@@ -51,7 +50,14 @@ The “process node LUTs in” in the ACES Color management Settings should be s
 
 ![Resolve](img/Resolve3.jpg)
 
+## Delivering to VFX
 
+To output a VFX pull you would first disable any Look Transforms that you do not intend to bake into the footage. If desired you can also write out a 3D LUT to pass to VFX to use as a *Shot LUT*. This will include all enabled grades both in the timeline and the clip so it will combine the Look Transform with your shot grade into a single LUT. This LUT will be in ACEScc processing space.
 
+Next, temporarily set the display to linear by setting the *ACES Output Device Transform* in the project settings to "No output transform." This will export the sequence in ACES2065-1 AP0 exchange color space. It's good practice to append this to the file name, for example ````MyFilm_shot22_ap0.0001.exr```` and also to communicate the Look Transforms (if any) that are being used. Then on the Delivery page export EXR files in 16-bit half float (which Davinci calls "RGB half"). 
+
+![exr](img/Resolve5.jpg)
+
+Note that sequences in ACES are not output as DPX files, but as OpenEXR format. DPX is an older method which encodes the 0-1 image in log format allowing for storing a wide dynamic range (i.e. multiple camera exposures) in a small file size. However DPX is limited in the range it can hold, as opposed to an EXR which can go far beyond the 0-1 range and thus have a far larger dynamic range than a DPX file can. The ACES2065-1 archival/interchange color space contains the full gamut of what is visible to the human eye which is way more than an HDTV or sRGB monitor can display. If you are concerned about file sizes you can use Piz lossless compression. These EXR files will be smaller than a DPX file and even smaller than a PNG.
 
 [Back to main](../StdX_ACES)
