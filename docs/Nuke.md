@@ -8,19 +8,17 @@ Nuke currently supports OCIOv1. To load the config Press “S” to access **Pro
 
 In Nuke the input transform is set in the color space dropdown menu of a Read node. 
 
-Let's discuss some of the difficulties with inputting camera footage in VFX and how ACES greatly simplify and improve this. 
+Let's discuss some of the difficulties with inputting camera footage in VFX in a traditional non-color managed workflow and how ACES greatly simplify and improve this. 
 
-Knowing the right color space to choose for film plates can often be confusing. The files, typically DPX sequences or Prores clips, are often in the wrong color space. A client will for example say that the Prores movie is in Rec.709 when it is rather obviously in log, although what particular flavor of log is a mystery. Is it Cineon? Log-C? REDlog? Log3G10? If we knew the camera that was used this would be easier to determine, but this information is often unknown. To make matters worse, it's not uncommon to have a double log space applied, say cineon on top of Log-C. It's really a wild west out there. 
+Knowing the right color space to choose a traditional non-color managed workflow can be confusing. The files, typically DPX sequences or Prores clips, are often in the wrong color space. A client will for example say that the Prores movie is in Rec.709 when it is rather obviously in log (which you can tell because it appears washed out, which is characteristic of log footage. Of course which particular flavor of log is a mystery. Is it Cineon? Log-C? REDlog? Log3G10? If we knew the camera that was used this would be easier to determine, although many camera manufcturers have multiple log formats to choose from, but this information is often unknown. To make matters worse, it's not uncommon to have a double log space applied, say cineon on top of Log-C. It's really a wild west out there. 
 
-All of that thankfully becomes much simpler with ACES. In it's the core aim of ACES to unify the workflow so that there is consistency and predicability throughout every step of the film prodction pipeline. DPX files are not used at all, and instead the far superior EXR format is used (it is superior because it contains more file information at a smaller size than a DPX, so win win). That brings us down to four color spaces.
+Managing that chaos is the motivation for color *management*. The core aim of ACES to unify the workflow so that there is consistency and predicability throughout every step of the film prodction pipeline. In ACES there are four color spaces to deal with.
 
-- **ACES2065-1** (**AP0** for short) - scene-linear space. This is the color space for EXR files exchanged between DI and VFX. 
-- **ACEScg** linear. The color space for CG renders, and also the working space in Nuke.
-- **ACEScc** and **ACEScct** - log space. In short these are two flavors of log that a colorist may prefer. ACEScc allows very precise control over deep shadows but can also be difficult to work with when not using the Log style grading tools. ACEScct is a more recent working space that compresses shadows similar to familiar camera log curves and which may be easier to grade. 
+- **ACES2065-1** (**AP0** for short) - scene-linear. This is the ACES *exchange* color space. So the footage from [VFX pulls](VFXpulls.md) from the client will always be in this color space, and VFX will deliver it back in this same exchange color space. 
+- **ACEScg** - scene-linear. The color space for CG renders, and also the working space in Nuke, Maya, and other VFX software.
+- **ACEScc** and **ACEScct** - log space. This is used by DI to grade in log. When viewing a client LUT in Nuke the LUT processing space needs to be set to match the space it was created in. It's good practice therefore to append the color space to the end of the file name for clarity. For example ````shot01_cc.cube```` for a LUT. 
 
-It's good practice to append the color space to the end of the file name for clarity: ````name_ap0.exr, name_cg.exr, name_cct.mov````. VFX would deliver the footage back to the client in the same color space it was ingested i.e. the color space on the Read and Write node should be the same so it is effectively a no-op in and out.
-
-See the [VFX Pulls](VFXpulls.md) doc for information on how client footage should be delivered to VFX in an ACES pipeline.
+See the [VFX Pulls](VFXpulls.md) doc for details on how client footage should be delivered to VFX in an ACES pipeline.
 
 ## Display Transforms
 
