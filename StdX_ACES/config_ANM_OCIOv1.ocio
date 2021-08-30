@@ -22,7 +22,7 @@ roles:
   scene_linear: ACEScg
 
 #   Nuke 8-bit default:  #
-  matte_paint: sRGB  
+  matte_paint: Output - sRGB  
 #   Nuke 16-bit log default:  #
   texture_paint: ACEScct
  
@@ -39,22 +39,22 @@ displays:
   sRGB monitor:
     - !<View> {name: Neutral Look, colorspace: sRGB - Look Neutral}
     - !<View> {name: Filmic Look, colorspace: sRGB - Look Filmic}
-    - !<View> {name: Show Look, colorspace: sRGB, look: LMT_show}
-    - !<View> {name: ACES 1.0 SDR-video, colorspace: sRGB}
+    - !<View> {name: Show Look, colorspace: sRGB - Look Show}
+    - !<View> {name: ACES 1.0 SDR-video, colorspace: Output - sRGB}
     - !<View> {name: un-tone-mapped, colorspace: Un-tone-mapped EOTF - sRGB 2.2}
     - !<View> {name: Raw, colorspace: Raw}
     - !<View> {name: Log, colorspace: ADX10}
 
   sRGB - Gamut Compress:
-    - !<View> {name: Neutral Look, colorspace: sRGB - Look Neutral, look: LMT_gamut}
-    - !<View> {name: Filmic Look, colorspace: sRGB - Look Filmic, look: LMT_gamut}
-    - !<View> {name: ACES - Gamut Compress, colorspace: sRGB - Gamut}
+    - !<View> {name: Neutral Look, colorspace: Output - sRGB, look: "LMT_gamut, LMT_neutral"}
+    - !<View> {name: Filmic Look, colorspace: Output - sRGB, look: "LMT_gamut, LMT_filmic"}
+    - !<View> {name: ACES - Gamut Compress, colorspace: Output - sRGB, look: LMT_gamut}
 
   Rec.1886 / Rec.709 video:
     - !<View> {name: Neutral Look, colorspace: Rec.709 - Look Neutral}
     - !<View> {name: Filmic Look, colorspace: Rec.709 - Look Filmic}
-    - !<View> {name: Show Look, colorspace: Rec.709, look: LMT_show}
-    - !<View> {name: ACES 1.0 SDR-video, colorspace: Rec.709}
+    - !<View> {name: Show Look, colorspace: Rec.709 - Look Show}
+    - !<View> {name: ACES 1.0 SDR-video, colorspace: Output - Rec.709}
     - !<View> {name: un-tone-mapped, colorspace: Un-tone-mapped - BT.1886/Rec.709 2.4}
 
 
@@ -123,27 +123,6 @@ colorspaces:
     from_reference: !<ColorSpaceTransform> {src: ACES2065-1, dst: Color sRGB - Texture}
 
   - !<ColorSpace>
-    name: Output - Photoshop log
-    family: Output
-    equalitygroup: ""
-    bitdepth: 32f
-    description: |
-      ACES 1.0 Output - AP1 Output Transform
-      
-      ACES Transform ID : ODT.AnimalLogic.AP1_48nits.a1.0.3
-    isdata: false
-    allocation: uniform
-    allocationvars: [0, 1]
-    to_reference: !<GroupTransform>
-      children:
-        - !<FileTransform> {src: InvRRT.AP1.Log2_48_nits_Shaper_AL.spi3d, interpolation: tetrahedral}
-        - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear_AL.spi1d, interpolation: linear}
-    from_reference: !<GroupTransform>
-      children:
-        - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear_AL.spi1d, interpolation: linear, direction: inverse}
-        - !<FileTransform> {src: Log2_48_nits_Shaper.RRT.AP1_AL.spi3d, interpolation: tetrahedral}
-
-  - !<ColorSpace>
     name: Pick Rec709-sRGB Desat
     family: File-io
     equalitygroup: ""
@@ -176,7 +155,7 @@ colorspaces:
 # sRGB
 
   - !<ColorSpace>
-    name: sRGB
+    name: Output - sRGB
     family: Output
     equalitygroup: ""
     bitdepth: 32f
@@ -193,25 +172,6 @@ colorspaces:
         - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear}
     from_reference: !<GroupTransform>
       children:
-        - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear, direction: inverse}
-        - !<FileTransform> {src: Log2_48_nits_Shaper.RRT.sRGB.spi3d, interpolation: tetrahedral}
-
-
-  - !<ColorSpace>
-    name: sRGB - Gamut
-    family: Output
-    equalitygroup: ""
-    bitdepth: 32f
-    description: |
-      ACES 1.0 sRGB Output Transform
-      
-      ACES Transform ID : urn:ampas:aces:transformId:v1.5:ODT.Academy.RGBmonitor_100nits_dim.a1.0.3
-    isdata: false
-    allocation: uniform
-    allocationvars: [0, 1]
-    from_reference: !<GroupTransform>
-      children:
-        - !<LookTransform> {src: ACES2065-1, dst: ACES2065-1, looks: LMT_gamut}
         - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear, direction: inverse}
         - !<FileTransform> {src: Log2_48_nits_Shaper.RRT.sRGB.spi3d, interpolation: tetrahedral}
 
@@ -245,6 +205,21 @@ colorspaces:
         - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear, direction: inverse}
         - !<FileTransform> {src: Log2_48_nits_Shaper.RRT.sRGB.spi3d, interpolation: tetrahedral}
 
+  - !<ColorSpace>
+    name: sRGB - Look Show
+    family: Output
+    equalitygroup: ""
+    bitdepth: 32f
+    description: ACES 1.0 sRGB Transform with LMT (DF)
+    isdata: false
+    allocation: uniform
+    allocationvars: [0, 1]
+    from_reference: !<GroupTransform>
+      children:
+        - !<LookTransform> {src: ACES2065-1, dst: ACES2065-1, looks: LMT_show}
+        - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear, direction: inverse}
+        - !<FileTransform> {src: Log2_48_nits_Shaper.RRT.sRGB.spi3d, interpolation: tetrahedral}
+
 
   - !<ColorSpace>
     name: Un-tone-mapped EOTF - sRGB 2.2
@@ -263,7 +238,7 @@ colorspaces:
 # Rec.709
 
   - !<ColorSpace>
-    name: Rec.709
+    name: Output - Rec.709
     family: Output
     equalitygroup: ""
     bitdepth: 32f
@@ -283,23 +258,6 @@ colorspaces:
         - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear, direction: inverse}
         - !<FileTransform> {src: Log2_48_nits_Shaper.RRT.Rec.709.spi3d, interpolation: tetrahedral}
 
-  - !<ColorSpace>
-    name: Rec.709 - Gamut
-    family: Output
-    equalitygroup: ""
-    bitdepth: 32f
-    description: |
-      ACES 1.0 Rec.709 Output Transform
-      
-      ACES Transform ID : urn:ampas:aces:transformId:v1.5:ODT.Academy.Rec709_100nits_dim.a1.0.3
-    isdata: false
-    allocation: uniform
-    allocationvars: [0, 1]
-    from_reference: !<GroupTransform>
-      children:
-        - !<LookTransform> {src: ACES2065-1, dst: ACES2065-1, looks: LMT_gamut}
-        - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear, direction: inverse}
-        - !<FileTransform> {src: Log2_48_nits_Shaper.RRT.Rec.709.spi3d, interpolation: tetrahedral}
 
   - !<ColorSpace>
     name: Rec.709 - Look Neutral
@@ -328,6 +286,21 @@ colorspaces:
     from_reference: !<GroupTransform>
       children:
         - !<LookTransform> {src: ACES2065-1, dst: ACES2065-1, looks: LMT_filmic}
+        - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear, direction: inverse}
+        - !<FileTransform> {src: Log2_48_nits_Shaper.RRT.Rec.709.spi3d, interpolation: tetrahedral}
+
+  - !<ColorSpace>
+    name: Rec.709 - Look Show
+    family: Output
+    equalitygroup: ""
+    bitdepth: 32f
+    description: ACES 1.0 Rec.709 Transform with LMT (DF)
+    isdata: false
+    allocation: uniform
+    allocationvars: [0, 1]
+    from_reference: !<GroupTransform>
+      children:
+        - !<LookTransform> {src: ACES2065-1, dst: ACES2065-1, looks: LMT_show}
         - !<FileTransform> {src: Log2_48_nits_Shaper_to_linear.spi1d, interpolation: linear, direction: inverse}
         - !<FileTransform> {src: Log2_48_nits_Shaper.RRT.Rec.709.spi3d, interpolation: tetrahedral}
 
