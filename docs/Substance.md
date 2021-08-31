@@ -19,9 +19,9 @@ Check *activate color profile* and choose the colorlut profile you just put ther
 
 Here's a side-by-side of Maya (Arnold) and Substance Painter showing a before and after of how the two programs compare without the colorlut profile, and with it. Note that the Substance Environment Exposure is raised to 1 for the colorlut profile image which seems to get a better match than with the default exposure of 0 (YMMV).
 
-![sp2](img/Substance2.png)
 
-![sp2](img/Substance1.png)
+![sp2](img/Substance_profileAB.gif)
+
 
 Note these view transforms assume you are in sRGB scene-linear working space in Substance Painter, and that the HDR environment maps are all in sRGB scene-linear (which is the default). When sampling colors, make sure to pick them from the Base Color not the material material. You may also find that you get a better match between Substance Painter and Maya when the Substance Environment Exposure is raised to 1 (YMMV).
 
