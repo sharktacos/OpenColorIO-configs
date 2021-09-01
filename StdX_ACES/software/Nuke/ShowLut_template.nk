@@ -74,18 +74,18 @@ CMSTestPattern {
  ypos -228
 }
 OCIOColorSpace {
- in_colorspace color_timing
+ in_colorspace "ACES - ACEScct"
  out_colorspace compositing_linear
  name log2lin
- label "in: ACEScc\nout: ACEScg"
+ label "in: ACEScct\nout: ACEScg"
  xpos -248
  ypos -139
 }
 OCIOColorSpace {
  in_colorspace compositing_linear
- out_colorspace color_timing
+ out_colorspace "ACES - ACEScct"
  name lin2log
- label "in: ACEScg\nout: ACEScc"
+ label "in: ACEScg\nout: ACEScct"
  xpos -248
  ypos 106
 }
