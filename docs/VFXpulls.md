@@ -8,12 +8,12 @@ The advantage of the ACES color managed workflow is that it ensures that you see
 
 ## On-set Monitoring
 
-There are of course lots of expensive solutions for this. For the indie filmmaker [this thread](https://community.acescentral.com/t/luts-that-emulate-the-aces-workflow/1334) on ACEScentral enables low budget productions to have the advantages of an ACES workflow whilst shooting with their "normal" kit. The LUT’s are designed to take the log output of many commonly used cameras and enable you to use a standard rec 709 monitor and reproduce the "look"of having gone through a complete ACES workflow.
+There are of course lots of expensive solutions for this. For low budget productions [this thread](https://community.acescentral.com/t/luts-that-emulate-the-aces-workflow/1334) on ACEScentral provides LUTs for many commonly used cameras that can give you the look of ACES on a standard Rec.709 monitor. Note that the alternative low-contrast LUT in the link is the same as the Neutral Look used in this OCIO config.
+
 
 ## Dailies & Editorial
  
 Dailies is where the camera RAW files, which will be used in finishing, are used to generate color-baked dailies and editorial media. One therefore needs a software that can properly debayer RAW camera files in a color managed ACES workflow. There are many software that can do this. For the indie filmmaker, a clear choice is [DaVinci Resolve](Resolve.md) due to the low price point. The RAW camera files would be read into Resolve, on-set color decisions can be communicated via ASC CDLs and be passed along into ALEs, and clips are exported out in Rec.709 color space as h.264 for Dailies viewing, and as ProRes or DNxHD for editorial. Since editorial is working with proxy video clips with the look baked-in, you can use whatever editing software you like.
-
 
  
 ## Conform & VFX Pulls
