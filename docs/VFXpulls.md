@@ -8,7 +8,7 @@
 
 ## Dailies & Editorial
  
-Dailies is where the camera RAW files, which will be used in finishing, are used to generate color-baked dailies and editorial media. One therefore needs a software that can properly debayer RAW camera files in a color managed ACES workflow. There are many software that can do this. For the indie filmmaker, a clear choice is [DaVinci Resolve](Resolve.md), since it is free. The RAW camera files would be read into Resolve, on-set color decisions can be communicated via ASC CDLs and be passed along into ALEs, and clips are exported out in Rec.709 color space as h.264 for Dailies viewing, and as ProRes or DNxHD for editorial. Since editorial is working with proxy video clips with the look baked-in, you can use whatever editing software you like.
+Dailies is where the camera RAW files, which will be used in finishing, are used to generate color-baked dailies and editorial media. One therefore needs a software that can properly debayer RAW camera files in a color managed ACES workflow. There are many software that can do this. For the indie filmmaker, a clear choice is [DaVinci Resolve](Resolve.md) due to the low price point. The RAW camera files would be read into Resolve, on-set color decisions can be communicated via ASC CDLs and be passed along into ALEs, and clips are exported out in Rec.709 color space as h.264 for Dailies viewing, and as ProRes or DNxHD for editorial. Since editorial is working with proxy video clips with the look baked-in, you can use whatever editing software you like.
  
 ## Conform & VFX Pulls
  
