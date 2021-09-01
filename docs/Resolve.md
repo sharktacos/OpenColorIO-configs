@@ -47,7 +47,7 @@ Similarly, a Look Transform (LMT) conceptually should be applied across an entir
 
 To apply these, just click on the node and choose your LUT from the contextual menu. The LUT will then affect all the clips in the timeline, and can be toggled on or off as desired. For example when passing a clip to VFX the Look should be disabled so it is not baked into the EXR on export. 
 
-The “process node LUTs in” in the ACES Color management Settings should be set to AP1 when using these .cube LUTs with the shaper built in (Log2 48 nits shaper ACEScc). 
+The “process node LUTs in” in the ACES Color management Settings should be set to AP1 when using these .cube LUTs with the shaper built in. This will be the same as the Color Science setting  (ACEScct or ACEScc). 
 
 ![Resolve](img/Resolve3.jpg)
 
