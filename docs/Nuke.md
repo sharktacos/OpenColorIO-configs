@@ -15,7 +15,10 @@ Knowing the right color space to choose in a traditional non-color managed workf
 Managing that chaos is the motivation for color *management*. The core aim of ACES is to unify the workflow so that there is consistency and predicability throughout every step of the film prodction pipeline. In ACES there are four color spaces to deal with.
 
 - **ACES2065-1** (**AP0** for short) - scene-linear. This is the ACES *exchange* color space. So the footage from [VFX pulls](VFXpulls.md) from the client will always be in this color space, and VFX will deliver it back in this same exchange color space. 
-- **ACEScg** - scene-linear. The color space for CG renders, and also the working space in Nuke, Maya, and other VFX software.
+- **ACEScg** - scene-linear. The color space for CG renders, and also the working space in Nuke, Maya, and other VFX software. This is a larger gamut color space than Nuke's native linear color space which is sRGB/Rec709. ACEScg in contrast is slightly larger than Rec.2020 the standard for Ultra-HDTVs and a lot larger than P3-DCI the standard for film projectors. So lots of room to grow.
+
+![gamuts](gamuts2.png)
+
 - **ACEScc** and **ACEScct** - log space. This is used by DI to grade in log. When viewing a client LUT in Nuke the LUT processing space needs to be set to match the space it was created in. This is done automagically in the OCIO config for the Show Look view transform. Nevertheless, it's good practice to append the color space to the end of the file name for clarity. For example ````shot01_cc.cube````. LUTs written out from Resolve will be in ACEScc color space.
 
 See the [VFX Pulls](VFXpulls.md) doc for details on how client footage should be delivered to VFX in an ACES pipeline.
