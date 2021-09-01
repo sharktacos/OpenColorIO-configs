@@ -7,7 +7,7 @@ As the white paper explained, viewing an image through a 2.2 gamma can result in
 ![car](img/tonemap0.png)
 ![car](img/tonemap1.png)
 
-Specifically for ACES that means linear values from 1 to 16 (4 exposure stops) are re-mapped into the output range 0.8 to 1, and only values above 16 (16.3 to be more precise) are clipped. Observe the difference that makes in the sky in the images below, first without  tone mapping and then with it. 
+Specifically for ACES that means linear values from 1 to 16 (4 exposure stops) are re-mapped into the output range 0.8 to 1, and only values above 16 (16.3 to be more precise) are clipped. Observe the difference that makes in the sky in the images above. 
 
 This is tremendously important not only for photos, but also for photorealistic renders. In short, we need to see the render in the way a camera sees a scene, which is through an s-shaped tone curve. Otherwise, when values clip as soon as they go over 1 (as they do with an sRGB gamma curve like the one applied in the native viewer for Nuke, as well as in versions of Maya prior to v2022) this  leads artists to compensate by making the lights and shader colors unnaturally dim so they don't clip. Making the lights dim causes many things in the render (GI bounce, etc.) to not work properly becaue the light values are not realistic, making the physically based render not get physically based values. 
 
