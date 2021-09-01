@@ -29,7 +29,11 @@ Now compare that to the older Blue Light Artifact Fix, pictured below, the resul
 
 ![blue](img/Gamut_bluefix.png)
 
+## CG Renders
 
+Out-of-gamut colors also affect CG renders. With highly saturated colors in ACEScg space, hues shift from primaries to secondaries with increased luminance. Red turns yellow, green turns cyan, and blue turns magenta. This is greatly helped by instead picking colors in scene-linear sRGB/Rec.709 primaries. However, even then we still have the blue jellybean's color shifting towards magenta as the lights get brighter. With gamut mapping this is greatly improved.
+
+![jelly](img/jellybeans.png)
 
 ## Pixel Healing
 
