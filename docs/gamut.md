@@ -31,7 +31,7 @@ Now compare that to the older Blue Light Artifact Fix, pictured below, the resul
 
 ## CG Renders
 
-Out-of-gamut colors also affect CG renders. With highly saturated colors in ACEScg space, hues shift from primaries to secondaries with increased luminance. Red turns yellow, green turns cyan, and blue turns magenta. You can observe this in the top row of the image below, and also how this is improved by gammut compression. Additionally, it can help to pick colors in sRGB primaries (scene-linear Rec.709-sRGB). Observe how on the bottom row the red and green jelly beans are looking pretty good and only the blue is still shifting towards magenta. Again, this is helped by gamut compression. 
+CG renders with highly saturated colors can also be helped by gamut compression. With highly saturated colors in ACEScg space, hues shift from primaries to secondaries with increased luminance. Red turns yellow, green turns cyan, and blue turns magenta. You can observe this in the top row of the image below, and also how this is improved by gammut compression. Additionally, it can help to pick colors in sRGB primaries (scene-linear Rec.709-sRGB). Observe how on the bottom row the red and green jelly beans are looking pretty good and only the blue is still shifting towards magenta. Again, this is helped by gamut compression. Note however that a proper solution to this particular issue involves creating a [chromaticity preserving Output Transform](https://github.com/jedypod/open-display-transform) which will need to wait for ACESNext.
 
 ![jelly](img/jellybeans.png)
 
