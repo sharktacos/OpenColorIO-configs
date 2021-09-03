@@ -12,6 +12,8 @@ There are options from ACES product partners like [Pomfort LiveGrade Pro](https:
 
 > "On set, LUTs can be used, either in-camera   or in an external LUT box, that preview the base look in an ACES-based pipeline. These are available for [download at ACESCentral.com](https://community.acescentral.com/t/luts-that-emulate-the-aces-workflow/1334).  Even  without  a  dedicated  ACES  LUT,  if  the  default  Rec.  709  output  from  most cameras  is  used  for  on-set  monitoring,  it  is  similar  enough  to  the  look  of  ACES-based  content  that surprises   are   unlikely   when   ACES   is   used   in   post-production   (although   testing   is   strongly recommended)."
 
+This above "low budget approach" let's you apply the appropriate LUT in camera, and see it through ACES on a standard Rec.709 monitor. (The LUTs come in two versions: standard ACES Output Transform, and a low contrast version. The low contrast version is the same as the [Neutral Look](tonemap.md) in this OCIO config.) 
+
 
 
 ## Dailies & Editorial
