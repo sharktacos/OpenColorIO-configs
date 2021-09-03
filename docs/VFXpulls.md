@@ -35,11 +35,13 @@ The following guidance is compiled from the Nexflix Studio's [VFX Best Practices
 
 - **Ungraded footage.** All color correction and grades should be *disabled* for a VFX pull. An easy way to do this is to turn "Enable Flat Pass" in the Resolve Delivery options (again, see the above step-by-step guide). The goal is to apply the VFX as if it was filmed that way, so only the pixels that have VFX on them are changed, ensuring a perfect round-trip integration with the rest of the film footage. 
 
-- **Color Reference and LUTs.** VFX pulls should include: 
- 1. A color ‘recipe’ to achieve dailies color (i.e. CDL + LUT, working color space). <br> This LUT can be made in Resolve (the LUT's working/processing space will be ACEScct or ACEScc based on the Project Settings), and will include all enabled grades, both in the timeline and the clips, so it will combine the Look Transform with your shot grade into a single LUT. This can be used as the *Shot LUT* for dailies contained in the OCIO config.
- 1. A reference frame for checking color against existing dailies. 
+- **Color Reference and LUTs.** VFX pulls should include a reference frame for checking color against existing dailies as well as a color ‘recipe’ to achieve dailies color (i.e. CDL + LUT, working color space). This LUT can be made in Resolve (the LUT's working/processing space will be ACEScct or ACEScc based on the Project Settings), and will include all enabled grades, both in the timeline and the clips, so it will combine the Look Transform with your shot grade into a single LUT. This can be used as the *Shot LUT* for dailies contained in the OCIO config.
 
-- **VFX Delivery.** VFX can deliver two types of files: proxy media to editorial for inclusion in the offline edit, and the hi res EXR files to DI for final grading. Editorial should provide proxy media format requirements to VFX, as in the Dailies process above the ACES tranform is baked into the proxy media ensuring continuity with the shots surrounding the VFX shot. The EXR files are returned in the same exchange format they were recieved: ACES2066-1 AP0. DI will injest this into their ACES compatible color grading software (Resolve, Baselight, etc.) and converted to ACEScct (or less componly ACEScc) to do the final grade in ACES log space.
+- **VFX Delivery.** VFX can deliver two types of files: 
+ - Proxy media to editorial for inclusion in the offline edit. Editorial should provide proxy media format requirements to VFX, as in the Dailies process above the ACES tranform is baked into the proxy media ensuring continuity with the shots surrounding the VFX shot.
+ - Hi res EXR files to DI for final grading. The EXR files are returned in the same exchange format they were recieved: ACES2066-1 AP0. DI will injest this into their ACES compatible color grading software (Resolve, Baselight, etc.) for final grading. Note that because of the AP0 color space these files contain all of the range of the original camera RAW files.
+ 
+ ![gamut](img/gamuts.jpg)
 
 
 [Back to main](../StdX_ACES)
