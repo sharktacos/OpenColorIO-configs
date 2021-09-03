@@ -27,9 +27,9 @@ Similar to the *conform*, a *VFX pull* is where these proxy files are swapped ou
  
 The following guidance is compiled from the Nexflix Studio's [VFX Best Practices](https://partnerhelp.netflixstudios.com/hc/en-us/articles/360000611467-VFX-Best-Practices) document.
 
-- **Debayering.** In an ACES pipeline VFX pulls should be debayered from the original RAW camera files and exported as 16-bit EXR in the ACES AP0 exchange format (ACES2066-1). Again, there are many choices for color correction software. Let's assume we are using Resolve. Netflix Studios has a great [step-by-step guide for Resolve](https://partnerhelp.netflixstudios.com/hc/en-us/articles/360002088888-Color-Managed-Workflow-in-Resolve-ACES-) that will walk you through the process in detail.  
+- **Debayering to OpenEXR.** In an ACES pipeline VFX pulls should be debayered from the original RAW camera files and exported as 16-bit EXR in the ACES AP0 exchange format (ACES2066-1). Again, there are many choices for color correction software. Let's assume we are using Resolve. Netflix Studios has a great [step-by-step guide for Resolve](https://partnerhelp.netflixstudios.com/hc/en-us/articles/360002088888-Color-Managed-Workflow-in-Resolve-ACES-) that will walk you through the process in detail.  
 
-- **Image Format.** Traditional 10-bit DPX files are not recommended, as they are unable to contain all the information captured by modern digital cameras. OpenEXR in contrast has a dynamic range of 30+ exposure stops with a wide gamut color space (ACES2065-1) that contains the full gamut of what is visible to the human eye. If you are concerned about file sizes you can use PIZ lossless compression. The resulting EXR files will be *smaller* than a DPX file and even smaller than a PNG!
+- **Why not DPX?** As [ACES VFX Quick Start Guide](https://acescentral.com/uploads/default/original/1X/25ec1472d70b169ceabb215beacdd501d1a27fac.pdf) explains, the Traditional 10-bit DPX files are not recommended, as they are "not sufficient to contain all the information captured by modern digital cameras." In contrast, OpenEXR has a dynamic range of 30+ exposure stops with a wide gamut color space (ACES2065-1) that contains the full gamut of what is visible to the human eye. If you are concerned about file sizes you can use PIZ lossless compression. The resulting EXR files will be *smaller* than a DPX file and even smaller than a PNG!
 
 - **Ungraded footage.** All color correction and grades should be *disabled* for a VFX pull. An easy way to do this is to turn "Enable Flat Pass" in the Resolve Delivery options (again, see the above step-by-step guide). The goal is to apply the VFX as if it was filmed that way, so only the pixels that have VFX on them are changed, ensuring a perfect round-trip integration with the rest of the film footage. 
 
@@ -37,6 +37,5 @@ The following guidance is compiled from the Nexflix Studio's [VFX Best Practices
  1. A color ‘recipe’ to achieve dailies color (i.e. CDL + LUT, working color space). <br> This LUT can be made in Resolve (the LUT's working/processing space will be ACEScct or ACEScc based on the Project Settings), and will include all enabled grades, both in the timeline and the clips, so it will combine the Look Transform with your shot grade into a single LUT. This can be used as the *Shot LUT* for dailies contained in the OCIO config.
  1. A reference frame for checking color against existing dailies. 
  1. Editorial should provide proxy media format requirements for VFX proxy media that is to be delivered by VFX for inclusion in the offline project. This again involves writing out the clip with the look baked-in.
-
 
 [Back to main](../StdX_ACES)
