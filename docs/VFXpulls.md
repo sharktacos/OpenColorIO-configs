@@ -4,11 +4,11 @@
 <img src="img/pipeline.jpg">
 </p>
 
-The advantage of the ACES color managed workflow is that it ensures that you see the same image throughout every stage of the filmmaking process, from on-set monitoring, to dailies and editorial, to VFX and DI. Everything just looks right everywhere along the pipeline. Plus it is at the highest quality so nothing is lost. And the whole thing is organized and managed to avoid mistakes and chaos. Using ACES from start to finih ensures continuity of artistic vision. However, if you are already started without ACES it's not a problem to introduce ACES at a later stage in the pipeline.
+The advantage of the ACES color managed workflow is that it ensures that you see the same image throughout every stage of the filmmaking process, from on-set monitoring, to dailies and editorial, to VFX and DI. Everything just looks right everywhere along the pipeline. Plus it is at the highest quality so nothing is lost. And the whole thing is organized and managed to avoid mistakes and chaos. Using ACES from start to finish ensures continuity of artistic vision. However, if you are already started without ACES it's not a problem to introduce ACES at a later stage in the pipeline.
 
 ## On-set Monitoring
 
-There are options from ACES product partners like [Pomfort LiveGrade Pro](https://pomfort.com/store/livegradepro/subscription/) for ACES on-set monitoring which enable filmmakers to view camera footage through an ACES transform on set. For low budget productions, ACES also gives [this advice](https://community.acescentral.com/uploads/default/original/1X/b8efb030fe699b9491fda084030779134c656cb3.pdf), 
+There are options from ACES product partners like [Pomfort LiveGrade Pro](https://pomfort.com/store/livegradepro/subscription/) for ACES on-set monitoring which enable filmmakers to view camera footage through an ACES transform. For low budget productions, ACES also gives [this advice](https://community.acescentral.com/uploads/default/original/1X/b8efb030fe699b9491fda084030779134c656cb3.pdf), 
 
 > "On set, LUTs can be used, either in-camera   or in an external LUT box, that preview the base look in an ACES-based pipeline. These are available for [download at ACESCentral.com](https://community.acescentral.com/t/luts-that-emulate-the-aces-workflow/1334).  Even  without  a  dedicated  ACES  LUT,  if  the  default  Rec.  709  output  from  most cameras  is  used  for  on-set  monitoring,  it  is  similar  enough  to  the  look  of  ACES-based  content  that surprises   are   unlikely   when   ACES   is   used   in   post-production   (although   testing   is   strongly recommended)."
 
