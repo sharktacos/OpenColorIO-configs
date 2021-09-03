@@ -33,7 +33,10 @@ The following guidance is compiled from the Nexflix Studio's [VFX Best Practices
 
 - **Ungraded footage.** All color correction and grades should be *disabled* for a VFX pull. An easy way to do this is to turn "Enable Flat Pass" in the Resolve Delivery options (again, see the above step-by-step guide). The goal is to apply the VFX as if it was filmed that way, so only the pixels that have VFX on them are changed, ensuring a perfect round-trip integration with the rest of the film footage. 
 
-- **Color Reference and LUTs.** VFX pulls should include a color ‘recipe’ to achieve dailies color (i.e. CDL + LUT, working color space), and a reference frame for checking color against existing dailies. These are essential in order to send completed VFX shots back into the editorial cut with matching color to the surrounding shots. This LUT can be made in Resolve (the LUT's working/processing space will be ACEScct or ACEScc based on the Project Settings), and will include all enabled grades, both in the timeline and the clips, so it will combine the Look Transform with your shot grade into a single LUT. This can be used as the *Shot LUT* for dailies contained in the OCIO config. Editorial should provide proxy media format requirements for VFX proxy media that is to be delivered by VFX  for inclusion in the offline project. This again involves writing out the clip with the look baked-in. This is covered in the [Nuke doc](Nuke.md).
+- **Color Reference and LUTs.** VFX pulls should include: 
+ 1. A color ‘recipe’ to achieve dailies color (i.e. CDL + LUT, working color space). <br> This LUT can be made in Resolve (the LUT's working/processing space will be ACEScct or ACEScc based on the Project Settings), and will include all enabled grades, both in the timeline and the clips, so it will combine the Look Transform with your shot grade into a single LUT. This can be used as the *Shot LUT* for dailies contained in the OCIO config.
+ 1. A reference frame for checking color against existing dailies. 
+ 1. Editorial should provide proxy media format requirements for VFX proxy media that is to be delivered by VFX for inclusion in the offline project. This again involves writing out the clip with the look baked-in.
 
 
 [Back to main](../StdX_ACES)
