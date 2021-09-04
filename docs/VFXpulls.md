@@ -38,7 +38,7 @@ The following guidance is compiled from the Nexflix Studio's [VFX Best Practices
 - **Color Reference and LUTs.** VFX pulls should include a reference frame for checking color against existing dailies as well as a color ‘recipe’ to achieve dailies color (i.e. CDL + LUT, working color space). This LUT can be made in Resolve (the LUT's working/processing space will be ACEScct or ACEScc based on the Project Settings), and will include all enabled grades, both in the timeline and the clips, so it will combine the Look Transform with your shot grade into a single LUT. This can be used as the *Shot LUT* for dailies contained in the OCIO config.
 
 - **VFX Delivery.** VFX can deliver two types of files: 
-  - *Proxy media to editorial for inclusion in the offline edit.* Editorial should provide proxy media format requirements to VFX, as in the Dailies process above the ACES tranform is baked into the proxy media ensuring continuity with the shots surrounding the VFX shot.
+  - *Proxy media to editorial for inclusion in the offline edit.* Editorial should provide proxy media format requirements to VFX. As in the Dailies process above, the ACES tranform is baked into the proxy media in the color space of the reference monitor used by editorial (typically Rec.709 with Rec.1886 gamma).
   - *Hi res EXR files to DI for final grading.* The EXR files are returned in the same exchange format they were recieved: ACES2066-1 AP0. DI will injest this into their ACES compatible color grading software (Resolve, Baselight, etc.) for final grading. Note that because the AP0 color space covers all colors visible to the human eye, these files contain all of the range of the original camera RAW files. In fact they contain more!
  
  ![gamut](img/gamuts.jpg)
