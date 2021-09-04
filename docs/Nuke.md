@@ -66,7 +66,7 @@ Similarly, if you are delivering a proxy movie for Editorial using the client LU
 
 ````Working: ACEScg >  Output: Shot LUT (Rec.1886/Rec.709 video)````
 
-Note that, as discussed above, if you simply view this movie on an sRGB monitor in a movie player like Quicktime or VNC it will not appear correctly because it has the Rec.1886/Rec.709 display color space baked into it. Again it is therefore good practive to append the color space to the file name for clarity (e.g. showID_seq_shot_v01_rec709.mov). File metadata notoriously gets lost.
+Note that, as discussed above, if you simply view this movie on an sRGB monitor in a movie player like Quicktime or VNC it will not appear correctly because it has the Rec.1886/Rec.709 display color space baked into it. Again it is therefore good practive to append the color space to the file name for clarity (e.g. showID_seq_shot_v01_rec709.mxf). File metadata notoriously gets lost.
 
 
 ## Gamut Compression and Nuke
