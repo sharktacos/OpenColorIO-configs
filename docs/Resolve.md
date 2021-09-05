@@ -51,6 +51,21 @@ The “process node LUTs in” in the ACES Color management Settings should be s
 
 ![Resolve](img/Resolve3.jpg)
 
+## Creating LUTs for on-set monitoring
+
+Resolve can generate a LUT that can be used, either in-camera or with an external LUT box, to preview footage on-set with a standard Rec.709 reference monitor. This is done using the ACES Transform OFX plugin in resolve. 
+
+The first step to do this is to set Color Management to *Davinci YRGB* in the Project Settings. Then create the following seriel nodes:
+
+- *Input Transform*: Apply an OFX ACES Transform to the first seriel node and set its input to your camera, and the output to ACEScct. 
+- *(optional) Look Transform*: This is where you would apply whatever custom grade is desired to the middle node. 
+- *Output Transform*: Apply an OFX ACES Transform to the final seriel node and set its input to ACEScct, and the output to Rec.709 for viewing on.
+
+Then simply export the 3D LUT with the “Generate 3D LUT (CUBE)” command.
+
+![LUTs](img/Resolve13.png)
+
+
 
 
 
