@@ -8,13 +8,15 @@ The advantage of the ACES color managed workflow is that it ensures that you see
 
 ## On-set Monitoring
 
-There are options from ACES product partners like [Pomfort LiveGrade Pro](https://pomfort.com/store/livegradepro/subscription/) for ACES on-set monitoring which enable filmmakers to view camera footage through an ACES transform. There are however also otions for low budget productions as cinematographer Geoff Boyle explains in this talk at the International Cinematography Summit at the Academy of Motion Picture Arts and Sciences,
+On-set monitoring uses HDTV video displays to preview film cameras. However HDTV has far less dynamic range than a modern film camera. A typical display might have as little as seven or eight stops of range, while high-end cameras could have twice that many. This is mitigated by HDR displays, but these can be prohibitavely expensive for a low-budget film production. That means that judements are made based on viewing this on-set display. 
+
+Modern  digital  cinema  cameras raw or log modes have a known mathematical relationship to  the  light  in  the  photographed  scene. ACES uses these exact transfer functions supplied by each camera manufacturer to bring it into the ACES color space. This is called an Input Transform. There are options from ACES product partners like [Pomfort LiveGrade Pro](https://pomfort.com/store/livegradepro/subscription/) for ACES on-set monitoring which enable filmmakers to view camera footage through an ACES Input Transform. There are however also otions for low budget productions as cinematographer Geoff Boyle explains in this talk at the International Cinematography Summit at the Academy of Motion Picture Arts and Sciences,
 
 <p align="center">
  <a href="https://www.youtube.com/embed/PGXwnMLT9YU?start=1694"><img src="img/vid.jpg" width=50%></a>
 </p>
 
-He has [a free set of LUTs](https://community.acescentral.com/t/luts-that-emulate-the-aces-workflow/1334) that can be used, either in-camera or in an external LUT box, to preview the base look in an ACES-based pipeline on a standard  Rec.709  monitor, so what you see on set is what you'll see in post. What's more the ACES workflow brings all major film cameras into the same ACES scene-referred space so the same scene, shot with different cameras, will look the same side-by-side. The LUTs come in two versions: standard ACES Output Transform, and a low contrast version. The low contrast version is the same as the [Neutral Look](tonemap.md) in this OCIO config. 
+He has [a free set of LUTs](https://community.acescentral.com/t/luts-that-emulate-the-aces-workflow/1334) which includes Input Transforms for tons of cinematic cameras which can be used, either in-camera or in an external LUT box, to view your camera in ACES using a calibrated standard Rec.709 on-set monitor. This ensures that what you see on-set is accurately carried all the way through production and post. The LUTs come in two versions: standard ACES Output Transform, and a low contrast version. The low contrast version is the same as the [Neutral Look](tonemap.md) in this OCIO config. 
 
 
 
@@ -39,9 +41,9 @@ The following guidance is compiled from the Nexflix Studio's [VFX Best Practices
 
 - **Color Reference and LUTs.** VFX pulls should include a reference frame for checking color against existing dailies as well as a color ‘recipe’ to achieve dailies color (i.e. CDL + LUT, working color space). This LUT can be made in Resolve (the LUT's working/processing space will be ACEScct or ACEScc based on the Project Settings), and will include all enabled grades, both in the timeline and the clips, so it will combine the Look Transform with your shot grade into a single LUT. This can be used as the *Shot LUT* for dailies contained in the OCIO config.
 
-- **VFX Delivery.** VFX can deliver two types of files: 
-  - *Proxy media to editorial for inclusion in the offline edit.* Editorial should provide proxy media format requirements to VFX. As in the Dailies process above, the ACES tranform is baked into the proxy media in the color space of the reference monitor used by editorial (typically Rec.709 with Rec.1886 gamma).
-  - *Hi res EXR files to DI for final grading.* The EXR files are returned in the same exchange format they were recieved: ACES2066-1 AP0. DI will injest this into their ACES compatible color grading software (Resolve, Baselight, etc.) for final grading, delivery, and archive. 
+- **VFX Delivery.** VFX can deliver two types of files:
+  - *Proxy media to editorial for inclusion in the offline edit.* Editorial should provide proxy media format requirements to VFX. As in the Dailies process above, the ACES transform is baked into the proxy media in the color space of the reference monitor used by editorial (typically Rec.709 with Rec.1886 gamma).
+  - *Hi res EXR files to DI for final grading.* The EXR files are returned in the same exchange format they were received: ACES2066-1 AP0. DI will ingest this into their ACES compatible color grading software (Resolve, Baselight, etc.) for final grading, delivery, and archive.
  
  ![gamut](img/gamuts.jpg)
 
