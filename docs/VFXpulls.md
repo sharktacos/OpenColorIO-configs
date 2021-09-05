@@ -8,14 +8,9 @@ The advantage of the ACES color managed workflow is that it ensures that you see
 
 ## On-set Monitoring
 
-Modern  digital  cinema  cameras raw or log modes have a known mathematical relationship to  the  light  in  the  photographed  scene. ACES uses these exact transfer functions supplied by each camera manufacturer to bring it into the ACES color space. This is called an Input Transform. There are options from ACES product partners like [Filmlight's Prelight](https://www.filmlight.ltd.uk/images/download-icon.png) or [Pomfort LiveGrade Pro](https://pomfort.com/store/livegradepro/subscription/) for ACES on-set monitoring which enable filmmakers to view camera footage through an ACES Input Transform and for a DIT (Digital Image Technician) to use the same tools as DI to create custom looks for on-set. There are however also otions for low budget productions as cinematographer Geoff Boyle explains in this talk at the International Cinematography Summit at the Academy of Motion Picture Arts and Sciences,
+Modern  digital  cinema  cameras raw or log modes have a known mathematical relationship to  the  light  in  the  photographed  scene. ACES uses these exact transfer functions supplied by each camera manufacturer to bring it into the ACES color space. This is called an Input Transform. There are options from ACES product partners like [Filmlight's Prelight](https://www.filmlight.ltd.uk/images/download-icon.png) or [Pomfort LiveGrade Pro](https://pomfort.com/store/livegradepro/subscription/) for ACES on-set monitoring which enable filmmakers to view camera footage through an ACES Input Transform and for a DIT (Digital Image Technician) to use the same tools as DI to create custom looks for on-set. 
 
-<p align="center">
- <a href="https://www.youtube.com/embed/PGXwnMLT9YU?start=1694"><img src="img/vid.jpg" width=50%></a>
-</p>
-
-He has [a free set of LUTs](https://community.acescentral.com/t/luts-that-emulate-the-aces-workflow/1334) which includes Input Transforms for tons of cinematic cameras which can be used, either in-camera or in an external LUT box, to view your camera in ACES using a calibrated standard Rec.709 on-set monitor. This ensures that what you see on-set is accurately carried all the way through production and post. The LUTs come in two versions: standard ACES Output Transform, and a low contrast version. The low contrast version is the same as the [Neutral Look](tonemap.md) in this OCIO config. 
-
+There are however also options for low budget productions. You can create LUTs for your camera using the free version of Resolve and use these LUT, either in-camera or in an external LUT box, for on-set viewing on a standard Rec.709 reference monitor. This ensures that what you see on-set is accurately carried all the way through production and post. See the [Resolve](Resolve.md) doc for details.
 
 
 ## Dailies & Editorial
