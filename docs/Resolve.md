@@ -61,12 +61,14 @@ The first step to do this is to set Color Management to *Davinci YRGB* in the Pr
 - *(optional) Look Transform*: This is where you would apply whatever custom grade is desired to the middle node. 
 - *Output Transform*: Apply an OFX ACES Transform to the final seriel node and set its input to ACEScct, and the output to Rec.709 for viewing on.
 
-Then simply export the 3D LUT with the “Generate 3D LUT (CUBE)” command.
+![LUTs](img/Resolve13.png)
+
+Then simply export the 3D LUT with the “Generate 3D LUT (CUBE)” command. This will create a full range .cube LUT. If you are using an ARRI, as in the above example, you can use [free software from ARRI](https://www.arri.com/en/learn-help/learn-help-camera-system/tools/arri-look-creator) to convert this to ARRI look format.
 
 If you don't want to "roll your own" LUTs, cinematographer Geoff Boyle has a [set of free LUTs](https://community.acescentral.com/t/luts-that-emulate-the-aces-workflow/1334/21) you can download for just about every film camera out there.
 
 
-![LUTs](img/Resolve13.png)
+
 
 
 
