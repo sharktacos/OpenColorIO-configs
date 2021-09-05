@@ -8,11 +8,18 @@ The advantage of the ACES color managed workflow is that it ensures that you see
 
 ## On-set Monitoring
 
-There are options from ACES product partners like [Pomfort LiveGrade Pro](https://pomfort.com/store/livegradepro/subscription/) for ACES on-set monitoring which enable filmmakers to view camera footage through an ACES transform. For low budget productions, ACES also gives [this advice](https://community.acescentral.com/uploads/default/original/1X/b8efb030fe699b9491fda084030779134c656cb3.pdf), 
+There are options from ACES product partners like [Pomfort LiveGrade Pro](https://pomfort.com/store/livegradepro/subscription/) for ACES on-set monitoring which enable filmmakers to view camera footage through an ACES transform. There are however also otions for low budget productions as  cinematographer Geoff Boyle explains,
 
-> "On set, LUTs can be used, either in-camera   or in an external LUT box, that preview the base look in an ACES-based pipeline. These are available for [download at ACESCentral.com](https://community.acescentral.com/t/luts-that-emulate-the-aces-workflow/1334).  Even  without  a  dedicated  ACES  LUT,  if  the  default  Rec.  709  output  from  most cameras  is  used  for  on-set  monitoring,  it  is  similar  enough  to  the  look  of  ACES-based  content  that surprises   are   unlikely   when   ACES   is   used   in   post-production   (although   testing   is   strongly recommended)."
+<p align="center">
+[![vid](img/vid.jpg)](https://www.youtube.com/embed/PGXwnMLT9YU?start=1694 "Everything Is AWESOME")
+</p>
 
-This above "low budget approach" let's you apply the appropriate LUT in camera, and see it through ACES on a standard Rec.709 monitor. (The LUTs come in two versions: standard ACES Output Transform, and a low contrast version. The low contrast version is the same as the [Neutral Look](tonemap.md) in this OCIO config.) 
+[![Everything Is AWESOME](https://img.youtube.com/vi/StTqXEQ2l-Y/0.jpg)](https://www.youtube.com/watch?v=StTqXEQ2l-Y "Everything Is AWESOME")
+
+
+are free options as, ACES also gives [this advice](https://community.acescentral.com/uploads/default/original/1X/b8efb030fe699b9491fda084030779134c656cb3.pdf), 
+
+He has [a free set of LUTs](https://community.acescentral.com/t/luts-that-emulate-the-aces-workflow/1334) that can be used, either in-camera or in an external LUT box, to preview the base look in an ACES-based pipeline on a standard  Rec.709  monitor. The LUTs come in two versions: standard ACES Output Transform, and a low contrast version. The low contrast version is the same as the [Neutral Look](tonemap.md) in this OCIO config. 
 
 
 
