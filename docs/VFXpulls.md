@@ -8,13 +8,13 @@ The advantage of the ACES color managed workflow is that it ensures that you see
 
 ## On-set Monitoring
 
-There are options from ACES product partners like [Pomfort LiveGrade Pro](https://pomfort.com/store/livegradepro/subscription/) for ACES on-set monitoring which enable filmmakers to view camera footage through an ACES transform. There are however also otions for low budget productions as  cinematographer Geoff Boyle explains in this talk at the International Cinematography Summit at the Academy of Motion Picture Arts and Sciences,
+There are options from ACES product partners like [Pomfort LiveGrade Pro](https://pomfort.com/store/livegradepro/subscription/) for ACES on-set monitoring which enable filmmakers to view camera footage through an ACES transform. There are however also otions for low budget productions as cinematographer Geoff Boyle explains in this talk at the International Cinematography Summit at the Academy of Motion Picture Arts and Sciences,
 
 <p align="center">
  <a href="https://www.youtube.com/embed/PGXwnMLT9YU?start=1694"><img src="img/vid.jpg" width=50%></a>
 </p>
 
-He has [a free set of LUTs](https://community.acescentral.com/t/luts-that-emulate-the-aces-workflow/1334) that can be used, either in-camera or in an external LUT box, to preview the base look in an ACES-based pipeline on a standard  Rec.709  monitor, so what you see on set is what you'll see in post. What's more the ACES workflow brings all film cameras into the same ACES scene-referred space so the same scene, shot with different cameras, will look the same side-by-side. The LUTs come in two versions: standard ACES Output Transform, and a low contrast version. The low contrast version is the same as the [Neutral Look](tonemap.md) in this OCIO config. 
+He has [a free set of LUTs](https://community.acescentral.com/t/luts-that-emulate-the-aces-workflow/1334) that can be used, either in-camera or in an external LUT box, to preview the base look in an ACES-based pipeline on a standard  Rec.709  monitor, so what you see on set is what you'll see in post. What's more the ACES workflow brings all major film cameras into the same ACES scene-referred space so the same scene, shot with different cameras, will look the same side-by-side. The LUTs come in two versions: standard ACES Output Transform, and a low contrast version. The low contrast version is the same as the [Neutral Look](tonemap.md) in this OCIO config. 
 
 
 
