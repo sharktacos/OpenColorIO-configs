@@ -63,6 +63,9 @@ The first step to do this is to set Color Management to *Davinci YRGB* in the Pr
 
 Then simply export the 3D LUT with the “Generate 3D LUT (CUBE)” command.
 
+If you don't want to "roll your own" LUTs, cinematographer Geoff Boyle has a [set of free LUTs](https://community.acescentral.com/t/luts-that-emulate-the-aces-workflow/1334/21) you can download for just about every film camera out there.
+
+
 ![LUTs](img/Resolve13.png)
 
 
