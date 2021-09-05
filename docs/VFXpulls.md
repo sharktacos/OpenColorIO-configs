@@ -8,8 +8,6 @@ The advantage of the ACES color managed workflow is that it ensures that you see
 
 ## On-set Monitoring
 
-On-set monitoring uses HDTV video displays to preview film cameras. However HDTV has far less dynamic range than a modern film camera. A typical display might have as little as seven or eight stops of range, while high-end cameras could have twice that many. This is mitigated by HDR displays, but these can be prohibitavely expensive for a low-budget film production. That means that judements are made based on viewing this on-set display. 
-
 Modern  digital  cinema  cameras raw or log modes have a known mathematical relationship to  the  light  in  the  photographed  scene. ACES uses these exact transfer functions supplied by each camera manufacturer to bring it into the ACES color space. This is called an Input Transform. There are options from ACES product partners like [Pomfort LiveGrade Pro](https://pomfort.com/store/livegradepro/subscription/) for ACES on-set monitoring which enable filmmakers to view camera footage through an ACES Input Transform. There are however also otions for low budget productions as cinematographer Geoff Boyle explains in this talk at the International Cinematography Summit at the Academy of Motion Picture Arts and Sciences,
 
 <p align="center">
