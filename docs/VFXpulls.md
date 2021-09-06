@@ -1,9 +1,5 @@
 # ACES for Indie Filmmakers
 
-<p align="center">
-<img src="img/pipeline.jpg">
-</p>
-
 ACES (short for Academy Color Encoding System) is a color management system designed to work with every stage of the filmaking process, using solid color science and a wealth of production experience. It is used in major tentpole productions and VFX blockbusters, but its open and independant nature also means independant filmmakers can benefit from it too.
 
 The advantage of the ACES color managed workflow is that it ensures that you see the same image throughout every stage of the filmmaking process, from on-set monitoring, to dailies and editorial, to VFX and DI. Everything just looks right everywhere along the pipeline. As cinematographer Erik Messerschmidt says, 
@@ -11,6 +7,10 @@ The advantage of the ACES color managed workflow is that it ensures that you see
 > "As a DP it's very important to me that the choices I make on set with the director perpetuate through the pipeline; from editorial, VFX, all the way to DI. ACES guarantees everyone is looking at a consistent representation of those choices."
 
 Secondly, ACES ensures that the film footage stays at the highest quality, so nothing is lost along the way. Plus the whole pipeline is organized and managed to avoid mistakes and chaos. Using ACES from start to finish ensures continuity of artistic vision. 
+
+<p align="center">
+<img src="img/pipeline.jpg">
+</p>
 
 Each section below will step you through the above diagram. Note that even if you have already started without ACES, it's not necesarily a problem to introduce ACES in post (i.e. for conform and VFX pulls). The sooner color is managed, the better it will be for everyone.
 
