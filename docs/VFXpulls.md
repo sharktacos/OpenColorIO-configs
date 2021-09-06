@@ -4,7 +4,11 @@
 <img src="img/pipeline.jpg">
 </p>
 
-The advantage of the ACES color managed workflow is that it ensures that you see the same image throughout every stage of the filmmaking process, from on-set monitoring, to dailies and editorial, to VFX and DI. Everything just looks right everywhere along the pipeline. Plus it is at the highest quality so nothing is lost. And the whole thing is organized and managed to avoid mistakes and chaos. Using ACES from start to finish ensures continuity of artistic vision. However, if you are already started without ACES it's not a problem to introduce ACES at a later stage in the pipeline.
+The advantage of the ACES color managed workflow is that it ensures that you see the same image throughout every stage of the filmmaking process, from on-set monitoring, to dailies and editorial, to VFX and DI. Everything just looks right everywhere along the pipeline. Plus it is at the highest quality so nothing is lost. And the whole thing is organized and managed to avoid mistakes and chaos. Using ACES from start to finish ensures continuity of artistic vision. As cinematographer Erik Messerschmidt says, 
+
+"As a DP it's very important to me that the choices I make on set with the director perpetuate through the pipeline; from editorial, VFX, all the way to DI. ACES guarantees everyone is looking at a consistent representation of those choices."
+
+However, even if you have already started without ACES, it's not a problem to introduce ACES at a later stage in the pipeline.
 
 ## On-set Monitoring
 
