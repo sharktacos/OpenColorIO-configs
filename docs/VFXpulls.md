@@ -28,7 +28,9 @@ The following guidance is compiled from the Nexflix Studio's [VFX Best Practices
 
 - **Debayering to OpenEXR.** In an ACES pipeline VFX pulls should be debayered from the original RAW camera files and exported as 16-bit EXR in the ACES AP0 exchange format (ACES2065-1). Again, there are many choices for color correction software. Let's assume we are using Resolve. Netflix Studios has a great [step-by-step guide for Resolve](https://partnerhelp.netflixstudios.com/hc/en-us/articles/360002088888-Color-Managed-Workflow-in-Resolve-ACES-) that will walk you through the process in detail.  
 
-- **Why not DPX?** Traditional 10-bit DPX files are not recommended, as they are [not sufficient](https://acescentral.com/uploads/default/original/1X/25ec1472d70b169ceabb215beacdd501d1a27fac.pdf) to contain all the information captured by modern digital cameras (For example RED camera RAW files are 16-bit). In contrast, [OpenEXR](https://www.openexr.com/) is 16-bit float with a dynamic range of 30+ exposure stops, and a wide gamut color space (ACES2065-1) that contains the full gamut of what is visible to the human eye (See the graphic at the bottom of the page). If you are concerned about file sizes with EXR you can use PIZ lossless compression. The resulting EXR files will be *smaller* than a DPX file and even smaller than a PNG!
+- **Why not DPX?** Traditional 10-bit DPX files are not recommended, as they are [not sufficient](https://acescentral.com/uploads/default/original/1X/25ec1472d70b169ceabb215beacdd501d1a27fac.pdf) to contain all the information captured by modern digital cameras (For example RED camera RAW files are 16-bit). In contrast, [OpenEXR](https://www.openexr.com/) is 16-bit float with a dynamic range of 30+ exposure stops, and a wide gamut color space (ACES2065-1) that contains the full gamut of what is visible to the human eye (See graphic below). If you are concerned about file sizes with EXR you can use PIZ lossless compression. The resulting EXR files will be *smaller* than a DPX file and even smaller than a PNG!
+
+![gamut](img/gamuts.jpg)
 
 - **Ungraded footage.** All color correction and grades should be *disabled* for a VFX pull. An easy way to do this is to turn "Enable Flat Pass" in the Resolve Delivery advanced options (again, see the above step-by-step guide). The goal is to apply the VFX as if it was filmed that way, so only the pixels that have VFX on them are changed, ensuring a perfect round-trip integration with the rest of the film footage. 
 
@@ -36,9 +38,11 @@ The following guidance is compiled from the Nexflix Studio's [VFX Best Practices
 
 - **VFX Delivery.** VFX can deliver two types of files:
   - *Proxy media to editorial for inclusion in the offline edit.* Editorial should provide proxy media format requirements to VFX. As in the Dailies process above, the ACES transform is baked into the proxy media in the color space of the reference monitor used by editorial (typically Rec.709 with Rec.1886 gamma).
-  - *High resolution EXR files to DI and Editorial Finishing.* The EXR files are returned in the same exchange format they were received: ACES2066-1 AP0. These EXRs are used for color grading and finishing, and then [output to the target display of the deliverable](https://www.youtube.com/watch?v=2-H3jgXXTiQ), as well as used for the archival master. 
+  - *High resolution EXR files to DI and Finishing.* The EXR files are returned in the same exchange format they were received: ACES2066-1 AP0. These EXRs are used for mastering the deliverables as well as the [archival master](https://help.prodicle.com/hc/en-us/articles/360050322253). The details of this are beyond the scope of this article, but an example of the basic steps in an ACES workflow are illustrated in the diagram below.
  
- ![gamut](img/gamuts.jpg)
+ <p align="center">
+<img src="img/pipeline2.jpg">
+</p>
 
 
 [Back to main](../StdX_ACES)
