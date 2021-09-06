@@ -30,9 +30,9 @@ Since editorial is working "offline" with proxy video clips with the look baked-
  
 ## Conform & VFX Pulls
  
-The conform is where the proxy files are swapped out in the final edit for the original debayered camera RAW files. For example, working in Resolve with ACES, the EDL/AAL/XML file provided by editorial is used to swap in the original camera RAW files. These are debayered and brought into to the ACES color grading space (ACEScct). 
+The conform is where the proxy files are swapped out in the final edit for the original debayered camera RAW files. For example, working in Resolve with ACES, the EDL/AAL/XML file provided by editorial is used to swap in the original camera RAW files. These are debayered and brought into to the ACES color grading space (ACEScct) where color gradnig is done. 
 
-Similar to the conform, a *VFX pull* involves sending high-resolution files to VFX so they can add their magic to them. In the above scenario, these would be exported from the Resolve conform as 16-bit EXR in the ACES AP0 exchange format (ACES2065-1). Let's take a look at that in detail:
+Similar to the conform, a *VFX pull* involves sending high-resolution files to VFX so they can add their magic to them. These are then returned to DI so they can be seamlessly inserted into the color grade. In the above scenario, VFX pulls would be exported from the Resolve in the ACES exchange format (ACES2065-1) which is able to hold all of the quality and dynamic range of the original camera RAW file. Let's take a look at that in detail:
 
 - **Debayering to OpenEXR.** VFX pulls should be debayered from the original RAW camera files and exported as 16-bit EXR in the ACES AP0 exchange format (ACES2065-1). Netflix Studios has a great [step-by-step guide for Resolve](https://partnerhelp.netflixstudios.com/hc/en-us/articles/360002088888-Color-Managed-Workflow-in-Resolve-ACES-) that will walk you through the process in detail.  
 
