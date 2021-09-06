@@ -26,7 +26,7 @@ Since editorial is working "offline" with proxy video clips with the look baked-
  
 ## Conform & VFX Pulls
  
-Similar to the *conform*, a *VFX pull* is where these proxy files are swapped out for high resolution files used for delivery to DI and finaling. In the ACES workflow these are AP0 OpenEXR files. The basic idea is that VFX returns the plate, with the VFX on it, *as if it were filmed that way*.
+Similar to the *conform*, a *VFX pull* is where these proxy files are swapped out for high resolution files used for delivery to DI and finaling. In the ACES workflow these are AP0 OpenEXR files. 
  
 The following guidance is compiled from the Netflix Studio's [VFX Best Practices](https://partnerhelp.netflixstudios.com/hc/en-us/articles/360000611467-VFX-Best-Practices) document.
 
@@ -38,8 +38,7 @@ The following guidance is compiled from the Netflix Studio's [VFX Best Practices
 <img src="img/gamuts.jpg" width=70%>
 </p>
 
-
-- **Ungraded footage.** All color correction and grades should be *disabled* for a VFX pull. An easy way to do this is to turn on "Enable Flat Pass" in the Resolve Delivery advanced options (again, see the above step-by-step guide). The goal is to apply the VFX as if it was filmed that way, so only the pixels that have VFX on them are changed, ensuring a perfect round-trip integration with the rest of the film footage. 
+- **Ungraded footage.** All color correction and grades should be *disabled* for a VFX pull. An easy way to do this is to turn on "Enable Flat Pass" in the Resolve Delivery advanced options (again, see the above step-by-step guide). The basic idea is that VFX returns the ungraded plate to DI, with the VFX on it, *as if it were filmed that way*, and DI can then color grade it, just as they would everything else.
 
 - **Color Reference and LUTs.** VFX pulls should include a reference frame for checking color against existing dailies as well as a color ‘recipe’ to achieve dailies color (i.e. CDL + LUT, working color space). This LUT can be made in Resolve (the LUT's working/processing space will be ACEScct or ACEScc based on the Project Settings), and will include all enabled grades, both in the timeline and the clips, so it will combine the Look Transform with your shot grade into a single LUT. This can be used as the *Shot LUT* for dailies contained in the OCIO config.
 
