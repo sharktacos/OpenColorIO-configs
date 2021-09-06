@@ -38,7 +38,11 @@ The following guidance is compiled from the Nexflix Studio's [VFX Best Practices
 
 - **VFX Delivery.** VFX can deliver two types of files:
   - *Proxy media to editorial for inclusion in the offline edit.* Editorial should provide proxy media format requirements to VFX. As in the Dailies process above, the ACES transform is baked into the proxy media in the color space of the reference monitor used by editorial (typically Rec.709 with Rec.1886 gamma).
-  - *High resolution EXR files to DI and Finishing.* The EXR files are returned in the same exchange format they were received: ACES2066-1 AP0. These EXRs are used for mastering the deliverables as well as the [archival master](https://help.prodicle.com/hc/en-us/articles/360050322253). The details of this are beyond the scope of this article, but an example of the basic steps in an ACES workflow are illustrated in the diagram below.
+  - *High resolution ungraded OpenEXR files to DI for final color grade and finishing.* The EXR files are returned in the same exchange format they were received: ACES2066-1 AP0. This ensures that the master has the highest possible quality, which can accomidate any delivery medium or targeted display type, now and into the future. 
+
+## Archival and Wrap
+
+This is the final step in the filmmaking process where the master is output to the targeted display types for distribution, and archived for future distribution. The details of this are beyond the scope of this article, but an overview of the basic steps in an ACES workflow are illustrated in the diagram below.
  
  <p align="center">
 <img src="img/pipeline2.jpg">
