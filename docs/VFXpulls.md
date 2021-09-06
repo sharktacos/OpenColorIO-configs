@@ -48,7 +48,7 @@ The following guidance is compiled from the Netflix Studio's [VFX Best Practices
 
 ## Archival & Delivery
 
-After final color grading, the last stage in the filmmaking process is where the graded master is output to the targeted display types for distribution (theatrical film projector, broadcast television, etc.) and the [non-graded master](https://partnerhelp.netflixstudios.com/hc/en-us/articles/360049545294-Non-Graded-Archival-Master-NAM-Specifications-Best-Practices) is archived for future distribution. The details of this are beyond the scope of this article, but the basics are outlined in sample ACES workflow below.
+After final color grading, the last stage in the filmmaking process is where the graded master is output to the targeted display types for distribution (theatrical film projector, broadcast television, etc.) and the [non-graded master](https://partnerhelp.netflixstudios.com/hc/en-us/articles/360049545294-Non-Graded-Archival-Master-NAM-Specifications-Best-Practices) is archived for future distribution. The details of this are beyond the scope of this article, but the basic steps are outlined in the sample ACES workflow below.
  
  <p align="center">
 <img src="img/pipeline2.jpg">
