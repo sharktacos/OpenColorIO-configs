@@ -22,7 +22,7 @@ Since editorial is working with proxy video clips with the look baked-in, you ca
  
 ## Conform & VFX Pulls
  
-Similar to the *conform*, a *VFX pull* is where these proxy files are swapped out for the high res files used for the final delivery to DI. The basic idea is that VFX returns the plate, with the VFX on it, *as if it were filmed that way*.
+Similar to the *conform*, a *VFX pull* is where these proxy files are swapped out for high resolution files used for delivery to DI and finaling. In the ACES workflow these are AP0 OpenEXR files. The basic idea is that VFX returns the plate, with the VFX on it, *as if it were filmed that way*.
  
 The following guidance is compiled from the Nexflix Studio's [VFX Best Practices](https://partnerhelp.netflixstudios.com/hc/en-us/articles/360000611467-VFX-Best-Practices) document.
 
@@ -36,7 +36,7 @@ The following guidance is compiled from the Nexflix Studio's [VFX Best Practices
 
 - **VFX Delivery.** VFX can deliver two types of files:
   - *Proxy media to editorial for inclusion in the offline edit.* Editorial should provide proxy media format requirements to VFX. As in the Dailies process above, the ACES transform is baked into the proxy media in the color space of the reference monitor used by editorial (typically Rec.709 with Rec.1886 gamma).
-  - *High resolution EXR files to DI and Editorial Finishing.* The EXR files are returned in the same exchange format they were received: ACES2066-1 AP0. DI will ingest this into their ACES compatible color grading software (Resolve, Baselight, etc.) as would Editorial Finishing.
+  - *High resolution EXR files to DI and Editorial Finishing.* The EXR files are returned in the same exchange format they were received: ACES2066-1 AP0. DI will ingest this into their ACES compatible color grading software as would Editorial Finishing. These can be output for delivery in the desired display Output Transform (film projector, broadcast television, and so on). Because these AP0 EXR files contain the full gamut of human vision they are also perfect for the non-graded archival master (NAM) which can be used for re-mastering into some not-yet-invented display medium.
  
  ![gamut](img/gamuts.jpg)
 
