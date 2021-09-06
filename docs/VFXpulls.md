@@ -40,9 +40,9 @@ The following guidance is compiled from the Netflix Studio's [VFX Best Practices
   - *Proxy media to editorial for inclusion in the offline edit.* Editorial should provide proxy media format requirements to VFX. As in the Dailies process above, the ACES transform is baked into the proxy media in the color space of the reference monitor used by editorial (typically Rec.709 with Rec.1886 gamma).
   - *High resolution ungraded OpenEXR files to DI for final color grade and finishing.* The EXR files are returned in the same exchange format they were received: ACES2066-1 AP0. This ensures that the master has the highest possible quality, which can accommodate any delivery medium or targeted display type, now and into the future. 
 
-## Archival and Wrap
+## Archival & Wrap
 
-This is the final step in the filmmaking process where the master is output to the targeted display types for distribution, and archived for future distribution. The details of this are beyond the scope of this article, but an overview of the basic steps in an ACES workflow are illustrated in the diagram below.
+After final color grading, the last stage in the filmmaking process is where the graded master is output to the targeted display types for distribution, and the [non-graded master](https://partnerhelp.netflixstudios.com/hc/en-us/articles/360049545294-Non-Graded-Archival-Master-NAM-Specifications-Best-Practices) is archived for future distribution. The details of this are beyond the scope of this article, but an overview of the basic steps in an ACES workflow are illustrated in the diagram below.
  
  <p align="center">
 <img src="img/pipeline2.jpg">
