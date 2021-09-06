@@ -8,11 +8,11 @@ The advantage of the ACES color managed workflow is that it ensures that you see
 
 Secondly, ACES ensures that the film footage stays at the highest quality, so nothing is lost along the way. Plus the whole pipeline is organized and managed to avoid mistakes and chaos. Using ACES from start to finish ensures continuity of artistic vision. 
 
+Each section below will step you through the following diagram. Note that because of the way this workflow is designed, even if you have already started without ACES, it's not necesarily a problem to introduce ACES at a later stage (the latest being for conform and VFX pulls). The sooner color is managed, the better it will be for everyone.
+
 <p align="center">
 <img src="img/pipeline.jpg">
 </p>
-
-Each section below will step you through the above diagram. Note that even if you have already started without ACES, it's not necesarily a problem to introduce ACES in post (i.e. for conform and VFX pulls). The sooner color is managed, the better it will be for everyone.
 
 ## On-set Monitoring
 
