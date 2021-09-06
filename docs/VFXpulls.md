@@ -36,7 +36,7 @@ The following guidance is compiled from the Nexflix Studio's [VFX Best Practices
 
 - **VFX Delivery.** VFX can deliver two types of files:
   - *Proxy media to editorial for inclusion in the offline edit.* Editorial should provide proxy media format requirements to VFX. As in the Dailies process above, the ACES transform is baked into the proxy media in the color space of the reference monitor used by editorial (typically Rec.709 with Rec.1886 gamma).
-  - *Hi res EXR files to DI for final grading.* The EXR files are returned in the same exchange format they were received: ACES2066-1 AP0. DI will ingest this into their ACES compatible color grading software (Resolve, Baselight, etc.) for final grading, delivery, and archive.
+  - *High resolution EXR files to DI for final grading.* The EXR files are returned in the same exchange format they were received: ACES2066-1 AP0. DI will ingest this into their ACES compatible color grading software (Resolve, Baselight, etc.) for final grading, delivery, and archive.
  
  ![gamut](img/gamuts.jpg)
 
