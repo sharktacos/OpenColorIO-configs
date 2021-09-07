@@ -23,16 +23,15 @@ There are however also options for low budget productions. You can create LUTs f
 
 ## Dailies & Editorial
  
-Dailies is where the camera RAW files, which will be used for the conform, are used to generate color-baked dailies and editorial media. One therefore needs a software that can properly debayer RAW camera files in a color managed ACES workflow. There are many software programs that can do this. For the indie filmmaker, a clear choice is [DaVinci Resolve](Resolve.md) due to the low price point. The RAW camera files are read into Resolve using ACES color management, graded (including applying on-set color decisions via ASC CDLs) and then exported out with an ACES Rec.709 Output Transform as h.264 clips for Dailies viewing, and as ProRes or DNxHD clips for editorial.
+Dailies is where the camera RAW files, which will be used for the conform, are used to generate color-baked dailies and editorial media. The DIT therefore needs a software that can properly debayer RAW camera files in a color managed ACES workflow. There are many software programs that can do this. For the indie filmmaker, a clear choice is [DaVinci Resolve](Resolve.md) due to the low price point. The RAW camera files are read into Resolve using ACES color management, graded (including applying on-set color decisions via ASC CDLs) and then exported out with an ACES Rec.709 Output Transform as simple h.264 clips for Dailies viewing, and as ProRes or DNxHD clips for editorial.
 
-Since editorial is working "offline" with proxy video clips with the look baked-in, you can use whatever editing software you like. In other words, editorial is not working in ACES, but rather is working with proxy files that have the look of ACES baked into them. There is therefore no problem with software compatibility with ACES, and editors can work as they are accustomed with clips that look great, seeing in the edit suite the film as the director wants it to look. 
-
+Since editorial is working "offline" with proxy video clips with the ACES look baked-in, editors can work as they are accustomed in their tool of choice without concern for it being compatible with ACES. An important thing to understand about this proxy workflow is that it lets editorial focus on editing, firewalling it off from color correction as well as from concerns with preserving the original camera files dynamic range, which editing software lack the tools to properly handle.
  
 ## Conform & VFX Pulls
  
-The conform is where the proxy files are swapped out in the final edit for the original debayered camera RAW files. For example, working in Resolve with ACES, the EDL/AAL/XML file provided by editorial is used to swap in the original camera RAW files. These are debayered and brought into to the ACES color grading space (ACEScct) where color gradnig is done. 
+The conform is where the proxy files are swapped out in the final edit for the original debayered camera RAW files. For example, working in Resolve with ACES, the DIT uses an EDL/AAL/XML file provided by editorial to swap in the original debayered camera RAW files. This again needs to be done in a software that can properly debayer RAW camera files in a color managed ACES workflow, such as Davinci Resolve. These files are then passed to DI, either as Camera RAW files or in the ACES exchange format: 16-bit OpenEXR in ACES2065-1 color space, which is able to hold all of the quality and dynamic range of the original camera RAW files (see below for mor details on this).
 
-A *VFX pull* involves "pulling" film plates from the conform and sending them to VFX so they can add their magic to them. In the ACES workflow this is done using the "ACES exchange" image format, which is able to hold all of the quality and dynamic range of the original camera RAW files. Let's take a look at that in detail:
+A *VFX pull* involves "pulling" select film plates from the conform and sending them to VFX so they can add their magic to them. This is likewise exported with the ACES  exchange" image format.  Let's take a look at that process in detail:
 
 - **Debayering to OpenEXR.** VFX pulls should be debayered from the original RAW camera files and exported as 16-bit EXR in the ACES AP0 exchange format (ACES2065-1). Netflix Studios has a great [step-by-step guide for Resolve](https://partnerhelp.netflixstudios.com/hc/en-us/articles/360002088888-Color-Managed-Workflow-in-Resolve-ACES-) that will walk you through the process in detail.  
 
@@ -48,9 +47,7 @@ A *VFX pull* involves "pulling" film plates from the conform and sending them to
 
 - **VFX Delivery.** VFX can deliver two types of files:
   - *Proxy media to editorial for inclusion in the offline edit.* As in the Dailies process above, the ACES transform is baked into the proxy media in the color space of the reference monitor used by editorial (typically Rec.709 with Rec.1886 gamma). Editorial should provide proxy media format requirements to VFX. 
-  - *High resolution ungraded OpenEXR files to DI for final color grade and finishing.* The EXR files are returned in the same exchange format they were received: ACES2065-1 AP0. This ensures that the master has the highest possible quality, which can accommodate any delivery medium or targeted display type, now and into the future. 
-
-
+  - *High resolution ungraded OpenEXR files are sent to DI for the final color grade and finishing.* The EXR files are returned to DI in the same exchange format they were received: ACES2065-1 AP0. This ensures that the master has the highest possible quality, which can accommodate any delivery medium or targeted display type, now and into the future. 
 
 
 [Back to main](../StdX_ACES)
