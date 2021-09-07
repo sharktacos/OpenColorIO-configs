@@ -50,13 +50,7 @@ A *VFX pull* involves "pulling" film plates from the conform and sending them to
   - *Proxy media to editorial for inclusion in the offline edit.* As in the Dailies process above, the ACES transform is baked into the proxy media in the color space of the reference monitor used by editorial (typically Rec.709 with Rec.1886 gamma). Editorial should provide proxy media format requirements to VFX. 
   - *High resolution ungraded OpenEXR files to DI for final color grade and finishing.* The EXR files are returned in the same exchange format they were received: ACES2065-1 AP0. This ensures that the master has the highest possible quality, which can accommodate any delivery medium or targeted display type, now and into the future. 
 
-## Archival & Delivery
 
-After final color grading, the last stage in the filmmaking process is where the graded master is output to the targeted display types for distribution (theatrical film projector, broadcast television, etc.) and the [non-graded master](https://partnerhelp.netflixstudios.com/hc/en-us/articles/360049545294-Non-Graded-Archival-Master-NAM-Specifications-Best-Practices) is archived for future distribution. The details of this are beyond the scope of this article, but the basic steps are outlined in the sample ACES workflow below. Additionally, Nick Shaw offers [this advice](https://community.acescentral.com/t/odt-without-changing-the-grade-and-round-trip-from-premier/2258/2).
- 
- <p align="center">
-<img src="img/pipeline2.jpg">
-</p>
 
 
 [Back to main](../StdX_ACES)
