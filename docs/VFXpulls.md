@@ -52,7 +52,7 @@ A *VFX pull* involves "pulling" film plates from the conform and sending them to
 
 ## Archival & Delivery
 
-After final color grading, the last stage in the filmmaking process is where the graded master is output to the targeted display types for distribution (theatrical film projector, broadcast television, etc.) and the [non-graded master](https://partnerhelp.netflixstudios.com/hc/en-us/articles/360049545294-Non-Graded-Archival-Master-NAM-Specifications-Best-Practices) is archived for future distribution. The details of this are beyond the scope of this article, but the basic steps are outlined in the sample ACES workflow below.
+After final color grading, the last stage in the filmmaking process is where the graded master is output to the targeted display types for distribution (theatrical film projector, broadcast television, etc.) and the [non-graded master](https://partnerhelp.netflixstudios.com/hc/en-us/articles/360049545294-Non-Graded-Archival-Master-NAM-Specifications-Best-Practices) is archived for future distribution. The details of this are beyond the scope of this article, but the basic steps are outlined in the sample ACES workflow below. Additionally, Nick Shaw offers [this advice](https://community.acescentral.com/t/odt-without-changing-the-grade-and-round-trip-from-premier/2258/2).
  
  <p align="center">
 <img src="img/pipeline2.jpg">
