@@ -25,7 +25,7 @@ There are however also options for low budget productions. You can create LUTs f
  
 Dailies is where the camera RAW files, which will be used for the conform, are used to generate color-baked dailies and editorial media. The DIT therefore needs a software that can properly debayer RAW camera files in a color managed ACES workflow. There are many software programs that can do this. For the indie filmmaker, a clear choice is [DaVinci Resolve](Resolve.md) due to the low price point. The RAW camera files are read into Resolve using ACES color management, graded (including applying on-set color decisions via ASC CDLs) and then exported out with an ACES Rec.709 Output Transform as simple h.264 clips for Dailies viewing, and as ProRes or DNxHD clips for editorial.
 
-Since editorial is working "offline" with proxy video clips with the ACES look baked-in, editors can work as they are accustomed in their tool of choice without concern for it being compatible with ACES. An important thing to understand about this proxy workflow is that it lets editorial focus on editing, firewalling it off from color correction as well as from concerns with preserving the original camera files dynamic range, which editing software lack the tools to properly handle.
+Since editorial is working "offline" with proxy video clips with the ACES look baked-in, editors can work as they are accustomed in their tool of choice without concern for it being compatible with ACES. 
  
 ## Conform & VFX Pulls
  
