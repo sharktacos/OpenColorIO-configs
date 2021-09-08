@@ -57,9 +57,13 @@ A *VFX pull* involves "pulling" select film plates from the conform and sending 
 From [Cinematic Color](https://raw.githubusercontent.com/jeremyselan/cinematiccolor/master/ves/Cinematic_Color_VES.pdf),
 > "Digital intermediate (DI) is the process where the entire motion-picture is loaded into a dedicated hardware device, for the purpose of color-correcting in an environment that exactly mirrors the final exhibition (e.g., in a theater). Viewed in this final environment, DI is where per-shot color corrections are added, and the visual look of the film is finalized. DI is also referred to as “color timing,” or “grading.” The final step of baking in view transforms specific to an output device, and final color correction, is known as mastering."
 
+<p align="center">
+<img src="img/DI1.jpg">
+</p>
+
 In our ACES workflow DI reads in the the files from conform, as well as VFX shots, into an ACES capable color corrector (Resolve, Baselight, etc.) and grades the film, viewing this through the appropriate ACES Output Transform for the targeted display. For example the Output Transform would be set to DCI-P3 for viewing on a film projector.
 
-Traditionally theatrical digital projection was most often the appropriate master to treat as the "gold" reference. With the advent of HDR displays, there’s somewhat of an open debate as to how best to use the emerging technology. Does one use  HDR as the reference, and create SDR trim passes on top of that, or visa-versa? There are [many factors to consider](https://community.acescentral.com/t/odt-without-changing-the-grade-and-round-trip-from-premier/2258/2). In the end film is an art aided by science, and while using the ACES Output Transform for the particular display type provides a solid starting point, it is incumbent on the developed eye of the artist to adapt or “trim” the grade to the particular characteristics of each display device. In other words, ACES does replace the need for the artist, rather it enables artists to focus on nuance.
+Traditionally theatrical digital projection was most often the appropriate master to treat as the "gold" reference. With the advent of HDR displays, there’s somewhat of an open debate as to how best to use the emerging technology. Does one use  HDR as the reference, and create SDR trim passes on top of that, or visa-versa? There are [many factors to consider](https://community.acescentral.com/t/odt-without-changing-the-grade-and-round-trip-from-premier/2258/2). In the end film is an art aided by science, and while using the ACES Output Transform for the particular display type provides a solid starting point, it is incumbent on the developed eye of the artist to adapt or “trim” the grade, optimizing it for the particular characteristics of each display device. In other words, ACES does replace the need for the artist, rather it enables artists to focus on nuance.
 
 
 
