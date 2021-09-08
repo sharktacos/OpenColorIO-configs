@@ -58,7 +58,8 @@ From [Cinematic Color](https://raw.githubusercontent.com/jeremyselan/cinematicco
 > "Digital intermediate (DI) is the process where the entire motion-picture is loaded into a dedicated hardware device, for the purpose of color-correcting in an environment that exactly mirrors the final exhibition (e.g., in a theater). Viewed in this final environment, DI is where per-shot color corrections are added, and the visual look of the film is finalized. DI is also referred to as “color timing,” or “grading.” The final step of baking in view transforms specific to an output device, and final color correction, is known as mastering."
 
 <p align="center">
-<img src="img/DI1.jpg">
+<img src="img/DI1.jpg" width=70%><br>
+ <sup>ARRI Media’s color grading theater (photo © Arri CC BY-SA).</sup>
 </p>
 
 In our ACES workflow DI reads in the the files from conform, as well as VFX shots, into an ACES capable color corrector (Resolve, Baselight, etc.) and grades the film, viewing this through the appropriate ACES Output Transform for the targeted display. For example the Output Transform would be set to DCI-P3 for viewing on a film projector.
