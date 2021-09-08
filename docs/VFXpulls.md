@@ -18,7 +18,7 @@ Each section below will step you through the following diagram. Note that becaus
 
 Modern digital cinema cameras raw or log modes have a known mathematical relationship to the light in the photographed scene, which ACES uses to bring it into the ACES color space. This is called an Input Transform. There are options from ACES product partners like [Pomfort LiveGrade Pro](https://pomfort.com/store/livegradepro/subscription/) for ACES on-set monitoring which enables filmmakers to view a live preview of the camera signal in the ACES color pipeline, and for a DIT (Digital Image Technician) to use the same tools as DI to create custom looks for on-set. 
 
-There are however also options for low budget productions. You can create LUTs for your camera using the free version of Resolve and use these LUTs, either in-camera or in an external LUT box, for on-set viewing on a standard Rec.709 reference monitor. This ensures that what you see on-set is accurately carried all the way through production and post. See the [Resolve](Resolve.md) doc for details.
+There are however also options for low budget productions. You can create LUTs for your camera using the free version of Resolve and use these LUTs, either in-camera or in an external LUT box, for on-set viewing on a standard Rec.709 reference monitor. This ensures that what you see on-set is accurately carried all the way through production and post. See the [Resolve](Resolve.md) page for details.
 
 
 ## Dailies & Editorial
