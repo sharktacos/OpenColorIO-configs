@@ -73,7 +73,7 @@ Typically one particular viewing environment is identified as the “gold standa
 <img src="img/pipeline2.jpg"><br>
 </p>
 
-Traditionally (i.e. for the past decade) theatrical digital projection was the "gold" reference, and trim passes were made for other other display devices (television, web, and so on). With the advent of HDR displays, there’s somewhat of an open debate as to how best to use this emerging technology. Does one use HDR as the reference, and create SDR trim passes on top of that, or visa-versa? There are [many factors to consider](https://community.acescentral.com/t/odt-without-changing-the-grade-and-round-trip-from-premier/2258/2). 
+Traditionally theatrical (digital) projection was considered the "gold" reference, and trim passes were made for other other display devices (television, web, and so on). With the recent advent of HDR displays, there’s debate as to how best to use this emerging technology. Does one use HDR as the reference, and create SDR trim passes on top of that, or visa-versa? There are [many factors to consider](https://community.acescentral.com/t/odt-without-changing-the-grade-and-round-trip-from-premier/2258/2). 
 
 In the end, film is an art aided by science, and while using the ACES Output Transform for the particular display type provides a solid starting point, it is incumbent on the developed eye of the artist to adapt or “trim” the grade, optimizing it for the particular characteristics of each display device. In other words, ACES doesn't replace the need for the artist, rather it enables artists to focus on nuance.
 
