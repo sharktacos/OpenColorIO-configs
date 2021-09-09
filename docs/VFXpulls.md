@@ -1,13 +1,10 @@
-<H1 align="center">
- ACES for Indie Filmmakers
-</H1>
-
 <p align="center">
 <img src="img/aces_logo.jpg">
 </p>
 
+
 ## Contents:
-- [Why ACES?](#why)
+- [ACES for Indie Filmmakers](#why)
 - [On-Set Monitoring](#on-set)
 - [Dailies & Editorial](#dailies)
 - [Conform & VFX Pulls](#pulls)
@@ -16,7 +13,7 @@
 - [Digital Intermediate, Mastering, and Delivery](#di)
 
 
-# <a name="why"></a>Why ACES?
+# <a name="why"></a>ACES for Indie Filmmakers
 
 ACES (short for Academy Color Encoding System) was developed as an industry standard for color management used in every stage of the filmmaking process. It is based on solid color science and a wealth of production experience, and has been widely adopted in major film and VFX studios. Marvel for instance uses ACES for all of their films. However, ACES is not just for major tentpole productions and VFX blockbusters. Its open and independent nature means independent filmmakers can benefit from it too.
 
