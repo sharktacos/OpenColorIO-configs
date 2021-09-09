@@ -31,10 +31,10 @@ Since editorial is working "offline" with proxy video clips with the ACES look b
  
 The conform is where the proxy files are swapped out in the final edit for the original debayered camera RAW files. For example, working in Resolve with ACES, the DIT uses an EDL/AAF/XML file provided by editorial to swap in the original debayered camera RAW files. This again needs to be done in a software that can properly debayer RAW camera files in a color managed ACES workflow, such as DaVinci Resolve. In a traditional workflow these files are then passed to DI, either as Camera RAW files on rare occasion or more typically as integer log DPX files. The ACES workflow replaces this with its official interchange and archival format: 16-bit OpenEXR in ACES2065-1 color space. The advantage is that the ACES interchange format is able to hold all of the quality and dynamic range of the original camera RAW files whereas DPX cannot.
 
-Traditional 10-bit DPX files are not recommended, as they are [not sufficient](https://acescentral.com/uploads/default/original/1X/25ec1472d70b169ceabb215beacdd501d1a27fac.pdf) to contain all the information captured by modern digital cameras (For example RED camera RAW files are 16-bit). In contrast, [OpenEXR](https://www.openexr.com/) is 16-bit float with a dynamic range of 30+ exposure stops, and a wide gamut color space (ACES2065-1) that contains the full color gamut visible to the human eye (see graphic below). In short: Using 10-bit DPX involves a degradation of quality from the original camera footage, while EXR *more than* covers the full quality and range of any camera RAW file. If you are concerned about file sizes with EXR there's more good news: You can use PIZ lossless compression, and the resulting EXR files will be *smaller* than DPX files! 
+Traditional 10-bit DPX files are not recommended, as they are [not sufficient](https://acescentral.com/uploads/default/original/1X/25ec1472d70b169ceabb215beacdd501d1a27fac.pdf) to contain all the information captured by modern digital cameras (For example RED camera RAW files are 16-bit). In contrast, [OpenEXR](https://www.openexr.com/) is 16-bit float with a dynamic range of 30+ exposure stops, and a wide gamut color space (ACES2065-1) that contains the full color gamut visible to the human eye (see graphic below). In short: Using 10-bit DPX involves a degradation of quality from the original camera footage, while EXR *more than* covers the full quality and range of any camera RAW file. It has become [common industry practive](https://partnerhelp.netflixstudios.com/hc/en-us/articles/360000611467-VFX-Best-Practices) to use PIZ or ZIP *lossless* compression on these ACES OpenEXR files. This results in file sizes that are *smaller* than DPX files! 
 
 <p align="center">
-<img src="img/gamuts.jpg" width=70%>
+<img src="img/gamuts.jpg" width=85%>
 </p>
 
 A *VFX pull* involves "pulling" select film plates from the conform and sending them to VFX so they can add their magic to them. This is likewise exported with the ACES  "interchange" image format.  Let's take a look at that process in detail:
@@ -54,18 +54,24 @@ A *VFX pull* involves "pulling" select film plates from the conform and sending 
 
 ## Digital Intermediate, Mastering, and Delivery
 
-From [Cinematic Color](https://raw.githubusercontent.com/jeremyselan/cinematiccolor/master/ves/Cinematic_Color_VES.pdf),
-> "Digital intermediate (DI) is the process where the entire motion-picture is loaded into a dedicated hardware device, for the purpose of color-correcting in an environment that exactly mirrors the final exhibition (e.g., in a theater). Viewed in this final environment, DI is where per-shot color corrections are added, and the visual look of the film is finalized. DI is also referred to as “color timing,” or “grading.” The final step of baking in view transforms specific to an output device, and final color correction, is known as mastering."
+Digital Intermediate (DI) is the process where the entire motion-picture is color-corrected (often called "grading"), and the visual look of the film is finalized. It's crucial that DI is done in an environment that exactly mirrors the viewing conditions of the final exhibition (e.g. in a theater viewed with a film projector). This is known as a grading suite or DI suite.
 
 <p align="center">
 <img src="img/DI1.jpg" width=70%><br>
- <sup>ARRI Media’s color grading theater (photo © Arri CC BY-SA).</sup>
+ <sup>The ARRI color grading theater (photo © Arri CC BY-SA).</sup>
 </p>
 
-In our ACES workflow DI reads in the the files from conform, as well as VFX shots, into an ACES capable color corrector (Resolve, Baselight, etc.) and grades the film, viewing this through the appropriate ACES Output Transform for the targeted display. For example the Output Transform would be set to DCI-P3 for viewing on a film projector.
+In our ACES workflow above, DI is the final step where the files from conform, as well as VFX shots, are read into an ACES capable color corrector (Resolve, Baselight, etc.), and viewed through the appropriate ACES Output Transform for the targeted display. For example, the Output Transform would be set to DCI-P3 for viewing on a film projector. In the final step, known as "mastering" this device-specific Output Transform, together with the final color grade, is baked into the media for delivery. Additionally, an archival master is created using the ACES interchange and archival format ACES2065-1.
 
-Traditionally theatrical digital projection was most often the appropriate master to treat as the "gold" reference. With the advent of HDR displays, there’s somewhat of an open debate as to how best to use the emerging technology. Does one use  HDR as the reference, and create SDR trim passes on top of that, or visa-versa? There are [many factors to consider](https://community.acescentral.com/t/odt-without-changing-the-grade-and-round-trip-from-premier/2258/2). In the end film is an art aided by science, and while using the ACES Output Transform for the particular display type provides a solid starting point, it is incumbent on the developed eye of the artist to adapt or “trim” the grade, optimizing it for the particular characteristics of each display device. In other words, ACES doesn't replace the need for the artist, rather it enables artists to focus on nuance.
+Typically one particular viewing environment is identified as the “gold standard,” and the majority of the artistic time is spent correcting the images to look perfect on that display device. Once the main color grade is complete, additional masters are handled as "trim passes" atop the main output. A trim pass involves relatively minor adjustments, made atop the reference master, needed to make the filmlook great in the different viewing environment. 
 
+<p align="center">
+<img src="img/pipeline2.jpg"><br>
+</p>
+
+Traditionally (i.e. for the past decade) theatrical digital projection was the "gold" reference, and trim passes were made for other other display devices (television, web, and so on). With the advent of HDR displays, there’s somewhat of an open debate as to how best to use this emerging technology. Does one use HDR as the reference, and create SDR trim passes on top of that, or visa-versa? There are [many factors to consider](https://community.acescentral.com/t/odt-without-changing-the-grade-and-round-trip-from-premier/2258/2). 
+
+In the end, film is an art aided by science, and while using the ACES Output Transform for the particular display type provides a solid starting point, it is incumbent on the developed eye of the artist to adapt or “trim” the grade, optimizing it for the particular characteristics of each display device. In other words, ACES doesn't replace the need for the artist, rather it enables artists to focus on nuance.
 
 
 [Back to main](../StdX_ACES)
