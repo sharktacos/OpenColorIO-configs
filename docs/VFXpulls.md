@@ -58,7 +58,7 @@ VFX can deliver two types of files:
 
 ## Digital Intermediate, Mastering, and Delivery
 
-Digital Intermediate (DI) is the process where the entire motion-picture is color-corrected (often called "grading"), and the visual look of the film is finalized. It's crucial that DI is done in an environment that exactly mirrors the viewing conditions of the final exhibition (e.g. in a theater viewed with a film projector). This is known as a grading suite or DI suite.
+Digital Intermediate (DI) is the process where the entire motion-picture is color-corrected (often called "grading"), and the visual look of the film is finalized. It's crucial that DI is done in an environment that exactly mirrors the viewing conditions of the final exhibition (e.g. in a theater viewed with a film projector). This is known as a color grading suite.
 
 <p align="center">
 <img src="img/DI1.jpg" width=70%><br>
