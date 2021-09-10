@@ -57,11 +57,11 @@ Traditionally, color grading -- whether for dailies or later in DI -- was done i
 
 ![pic](img/Resolve10.png)
 
-ACES instead works in a *scene-referred* workflow, meaning film footage is input using the exact math provided by the camera maufacturer to bring the raw footage into ACES. Below is the same RED footage viewed in ACES. This is the starting point that the colorist then begins with, allowing them to focus on the artistic look of the film, beginning with an image that has been digitally “developed” according to the exact mathematical specifications of each particular camera manufacturer. ACES does not dictate any particular look, rather it provides a neutral starting point from which to build.
+ACES instead works in a *scene-referred* workflow, meaning film footage is input using the exact math provided by the camera maufacturer to bring the raw footage into ACES. Below is the same RED footage viewed in ACES. This is the starting point that the colorist then begins with, allowing them to focus on the artistic look of the film, beginning with an image that has been digitally “developed” according to the exact mathematical specifications of each particular camera manufacturer. 
 
 ![pic](img/Resolve11.png)
 
-The RAW camera files are read into Resolve using ACES color management, graded (including applying on-set color decisions via ASC CDLs), and then exported out with an ACES Rec.709 Output Transform as simple h.264 clips for Dailies viewing, and as ProRes or DNxHD clips for editorial.
+This where you begin in ACES, which matches what was seen on-set, and of course from there any desired color corrections can be added, including applying on-set color decisions via ASC CDLs. This is then exported out with an ACES Rec.709 Output Transform as simple h.264 clips for Dailies viewing, and as ProRes or DNxHD clips for editorial.
 
 Note that Rec.709 (with BT.1886 gamma) is the specification for HDTV, and sRGB is the specification for a standard computer monitor. So the above Rec.709 Output Transform baked into these movies assumes that editorial is viewing on a broadcast reference monitor. If a standard computer monitor is instead being used by editorial, the clips would need to be output in sRGB color space. Likewise, when viewing in an ACES color managed software (such as Resolve for Dailies) the Output Transform needs to be set to correspond to the display device you are viewing. Setting the Output Transform to the correct EOTF for the display device is a critical part of color management, ensuring that what you see is what you get (WYSIWYG).
 
