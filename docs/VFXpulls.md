@@ -35,15 +35,15 @@ Each section below will step you through the following diagram. Note that becaus
 
 Modern digital cinema cameras raw or log modes have a known mathematical relationship to the light in the photographed scene, which ACES uses to bring it into the ACES color space. This is called an Input Transform. There are options from ACES product partners like [Pomfort LiveGrade Pro](https://pomfort.com/store/livegradepro/subscription/) for ACES on-set monitoring which enables filmmakers to view a live preview of the camera signal in the ACES color pipeline, and for a DIT (Digital Image Technician) to use the same tools as DI to create custom looks for on-set. 
 
-There are however also options for low budget productions. You can create LUTs for your camera using the free version of Resolve and use these LUTs, either in-camera or in an external LUT box, for on-set viewing on a standard Rec.709 reference monitor. This ensures that what you see on-set is accurately carried all the way through production and post. This is done using the ACES Transform OFX plugin in resolve. The first step to do this is to set Color Management to *Davinci YRGB* in the Project Settings. Then create the following seriel nodes:
+There are however also options for low budget productions. You can create LUTs for your camera using the free version of Resolve and use these LUTs, either in-camera or in an external LUT box, for on-set viewing on a standard Rec.709 reference monitor. This ensures that what you see on-set is accurately carried all the way through production and post. This is done using the ACES Transform OFX plugin in resolve. The first step to do this is to set Color Management to *DaVinci YRGB* in the Project Settings. Then create the following serial nodes:
 
-- *Input Transform*: Apply an OFX ACES Transform to the first seriel node and set its input to your camera, and the output to ACEScct. 
+- *Input Transform*: Apply an OFX ACES Transform to the first serial node and set its input to your camera, and the output to ACEScct. 
 - *(optional) Look Transform*: This is where you would apply whatever custom grade is desired to the middle node. 
 - *Output Transform*: Apply an OFX ACES Transform to the final seriel node and set its input to ACEScct, and the output to Rec.709 for viewing on.
 
 ![LUTs](img/Resolve13.png)
 
-Then simply export the 3D LUT with the “Generate 3D LUT (CUBE)” command. This will create a full range .cube LUT, also called *extended range* (EE). This [chart](http://www.antlerpost.com/downloads/LUT_ranges.pdf) lists compatibilty of various cameras and LUT boxes with *extended range* (EE) and legal range (LL) LUTs. If you are using an ARRI, as in the above example, you can use [free software from ARRI](https://www.arri.com/en/learn-help/learn-help-camera-system/tools/arri-look-creator) to convert this to ARRI look format.
+Then simply export the 3D LUT with the “Generate 3D LUT (CUBE)” command. This will create a full range .cube LUT, also called *extended range* (EE). This [chart](http://www.antlerpost.com/downloads/LUT_ranges.pdf) lists compatibility of various cameras and LUT boxes with *extended range* (EE) and legal range (LL) LUTs. If you are using an ARRI, as in the above example, you can use [free software from ARRI](https://www.arri.com/en/learn-help/learn-help-camera-system/tools/arri-look-creator) to convert this to ARRI look format.
 
 If you don't want to "roll your own" LUTs, cinematographer Geoff Boyle has a [set of free LUTs](https://community.acescentral.com/t/luts-that-emulate-the-aces-workflow/1334/21) you can download for just about every film camera out there.
 
@@ -51,7 +51,17 @@ If you don't want to "roll your own" LUTs, cinematographer Geoff Boyle has a [se
 
 # <a name="dailies"></a>Dailies & Editorial
  
-Dailies is where the camera RAW files, which will be used for the conform, are used to generate color-baked dailies and editorial media. The DIT therefore needs a software that can properly debayer RAW camera files in a color managed ACES workflow. There are many software programs that can do this. For the indie filmmaker, a clear choice is [DaVinci Resolve](Resolve.md) due to the low price point. The RAW camera files are read into Resolve using ACES color management, graded (including applying on-set color decisions via ASC CDLs) and then exported out with an ACES Rec.709 Output Transform as simple h.264 clips for Dailies viewing, and as ProRes or DNxHD clips for editorial.
+Dailies is where the camera RAW files, which will be used for the conform, are used to generate color-baked dailies and editorial media. The DIT therefore needs a software that can properly debayer RAW camera files in a color managed ACES workflow. There are many software programs that can do this. For the indie filmmaker, a clear choice is DaVinci Resolve due to the low price point. 
+
+Traditionally, color grading -- whether for dailies or later in DI -- was done in what is called a *display-referred* workflow, meaning the DIT or colorist needs to *refer* to the *display* and basically just eyeball footage to manually get it to look good. If one were for example reading in footage from a RED camera, they would read in the raw camera file in IPP2 using Log3G10 REDwideGamutRGB and see the washed out image below. The colorist would begin with this washed out image in log space, and grade it manually until it looked nice.
+
+![pic](img/Resolve10.png)
+
+ACES instead works in a *scene-referred* workflow, meaning film footage is input using the exact math provided by the camera maufacturer to bring the raw footage into ACES. Below is the same RED footage viewed in ACES. This is the starting point that the colorist then begins with, allowing them to focus on the artistic look of the film, beginning with an image that has been digitally “developed” according to the exact mathematical specifications of each particular camera manufacturer. ACES does not dictate any particular look, rather it provides a neutral starting point from which to build.
+
+![pic](img/Resolve11.png)
+
+The RAW camera files are read into Resolve using ACES color management, graded (including applying on-set color decisions via ASC CDLs), and then exported out with an ACES Rec.709 Output Transform as simple h.264 clips for Dailies viewing, and as ProRes or DNxHD clips for editorial.
 
 Note that Rec.709 (with BT.1886 gamma) is the specification for HDTV, and sRGB is the specification for a standard computer monitor. So the above Rec.709 Output Transform baked into these movies assumes that editorial is viewing on a broadcast reference monitor. If a standard computer monitor is instead being used by editorial, the clips would need to be output in sRGB color space. Likewise, when viewing in an ACES color managed software (such as Resolve for Dailies) the Output Transform needs to be set to correspond to the display device you are viewing. Setting the Output Transform to the correct EOTF for the display device is a critical part of color management, ensuring that what you see is what you get (WYSIWYG).
 
@@ -97,7 +107,7 @@ Digital Intermediate (DI) is the process where the entire motion-picture is colo
 
 In our ACES workflow above, DI is the final step where the files from conform, as well as VFX shots, are read into an ACES capable color corrector (Resolve, Baselight, etc.), and viewed through the appropriate ACES Output Transform for the targeted display. For example, the Output Transform would be set to DCI-P3 for viewing on a film projector. In the final step, known as "mastering" this device-specific Output Transform, together with the final color grade, is baked into the media for delivery. Additionally, an archival master is created using the ACES interchange and archival format ACES2065-1.
 
-Typically one particular viewing environment is identified as the “gold standard,” and the majority of the artistic time is spent correcting the images to look perfect on that display device. Once the main color grade is complete, additional masters are handled as "trim passes" atop the main output. A trim pass involves relatively minor adjustments, made atop the reference master, needed to make the filmlook great in the different viewing environment. 
+Typically one particular viewing environment is identified as the “gold standard,” and the majority of the artistic time is spent correcting the images to look perfect on that display device. Once the main color grade is complete, additional masters are handled as "trim passes" atop the main output. A trim pass involves relatively minor adjustments, made atop the reference master, needed to make the film look great in the different viewing environment. 
 
 <p align="center">
 <img src="img/pipeline2.jpg"><br>
