@@ -4,12 +4,22 @@ In the default linear workflow, used by Maya (prior to v2022) and Nuke, linear r
 
 As the white paper explained, viewing an image through a 2.2 gamma can result in images with low apparent contrast and poor highlight rendition (i.e. highlight clipping). In contrast, using an S-shaped "film emulation" curve, typical of what we see in cameras, yields a pleasing appearance of contrast, with well balanced highlight and shadow details. Additionally, the filmic view transform does not simply clamp values above 1.0 as a gamma curve does, but preforms tone mapping. Compare below this RED camera footage without tone mapping (the default Nuke sRGB view) and the same image with filmic tone mapping. 
 
-![car](img/tonemap0.png)
-![car](img/tonemap1.png)
+<p align="center">
+<img src="img/tonemap0.png" width=50%><img src="img/tonemap1.png" width=50%>
+</p>
 
 Specifically for ACES that means linear values from 1 to 16 (4 exposure stops) are re-mapped into the output range 0.8 to 1, and only values above 16 (16.3 to be more precise) are clipped. Observe the difference that makes in the sky in the images above. 
 
-This is tremendously important not only for photos, but also for photorealistic renders. In short, we need to see the render in the way a camera sees a scene, which is through an s-shaped tone curve. Otherwise, when values clip as soon as they go over 1 (as they do with an sRGB gamma curve like the one applied in the native viewer for Nuke, as well as in versions of Maya prior to v2022) this  leads artists to compensate by making the lights and shader colors unnaturally dim so they don't clip. Making the lights dim causes many things in the render (GI bounce, etc.) to not work properly becaue the light values are not realistic, making the physically based render not get physically based values. 
+This is tremendously important not only for photos, but also for photorealistic renders. Compare these renders without tone mapping and with. Note the low-contrast look of the un-tonemapped images, as well as how values over 1 (a lamp, sunlight, fire) will clip in a very unappealing way.
+
+<p align="center">
+<img src="img/tonemap3.png" width=50%><img src="img/tonemap2.png" width=50%><br>
+<img src="img/tonemap5.png" width=50%><img src="img/tonemap4.png" width=50%><br> 
+<img src="img/tonemap7.png" width=50%><img src="img/tonemap6.png" width=50%><br> 
+</p>
+
+
+To do physically based rendering we need to see the render in the way a camera sees a scene, which is through an s-shaped tone curve. Otherwise, when values clip as soon as they go over 1 (as they do with an sRGB gamma curve like the one applied in the native viewer for Nuke, as well as in versions of Maya prior to v2022) this  leads artists to compensate by making the lights and shader colors unnaturally dim so they don't get unwanted clipping. Making the lights unnaturally dim causes many things in the render (GI bounce, etc.) to not work properly becaue the light values are not realistic, meaning the physically based render is not being given physically based light values. 
 
 With tone mapping, rather than the artist needing to compensate and fight with the render, they can give their lights real-world values and the physically-based rendering gets the right amount of light to do its stuff like GI bounces. It also means that things in comp like optical effects (bokeh, motion blur, depth of field, bloom, atmospherics) also work properly because they are given the proper light values. In short, it makes the render behave more like a photo camera so artists can get photorealistic renders. 
 
