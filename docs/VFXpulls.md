@@ -55,11 +55,16 @@ Dailies is where the camera RAW files, which will be used for the conform, are u
 
 In a non-color managed workflow one begins with a washed out image in log space, and grades it manually until it looks nice. For example the footage below is from a RED camera RAW file in IPP2 using Log3G10 REDwideGamutRGB. This is known as a *display-referred* workflow.
 
-![pic](img/Resolve10.png)
+<p align="center">
+<img src="img/Resolve10.png">
+</p>
+
 
 A color manged workflow like ACES takes the guesswork out of it, and digitally “develops” the RAW camera data according to the exact mathematical specifications of each particular camera manufacturer. Below is the same RED RAW footage (also IPP2 using Log3G10 REDwideGamutRGB) viewed in ACES. This is known as a *scene-referred* workflow because it uses the actual values from the *scene* (i.e. the pixel values are proportional to photons in the real world).
 
-![pic](img/Resolve11.png)
+<p align="center">
+<img src="img/Resolve11.png">
+</p>
 
 From this solid starting point, any desired color corrections can be added, including applying on-set color decisions via ASC-CDLs. This is then exported out as h.264 clips for Dailies viewing, and as ProRes or DNxHD clips for editorial. The Output Transform should be set to match the targeted display device. So if editorial will be looking at broadcast reference monitors (HDTV) the Output Transform would be set to Rec.709 
 
