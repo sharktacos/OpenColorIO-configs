@@ -66,7 +66,9 @@ On the other hand, a Look Transform (LMT) conceptually should be applied across 
 
 The Look Transform is therefore applied in the *Group Post-clip* which is again accessed by right-clicking on the node and choosing it from the LUT menu. 
 
-Both will then affect all the clips in the timeline, and can be toggled on or off as desired. For example when passing a clip to VFX the Look should be disabled so it is not baked into the EXR on export. Similarly, gamut compression should be disabled for VFX pulls. 
+## Putting it all together
+
+Both  *Group Pre-clip* and  *Group Post-clip* will then affect all the clips in the timeline, and can be toggled on or off as desired. For example when passing a clip to VFX the Look should be disabled so it is not baked into the EXR on export. Similarly, gamut compression should be disabled for VFX pulls. 
 
 ![Resolve](img/Resolve1.jpg)
 
