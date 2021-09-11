@@ -46,33 +46,31 @@ A colorist may wish to use the Neutral Look for example as a starting place for 
 
 Gamut compression is done in Davinci Resolve Studio using a DCTL file which you will find in the ````software/Resolve/GamutCompress.dctl```` folder of the config. Place this into the Davinci Resolve LUT directory as described above. 
 
-## Gamut Compression
+## Applying Gamut Compression
 
-Gamut compression needs to be applied before anything else, immediately after the Input Transform (IDT) so that all grading operations are downstream of the compression. Gamut compression should be disabled when delivering a VFX pull so it is not baked into the EXR on export. 
+See the [Gamut Compression](gamut.md) page for an overview with example pics. For phases of production such as on-set monitoring, dailies, editorial, etc. it can be beneficial to *see* footage with gamut compression in order to get an idea of the final look, just as it can be good to see footage through a LUT. This can be done on proxxy media. However, the gamut compression should only be applied to the full-fidelity EXR footage either in VFX (and therefore not in a VFX pull or in the conform) or in DI (for non-VFX shots). 
 
-See the [Nuke](Nuke.md) section on gamut compression for more details on this workflow, and the [Gamut Compression](gamut.md) doc for an overview with example pics. 
-
-Gamut compression can be applied to an individual clip or blanket applied to all footage since, unlike the former “Blue Light LMT” the algorithm only affects the necessary pixels of the image leaving the rest untouched. It is designed to be applied immediatly after the input transform, before any other grading nodes. 
+Gamut compression is designed to be applied before anything else, immediately after the Input Transform (IDT) so that all grading operations are downstream of the compression. Unlike the former “Blue Light LMT” the algorithm only affects the necessary pixels of the image leaving the rest untouched. Consequently, while gamut compression can be applied to an individual clip, it can also be blanket-applied to all footage. 
 
 This can be accomplished with groups in Resolve. Select all of the clips and create a group by right-clicking on an individual clip and selecting *Add into new group.*  In the Color module Node Editor you will then have added options in the drop-down for *Group Pre-clip* and  *Group Post-clip* in addition to *clip* and *timeline*.
 
 ![Resolve](img/Resolve6.jpg)
 
-The gamut compress DCTL is applied in the *Group Pre-clip* which is accessed by right-clicking on the node and choosing it from the LUT menu. 
+The gamut compress DCTL is applied in the *Group Pre-clip* which is accessed by right-clicking on the node and choosing it from the LUT menu. This will blanket apply gamut compression before all the clip grades.
 
-## Look Transforms
+## Applying Look Transforms
 
 On the other hand, a Look Transform (LMT) conceptually should be applied across an entire scene or show, *after* the per shot grades but before the Output Transform. For example using the Neutral Look as a starting point for grading.
 
-The Look Transform is therefore applied in the *Group Post-clip* which is again accessed by right-clicking on the node and choosing it from the LUT menu. 
+The Look Transform is therefore applied in the *Group Post-clip* which is again accessed by right-clicking on the node and choosing it from the LUT menu. This will blanket apply the Look Transform after all the clip grades.
 
-## Putting it all together
+## Putting it all together (and taking it off)
 
-Both  *Group Pre-clip* and  *Group Post-clip* will then affect all the clips in the timeline, and can be toggled on or off as desired. For example when passing a clip to VFX the Look should be disabled so it is not baked into the EXR on export. Similarly, gamut compression should be disabled for VFX pulls. 
+Both  *Group Pre-clip* and  *Group Post-clip*  can be toggled on or off as desired. For example, as discussed above when passing a clip to VFX the Look should be disabled (as should all grades) so it is not baked into the EXR on export. Similarly, gamut compression should be disabled for VFX pulls. 
 
 ![Resolve](img/Resolve1.jpg)
 
-The “process node LUTs in” in the ACES Color management Settings should be set to AP1 when using these .cube LUTs with the shaper built in. This will be the same as the Color Science setting  (ACEScct or ACEScc). 
+The “process node LUTs in” in the ACES Color management Settings should be set to AP1 when using these .cube LUTs with the shaper built in as well as for the DCTL. This will be the same as the Color Science setting  (ACEScct or ACEScc). 
 
 ![Resolve](img/Resolve3.jpg)
 
