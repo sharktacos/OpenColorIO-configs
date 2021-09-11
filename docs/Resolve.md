@@ -52,15 +52,23 @@ Gamut compression needs to be applied before anything else, immediately after th
 
 See the [Nuke](Nuke.md) section on gamut compression for more details on this workflow, and the [Gamut Compression](gamut.md) doc for an overview with example pics. 
 
-## Timeline vs Clip
+Gamut compression can be applied to an individual clip or blanket applied to all footage since, unlike the former “Blue Light LMT” the algorithm only affects the necessary pixels of the image leaving the rest untouched. It is designed to be applied immediatly after the input transform, before any other grading nodes. 
 
-Gamut compression can be applied to an individual clip or blanket applied to all footage since, unlike the former “Blue Light LMT” the algorithm only affects the necessary pixels of the image leaving the rest untouched.
+This can be accomplished with groups in Resolve. Select all of the clips and create a group by right-clicking on an individual clip and selecting *Add into new group.*  In the Color module Node Editor you will then have added options in the drop-down for *Group Pre-clip* and  *Group Post-clip* in addition to *clip* and *timeline*.
 
-Similarly, a Look Transform (LMT) conceptually should be applied across an entire scene or show, before the Output Transform. This can be done in Resolve by applying the LUT to the timeline instead of to an individual clip. To do this, in the Color module Node Editor set the drop-down to timeline. The first node would be the gamut compress, with a serial node for the Look Transform, for example using the Neutral Look as a starting point for grading.
+![Resolve](img/Resolve6.jpg)
+
+The gamut compress DCTL is applied in the *Group Pre-clip* which is accessed by right-clicking on the node and choosing it from the LUT menu. 
+
+## Look Transforms
+
+On the other hand, a Look Transform (LMT) conceptually should be applied across an entire scene or show, *after* the per shot grades but before the Output Transform. For example using the Neutral Look as a starting point for grading.
+
+The Look Transform is therefore applied in the *Group Post-clip* which is again accessed by right-clicking on the node and choosing it from the LUT menu. 
+
+Both will then affect all the clips in the timeline, and can be toggled on or off as desired. For example when passing a clip to VFX the Look should be disabled so it is not baked into the EXR on export. Similarly, gamut compression should be disabled for VFX pulls. 
 
 ![Resolve](img/Resolve1.jpg)
-
-To apply these, just click on the node and choose your LUT from the contextual menu. The LUT will then affect all the clips in the timeline, and can be toggled on or off as desired. For example when passing a clip to VFX the Look should be disabled so it is not baked into the EXR on export. 
 
 The “process node LUTs in” in the ACES Color management Settings should be set to AP1 when using these .cube LUTs with the shaper built in. This will be the same as the Color Science setting  (ACEScct or ACEScc). 
 
