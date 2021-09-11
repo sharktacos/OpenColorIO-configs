@@ -31,7 +31,7 @@ However, while everyone is happy with these ACES Input Transforms, a lot of colo
 ![pic](img/Resolve12.png)
 
 
-## Viewing Looks in the *ACES Output Device Transform*
+## Setting up the Gamut Compress and Look Transforms for Resolve
 
 To use the *Filmic* and *Neutral* Look LUTS, the .cube files need to be placed into the Davinci Resolve LUT directory, which you can get to by clicking "Open LUT folder" in the Preferences, copying the files, and then clicking "update lists" to refresh. 
 
@@ -44,9 +44,9 @@ The two .cube Look LUT files are called:
 
 A colorist may wish to use the Neutral Look for example as a starting place for grading instead of the default ACES Output Transform which many find to not be very neutral. See the [tone mapping](tonemap.md) doc for details and pretty pics.
 
-## Gamut Compression
-
 Gamut compression is done in Davinci Resolve Studio using a DCTL file which you will find in the ````software/Resolve/GamutCompress.dctl```` folder of the config. Place this into the Davinci Resolve LUT directory as described above. 
+
+## Gamut Compression
 
 Gamut compression needs to be applied before anything else, immediately after the Input Transform (IDT) so that all grading operations are downstream of the compression. Gamut compression should be disabled when delivering a VFX pull so it is not baked into the EXR on export. 
 
