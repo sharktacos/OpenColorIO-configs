@@ -46,6 +46,10 @@ A colorist may wish to use the Neutral Look for example as a starting place for 
 
 Gamut compression is done in Davinci Resolve Studio using a DCTL file which you will find in the ````software/Resolve/GamutCompress.dctl```` folder of the config. Place this into the Davinci Resolve LUT directory as described above. 
 
+The “process node LUTs in” in the ACES Color management Settings should be set to AP1 when using these .cube LUTs with the shaper built in as well as for the DCTL. This will be the same as the Color Science setting  (ACEScct or ACEScc). 
+
+![Resolve](img/Resolve3.jpg)
+
 ## Applying Gamut Compression
 
 See the [Gamut Compression](gamut.md) page for an overview with example pics. For phases of production such as on-set monitoring, dailies, editorial, etc. it can be beneficial to *see* footage with gamut compression in order to get an idea of the final look, just as it can be good to see footage through a LUT. This can be done on proxxy media. However, the gamut compression should only be applied to the full-fidelity EXR footage either in VFX (and therefore not in a VFX pull or in the conform) or in DI (for non-VFX shots). 
@@ -70,9 +74,7 @@ Both  *Group Pre-clip* and  *Group Post-clip*  can be toggled on or off as desir
 
 ![Resolve](img/Resolve1.jpg)
 
-The “process node LUTs in” in the ACES Color management Settings should be set to AP1 when using these .cube LUTs with the shaper built in as well as for the DCTL. This will be the same as the Color Science setting  (ACEScct or ACEScc). 
 
-![Resolve](img/Resolve3.jpg)
 
 
 
