@@ -50,7 +50,7 @@ displays:
     - !<View> {name: Filmic Look, colorspace: Output - sRGB, look: "LMT_gamut, LMT_filmic"}
     - !<View> {name: ACES - Gamut Compress, colorspace: Output - sRGB, look: LMT_gamut}
 
-  Rec.1886 / Rec.709 video:
+  Rec.1886 - Rec.709 video:
     - !<View> {name: Neutral Look, colorspace: Rec.709 - Look Neutral}
     - !<View> {name: Filmic Look, colorspace: Rec.709 - Look Filmic}
     - !<View> {name: Show Look, colorspace: Rec.709 - Look Show}
@@ -58,8 +58,8 @@ displays:
     - !<View> {name: un-tone-mapped, colorspace: Un-tone-mapped - BT.1886/Rec.709 2.4}
 
 
-active_displays: [sRGB monitor, sRGB - Gamut Compress, Rec.1886 / Rec.709 video]
-active_views: [Neutral Look, Filmic Look, Show Look, ACES 1.0 SDR-video, ACES - Gamut Compress, un-tone-mapped, Raw, Log]
+active_displays: [sRGB monitor, Rec.1886 - Rec.709 video]
+active_views: [Neutral Look, Filmic Look, Show Look, ACES 1.0 SDR-video, un-tone-mapped, Raw, Log]
 
 	
 looks:
