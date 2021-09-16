@@ -8,9 +8,9 @@ These files need to be copied into the Substance Painter shelf folder.
 
 | Platform	| Version	      | Path
 |-----------|---------------|---------------------------------------------------------------
-| Windows	  | 7.2 or newer	| C:\Users\username\Documents\Adobe\Adobe Substance 3D Painter\shelf\colorluts\
+| Windows	  | 7.2 or newer	| C:\Users\username\Documents\Adobe\Adobe Substance 3D Painter\assets\colorluts\
 |           |  Legacy	      | C:\Users\username\Documents\Allegorithmic\Substance Painter\shelf\colorluts\
-| Mac	      | 7.2 or newer	| /Users/username/Documents/Adobe/Adobe Substance 3D Painter/shelf/colorluts/
+| Mac	      | 7.2 or newer	| /Users/username/Documents/Adobe/Adobe Substance 3D Painter/assets/colorluts/
 |           | Legacy	      |/Users/username/Documents/Allegorithmic/Substance Painter/shelf/colorluts/
 
 
