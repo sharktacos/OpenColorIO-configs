@@ -4,9 +4,14 @@ Substance Painter does not currently work with OCIO, so we need to use a workaro
 
 [StdX_ACES/software/SubstancePainter](https://github.com/sharktacos/OpenColorIO-configs/tree/main/StdX_ACES/software/SubstancePainter)
 
-These files need to be copied into the Substance Painter shelf folder. On Windows that's in
+These files need to be copied into the Substance Painter shelf folder. 
 
-````C:\Users\ *username* \Documents\Allegorithmic\Substance Painter\shelf\colorluts\````
+| Platform	| Version	      | Path
+|-----------|---------------|---------------------------------------------------------------
+| Windows	  | 7.2 or newer	| C:\Users\username\Documents\Adobe\Adobe Substance 3D Painter\shelf\colorluts\
+|           |  Legacy	      | C:\Users\username\Documents\Allegorithmic\Substance Painter\shelf\colorluts\
+| Mac	      | 7.2 or newer	| /Users/username/Documents/Adobe/Adobe Substance 3D Painter/shelf/colorluts/
+|           | Legacy	      |/Users/username/Documents/Allegorithmic/Substance Painter/shelf/colorluts/
 
 
 In the Display Settings, enable Activate Post Effects and Tone Mapping. Set *function* to Log and slide the *mapping factor* to the max (63.99). This will tonemap scene-linear into a 0-1 range so speculars do not clip in the view.
