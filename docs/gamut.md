@@ -23,23 +23,15 @@ If you read through all of that you deserve to see some pretty pictures (Well, a
   
 ![rrt](img/Gamut_rrt.png)
     
-Below are those images with the gamut compression algorithm applied (implemented using the [Nuke blink script tool](https://github.com/jedypod/gamut-compress)). All of the above artifacting is gone. 
+Below are those images with the gamut compression algorithm applied in Nuke. All of the above artifacting is gone. 
     
  ![nk](img/Gamut_nk.png) 
      
-Compare that to the 3D LUT implementation used in this config, shown below. It looks visually identical. So as far as a tool to temporaily visualize the result this works quite well.
-
-![lut](img/Gamut_lut.png)
       
 Now compare that to the older Blue Light Artifact Fix, pictured below, the results from the Gamut Compression are clearly superior. Ironically the "blue fix" is making blue appear magenta. Gamut compression is meant to replace the Blue Light Artifact Fix and one of the key differences is that the gamut compression algorithm only affects the pixels that are out of gamut, leaving the rest of the image unchanged. So it's not so much color correction, and more "pixel healing."
 
 ![blue](img/Gamut_bluefix.png)
 
-## CG Renders
-
-CG renders with highly saturated colors can also be helped by gamut compression. With highly saturated colors in ACEScg space, hues shift from primaries to secondaries with increased luminance. Red turns yellow, green turns cyan, and blue turns magenta. You can observe this in the top row of the image below, and also how this is improved by gammut compression. Additionally, it can help to pick colors in sRGB primaries (scene-linear Rec.709-sRGB). Observe how on the bottom row the red and green jelly beans are looking pretty good and only the blue is still shifting towards magenta. Again, this is helped by gamut compression. Note however that a proper solution to this particular issue involves creating a [chromaticity preserving Output Transform](https://github.com/jedypod/open-display-transform) which will need to wait for ACESNext.
-
-![jelly](img/jellybeans.png)
 
 ## Pixel Healing
 
