@@ -11,7 +11,7 @@ Similarly in ACES one needs to go from the crazy big AP0 color gamut used for ar
 
 When transformed from the larger gamut into the smaller one, any highly saturated bright colors that were on the edge of the larger gamut space will fall outside of the  target  color  space, resulting in negative color values which produce artifacts and clipping (loss  of  texture detail, intensification  of  color  fringes, and so on).
 
-To address this the ACES community established a [Gamut Mapping Virtual  Working  Group  (VWG)](https://github.com/ampas/aces-vwg-gamut-mapping-2020) who developed a Gamut Compression algorithmm. Implementations into DCC apps (Nuke, Resolve, etc) are in the works. In the meantime Gamut Compression is provided in this config as a [Nuke](Nuke.md) Gizmo and [Resolve Studio](Resolve.md) DCTL. Below is a roadmap its intended integration into a VFX pipeline.
+To address this the ACES community established a [Gamut Mapping Virtual  Working  Group  (VWG)](https://github.com/ampas/aces-vwg-gamut-mapping-2020) who developed a Reference Gamut Compression algorithmm. Implementations into DCC apps (Nuke, Resolve, etc) are in the works. In the meantime Gamut Compression is provided in this config as a [Nuke](Nuke.md) Gizmo and [Resolve Studio](Resolve.md) DCTL. Below is a roadmap its intended integration into a VFX pipeline.
 
 ![gamut](img/pipeline3.jpg)
 
