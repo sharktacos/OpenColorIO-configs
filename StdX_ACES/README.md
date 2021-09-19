@@ -6,6 +6,8 @@ An OpenColorIO config based on the [ACES 1.2 Config](https://github.com/colour-s
 
 [ACES Next](https://community.acescentral.com/c/aces-development-acesnext/67) has identified several changes and improvements to the Output Transform that will be available at some furture date. Inspired by that work,  this config is to attempt to implement some of those changes as Look Transforms, to the extent that this is possible, as a stop-gap until ACES 2.0 is released.
 
+## Configs
+
 Three configs are provided
 
 - **ANM_config.ocio**
