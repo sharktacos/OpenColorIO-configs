@@ -57,21 +57,12 @@ BackdropNode {
  bdwidth 137
  bdheight 166
 }
-Viewer {
- inputs 0
- frame 1
- frame_range 1-100
- viewerProcess "sRGB (ACES)"
- name Viewer1
- xpos -40
- ypos -9
-}
 CMSTestPattern {
  inputs 0
- cube_size 65
+ cube_size 33
  name CMSTestPattern_4
  xpos -248
- ypos -228
+ ypos -267
 }
 OCIOColorSpace {
  in_colorspace "ACES - ACEScct"
@@ -89,8 +80,18 @@ OCIOColorSpace {
  xpos -248
  ypos 106
 }
+set N2fe3ec00 [stack 0]
+Viewer {
+ frame 1
+ frame_range 1-100
+ viewerProcess "sRGB (ACES)"
+ name Viewer1
+ xpos -40
+ ypos -9
+}
+push $N2fe3ec00
 GenerateLUT {
- file path/to/files/Name_ACEScc.cube
+ file path/to/files/Name_ACEScct.cube
  file_type .cube
  lut1d 4098
  name GenerateLUT

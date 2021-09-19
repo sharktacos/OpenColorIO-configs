@@ -49,6 +49,7 @@ displays:
     - !<View> {name: Neutral Look, colorspace: sRGB - Look Neutral - RGC}
     - !<View> {name: Filmic Look, colorspace: sRGB - Look Filmic - RGC}
     - !<View> {name: Show Look, colorspace: sRGB - Look Show - RGC}
+    - !<View> {name: ACES 1.0 SDR-video, colorspace: sRGB - ACES 1.0 SDR-video}
     - !<View> {name: Raw, colorspace: Raw}
     - !<View> {name: Log, colorspace: ADX10}
 
@@ -68,17 +69,17 @@ looks:
   - !<Look>
     name: LMT_gamut
     process_space: Gamut Shaper
-    transform: !<FileTransform> {src: aces_gm_v01.cube, interpolation: linear}  
+    transform: !<FileTransform> {src: aces_RGC_33.cube, interpolation: linear}  
 
   - !<Look>
     name: LMT_filmic
     process_space: ACEScct
-    transform: !<FileTransform> {src: LMT_filmic_ACEScct_shaper.cube, interpolation: linear} 
-	
+    transform: !<FileTransform> {src: LMT_filmic_ACEScct_33.cube, interpolation: linear} 
+
   - !<Look>
     name: LMT_neutral
     process_space: ACEScct
-    transform: !<FileTransform> {src: LMT_neutral_ACEScct_shaper.cube, interpolation: linear} 
+    transform: !<FileTransform> {src: LMT_neutral_ACEScct_33.cube, interpolation: linear} 
 
   - !<Look>
     name: LMT_show
