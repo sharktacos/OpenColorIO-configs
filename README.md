@@ -6,6 +6,19 @@ An OpenColorIO config based on the [ACES 1.2 Config](https://github.com/colour-s
 
 [ACES Next](https://community.acescentral.com/c/aces-development-acesnext/67) has identified several changes and improvements to the Output Transform that will be available at some furture date. Inspired by that work,  this config is to attempt to implement some of those changes as Look Transforms, to the extent that this is possible, as a stop-gap until ACES 2.0 is released.
 
+## Configs
+
+Three configs are provided
+
+- **ANM_config.ocio**
+   is designed for a CG animation pipeline 
+- **ANM_config_Maya22.ocio**
+   is the same, but using OCIOv2 for Maya 2022
+- **VFX_config.ocio**
+   is designed for a VFX pipeline integtrating CG and VFX into live action film.
+
+For an overview of how the VFX pipeline fits into the whole filmmaking process, see [ACES for Indie Filmmakers](docs/VFXpull.md)
+
 ## Look Transforms
   
 The config adds three Look Transforms to the view transforms included the ACES config included in Maya 2022:
@@ -39,5 +52,5 @@ Instructions for use of the config's Look Transforms in various software, includ
 - [Houdini](https://www.sidefx.com/docs/houdini/io/ocio.html) 
 - [Davinci Resolve](docs/Resolve.md) 
 - [Photoshop](docs/Photoshop.md) 
-  
+
   
