@@ -36,11 +36,6 @@ The aim here is that when the same image is viewed side by side on a computer mo
 
 Another point of confusion is that when a client says to VFX “we are working in Rec.709" because they have broadcast monitors at the facility calibrated to Rec.709 this does not mean that a comper should set their display transform to Rec.709 to match. The opposite is the case, if you were to set your sRGB monitor to have a Rec.709 display transform in Nuke, this would mean the images viewed side by side *would not match*. Again, one chooses the display transform based on the calibration of the display they are using. Since we will be doing the majority of our VFX work on the sRGB monitors in the labs, our config defaults to having sRGB selected for the Display transform in both Nuke and Maya. One would only need to change this if, for example, viewing shots in 400a on an HDTV monitor (in which case it would be set to Rec.709).
 
-Below you can see the display device in parenthesis. Most are in sRGB as this is usually what you are viewing on. The equivalent to Nuke's native sRGB would be un-tone-mapped (sRGB). For details on what these view transforms do, see the [tone mapping](tonemap.md) doc. You'll find information on the gamut compression in the section below. 
-
-Finally, outlined in red below you can see the display device *Rec.1886 / Rec.709 video* which is for a Rec.709 broadcast monitor with Rec.1886 gamma (2.4). You would select this if you are viewing on an HDTV (for example in 400a). This corresponds to the native Nuke setting of (un-tone-mapped) BT.1886. The native Nuke Rec.709 is closer to Rec.709 with a 2.2 gamma, however it appears to use a non-standard gamma of approximately 1.95 which is much darker.
-
-![img](img/Nuke4.png)
 
 ## Input/Output pipeline
 
@@ -90,13 +85,57 @@ There may be exception to this however, as noted in the [implementation guide](h
 
 > Since normal practice in VFX is to return images with any pixel not touched by the compositing process unmodified from the original pulls, one might think that the RGC should be inverted for deliverables, as is done with CDL corrections, for example. However, it is better to think of the RGC more like a spill suppression, which is part of the composite, and would not be inverted out at the end. Inverting creates the possibility that elements added during compositing (CGI  originally created in ACEScg, for example) which have not had the RGC applied may produce extreme values on inversion. 
 
-
-
 ![nk](img/Nuke3.png)
 
 This Nuke node is the fully functioning gamut compression algorithm, as opposed to the 3D LUT approximation contained in the OCIO config, which again is only intended for intermediate viewing purposes. Indeed, if comp were to bake the gamut compression into the EXR plates it sends to CG there would be no need to use the gamut compress View Transform in Maya.
 
 Check out the [gamut compression](gamut.md) doc for more details and pretty pics!
+
+
+## ANM and VFX Configs
+
+The ANM config ````config_ANM.ocio```` is designed for work on CG animation shorts and features. The VFX config ````config_VFX.ocio```` in contrast is designed for intgrating CG and VFX with live action film. Consequently each has different Display Transforms geared for its particular pipeline needs.
+
+### ANM Config
+
+![img](img/nuke6.jpg)
+
+The Display Transforms for the above ANM config are all in sRGB display for viewing on artist's monitors, and contain the Reference Gamut Compression (RGC) baked into the view to componsate for hue skews with highly saturated colors in CG (see the [gamut](gamut.md) page. The contain the [Neutral and Filmic](tonemap.md) looks, as well as a Show Look.
+
+### VFX Config
+
+![img](img/nuke5.jpg)
+
+The Display Transforms for the above VFX config contain both sRGB and Rec.709 display types depending on whether a shot is being viewed on an artist's monitor (sRGB) or on an HDTV display for dailies. As explained above, gamut compression is applied as a node in VFX and thus not included in the Display Transform. The views include standard an ACES 1.0 RRT in both sRGB and Rec.709, the shot look both sRGB and Rec.709 displays, as well as several diagnostic views (un-tone-mapped, Raw, Log). Un-tone-mapped is the equivalent to Nuke's native sRGB which is a simple sRGB Gamma function without tonemapping.  
+
+### Shot Look
+
+The shot Look Display Transform in the VFX config works with context variables. You will need to insert the following code into your Nuke menu.py file:
+
+```py  
+# OCIO Shot Look custom defaults: 
+def _setOCIODisplayContext():
+    node = nuke.thisNode()
+    node.knob('key1').setValue("SHOW")
+    node.knob('key2').setValue("SHOT")
+    node.knob('key3').setValue("VER")
+    node.knob('value1').setValue("Show")
+    node.knob('value2').setValue("shotNum") 
+    node.knob('value3').setValue("version")
+nuke.addOnCreate(_setOCIODisplayContext, nodeClass="OCIODisplay")
+```
+
+Then in Nuke select the "view panel" menu from the View Transform menu
+
+![img](img/nuke2.jpg)
+
+This will open up a properties window. Open the Context tab and you will see that it has been populated with template values. As a friendly hint for artists that this needs to be replaced with the actual shot values this template LUT is black and white.
+
+![img](img/nuke3.jpg)
+
+Replace the value fields for your shot LUT. The shot_lut directory of the config contains all of the shot LUTS for the show. For example if you were working on the DSOM show on shot 22 and the client LUT was called ````DSOM_022_v02_cct.cube```` you would write the following:
+
+![img](img/nuke4.jpg)
 
 
 
