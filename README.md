@@ -17,7 +17,7 @@ Three configs are provided
 - **VFX_config.ocio**
    is designed for a VFX pipeline integtrating CG and VFX into live action film.
 
-For an overview of how the VFX pipeline fits into the whole filmmaking process, see [ACES for Indie Filmmakers](docs/VFXpull.md)
+For an overview of how the VFX pipeline fits into the whole filmmaking process, see [ACES for Indie Filmmakers](docs/VFXpulls.md)
 
 ## Look Transforms
   
