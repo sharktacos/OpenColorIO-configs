@@ -72,26 +72,16 @@ Note that, as discussed above, if you simply view this movie on an sRGB monitor 
 
 ## Gamut Compression and Nuke
 
-Nuke is the primary place where gamut compression is applied. To understand this it's important to differentiate between two concepts:
- 1. Gamut correction applied to the *view transform* which does not alter the image in any way.
- 1. Gamut correction baked into an image
+[Reference gamut compression](gamut.md) (RGC) is applied differently for ANM and VFX. In the ANM config where we are dealing exclusivly with CG animation it is automatically applied in the view transforms, and also baked into the output when writing out to sRGB. In the VFX config where we are dealing with film footage it is instead applied with a node and used as "pixel healing" baked into the EXR files returned to the client. This is done with a Nuke node located in the ````software/Nuke```` folder of this config. 
 
-For phases of production such as on set monitoring, dailies, editorial, etc. it can be beneficial to *see* footage with gamut compression in order to get an idea of the final look, just as it can be good to see footage through a LUT. However, the gamut compression should not be applied to the footage. For this purpose the config contains View Transforms with gamut compression, allowing you to *view* the image with gamut compression, for example in Maya, without baking it in.
+![nk](img/Nuke3.png)
 
-![nk](img/Nuke2.png)
-
-When that footage contains negative pixel values it can be really hard to do common compositing tasks like pull a key, denoise, or blur an image. This is where gamut compression comes in. Because the gamut compression algorithm only affects the pixels that are out of gamut, gamut compression in Nuke and VFX work can be thought of as "pixel healing" rather than color correction. 
-
-Nuke is the ideal place to apply this gamut compression because the algorithm is designed to be applied in scene-linear (the working space of Nuke), and should be baked into all vfx returns. This is done with a Nuke node located in the ````software/Nuke```` folder of this config. This needs to be applied immediately after the Input Transform (i.e. directly after the Read node).
-
-There may be exception to this however, as noted in the [implementation guide](https://paper.dropbox.com/doc/ACES-Gamut-Compression-User-Guide-8AodniaKveYsNgOwkuhTl)
+Best practice is to be apply the RGC immediately after the Input Transform (i.e. directly after the Read node). There may be exception to this however, as noted in the [RGC Implementation Guide](https://paper.dropbox.com/doc/ACES-Gamut-Compression-User-Guide-8AodniaKveYsNgOwkuhTl)
 > There may be situations (edge despill in keying has been noted) however where the unmodified pixel values give a preferable result. In these cases it may be necessary for the compositor to have access to both the original and gamut compressed image data in their node tree, choosing between them as necessary. For consistency, the RGC should still be applied at some other suitable point in the composite, such that the final renders delivered to DI still have the gamut compression applied as expected.
 
 > Since normal practice in VFX is to return images with any pixel not touched by the compositing process unmodified from the original pulls, one might think that the RGC should be inverted for deliverables, as is done with CDL corrections, for example. However, it is better to think of the RGC more like a spill suppression, which is part of the composite, and would not be inverted out at the end. Inverting creates the possibility that elements added during compositing (CGI  originally created in ACEScg, for example) which have not had the RGC applied may produce extreme values on inversion. 
 
-![nk](img/Nuke3.png)
 
-This Nuke node is the fully functioning gamut compression algorithm, as opposed to the 3D LUT approximation contained in the OCIO config, which again is only intended for intermediate viewing purposes. Indeed, if comp were to bake the gamut compression into the EXR plates it sends to CG there would be no need to use the gamut compress View Transform in Maya.
 
 Check out the [gamut compression](gamut.md) doc for more details and pretty pics!
 
