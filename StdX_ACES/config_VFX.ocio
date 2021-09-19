@@ -86,8 +86,8 @@ looks:
 
   - !<Look>
     name: LMT_shot
-    process_space: ACEScct
-    transform: !<FileTransform> {src: "${SHOW}_${SHOT}_${VER}_cct.cube", interpolation: linear} 
+    process_space: Shot_shaper
+    transform: !<FileTransform> {src: "${SHOW}_${SHOT}_${VER}_${SHAPER}.cube", interpolation: linear} 
 
 
 colorspaces:
@@ -402,6 +402,23 @@ colorspaces:
     to_reference: !<GroupTransform>
       children:
         - !<FileTransform> {src: ACEScct_to_linear.spi1d, interpolation: linear}
+        - !<MatrixTransform> {matrix: [0.695452, 0.140679, 0.163869, 0, 0.0447946, 0.859671, 0.0955343, 0, -0.00552588, 0.00402521, 1.0015, 0, 0, 0, 0, 1]}
+
+  - !<ColorSpace>
+    name: Shot_shaper
+    family: Utility
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      The ACEScct color space
+      
+      ACES Transform ID : ACEScsc.Academy.ACEScct_to_ACES
+    isdata: false
+    allocation: uniform
+    allocationvars: [-0.249136, 1.468]
+    to_reference: !<GroupTransform>
+      children:
+        - !<FileTransform> {src: "${SHAPER}_to_linear.spi1d", interpolation: linear}
         - !<MatrixTransform> {matrix: [0.695452, 0.140679, 0.163869, 0, 0.0447946, 0.859671, 0.0955343, 0, -0.00552588, 0.00402521, 1.0015, 0, 0, 0, 0, 1]}
 
   - !<ColorSpace>
