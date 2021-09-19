@@ -127,7 +127,7 @@ This will open up a properties window. Open the Context tab and you will see tha
 
 ![img](img/nuke3.jpg)
 
-Replace the value fields for your shot LUT. The shot_lut directory of the config contains all of the shot LUTS for the show. For example if you were working on the DSOM show on shot 22 and the client LUT was called ````DSOM_022_v02_cct.cube```` you would write the following:
+Replace the value fields for your shot LUT. The shot_lut directory of the config contains all of the shot LUTS for the show. For example if you were working on the DSOM show on shot 22 and the client LUT was called ````DSOM_022_v02_ACEScct.cube```` you would write the following:
 
 ![img](img/nuke4.jpg)
 
