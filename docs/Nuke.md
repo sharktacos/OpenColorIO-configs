@@ -118,7 +118,7 @@ def _setOCIODisplayContext():
     node.knob('value1').setValue("Show")
     node.knob('value2').setValue("shotNum") 
     node.knob('value3').setValue("version")
-    node.knob('value4').setValue("ACEScg")
+    node.knob('value4').setValue("ACEScct")
     
 nuke.addOnCreate(_setOCIODisplayContext, nodeClass="OCIODisplay")
 ```
@@ -141,12 +141,12 @@ Alternatley, you can simply edit your menu.py file to input the values. In our e
     node.knob('value1').setValue("DSOM")
     node.knob('value2').setValue("022") 
     node.knob('value3').setValue("v02")
-    node.knob('value4').setValue("ACEScg")
+    node.knob('value4').setValue("ACEScct")
 ````
 
 Nuke will open with these values, pointing to your shot look LUT.
 
-In Maya you can similarly edit your Maya.env file and enter (again using the above example)
+In Maya you can similarly edit your Maya.env file and enter the following (again using the above example):
 ````
 SHOW = DSOM
 SHOT = 022
@@ -158,6 +158,7 @@ If you want to change the values in a Maya session you can use the following MEL
 putenv "SHOW" "DSOM";
 putenv "SHOT" "022";
 putenv "VER" "v02";
+putenv "VER" "ACEScct";
 colorManagementPrefs -refresh;
 ````
 
