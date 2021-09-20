@@ -135,6 +135,32 @@ Replace the value fields for your shot LUT. The shot_lut directory of the config
 
 ![img](img/nuke4.jpg)
 
+Alternatley, you can simply edit your menu.py file to input the values. In our example that would be
+
+````py
+    node.knob('value1').setValue("DSOM")
+    node.knob('value2').setValue("022") 
+    node.knob('value3').setValue("v02")
+    node.knob('value4').setValue("ACEScg")
+````
+
+Nuke will open with these values, pointing to your shot look LUT.
+
+In Maya you can similarly edit your Maya.env file and enter (again using the above example)
+````
+SHOW = DSOM
+SHOT = 022
+VER = v02
+SHAPER = ACEScct
+````
+If you want to change the values in a Maya session you can use the following MEL code:
+````py
+putenv "SHOW" "DSOM";
+putenv "SHOT" "022";
+putenv "VER" "v02";
+colorManagementPrefs -refresh;
+````
+
 
 
 [Back to main](../StdX_ACES)
