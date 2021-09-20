@@ -113,9 +113,13 @@ def _setOCIODisplayContext():
     node.knob('key1').setValue("SHOW")
     node.knob('key2').setValue("SHOT")
     node.knob('key3').setValue("VER")
+    node.knob('key4').setValue("SHAPER")
+    
     node.knob('value1').setValue("Show")
     node.knob('value2').setValue("shotNum") 
     node.knob('value3').setValue("version")
+    node.knob('value4').setValue("ACEScg")
+    
 nuke.addOnCreate(_setOCIODisplayContext, nodeClass="OCIODisplay")
 ```
 

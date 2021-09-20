@@ -9,6 +9,11 @@ luma: [0.2126, 0.7152, 0.0722]
 
 description: An ACES config Modified by Derek Flood for StudioX
 
+environment:
+  SHOW: Show
+  SHOT: shotNum
+  VER: version
+  SHAPER: ACEScct
 
 roles:
   color_picking: scene-linear Rec.709-sRGB
