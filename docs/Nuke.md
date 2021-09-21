@@ -74,11 +74,7 @@ Note above that you bake the display transform (Shot Look) however since you are
 
 For an intro into Gamut Compression and what it is and why you need it, Check out the [gamut compression](gamut.md) doc for details and pretty pics. The following section discusses how it is applied in the context of a VFX pipeline.
 
-[Reference gamut compression](gamut.md) (RGC) is applied differently for ANM and VFX. In the ANM config where we are dealing exclusivly with CG animation it is automatically applied in the view transforms, and also baked into the output when writing out to sRGB. In the VFX config where we are dealing with film footage it is instead applied with a node and used as "pixel healing" baked into the EXR files returned to the client. This is done with a Nuke Gizmo located in the ````software/Nuke```` folder of this config. 
-
-![nk](img/Nuke3.png)
-
-
+[Reference gamut compression](gamut.md) (RGC) is applied differently for ANM and VFX. In the ANM config where we are dealing exclusivly with CG animation it is automatically applied in the view transforms, and also baked into the output when writing out to sRGB. 
 
 
 
