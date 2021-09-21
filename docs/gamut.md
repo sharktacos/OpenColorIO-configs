@@ -37,7 +37,7 @@ Now compare that to the older Blue Light Artifact Fix, pictured below, the resul
 
 ## Pixel Healing
 
-Let's have a look at the Gamut Compression node in action in Nuke. We begin with some footage with colors that are out of gamut. 
+Let's have a look at the Gamut Compression node in action in Nuke in the context of doing VFX work on film footage. We begin with some footage with colors that are out of gamut. 
 
 ![blue](img/guitar1.png)
 
