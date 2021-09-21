@@ -47,30 +47,32 @@ Based on the above understandings, let's step back and overview the input and ou
 
 For reading renders into Nuke, since the EXR files are already in ACEScg the input (i.e the color space of the read node) would be  ACEScg.
 	
-````Input: ACEScg  >  Working: ACEScg >  Display: sRGB````
+````Input: ACEScg  >  Working: ACEScg >  Display: ACES sRGB````
 
 VFX pulls will be in ACES2065-1 the ACES exchange color space and viewed on a computer monitor. 
 
-````Input: ACES2065-1  >  Working: ACEScg  >  Display: sRGB````
+````Input: ACES2065-1  >  Working: ACEScg  >  Display: ACES sRGB````
 
 For VFX delivery of plates the ACES2065-1 exchange color space is again used (that is,  ACES2065-1 would be the color space on the Nuke write node). 
 
-````Input: ACES2065-1 > Working: ACEScg  > Output: ACES2065-1````
+````Input: ACES2065-1 > Working: ACEScg  >  Display: ACES (sRGB) > Output: ACES2065-1````
 
 As you can see, once the camera footage is input in and converted into ACES, one does not need to keep track of all the different color spaces because it’s always in the ACES exchange color space.
 
-If you want to simply output a PNG sequence to make a Quicktime movie in Media Encoder (or output a Quicktime movie directly from Nuke) then the display transform is baked into the media (as set on the color space of the Nuke write node). This involves leaving the wide gamut working space of ACES, and encoding the image with the limited display space of the intended viewing device. The idea is that you want people to view things the same way you see them. So if you are viewing *Filmic (sRGB)* and what to make a movie to be viewed on the web you would choose that in the color space for your write node for output.
+In a CG animation pipeline if you want to simply output a PNG sequence to make a Quicktime movie in Media Encoder that looks like what you see in Nuke then the display transform is baked into the media.  So if you are viewing *Filmic (sRGB)* and want to make a movie to be viewed on the web you would choose that in the color space for your write node for output.
 	
-````Working: ACEScg >  Output: Filmic (sRGB)````
+````Working: ACEScg >  Display: Filmic (sRGB) > Output: Filmic (sRGB)````
 
-Similarly, if you are delivering a proxy movie for Editorial using the client LUT for viewing on broadcast reference monitor you would set your output to 
+Similarly, if in a VFX pipeline you are delivering a proxy movie for Editorial using the client LUT for viewing on broadcast reference monitor you would set your output to bake the view into the output. 
 
-````Working: ACEScg >  Output: Shot LUT (Rec.1886/Rec.709 video)````
+````Working: ACEScg >  Display: Shot Look (sRGB) > Output: Shot Look (Rec.1886/Rec.709 video)````
 
-Note that, as discussed above, if you simply view this movie on an sRGB monitor in a movie player like Quicktime or VNC it will not appear correctly because it has the Rec.1886/Rec.709 display color space baked into it. Again it is therefore good practive to append the color space to the file name for clarity (e.g. showID_seq_shot_v01_rec709.mxf). File metadata notoriously gets lost.
+Note above that you bake the display transform (Shot Look) however since you are vieiwing this on a computer monitor (sRGB), but sending it to editorial who are viewing on broadcast reference monitors (Rec709) you output the Look to that target display device. It is good practive to append the color space to the file name for clarity when delivering proxy media (e.g. showID_seq_shot_v01_rec709.mxf).
 
 
 ## Gamut Compression and Nuke
+
+For an intro into Gamut Compression and what it is and why you need it, Check out the [gamut compression](gamut.md) doc for details and pretty pics. The following section discusses how it is applied in the context of a VFX pipeline.
 
 [Reference gamut compression](gamut.md) (RGC) is applied differently for ANM and VFX. In the ANM config where we are dealing exclusivly with CG animation it is automatically applied in the view transforms, and also baked into the output when writing out to sRGB. In the VFX config where we are dealing with film footage it is instead applied with a node and used as "pixel healing" baked into the EXR files returned to the client. This is done with a Nuke Gizmo located in the ````software/Nuke```` folder of this config. 
 
@@ -81,10 +83,6 @@ Best practice is to be apply the RGC immediately after the Input Transform (i.e.
 > There may be situations (edge despill in keying has been noted) however where the unmodified pixel values give a preferable result. In these cases it may be necessary for the compositor to have access to both the original and gamut compressed image data in their node tree, choosing between them as necessary. For consistency, the RGC should still be applied at some other suitable point in the composite, such that the final renders delivered to DI still have the gamut compression applied as expected.
 >
 > Since normal practice in VFX is to return images with any pixel not touched by the compositing process unmodified from the original pulls, one might think that the RGC should be inverted for deliverables, as is done with CDL corrections, for example. However, it is better to think of the RGC more like a spill suppression, which is part of the composite, and would not be inverted out at the end. Inverting creates the possibility that elements added during compositing (CGI  originally created in ACEScg, for example) which have not had the RGC applied may produce extreme values on inversion. 
-
-Check out the [gamut compression](gamut.md) doc for more details and pretty pics!
-
-
 
 
 
