@@ -72,11 +72,7 @@ Note above that you bake the display transform (Shot Look) however since you are
 
 ## Gamut Compression and Nuke
 
-For an intro into Gamut Compression and what it is and why you need it, Check out the [gamut compression](gamut.md) doc for details and pretty pics. The following section discusses how it is applied in the context of a VFX pipeline.
-
-[Reference gamut compression](gamut.md) (RGC) is applied differently for ANM and VFX. 
-
-
+For an intro into Gamut Compression and what it is and why you need it, Check out the [gamut compression](gamut.md) doc for details and pretty pics. 
 
 [Back to main](../StdX_ACES)
 
