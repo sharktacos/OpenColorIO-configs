@@ -8,19 +8,15 @@ ocio_profile_version: 2
 description: Maya 2022 default config, modified by Derek Flood for StudioX
 name: Maya_2022_default
 
-environment:
-  SHOW: Show
-  SHOT: shotNum
-  VER: version
-  SHAPER: ACEScct
-  
-search_path: "shot_luts:studio"
+environment: {}
+
+search_path: "show:studio"
 
 roles:
   aces_interchange: ACES2065-1
   cie_xyz_d65_interchange: CIE-XYZ D65
   color_timing: ACEScct
-  color_picking: Pick Rec709-sRGB Desat
+  color_picking: hdr
   compositing_linear: ACEScg  
   compositing_log: ACEScct
   data: Raw
@@ -45,8 +41,10 @@ file_rules:
 
 shared_views:
 
+  - !<View> {name: Neutral Look, view_transform: Neutral View, display_colorspace: <USE_DISPLAY_NAME>}
+  - !<View> {name: Filmic Look, view_transform: Filmic View, display_colorspace: <USE_DISPLAY_NAME>}
+  - !<View> {name: Show Look, view_transform: ACES 1.0 SDR-video, looks: Show_LUT, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: ACES 1.0 SDR-video, view_transform: ACES 1.0 SDR-video, display_colorspace: <USE_DISPLAY_NAME>}
-  - !<View> {name: Shot Look, view_transform: ACES 1.0 SDR-video, looks: LMT_shot, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: Un-tone-mapped, view_transform: Un-tone-mapped, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: Log, colorspace: ACEScct}
   - !<View> {name: Raw, colorspace: Raw}
@@ -56,9 +54,19 @@ shared_views:
 displays:
 
   sRGB:
-    - !<Views> [ACES 1.0 SDR-video, Shot Look, Un-tone-mapped, Log, Raw]
-  Rec.1886 - Rec.709 video:
-    - !<Views> [ACES 1.0 SDR-video, Shot Look, Un-tone-mapped, Log, Raw]
+    - !<Views> [Neutral Look, Filmic Look, Show Look, ACES 1.0 SDR-video, Un-tone-mapped, Log, Raw]
+
+  sRGB - Gamut Compress:
+    - !<View> {name: Neutral Look, view_transform: Neutral View, looks: LMT_gamut, display_colorspace: sRGB - Gamut Compress}
+    - !<View> {name: Filmic Look, view_transform: Filmic View, looks: LMT_gamut, display_colorspace: sRGB - Gamut Compress}
+    - !<View> {name: ACES 1.0 SDR-video, view_transform: ACES 1.0 SDR-video, looks: LMT_gamut, display_colorspace: sRGB - Gamut Compress}
+    - !<Views> [Un-tone-mapped, Log, Raw]
+
+#  Gamma 2.2 - Rec.709:
+#    - !<Views> [Neutral Look, Filmic Look, Show Look, ACES 1.0 SDR-video, Un-tone-mapped, Log, Raw]
+
+#  Rec.1886 - Rec.709 video:
+#    - !<Views> [Neutral Look, Filmic Look, Show Look, ACES 1.0 SDR-video, Un-tone-mapped, Log, Raw]
 
 
 view_transforms:
@@ -121,13 +129,10 @@ looks:
     process_space: ACEScct
     transform: !<FileTransform> {src: Show_LMT_cct.cube, interpolation: linear}
 
-  - !<Look>
-    name: LMT_shot
-    process_space: Shot_shaper
-    transform: !<FileTransform> {src: "${SHOW}_${SHOT}_${VER}_${SHAPER}.cube", interpolation: linear} 
 
 
-inactive_colorspaces: [CIE-XYZ D65, sRGB - Gamut Compress,  Gamut Shaper, Gamma 2.2 - Rec.709, Rec.1886 - Rec.709 video, sRGB, Inverse sRGB Output]
+
+inactive_colorspaces: [CIE-XYZ D65, sRGB - Gamut Compress,  Gamut Shaper, Gamma 2.2 - Rec.709, Rec.1886 - Rec.709 video, sRGB, Inverse sRGB Output, Premiere Pro - AP0 2.4 gamma, Premiere Pro - AP0 2.2 gamma, Premiere Pro - AP0 sRGB EOTF]
 
 
 
@@ -250,21 +255,7 @@ colorspaces:
     encoding: log
     to_scene_reference: !<BuiltinTransform> {style: "ACEScc_to_ACES2065-1"}
 
-
-  - !<ColorSpace>
-    name: Shot_shaper
-    family: Utility
-    equalitygroup: ""
-    bitdepth: 32f
-    description: |
-      The ACEScct or ACEScc color space based on context variable
-    isdata: false
-    categories: [ file-io ]
-    encoding: log
-    to_reference: !<ColorSpaceTransform> {src: "${SHAPER}", dst: ACES2065-1}
-
 # Extra #
-
   - !<ColorSpace>
     name: Inverse sRGB Output
     family: Input/File-io
@@ -276,6 +267,43 @@ colorspaces:
     to_reference: !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: sRGB, view: "ACES 1.0 SDR-video"}
 
 
+  - !<ColorSpace>
+    name: Premiere Pro - AP0 2.4 gamma
+    family: Input/Adobe
+    equalitygroup: ""
+    bitdepth: 32f
+    description: AP0 with 2.4 gamma.
+    isdata: false
+    categories: [ advanced-2d ]
+    encoding: sdr-video
+    allocation: uniform
+#    to_scene_reference: !<ExponentTransform> {value: [2.4, 2.4, 2.4, 1], negativeStyle: NEGATIVE_MIRROR}
+    to_scene_reference: !<ExponentTransform> {value: [2.4, 2.4, 2.4, 1]}
+
+  - !<ColorSpace>
+    name: Premiere Pro - AP0 2.2 gamma
+    family: Input/Adobe
+    equalitygroup: ""
+    bitdepth: 32f
+    description: AP0 with 2.2 gamma.
+    isdata: false
+    categories: [ advanced-2d ]
+    encoding: sdr-video
+    allocation: uniform
+#    to_scene_reference: !<ExponentTransform> {value: [2.2, 2.2, 2.2, 1], negativeStyle: NEGATIVE_MIRROR}
+    to_scene_reference: !<ExponentTransform> {value: [2.2, 2.2, 2.2, 1]}
+
+  - !<ColorSpace>
+    name: Premiere Pro - AP0 sRGB EOTF
+    family: Input/Adobe
+    equalitygroup: ""
+    bitdepth: 32f
+    description: AP0 with sRGB EOTF
+    isdata: false
+    categories: [ advanced-2d ]
+    encoding: sdr-video
+    allocation: uniform
+    to_scene_reference: !<ExponentWithLinearTransform> {gamma: 2.4, offset: 0.055}
 
 # Cameras #
 
