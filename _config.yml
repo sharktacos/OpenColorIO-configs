@@ -1,3 +1,4 @@
 theme: jekyll-theme-slate
 title: StudioX ACES OpenColorIO configs
 description: Documentation for the ANM and VFX color management configs used in the StudioX program
+url: https://sharktacos.github.io/OpenColorIO-configs
