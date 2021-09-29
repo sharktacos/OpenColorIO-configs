@@ -72,7 +72,7 @@ defaults:
  ---
  
  
-# theme: jekyll-theme-minimal
+ theme: jekyll-theme-minimal
 
 logo: /docs/img/studioX.png
 
