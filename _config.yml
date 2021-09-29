@@ -1,10 +1,75 @@
-# theme: jekyll-theme-minimal
+title: StudioX Color Management Docs
+email:
+description: >- # this means to ignore newlines until "baseurl:"
+  Write an awesome description for your new site here. You can edit this
+  line in _config.yml. It will appear in your document head meta (for
+  Google search results) and in your feed.xml site description.
+# twitter_username: username
+github_username: sharktacos
+minimal_mistakes_skin: default
+search: true
+
+# Build settings
+markdown: kramdown
 remote_theme: mmistakes/minimal-mistakes
-theme_color:           rgb(8,46,57)
-title: StudioX Color Management Documentation
-description:           >
-  ACES OpenColorIO configs for ANM and VFX pipelines
-tagline: StudioX OCIO configs
+
+# Plugins (previously gems:)
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jemoji
+  - jekyll-include-cache
+
+author:
+  name   : "Derek Flood"
+  avatar : "/assets/images/bio-photo.jpg"
+  bio    : "My awesome biography constrained to a sentence or two goes here."
+  links:
+    - label: "Website-o"
+      icon: "fas fa-fw fa-link"
+      url: "https://"
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/"
+    - label: "Instagram"
+      icon: "fab fa-fw fa-instagram"
+      url: "https://instagram.com/"
+   
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
+  # _pages
+  - scope:
+      path: "_pages"
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+
+category_archive:
+  type: liquid
+  path: /categories/
+tag_archive:
+  type: liquid
+  path: /tags/
+  
+  
+# theme: jekyll-theme-minimal
+
 logo: /docs/img/studioX.png
 
 sidebar:
