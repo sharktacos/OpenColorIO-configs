@@ -1,4 +1,4 @@
-# StudioX ACES config
+# StudioX ACES configs
 
 An OpenColorIO config based on the [ACES 1.2 Config](https://github.com/colour-science/OpenColorIO-Configs/tree/feature/aces-1.2-config/aces_1.2) and the [OCIOv2 demo config](https://opencolorio.readthedocs.io/en/latest/configurations/ocio_v2_demo.html) with added Look Transforms, gamut compression, and a few other goodies. Created for educational purposes and personal learning.
 
