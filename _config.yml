@@ -1,4 +1,4 @@
-theme: jekyll-theme-minimal
+# theme: jekyll-theme-minimal
 theme_color:           rgb(8,46,57)
 title: StudioX Color Management Documentation
 description:           >
