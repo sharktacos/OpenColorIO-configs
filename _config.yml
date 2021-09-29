@@ -1,4 +1,5 @@
 theme: jekyll-theme-minimal
+theme_color:           rgb(8,46,57)
 title: StudioX Color Management Documentation
 description:           >
   ACES OpenColorIO configs for ANM and VFX pipelines
@@ -7,6 +8,7 @@ logo: /docs/img/studioX.png
 
 sidebar:
   nav: "docs"
+  
 
 defaults:
   # _docs
