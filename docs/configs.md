@@ -6,17 +6,19 @@ The ANM config ````config_ANM.ocio```` is designed for work on CG animation shor
 
 ![img](img/nuke6.jpg)
 
-The Display Transforms for the above ANM config are all in sRGB display for viewing on artist's monitors, and contain the Reference Gamut Compression (RGC) baked into the view to componsate for hue skews with highly saturated colors in CG (see the [gamut](gamut.md) page. They contain the [Neutral and Filmic](tonemap.md) looks, as well as a Show Look. Neutral Look is intended for lookdev work, and Filmic Look is intended for shot lighting.
+The Display Transforms for the above ANM config are all in sRGB display for viewing on artist's monitors, and contain the Reference Gamut Compression (RGC) baked into the view to componsate for hue skews with highly saturated colors in CG (see the [gamut](gamut.md) page. They contain the [Neutral and Filmic](tonemap.md) looks, as well as a Show Look. Neutral Look is intended for lookdev work, and Filmic Look is intended for shot lighting, and Show Look contains the specific look for the show determined by the director.
 
 ## VFX Config
 
 ![img](img/nuke5.jpg)
 
-The Display Transforms for the above VFX config contain both sRGB and Rec.709 display types depending on whether a shot is being viewed on an artist's monitor (sRGB) or on an HDTV display for dailies. As explained above, gamut compression is applied as a node in VFX and thus not included in the Display Transform. The views include standard an ACES 1.0 RRT in both sRGB and Rec.709, the shot look both sRGB and Rec.709 displays, as well as several diagnostic views (un-tone-mapped, Raw, Log). Un-tone-mapped is the equivalent to Nuke's native sRGB which is a simple sRGB Gamma function without tonemapping.  
+The Display Transforms for the above VFX config contain both sRGB and Rec.709 display types depending on whether a shot is being viewed on an artist's monitor (sRGB) or on an HDTV display for dailies. In a VFX pipeline [gamut compression](gamut.md) is applied as a node in VFX and thus not included in the Display Transform. The views include the standard ACES 1.0 RRT in both sRGB and Rec.709, the shot look (see below) both for sRGB and Rec.709 displays, as well as several diagnostic views (un-tone-mapped, Raw, Log). Un-tone-mapped is the equivalent to Nuke's native sRGB which is a simple sRGB Gamma function without tonemapping.  
 
 ## Shot Look
 
-The shot Look Display Transform in the VFX config works with context variables. You will need to insert the following code into your Nuke menu.py file:
+The shot Look Display Transform in the VFX config works with context variables set in the config. 
+
+You will need to insert the following code into your Nuke menu.py file:
 
 ```py  
 # OCIO Shot Look custom defaults: 
