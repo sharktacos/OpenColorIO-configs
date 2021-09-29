@@ -1,5 +1,5 @@
 theme: jekyll-theme-minimal
-title: StudioX Color Management Docs
+title: StudioX Color Management Documentation
 description:           >
   ACES OpenColorIO configs for ANM and VFX pipelines
 tagline: StudioX OCIO configs
