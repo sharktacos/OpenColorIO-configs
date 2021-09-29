@@ -41,7 +41,7 @@ The remaining view transforms are the same as the default Maya 2022 config.
 
 Additionally, the above transforms can alternately be viewed with the new [Gamut Compression](docs/gamut.md).
 
-## Software
+## <a name="software"></a>Software
 
 Instructions for use of the config's Look Transforms in various software, including those that do not support OCIO:
 
