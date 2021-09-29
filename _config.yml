@@ -5,6 +5,9 @@ description:           >
 tagline: StudioX OCIO configs
 logo: /docs/img/studioX.png
 
+sidebar:
+  nav: "docs"
+
 defaults:
   # _docs
   - scope:
