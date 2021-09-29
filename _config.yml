@@ -1,4 +1,5 @@
 # theme: jekyll-theme-minimal
+remote_theme: mmistakes/minimal-mistakes
 theme_color:           rgb(8,46,57)
 title: StudioX Color Management Documentation
 description:           >
