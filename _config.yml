@@ -5,6 +5,15 @@ description:           >
 tagline: StudioX OCIO configs
 logo: /docs/img/studioX.png
 
+defaults:
+  # _docs
+  - scope:
+      path: ""
+      type: docs
+    values:
+      sidebar:
+        nav: "docs"
+
 menu:
   - title: Maya
     url: /docs/Maya.md
