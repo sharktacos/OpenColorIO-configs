@@ -3,13 +3,13 @@ title: StudioX Color Management Docs
 description:           >
   ACES OpenColorIO configs for ANM and VFX pipelines
 tagline: StudioX OCIO configs
-logo:                  /assets/img/logo.png
+logo: /assets/img/logo.png
 
 menu:
-  - title:             Maya
-    url:               /docs/Maya.md
-  - title:             Documentation
-    url:               /docs/
-  - title:             About
-    url:               /about/
+  - title: Maya
+    url: /docs/Maya.md
+  - title: Documentation
+    url: /docs/
+  - title: About
+    url: /about/
 
