@@ -6,7 +6,7 @@ The ANM config ````config_ANM.ocio```` is designed for work on CG animation shor
 
 ![img](img/nuke6.jpg)
 
-The Display Transforms for the above ANM config are all in sRGB display for viewing on artist's monitors, and contain the Reference Gamut Compression (RGC) baked into the view to componsate for hue skews with highly saturated colors in CG (see the [gamut](gamut.md) page. The contain the [Neutral and Filmic](tonemap.md) looks, as well as a Show Look.
+The Display Transforms for the above ANM config are all in sRGB display for viewing on artist's monitors, and contain the Reference Gamut Compression (RGC) baked into the view to componsate for hue skews with highly saturated colors in CG (see the [gamut](gamut.md) page. They contain the [Neutral and Filmic](tonemap.md) looks, as well as a Show Look. Neutral Look is intended for lookdev work, and Filmic Look is intended for shot lighting.
 
 ## VFX Config
 
