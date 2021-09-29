@@ -1,9 +1,3 @@
----
-layout: default
-title: ACES for Indie Filmmakers
-rank: 1
----
-
 
 
 <p align="center">
