@@ -1,27 +1,6 @@
 theme: jekyll-theme-minimal
 title: StudioX Color Management Docs
-email:
-description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
-# twitter_username: username
-github_username: sharktacos
-minimal_mistakes_skin: default
-search: true
 
-# Build settings
-markdown: kramdown
-remote_theme: mmistakes/minimal-mistakes
-
-# Plugins (previously gems:)
-plugins:
-  - jekyll-paginate
-  - jekyll-sitemap
-  - jekyll-gist
-  - jekyll-feed
-  - jemoji
-  - jekyll-include-cache
 
 author:
   name   : "Derek Flood"
@@ -49,30 +28,6 @@ category_archive:
 tag_archive:
   type: liquid
   path: /tags/
-
----
-defaults:
-  # _posts
-  - scope:
-      path: ""
-      type: posts
-    values:
-      layout: single
-      author_profile: true
-      read_time: true
-      comments: true
-      share: true
-      related: true
-  # _pages
-  - scope:
-      path: "_pages"
-      type: pages
-    values:
-      layout: single
-      author_profile: true
- ---
- 
- 
 
 
 logo: /docs/img/studioX.png
