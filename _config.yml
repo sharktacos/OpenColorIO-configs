@@ -19,15 +19,7 @@ author:
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       url: "https://instagram.com/"
-      
 
-
-category_archive:
-  type: liquid
-  path: /categories/
-tag_archive:
-  type: liquid
-  path: /tags/
 
 
 logo: /docs/img/studioX.png
@@ -53,20 +45,5 @@ author:
       icon: "fab fa-fw fa-instagram"
       url: "https://instagram.com/"
       
-defaults:
-  # _docs
-  - scope:
-      path: ""
-      type: docs
-    values:
-      sidebar:
-        nav: "docs"
 
-menu:
-  - title: Maya
-    url: /docs/Maya.md
-  - title: Documentation
-    url: /docs/
-  - title: About
-    url: /about/
 
