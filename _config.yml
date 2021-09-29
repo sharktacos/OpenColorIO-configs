@@ -1,3 +1,4 @@
+theme: jekyll-theme-minimal
 title: StudioX Color Management Docs
 email:
 description: >- # this means to ignore newlines until "baseurl:"
@@ -72,7 +73,7 @@ defaults:
  ---
  
  
- theme: jekyll-theme-minimal
+
 
 logo: /docs/img/studioX.png
 
