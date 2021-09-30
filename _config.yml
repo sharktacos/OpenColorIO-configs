@@ -1,4 +1,4 @@
-theme: jekyll-theme-slate
+theme: jekyll-theme-hacker
 title: StudioX ACES Documentation
 url: https://sharktacos.github.io/OpenColorIO-configs/
 description: ACES OpenColorIO configs for CG Animation and VFX studio pipelines
