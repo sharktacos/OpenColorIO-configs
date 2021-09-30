@@ -1,5 +1,15 @@
 # Davinci Resolve
 
+## scene-referred vs display-referred 
+
+Traditionally colorists work in what is called a *display-referred* workflow, meaning the colorist needs to *refer* to the *display* and basically just eyeball footage to manually get it to look good. If one were for example reading in footage from a RED camera, they would read in the raw camera file in IPP2 using Log3G10 REDwideGamutRGB and see the washed out image below. The colorist would begin with this washed out image in log space, and grade it manually until it looked nice.
+
+![pic](img/Resolve10.png)
+
+ACES instead works in a *scene-referred* workflow, meaning film footage is input using the mathematical transform provided by the camera maufacturer to read in the raw footage. Here's that same RED footage in ACES. This is the starting point that the colorist then begins with, allowing them to focus on the artistic look of the film, beginning with a digital image that has been digitally “developed” according to the exact mathematical specifications of each particular camera manufacturer. 
+
+![pic](img/Resolve11.png)
+
 ## Creating LUTs for on-set monitoring
 
 Resolve can generate a LUT that can be used, either in-camera or with an external LUT box, to preview footage on-set with a standard Rec.709 reference monitor. This is done using the ACES Transform OFX plugin in resolve. 
@@ -16,37 +26,24 @@ Then simply export the 3D LUT with the “Generate 3D LUT (CUBE)” command. Thi
 
 If you don't want to "roll your own" LUTs, cinematographer Geoff Boyle has a [set of free LUTs](https://community.acescentral.com/t/luts-that-emulate-the-aces-workflow/1334/21) you can download for just about every film camera out there.
 
-## scene-referred vs display-referred 
+## VFX Pulls
 
-Traditionally colorists work in what is called a *display-referred* workflow, meaning the colorist needs to *refer* to the *display* and basically just eyeball footage to manually get it to look good. If one were for example reading in footage from a RED camera, they would read in the raw camera file in IPP2 using Log3G10 REDwideGamutRGB and see the washed out image below. The colorist would begin with this washed out image in log space, and grade it manually until it looked nice.
+VFX pulls should be debayered from the original RAW camera files and exported as 16-bit EXR in the ACES AP0 interchange format (ACES2065-1) with PIZ compression. Netflix Studios has a great [step-by-step guide for Resolve](https://partnerhelp.netflixstudios.com/hc/en-us/articles/360002088888-Color-Managed-Workflow-in-Resolve-ACES-) that will walk you through the process in detail.  
 
-![pic](img/Resolve10.png)
+- **Ungraded footage.** All color correction and grades should be *disabled* for a VFX pull. An easy way to do this is to turn on "Enable Flat Pass" in the Resolve Delivery advanced options (again, see the above step-by-step guide). The basic idea is that VFX returns the ungraded plate to DI, with the VFX added, so that DI gets the full quality film plate back *as if it were filmed that way*. DI can then seamlessly insert it back into the conform and color grade everything together.
 
-ACES instead works in a *scene-referred* workflow, meaning film footage is input using the mathematical transform provided by the camera maufacturer to read in the raw footage. Here's that same RED footage in ACES. This is the starting point that the colorist then begins with, allowing them to focus on the artistic look of the film, beginning with a digital image that has been digitally “developed” according to the exact mathematical specifications of each particular camera manufacturer. 
-
-![pic](img/Resolve11.png)
-
-However, while everyone is happy with these ACES Input Transforms, a lot of colorists are not as happy with the ACES Output Transform which they find has too much of a "look" on it. They would prefer a more *neutral* starting point to begin their grading work from. That's the motivation for the [Look Transforms](tonemap.md) of this config. Here's a side by side comparison of the ACES Output Transform and the **Neutral Look** transform. You can read more details about these Look Transforms [here](tonemap.md).
-
-![pic](img/Resolve12.png)
+- **Color Reference and LUTs.** VFX pulls should include 
+  - *A reference frame for checking color against existing dailies.* <br>This should be an 8-bit JPG or PNG in sRGB color space. A screen grab works fine.
+  - *A "shot LUT" to achieve dailies color, along with the working color space.* <br>In Resolve the "generate LUT" command can be used to export all enabled grades, both in the timeline and the clip, so it will combine the Look Transform with your shot grades, including any CDL, all into a single *Shot LUT* for VFX to use. The LUT's working color space should be noted in the file name (For example ````shot01_ACEScct.cube````. This will be ACEScct or ACEScc based on the Project Settings in Resolve. VFX needs to know this in order to properly process the LUT in comp. 
 
 
-## Setting up the Gamut Compress and Look Transforms for Resolve
+## Setting up Reference Gamut Compression for Resolve
 
-To use the *Filmic* and *Neutral* Look LUTS, the .cube files need to be placed into the Davinci Resolve LUT directory, which you can get to by clicking "Open LUT folder" in the Preferences, copying the files, and then clicking "update lists" to refresh. 
+Gamut compression is done in Davinci Resolve Studio using a DCTL file which you will find in the ````software/Resolve/GamutCompress.dctl```` folder of the config. Place this into the Davinci Resolve LUT directory, which you can get to by clicking "Open LUT folder" in the Preferences, copying the files, and then clicking "update lists" to refresh. 
 
 ![Resolve](img/Resolve2.jpg)
 
-The two .cube Look LUT files are called:
-
-````studio/LMT_filmic_AP1_shaper.cube```` <br>
-````studio/LMT_neutral_AP1_shaper.cube````
-
-A colorist may wish to use the Neutral Look for example as a starting place for grading instead of the default ACES Output Transform which many find to not be very neutral. See the [tone mapping](tonemap.md) doc for details and pretty pics.
-
-Gamut compression is done in Davinci Resolve Studio using a DCTL file which you will find in the ````software/Resolve/GamutCompress.dctl```` folder of the config. Place this into the Davinci Resolve LUT directory as described above. 
-
-The “process node LUTs in” in the ACES Color management Settings should be set to AP1 when using these .cube LUTs with the shaper built in as well as for the DCTL. This will be the same as the Color Science setting  (ACEScct or ACEScc). 
+The “process node LUTs in” in the ACES Color management Settings should be set to AP1 when using the DCTL. This will be the same as the Color Science setting  (ACEScct or ACEScc). 
 
 ![Resolve](img/Resolve3.jpg)
 
@@ -61,26 +58,6 @@ This can be accomplished with groups in Resolve. Select all of the clips and cre
 ![Resolve](img/Resolve6.jpg)
 
 The gamut compress DCTL is applied in the *Group Pre-clip* which is accessed by right-clicking on the node and choosing it from the LUT menu. This will blanket apply gamut compression before all the clip grades.
-
-## Applying Look Transforms
-
-On the other hand, a Look Transform (LMT) conceptually should be applied across an entire scene or show, *after* the per shot grades but before the Output Transform. For example using the Neutral Look as a starting point for grading.
-
-The Look Transform is therefore applied in the *Group Post-clip* which is again accessed by right-clicking on the node and choosing it from the LUT menu. This will blanket apply the Look Transform after all the clip grades.
-
-## Putting it all together (and taking it off)
-
-Both  *Group Pre-clip* and  *Group Post-clip*  can be toggled on or off as desired. For example, as discussed above when passing a clip to VFX the Look should be disabled (as should all grades) so it is not baked into the EXR on export. Similarly, gamut compression should be disabled for VFX pulls. 
-
-![Resolve](img/Resolve1.jpg)
-
-
-
-
-
-
-
-
 
 
 
