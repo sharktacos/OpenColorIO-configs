@@ -43,8 +43,8 @@ The Display Transforms for the above VFX config contain both sRGB and Rec.709 di
 
 ````
 environment:
-  LUT_PATH: shot_luts
-  NAME: clientLUT
+  LUT_PATH: ../2_Shots/SM_020_018/01_Client_Original_Footage/5_LUT/
+  LUT_NAME: clientLUT_ACEScct.cube
 ````
 
 
