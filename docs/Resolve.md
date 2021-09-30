@@ -38,11 +38,21 @@ Then simply export the 3D LUT with the “Generate 3D LUT (CUBE)” command. Thi
 
 If you don't want to "roll your own" LUTs, cinematographer Geoff Boyle has a [set of free LUTs](https://community.acescentral.com/t/luts-that-emulate-the-aces-workflow/1334/21) you can download for just about every film camera out there.
 
+## Conform
+
+Editorial is working with proxy media made from baking the ACES Output Transform into the clip for viewing in a non-color managed workflow such as Adobe Premiere. The conform is where those proxy files are subsituted for the high res Open-EXR files in ACES AP0 interchange color space (ACES2065-1). This swap is done with an EDL/AAF/XML file provided by editorial. 
+
+![LUTs](img/pipeline.jpg)
+
+Generally XML and AAF have replaced EDL. XML is used by Premiere, and AAF by AVID. Assuming we are working with Premiere and Resolve then, the conform would involve exporting an XML of the proxy edit in Premiere (```file > export > final Cut Pro XML```) and importing this into Resolve (```file > import timeline > import AAF,EDL,XML```). The proxy media is then linked to the full res camera RAW files in Resolve. See the Resolve manual for details on this. A good place to start is the [The Beginner’s Guide to Conforming with DaVinci Resolve](https://blog.frame.io/2019/03/29/conforming-with-resolve/?__cf_chl_jschl_tk__=pmd_UNFRGgnL4qFI66TSmGJ_YszygW4jy2EaeIb0GSYfGKg-1633042554-0-gqNtZGzNAfujcnBszQdR).
+
+This can then be output as Open-EXR files in ACES AP0 interchange color space (ACES2065-1) with PIZ lossless compression. Unlike a 10-bit DPX, this ACES interchange format is able to hold all of the quality and dynamic range of the original camera RAW files. Resolve Netflix Studios has a great [step-by-step guide for Resolve](https://partnerhelp.netflixstudios.com/hc/en-us/articles/360002088888-Color-Managed-Workflow-in-Resolve-ACES-) that will walk you through the process in detail.  
+
+
+
 ## VFX Pulls and Per-Shot LUTs
 
-VFX pulls should be debayered from the original RAW camera files and exported as 16-bit EXR in the ACES AP0 interchange format (ACES2065-1) with PIZ compression. Netflix Studios has a great [step-by-step guide for Resolve](https://partnerhelp.netflixstudios.com/hc/en-us/articles/360002088888-Color-Managed-Workflow-in-Resolve-ACES-) that will walk you through the process in detail.  
-
-- **Ungraded footage.** All color correction and grades should be *disabled* for a VFX pull. An easy way to do this is to turn on "Enable Flat Pass" in the Resolve Delivery advanced options (again, see the above step-by-step guide). The basic idea is that VFX returns the ungraded plate to DI, with the VFX added, so that DI gets the full quality film plate back *as if it were filmed that way*. DI can then seamlessly insert it back into the conform and color grade everything together.
+Like the conform, VFX pulls should be debayered from the original RAW camera files and exported as 16-bit EXR in the ACES AP0 interchange format (ACES2065-1) with PIZ compression. All color correction and grades should be *disabled* for a VFX pull. An easy way to do this is to turn on "Enable Flat Pass" in the Resolve Delivery advanced options (again, see the above step-by-step guide). The basic idea is that VFX returns the ungraded plate to DI, with the VFX added, so that DI gets the full quality film plate back *as if it were filmed that way*. DI can then seamlessly insert it back into the conform and color grade everything together.
 
 - **Color Reference and LUTs.** VFX pulls should include 
   - *A reference frame for checking color against existing dailies.* <br>This should be an 8-bit JPG or PNG in sRGB color space. A screen grab works fine.
