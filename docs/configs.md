@@ -47,7 +47,7 @@ environment:
   SHAPER: ACEScct
 # ------------------------------------------------------------------- # 
 ````
-Each artist would have a VFX config file in their local directory for the show they are working on. They would set the above variables to correspond to the location (*LUT_PATH*) and name (*LUT_NAME*) of the LUT for the shot they are working on. The OCIO config will then display that shot LUT in the program they load the OCIO config into (Maya, Nuke, etc.). The *SHAPER* variable refers to the working color space the LUT was created in (this is referred to as a "shaper" LUT). This will be either ACEScct or (less commonly) ACEScc, based on the Project Settings in Davinci Resolve. VFX needs to know this in order to properly process the LUT in comp. It is good practice to append the shaper space to the file name for clarity. See [ACES for Indie Filmmakers](docs/VFXpulls.md#require) for details on requirements for VFX pulls.
+Each artist would have a VFX config file in their local directory for the show they are working on. They would set the above variables to correspond to the location (*LUT_PATH*) and name (*LUT_NAME*) of the LUT for the shot they are working on. The OCIO config will then display that shot LUT in the program they load the OCIO config into (Maya, Nuke, etc.). The *SHAPER* variable refers to the working color space the LUT was created in (this is referred to as a "shaper" LUT). This will be either ACEScct or (less commonly) ACEScc, based on the Project Settings in Davinci Resolve. VFX needs to know this in order to properly process the LUT in comp. It is good practice to append the shaper space to the file name for clarity. See [ACES for Indie Filmmakers](VFXpulls.md#require) for details on requirements for VFX pulls.
 
 
 
