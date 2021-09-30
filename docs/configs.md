@@ -28,8 +28,6 @@ The remaining view transforms are the same as the default Maya 2022 config and a
 
 ## VFX Config
 
-For an overview of how the VFX pipeline fits into the whole filmmaking process, see [ACES for Indie Filmmakers](docs/VFXpulls.md)
-
 - *OCIOv1_config_VFX.ocio.ocio*
    is designed for a VFX pipeline integtrating CG and VFX into live action film.
  - *OCIOv1_config_VFX.ocio.ocio*
@@ -42,76 +40,15 @@ The Display Transforms for the above VFX config contain both sRGB and Rec.709 di
 **Shot Look** This view transform uses contextual variables to apply the shot-specific look LUT provided by the client to the view. The variables are defined in the config and can be set by the artist.
 
 ````
+# ---------------- Per Shot Grade Variables ------------------------- #
 environment:
   LUT_PATH: ../2_Shots/SM_020_018/01_Client_Original_Footage/5_LUT/
-  LUT_NAME: clientLUT_ACEScct.cube
+  LUT_NAME: clientShotLUTname_ACEScct.cube
+  SHAPER: ACEScct
+# ------------------------------------------------------------------- # 
 ````
 
+The LUT_PATH and LUT_NAME are somewhat self explanitory. In this case the path is one directory above the config file ````../```` and the name is a placeholder obviously for whatever naming the client uses for the per-shot LUT. The SHAPER refers to the working color space the LUT was created in. This will be either ACEScct or (less commonly) ACEScc based on the Project Settings in Resolve. VFX needs to know this in order to properly process the LUT in comp. It is good practice to append the shaper space to the file name for clarity. See [ACES for Indie Filmmakers](docs/VFXpulls.md#require) for details on requirements for VFX pulls.
 
 
 
-
-
-
-
-## Shot Look
-
-The shot Look Display Transform in the VFX config works with context variables set in the config. 
-
-You will need to insert the following code into your Nuke menu.py file:
-
-```py  
-# OCIO Shot Look custom defaults: 
-def _setOCIODisplayContext():
-    node = nuke.thisNode()
-    node.knob('key1').setValue("SHOW")
-    node.knob('key2').setValue("SHOT")
-    node.knob('key3').setValue("VER")
-    node.knob('key4').setValue("SHAPER")
-    
-    node.knob('value1').setValue("Show")
-    node.knob('value2').setValue("shotNum") 
-    node.knob('value3').setValue("version")
-    node.knob('value4').setValue("ACEScct")
-    
-nuke.addOnCreate(_setOCIODisplayContext, nodeClass="OCIODisplay")
-```
-
-Then in Nuke select the "view panel" menu from the View Transform menu
-
-![img](img/nuke2.jpg)
-
-This will open up a properties window. Open the Context tab and you will see that it has been populated with template values. As a friendly hint for artists that this needs to be replaced with the actual shot values this template LUT is black and white.
-
-![img](img/nuke3.jpg)
-
-Replace the value fields for your shot LUT. The shot_lut directory of the config contains all of the shot LUTS for the show. For example if you were working on the DSOM show on shot 22 and the client LUT was called ````DSOM_022_v02_ACEScct.cube```` you would write the following:
-
-![img](img/nuke4.jpg)
-
-Alternatley, you can simply edit your menu.py file to input the values. In our example that would be
-
-````py
-    node.knob('value1').setValue("DSOM")
-    node.knob('value2').setValue("022") 
-    node.knob('value3').setValue("v02")
-    node.knob('value4').setValue("ACEScct")
-````
-
-Nuke will open with these values, pointing to your shot look LUT.
-
-In Maya you can similarly edit your Maya.env file and enter the following (again using the above example):
-````
-SHOW = DSOM
-SHOT = 022
-VER = v02
-SHAPER = ACEScct
-````
-If you want to change the values in a Maya session you can use the following MEL code:
-````py
-putenv "SHOW" "DSOM";
-putenv "SHOT" "022";
-putenv "VER" "v02";
-putenv "VER" "ACEScct";
-colorManagementPrefs -refresh;
-````
