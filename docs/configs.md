@@ -4,15 +4,55 @@ The ANM config ````config_ANM.ocio```` is designed for work on CG animation shor
 
 ## ANM Config
 
+- *OCIOv1_config_ANM.ocio.ocio*
+   is designed for a CG animation pipeline 
+ - *OCIOv1_config_ANM.ocio.ocio*
+   is the same, but using OCIOv2 for Maya 2022
+
 ![img](img/nuke6.jpg)
 
-The Display Transforms for the above ANM config are all in sRGB display for viewing on artist's monitors, and contain the Reference Gamut Compression (RGC) baked into the view to componsate for hue skews with highly saturated colors in CG (see the [gamut](gamut.md) page. They contain the [Neutral and Filmic](tonemap.md) looks, as well as a Show Look. Neutral Look is intended for lookdev work, and Filmic Look is intended for shot lighting, and Show Look contains the specific look for the show determined by the director.
+The Display Transforms for the above ANM config are all in sRGB display for viewing on artist's monitors, and contain the Reference Gamut Compression (RGC) baked into the view to componsate for hue skews with highly saturated colors in CG (see the [gamut](gamut.md) page. They contain two modifications of the standard ACES view transform using Look Transforms. 
+
+**Neutral Look** is intended as a neutral starting point for lookdev work. 
+
+**Filmic Look** is intended for shot work and has a similar filmic look to the standard ACES 1.0 RRT, with slightly reduced contrast. You can read details about both of these in [tone mapping](tonemap.md) page.  Additionally, The *Filmic* and *Neutral* Look Transforms provide [highlight desaturation](docs/highlight.md) of blackbody color temperatures, and [reduced hue shifts](docs/chroma.md) compared to the default ACES 1.0 Output Transform. Finally, the new [Gamut Compression](docs/gamut.md) is baked into the view to address hue shifts in CG renders with ACES. Note that Reference Gamut Compression is not baked into the view in a VFX pipeline.
+
+**Show Look** is for the show specific look LUT decided on by the director for the ANM config. This Look is combined with the Filmic Look.
+
+The remaining view transforms are the same as the default Maya 2022 config and are used for diagnostic purposes.
+
+- **Un-tone-mapped** 
+- **Raw** 
+- **Log**
+
 
 ## VFX Config
 
+For an overview of how the VFX pipeline fits into the whole filmmaking process, see [ACES for Indie Filmmakers](docs/VFXpulls.md)
+
+- *OCIOv1_config_VFX.ocio.ocio*
+   is designed for a VFX pipeline integtrating CG and VFX into live action film.
+ - *OCIOv1_config_VFX.ocio.ocio*
+   is the same, but using OCIOv2 for Maya 2022
+   
 ![img](img/nuke5.jpg)
 
-The Display Transforms for the above VFX config contain both sRGB and Rec.709 display types depending on whether a shot is being viewed on an artist's monitor (sRGB) or on an HDTV display for dailies. In a VFX pipeline [gamut compression](gamut.md) is applied as a node in VFX and thus not included in the Display Transform. The views include the standard ACES 1.0 RRT in both sRGB and Rec.709, the shot look (see below) both for sRGB and Rec.709 displays, as well as several diagnostic views (un-tone-mapped, Raw, Log). Un-tone-mapped is the equivalent to Nuke's native sRGB which is a simple sRGB Gamma function without tonemapping.  
+The Display Transforms for the above VFX config contain both sRGB and Rec.709 display types depending on whether a shot is being viewed on an artist's monitor (sRGB) or on an HDTV display for dailies. In a VFX pipeline [gamut compression](gamut.md) is applied as a node in VFX and thus not included in the Display Transform. The views include the standard **ACES 1.0 RRT** in both sRGB and Rec.709, the **Shot Look** (see below) both for sRGB and Rec.709 displays, as well as several diagnostic views (**un-tone-mapped, Raw, Log**). **Un-tone-mapped** is the equivalent to Nuke's native sRGB which is a simple sRGB Gamma function without [tone mapping](tonemap.md).  
+
+**Shot Look** This view transform uses contextual variables to apply the shot-specific look LUT provided by the client to the view. The variables are defined in the config and can be set by the artist.
+
+````
+environment:
+  LUT_PATH: shot_luts
+  NAME: clientLUT
+````
+
+
+
+
+
+
+
 
 ## Shot Look
 
