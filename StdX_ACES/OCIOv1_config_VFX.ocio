@@ -2,18 +2,23 @@
 # Modified by Derek for StudioX
 
 ocio_profile_version: 1
+description: An ACES config Modified by Derek Flood for StudioX
 
-search_path: "show:shot_luts:studio:luts"
 strictparsing: true
 luma: [0.2126, 0.7152, 0.0722]
 
-description: An ACES config Modified by Derek Flood for StudioX
 
+
+# ---------------- Per Shot Grade Variables ------------------------- #
 environment:
-  SHOW: Show
-  SHOT: shotNum
-  VER: version
+  LUT_PATH: ../2_Shots/SM_020_018/01_Client_Original_Footage/5_LUT/
+  LUT_NAME: clientShotLUTname_ACEScct.cube
   SHAPER: ACEScct
+# ------------------------------------------------------------------- #  
+
+
+
+search_path: "studio:luts:${LUT_PATH}"
 
 roles:
   color_picking: scene-linear Rec.709-sRGB
@@ -82,7 +87,7 @@ looks:
   - !<Look>
     name: LMT_shot
     process_space: Shot_shaper
-    transform: !<FileTransform> {src: "${SHOW}_${SHOT}_${VER}_${SHAPER}.cube", interpolation: linear} 
+    transform: !<FileTransform> {src: "${LUT_NAME}", interpolation: linear} 
 
 
 colorspaces:

@@ -8,13 +8,14 @@ ocio_profile_version: 2
 description: Maya 2022 default config, modified by Derek Flood for StudioX
 name: Maya_2022_default
 
+# ---------------- Per Shot Grade Variables ------------------------- #
 environment:
-  SHOW: Show
-  SHOT: shotNum
-  VER: version
+  LUT_PATH: ../2_Shots/SM_020_018/01_Client_Original_Footage/5_LUT/
+  LUT_NAME: clientShotLUTname_ACEScct.cube
   SHAPER: ACEScct
+# ------------------------------------------------------------------- # 
   
-search_path: "shot_luts:studio"
+search_path: "studio:${LUT_PATH}"
 
 roles:
   aces_interchange: ACES2065-1
@@ -124,10 +125,10 @@ looks:
   - !<Look>
     name: LMT_shot
     process_space: Shot_shaper
-    transform: !<FileTransform> {src: "${SHOW}_${SHOT}_${VER}_${SHAPER}.cube", interpolation: linear} 
+    transform: !<FileTransform> {src: "${LUT_NAME}", interpolation: linear} 
 
 
-inactive_colorspaces: [CIE-XYZ D65, sRGB - Gamut Compress,  Gamut Shaper, Gamma 2.2 - Rec.709, Rec.1886 - Rec.709 video, sRGB, Inverse sRGB Output]
+inactive_colorspaces: [CIE-XYZ D65, sRGB - Gamut Compress,  Gamut Shaper, Gamma 2.2 - Rec.709, Rec.1886 - Rec.709 video, sRGB, Inverse sRGB Output, Output - Filmic Look (sRGB), Output - Neutral Look (sRGB), Shot_shaper]
 
 
 
@@ -426,13 +427,13 @@ colorspaces:
     from_reference: !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "ACES 1.0 SDR-video"}
 
   - !<ColorSpace>
-    name: Output - Show Look (sRGB)
+    name: Output - Shot Look (sRGB)
     family: Output
     description: Output Show Look (sRGB display)
     isdata: false
 #    categories: [ file-io ]
     encoding: sdr-video
-    from_reference: !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Show Look"}
+    from_reference: !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Shot Look"}
 
 
 display_colorspaces:
