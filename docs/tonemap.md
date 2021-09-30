@@ -6,7 +6,7 @@ As the white paper explained, viewing an image through a 2.2 gamma can result in
 
 <p align="center">
   
-<img src="img/tonemap0.png" width=50%><img src="img/tonemap1.png" width=50%>
+<img src="img/tonemap0.png" width=50%> <img src="img/tonemap1.png" width=50%>
   
 </p>
 
@@ -16,11 +16,11 @@ This is tremendously important not only for photos, but also for photorealistic 
 
 <p align="center">
   
-<img src="img/tonemap3.png" width=50%><img src="img/tonemap2.png" width=50%><br>
+<img src="img/tonemap3.png" width=50%> <img src="img/tonemap2.png" width=50%><br>
   
-<img src="img/tonemap5.png" width=50%><img src="img/tonemap4.png" width=50%><br> 
+<img src="img/tonemap5.png" width=50%> <img src="img/tonemap4.png" width=50%><br> 
   
-<img src="img/tonemap7.png" width=50%><img src="img/tonemap6.png" width=50%><br> 
+<img src="img/tonemap7.png" width=50%> <img src="img/tonemap6.png" width=50%><br> 
   
 </p>
 
