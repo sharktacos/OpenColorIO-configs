@@ -10,6 +10,18 @@ ACES instead works in a *scene-referred* workflow, meaning film footage is input
 
 ![pic](img/Resolve11.png)
 
+In a non-color managed workflow one says they "are working in Rec.709" because they are working in the *display-referred* space of their display device, which is a broadcast monitor. In a color managed workflow like ACES one instead has *Input > Working > Output* spaces. A RAW camera file is recognized by its file format extension (for example .ari for ARRI) and will be debayered by Resolve. However if the original camera footage was saved in a format such as ProRes the camera type will need to be selected in the ACES input color space.
+
+PIC
+
+The Output is set to match the colour space of the device/monitor you are viewing it on. For example if you are using a broadcast HDTV monitor then you would set it to Rec.709. If you are instead viewing on a standard computer monitor you would set it to sRGB. In other words, you set the color space to match what your display device is calibrated to. Rec.709 is the specification for HDTV and sRGB is the specification for a standard computer monitor. If you then have these two correctly calibrated monitors side by side, then the image you perceive from each one should be the same.
+
+The working space in ACES is log, most commonly in ACEScct. Below you can see the settings in the Preferences for ACES color management. ACEScct is the working color space. The Input is set to "no input transform" so it can be chosen for each clip as described above. The Output is set for viewing on a Rec.709 broadcast monitor.
+
+![pic](img/Resolve4.jpg)
+
+
+
 ## Creating LUTs for on-set monitoring
 
 Resolve can generate a LUT that can be used, either in-camera or with an external LUT box, to preview footage on-set with a standard Rec.709 reference monitor. This is done using the ACES Transform OFX plugin in resolve. 
