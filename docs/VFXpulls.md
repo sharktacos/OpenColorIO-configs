@@ -81,7 +81,7 @@ The conform is where the proxy files are swapped out in the final edit for the o
 Traditional 10-bit DPX files are not recommended, as they are [not sufficient](https://acescentral.com/uploads/default/original/1X/25ec1472d70b169ceabb215beacdd501d1a27fac.pdf) to contain all the information captured by modern digital cameras (For example RED camera RAW files are 16-bit). In contrast, [OpenEXR](https://www.openexr.com/) is 16-bit float with a dynamic range of 30+ exposure stops, and a wide gamut color space (ACES2065-1) that contains the full color gamut visible to the human eye (see graphic below). In short: Using 10-bit DPX involves a degradation of quality from the original camera footage, while EXR *more than* covers the full fidelity and range of any camera RAW file. It has become [common industry practice](https://partnerhelp.netflixstudios.com/hc/en-us/articles/360000611467-VFX-Best-Practices) to use PIZ or ZIP *lossless* compression on these ACES OpenEXR files. This results in file sizes that are *smaller* than DPX files! 
 
 <p align="center">
-<img src="img/gamuts.jpg" width=85%>
+<img src="img/gamuts.jpg">
 </p>
 
 A *VFX pull* involves "pulling" select film plates from the conform and sending them to VFX so they can add their magic to them. This is likewise exported with the ACES  "interchange" image format.  Let's take a look at that process in detail:
@@ -108,7 +108,7 @@ VFX can deliver two types of files:
 Digital Intermediate (DI) is the process where the entire motion-picture is color-corrected (often called "grading"), and the visual look of the film is finalized. It's crucial that DI is done in an environment that exactly mirrors the viewing conditions of the final exhibition (e.g. in a theater viewed with a film projector). This is known as a color grading suite.
 
 <p align="center">
-<img src="img/DI1.jpg" width=70%><br>
+<img src="img/DI1.jpg"><br>
  <sup>The ARRI color grading theater (photo © Arri CC BY-SA).</sup>
 </p>
 
