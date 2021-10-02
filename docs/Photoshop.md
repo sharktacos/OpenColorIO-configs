@@ -24,13 +24,13 @@ Open an ACEScg exr in photoshop. Assign an ICC profile to change the color space
 
 Let's assume that we are beginning with a 10-bit Log DPX film plate in ACEScct color space that you will be adding your matte painting to.  Photoshop will read this in 16-bit integer mode displaying the log image in raw which will look washed out:
 
-<img src="img/Photoshop1.png" alt="Photoshop" width="80%"/>
+<img src="img/Photoshop1.png" alt="Photoshop" />
 
 
 Next, we need to assign our film emulation profile to our Log file so it will display properly. Select the menu option **edit > assign profile** and in the window that opens, select the profile from the drop-down menu to convert from ACEScct to the desired display (in this example ````Look-Filmic - sRGB Display````). This displays the log image properly.
 
 
-<img src="img/Photoshop2.png" alt="Photoshop" width="80%"/>
+<img src="img/Photoshop2.png" alt="Photoshop" />
 
 
 To toggle the profile on and off, first disable it with **view > proof setup > monitor RGB**. You can then use the **ctr-Y** hotkey (**view > proof colors**) to toggle the profile display on and off. You'll want to toggle between the two views frequently while painting, especially when painting darks.
