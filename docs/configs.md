@@ -42,12 +42,25 @@ The Display Transforms for the above VFX config contain both sRGB and Rec.709 di
 ````
 # ---------------- Per Shot Grade Variables ------------------------- #
 environment:
-  LUT_PATH: ../2_Shots/SM_020_018/01_Client_Original_Footage/5_LUT/
+  LUT_PATH: path_to/shot_lut/  
   LUT_NAME: clientShotLUTname_ACEScct.cube
   SHAPER: ACEScct
 # ------------------------------------------------------------------- # 
 ````
-Each artist would have a VFX config file in their local directory for the show they are working on. They would set the above variables to correspond to the location (*LUT_PATH*) and name (*LUT_NAME*) of the LUT for the shot they are working on. The OCIO config will then display that shot LUT in the program they load the OCIO config into (Maya, Nuke, etc.). The *SHAPER* variable refers to the working color space the LUT was created in (this is referred to as a "shaper" LUT). This will be either ACEScct or (less commonly) ACEScc, based on the Project Settings in Davinci Resolve. VFX needs to know this in order to properly process the LUT in comp. It is good practice to append the shaper space to the file name for clarity. See [ACES for Indie Filmmakers](VFXpulls.md#require) for details on requirements for VFX pulls.
+Each artist would have a VFX config file in their local directory for the show they are working on, and set the above variables to correspond to the location (*LUT_PATH*) and name (*LUT_NAME*) of the LUT for the shot they are working on. In the StudioX VFX directory stucture, the OCIO config directory is parallel to the shots directory:
+
+
+- **Show/**
+  - <b>Shots/</b>SM_020_018/01_Client_Original_Footage/5_LUT/clientShotLUTname_ACEScct.cube
+  - <b>StdX_ACES/</b>OCIOv1_config_VFX.ocio
+
+Therefore to go up a directory simply use ```../``` at the front of the file path. Like so:
+
+````
+  LUT_PATH: ../shots/SM_020_018/01_Client_Original_Footage/5_LUT/ 
+````
+
+With the variables set, The OCIO config will then display that shot LUT in the program they load the OCIO config into (Maya, Nuke, etc.). The *SHAPER* variable refers to the working color space the LUT was created in (this is referred to as a "shaper" LUT). This will be either ACEScct or (less commonly) ACEScc, based on the Project Settings in Davinci Resolve. VFX needs to know this in order to properly process the LUT in comp. It is good practice to have the client append the shaper space to the file name for clarity. See [ACES for Indie Filmmakers](VFXpulls.md#require) for details on requirements for VFX pulls.
 
 
 
