@@ -10,7 +10,8 @@ name: Maya_2022_default
 
 # ---------------- Per Shot Grade Variables ------------------------- #
 environment:
-  LUT_PATH: ../2_Shots/SM_020_018/01_Client_Original_Footage/5_LUT/
+  LUT_PATH: path_to/shot_lut/
+# example: ../shots/SM_020_018/01_Client_Original_Footage/5_LUT/
   LUT_NAME: clientShotLUTname_ACEScct.cube
   SHAPER: ACEScct
 # ------------------------------------------------------------------- # 
