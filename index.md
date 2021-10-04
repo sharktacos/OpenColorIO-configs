@@ -1,4 +1,4 @@
-# Documentation (index)
+# Contents
 
 ## OCIO configs for Animation & VFX Pipelines 
 OCIO Configs are provided for an ACES workflow for both [CG Animation and VFX pipelines](docs/configs.md). Each of these configs (ANM and VFX) has versions v1 and v2 of OCIO. Currently only Maya 2022 can read a v2 OCIO config. 
