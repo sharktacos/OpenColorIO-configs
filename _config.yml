@@ -1,4 +1,4 @@
 theme: jekyll-theme-architect
 title: StudioX ACES Documentation
-show_downloads: true
+show_downloads: false
 description: ACES OpenColorIO configs for CG Animation and VFX studio pipelines
