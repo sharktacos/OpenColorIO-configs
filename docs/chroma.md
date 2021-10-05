@@ -1,6 +1,6 @@
 # Reduced Hue Shifts
 
-The current ACES Output Transform has a number of hue shifts and skews. This is largely due to the per-channel approach of the RRT, and the current proposal for the ACES 2.0 output Transform, called [OpenDRT](https://github.com/jedypod/open-display-transform), will fix this using a chromaticity preserving approach. Because these changes are made from the ground up, it is obviously not possible to implement with a Look Transform that simply modifies the existing RRT. Nevertheless, the Look Transforms offer some significant improvments, in particular for blues which sit at the edge of the AP1 color space.
+The current ACES Output Transform has a number of hue shifts and skews. This is largely due to the per-channel approach of the RRT, and the current proposal for the ACES 2.0 output Transform, called [OpenDRT](https://github.com/jedypod/open-display-transform), will fix this using a chromaticity preserving approach. Because these changes are made from the ground up, it is obviously not possible to implement with a Look Transform that simply modifies the existing RRT. Nevertheless, the Look Transforms offer some significant improvements, in particular for blues which sit at the edge of the AP1 color space.
 
 Below is a test image made by [Chris Brejon](https://chrisbrejon.com/cg-cinematography/chapter-1-5-academy-color-encoding-system-aces/) showing sRGB primaries and complimentary colors, increasing each row by one exposure stop. Viewed through OpenDRT it looks perfect.
 
