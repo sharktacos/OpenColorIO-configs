@@ -41,7 +41,7 @@ There are however also options for low budget productions. You can create LUTs f
 
 - *Input Transform*: Apply an OFX ACES Transform to the first serial node and set its input to your camera, and the output to ACEScct. 
 - *(optional) Look Transform*: This is where you would apply whatever custom grade is desired to the middle node. 
-- *Output Transform*: Apply an OFX ACES Transform to the final seriel node and set its input to ACEScct, and the output to Rec.709 for viewing on.
+- *Output Transform*: Apply an OFX ACES Transform to the final serial node and set its input to ACEScct, and the output to Rec.709 for viewing on.
 
 ![LUTs](img/Resolve13.png)
 
