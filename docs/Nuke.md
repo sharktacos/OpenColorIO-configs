@@ -67,7 +67,7 @@ Similarly, if in a VFX pipeline you are delivering a proxy movie for Editorial u
 
 ````Working: ACEScg >  Display: Shot Look (sRGB) > Output: Shot Look (Rec.1886/Rec.709 video)````
 
-Note above that you bake the display transform (Shot Look) however since you are viewing this on a computer monitor (sRGB), but sending it to editorial who are viewing on broadcast reference monitors (Rec709) you output the Look to that target display device. It is good practive to append the color space to the file name for clarity when delivering proxy media (e.g. showID_seq_shot_v01_rec709.mxf).
+Note above that you bake the display transform (Shot Look) however since you are viewing this on a computer monitor (sRGB), but sending it to editorial who are viewing on broadcast reference monitors (Rec709) you output the Look to that target display device. It is good practice to append the color space to the file name for clarity when delivering proxy media (e.g. showID_seq_shot_v01_rec709.mxf).
 
 
 ## Gamut Compression and Nuke
