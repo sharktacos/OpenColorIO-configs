@@ -72,7 +72,12 @@ Note above that you bake the display transform (Shot Look) however since you are
 
 ## Gamut Compression and Nuke
 
-For an intro into Gamut Compression and what it is and why you need it, Check out the [gamut compression](gamut.md) doc for details and pretty pics. 
+For an intro into Gamut Compression and what it is and why you need it, Check out the [gamut compression](gamut.md) doc for details and pretty pics. To use the Reference Gamut Compression node in Nuke copy the [Gizmo](../StdX_ACES/software/Nuke) located in the ```software/Nuke``` folder of the config into your *.nuke* folder (located in the home directory of your computer) and add the following to your menu.py file. 
+
+````
+toolbar = nuke.toolbar("Nodes")
+toolbar.addCommand( "Gizmos/ACES_ref_gamut_compress", "nuke.createNode('ACES_ref_gamut_compress')")
+````
 
 [Back to main](../StdX_ACES)
 
