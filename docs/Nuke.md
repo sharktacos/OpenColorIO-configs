@@ -1,6 +1,6 @@
 # Nuke
 
-Nuke currently supports OCIOv1. To load the config Press “S” to access **Project Settings → Color**. Set *color managment* to "OCIO," select "custom" from the *OpenColorIO Config* dropdown and then enter the file path to the  ````StdX_ACES_OCIOv1.config```` file . 
+Nuke currently supports OCIOv1. To load the config Press “S” to access **Project Settings → Color**. Set *color management* to "OCIO," select "custom" from the *OpenColorIO Config* dropdown and then enter the file path to the  ````StdX_ACES_OCIOv1.config```` file . 
 
 ![nk](img/Nuke1.png)
 
@@ -10,12 +10,12 @@ In Nuke the input transform is set in the color space dropdown menu of a Read no
 
 Let's discuss some of the difficulties with inputting camera footage in VFX in a traditional non-color managed workflow and how ACES greatly simplify and improve this. 
 
-Knowing the right color space to choose in a traditional non-color managed workflow can be confusing. The files, typically DPX sequences or Prores clips, are often in the wrong color space. A client will for example say that the Prores movie is in Rec.709 when it is rather obviously in log (which you can tell because it appears washed out, which is characteristic of log footage). The reason for this is simple: They are not working color managed at all. They are simply working on log footage in the display space of their monitor. Going from this non-color managed workflow into a color managed workflow used by Nuke is confusing because you need to figure out midstream how to manage the color that no one has been managing. If there was a canonical log color space that DPX used this would be easy, but there is not. So knowing which particular flavor of log your DPX file is in is a mystery. Is it Cineon? Log-C? REDlog? Log3G10? If we knew the camera that was used this would be easier to determine, although many camera manufcturers have multiple log formats to choose from, but this information is often unknown. To make matters worse, it's not uncommon to have a double log space applied, say cineon on top of Log-C. It's really a wild west out there. 
+Knowing the right color space to choose in a traditional non-color managed workflow can be confusing. The files, typically DPX sequences or ProRes clips, are often in the wrong color space. A client will for example say that the Prores movie is in Rec.709 when it is rather obviously in log (which you can tell because it appears washed out, which is characteristic of log footage). The reason for this is simple: They are not working color managed at all. They are simply working on log footage in the display space of their monitor. Going from this non-color managed workflow into a color managed workflow used by Nuke is confusing because you need to figure out midstream how to manage the color that no one has been managing. If there was a canonical log color space that DPX used this would be easy, but there is not. So knowing which particular flavor of log your DPX file is in is a mystery. Is it Cineon? Log-C? REDlog? Log3G10? If we knew the camera that was used this would be easier to determine, although many camera manufacturers have multiple log formats to choose from, but this information is often unknown. To make matters worse, it's not uncommon to have a double log space applied, say Cineon on top of Log-C. It's really a wild west out there. 
 
 Managing that chaos is the motivation for color *management*. The core aim of ACES is to unify the workflow so that there is consistency and predicability throughout every step of the film prodction pipeline. In ACES there are four color spaces to deal with.
 
 - **ACES2065-1** (**AP0** for short) - scene-linear. This is the ACES *interchange* color space. So the footage from [VFX pulls](VFXpulls.md) from the client will always be in this color space, and VFX will deliver it back in this same interchange color space. 
-- **ACEScg** - AP1 scene-linear. The color space for CG renders, and also the working space in Nuke, Maya, and other VFX software. This is a much larger gamut color space than Nuke's native linear color space which is sRGB/Rec709. In fact, ACEScg is slightly larger than Rec.2020 the standard for Ultra High Defintion Televisions (UHDTV) and a lot larger than P3-DCI the standard for film projectors. So lots of room to grow.
+- **ACEScg** - AP1 scene-linear. The color space for CG renders, and also the working space in Nuke, Maya, and other VFX software. This is a much larger gamut color space than Nuke's native linear color space which is sRGB/Rec709. In fact, ACEScg is slightly larger than Rec.2020 the standard for Ultra High Definition Televisions (UHDTV) and a lot larger than P3-DCI the standard for film projectors. So lots of room to grow.
 
 ![gamuts](img/gamuts2.png)
 
@@ -67,7 +67,7 @@ Similarly, if in a VFX pipeline you are delivering a proxy movie for Editorial u
 
 ````Working: ACEScg >  Display: Shot Look (sRGB) > Output: Shot Look (Rec.1886/Rec.709 video)````
 
-Note above that you bake the display transform (Shot Look) however since you are vieiwing this on a computer monitor (sRGB), but sending it to editorial who are viewing on broadcast reference monitors (Rec709) you output the Look to that target display device. It is good practive to append the color space to the file name for clarity when delivering proxy media (e.g. showID_seq_shot_v01_rec709.mxf).
+Note above that you bake the display transform (Shot Look) however since you are viewing this on a computer monitor (sRGB), but sending it to editorial who are viewing on broadcast reference monitors (Rec709) you output the Look to that target display device. It is good practive to append the color space to the file name for clarity when delivering proxy media (e.g. showID_seq_shot_v01_rec709.mxf).
 
 
 ## Gamut Compression and Nuke
@@ -78,7 +78,7 @@ For an intro into Gamut Compression and what it is and why you need it, Check ou
 toolbar = nuke.toolbar("Nodes")
 toolbar.addCommand( "Gizmos/ACES_ref_gamut_compress", "nuke.createNode('ACES_ref_gamut_compress')")
 ````
-This adds a menu labeled "Gizmos" to the default Nodes Toolbar with an item labeled "ACES_ref_gamut_compress" that creates an instance of the *ACES Refence Gamut Compression* node.
+This adds a menu labeled "Gizmos" to the default Nodes Toolbar with an item labeled "ACES_ref_gamut_compress" that creates an instance of the *ACES Reference Gamut Compression* node.
 
 ![nk](img/Nuke3.png)
 
