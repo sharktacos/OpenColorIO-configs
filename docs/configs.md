@@ -1,6 +1,6 @@
 # ANM and VFX Configs
 
-The ANM config ````config_ANM.ocio```` is designed for work on CG animation shorts and features. The VFX config ````config_VFX.ocio```` in contrast is designed for intgrating CG and VFX with live action film. Consequently each has different Display Transforms geared for its particular pipeline needs.
+The ANM config ````config_ANM.ocio```` is designed for work on CG animation shorts and features. The VFX config ````config_VFX.ocio```` in contrast is designed for integrating CG and VFX with live action film. Consequently each has different Display Transforms geared for its particular pipeline needs.
 
 ## ANM Config
 
@@ -11,7 +11,7 @@ The ANM config ````config_ANM.ocio```` is designed for work on CG animation shor
 
 ![img](img/nuke6.jpg)
 
-The Display Transforms for the above ANM config are all in sRGB display for viewing on artist's monitors, and contain the Reference Gamut Compression (RGC) baked into the view to componsate for hue skews with highly saturated colors in CG (see the [gamut](gamut.md) page. They contain two modifications of the standard ACES view transform using Look Transforms. 
+The Display Transforms for the above ANM config are all in sRGB display for viewing on artist's monitors, and contain the Reference Gamut Compression (RGC) baked into the view to compensate for hue skews with highly saturated colors in CG (see the [gamut](gamut.md) page. They contain two modifications of the standard ACES view transform using Look Transforms. 
 
 **Neutral Look** is intended as a neutral starting point for lookdev work. 
 
@@ -29,7 +29,7 @@ The remaining view transforms are the same as the default Maya 2022 config and a
 ## VFX Config
 
 - *OCIOv1_config_VFX.ocio.ocio*
-   is designed for a VFX pipeline integtrating CG and VFX into live action film.
+   is designed for a VFX pipeline integrating CG and VFX into live action film.
  - *OCIOv2_config_VFX.ocio.ocio*
    is the same, but using OCIOv2 for Maya 2022
    
@@ -60,7 +60,7 @@ Therefore to go up a directory simply use ```../``` at the front of the file pat
   LUT_PATH: ../shots/SM_020_018/01_Client_Original_Footage/5_LUT/ 
 ````
 
-With the variables set, The OCIO config will then display that shot LUT in the program they load the OCIO config into (Maya, Nuke, etc.). The *SHAPER* variable refers to the working color space the LUT was created in (this is referred to as a "shaper" LUT). This will be either ACEScct or (less commonly) ACEScc, based on the Project Settings in Davinci Resolve. VFX needs to know this in order to properly process the LUT in comp. It is good practice to have the client append the shaper space to the file name for clarity. See [ACES for Indie Filmmakers](VFXpulls.md#require) for details on requirements for VFX pulls.
+With the variables set, The OCIO config will then display that shot LUT in the program they load the OCIO config into (Maya, Nuke, etc.). The *SHAPER* variable refers to the working color space the LUT was created in (this is referred to as a "shaper" LUT). This will be either ACEScct or (less commonly) ACEScc, based on the Project Settings in DaVinci Resolve. VFX needs to know this in order to properly process the LUT in comp. It is good practice to have the client append the shaper space to the file name for clarity. See [ACES for Indie Filmmakers](VFXpulls.md#require) for details on requirements for VFX pulls.
 
 
 
