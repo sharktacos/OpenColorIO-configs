@@ -62,7 +62,7 @@ In a non-color managed workflow one begins with a washed out image in log space,
 </p>
 
 
-A color manged workflow like ACES takes the guesswork out of it, and digitally “develops” the RAW camera data according to the exact mathematical specifications of each particular camera manufacturer. Below is the same RED RAW footage (also IPP2 using Log3G10 REDwideGamutRGB) viewed in ACES. This is known as a *scene-referred* workflow because it uses the actual values from the *scene* (i.e. the pixel values are proportional to photons in the real world).
+A color managed workflow like ACES takes the guesswork out of it, and digitally “develops” the RAW camera data according to the exact mathematical specifications of each particular camera manufacturer. Below is the same RED RAW footage (also IPP2 using Log3G10 REDwideGamutRGB) viewed in ACES. This is known as a *scene-referred* workflow because it uses the actual values from the *scene* (i.e. the pixel values are proportional to photons in the real world).
 
 <p align="center">
 <img src="img/Resolve11.png">
