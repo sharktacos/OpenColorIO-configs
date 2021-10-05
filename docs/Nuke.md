@@ -78,6 +78,9 @@ For an intro into Gamut Compression and what it is and why you need it, Check ou
 toolbar = nuke.toolbar("Nodes")
 toolbar.addCommand( "Gizmos/ACES_ref_gamut_compress", "nuke.createNode('ACES_ref_gamut_compress')")
 ````
+This adds a menu labeled "Gizmos" to the default Nodes Toolbar with an item labeled "ACES_ref_gamut_compress" that creates an instance of the *ACES Refence Gamut Compression* node.
+
+
 
 [Back to main](../StdX_ACES)
 
