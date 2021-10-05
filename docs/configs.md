@@ -47,7 +47,7 @@ environment:
   SHAPER: ACEScct
 # ------------------------------------------------------------------- # 
 ````
-Each artist would have a VFX config file in their local directory for the show they are working on, and set the above variables to correspond to the location (*LUT_PATH*) and name (*LUT_NAME*) of the LUT for the shot they are working on. In the StudioX VFX directory stucture, the OCIO config directory is parallel to the shots directory:
+Each artist would have a VFX config file in their local directory for the show they are working on, and set the above variables to correspond to the location (*LUT_PATH*) and name (*LUT_NAME*) of the LUT for the shot they are working on. In the StudioX VFX directory structure, the OCIO config directory is parallel to the shots directory:
 
 
 - **Show/**
