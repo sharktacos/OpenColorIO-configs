@@ -44,10 +44,10 @@ The file can be saved in PSD format while working, and will embed the ICC profil
 
 If you need to paint a texture map in Photoshop, it's good to see how it will appear through the display transform for a WYSIWYG workflow, just as you can in a 3D paint program like [Mari](Mari.md) or [Substance Painter](Substance.md). 
 
-Similar to the matte paiting workflow above, this can be done by applying an ICC profile to the image. For example 
+Similar to the matte painting workflow above, this can be done by applying an ICC profile to the image. For example 
 
 ````software/Photoshop/ACES sRGB texture to LMT-Neutral - sRGB-Display.icc```` 
 
-The file can be saved in PSD format while working, and will embed the ICC profile information into the file. For publising textures, all layers should be flattened and saved as PNG. 
+The file can be saved in PSD format while working, and will embed the ICC profile information into the file. For publishing textures, all layers should be flattened and saved as PNG. 
 
 [Back to main](../StdX_ACES)
