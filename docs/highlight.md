@@ -15,7 +15,7 @@ Note for CG assets these saturated colors in fire and lights can be caused by th
 
 ## Color picking color space
 
-CG renders with highly saturated colors can also be helped by gamut compression. With highly saturated colors in ACEScg space, hues shift from primaries to secondaries with increased luminance. Red turns yellow, green turns cyan, and blue turns magenta. You can observe this in the top row of the image below, and also how this is improved by gammut compression. 
+CG renders with highly saturated colors can also be helped by gamut compression. With highly saturated colors in ACEScg space, hues shift from primaries to secondaries with increased luminance. Red turns yellow, green turns cyan, and blue turns magenta. You can observe this in the top row of the image below, and also how this is improved by gamut compression. 
 
 The primary approach however used in this config is to pick colors in sRGB primaries (scene-linear Rec.709-sRGB), rather than in ACEScg color space. Observe how on the bottom row the red and green jelly beans are looking pretty good and only the blue is still shifting towards magenta. 
 
