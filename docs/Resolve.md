@@ -1,4 +1,4 @@
-# Davinci Resolve
+# DaVinci Resolve
 
 ## scene-referred vs display-referred 
 
@@ -10,13 +10,13 @@ ACES instead works in a *scene-referred* workflow, meaning film footage is input
 
 ![pic](img/Resolve11.png)
 
-In a non-color managed workflow one says they "are working in Rec.709" because they are working in the *display-referred* space of their display device, which is a broadcast monitor. In a color managed workflow like ACES one instead has *Input > Working > Output* spaces. A RAW camera file is recognized by its file format extension (for example .ari for ARRI) and will be debayered by Resolve. However if the original camera footage was saved in a format such as ProRes the camera type will need to be selected in the ACES input color space. This is done by right-clicking on the clip and choosing the camera color space. Note that unlike a LUT which is limited to a 0-1 range this is a mathematical transform which can accomidate high dynamic range images.
+In a non-color managed workflow one says they "are working in Rec.709" because they are working in the *display-referred* space of their display device, which is a broadcast monitor. In a color managed workflow like ACES one instead has *Input > Working > Output* spaces. A RAW camera file is recognized by its file format extension (for example .ari for ARRI) and will be debayered by Resolve. However if the original camera footage was saved in a format such as ProRes the camera type will need to be selected in the ACES input color space. This is done by right-clicking on the clip and choosing the camera color space. Note that unlike a LUT which is limited to a 0-1 range this is a mathematical transform which can accommodate high dynamic range images.
 
 ![pic](img/Resolve7.jpg)
 
-The Output is set to match the colour space of the device/monitor you are viewing it on. For example if you are using a broadcast HDTV monitor then you would set it to Rec.709. If you are instead viewing on a standard computer monitor you would set it to sRGB. In other words, you set the color space to match what your display device is calibrated to. Rec.709 is the specification for HDTV and sRGB is the specification for a standard computer monitor. If you then have these two correctly calibrated monitors side by side, then the image you perceive from each one should be the same.
+The Output is set to match the color space of the device/monitor you are viewing it on. For example if you are using a broadcast HDTV monitor then you would set it to Rec.709. If you are instead viewing on a standard computer monitor you would set it to sRGB. In other words, you set the color space to match what your display device is calibrated to. Rec.709 is the specification for HDTV and sRGB is the specification for a standard computer monitor. If you then have these two correctly calibrated monitors side by side, then the image you perceive from each one should be the same.
 
-The working space in ACES is log, most commonly in ACEScct. Below you can see the settings in the Preferences for ACES color management. ACEScct is the working color space set in the "color science" drop down which determins the processing space. Therefore when it says "process LUTs in AP1 ACEScc" in the image below this actually means it will process in AP1 ACEScct, based on the color science setting. The ACES Input Transform is set to "no input transform" so it can be chosen for each clip as described above. The ACES Output Transform is set for viewing on a Rec.709 broadcast monitor.
+The working space in ACES is log, most commonly in ACEScct. Below you can see the settings in the Preferences for ACES color management. ACEScct is the working color space set in the "color science" drop down which determines the processing space. Therefore when it says "process LUTs in AP1 ACEScc" in the image below this actually means it will process in AP1 ACEScct, based on the color science setting. The ACES Input Transform is set to "no input transform" so it can be chosen for each clip as described above. The ACES Output Transform is set for viewing on a Rec.709 broadcast monitor.
 
 ![pic](img/Resolve4.jpg)
 
@@ -26,11 +26,11 @@ The working space in ACES is log, most commonly in ACEScct. Below you can see th
 
 Resolve can generate a LUT that can be used, either in-camera or with an external LUT box, to preview footage on-set with a standard Rec.709 reference monitor. This is done using the ACES Transform OFX plugin in resolve. 
 
-The first step to do this is to set Color Management to *Davinci YRGB* in the Project Settings. Then create the following seriel nodes:
+The first step to do this is to set Color Management to *DaVinci YRGB* in the Project Settings. Then create the following serial nodes:
 
-- *Input Transform*: Apply an OFX ACES Transform to the first seriel node and set its input to your camera, and the output to ACEScct. 
+- *Input Transform*: Apply an OFX ACES Transform to the first serial node and set its input to your camera, and the output to ACEScct. 
 - *(optional) Look Transform*: This is where you would apply whatever custom grade is desired to the middle node. 
-- *Output Transform*: Apply an OFX ACES Transform to the final seriel node and set its input to ACEScct, and the output to Rec.709 for viewing on.
+- *Output Transform*: Apply an OFX ACES Transform to the final serial node and set its input to ACEScct, and the output to Rec.709 for viewing on.
 
 ![LUTs](img/Resolve13.png)
 
@@ -40,7 +40,7 @@ If you don't want to "roll your own" LUTs, cinematographer Geoff Boyle has a [se
 
 ## Conform
 
-Editorial is working with proxy media made from baking the ACES Output Transform into the clip for viewing in a non-color managed workflow such as Adobe Premiere. The conform is where those proxy files are subsituted for the high res Open-EXR files in ACES AP0 interchange color space (ACES2065-1). This swap is done with an EDL/AAF/XML file provided by editorial. 
+Editorial is working with proxy media made from baking the ACES Output Transform into the clip for viewing in a non-color managed workflow such as Adobe Premiere. The conform is where those proxy files are substituted for the high res Open-EXR files in ACES AP0 interchange color space (ACES2065-1). This swap is done with an EDL/AAF/XML file provided by editorial. 
 
 ![LUTs](img/pipeline.jpg)
 
@@ -61,7 +61,7 @@ Like the conform, VFX pulls should be debayered from the original RAW camera fil
 
 ## Setting up Reference Gamut Compression for Resolve
 
-Gamut compression is done in Davinci Resolve Studio using a DCTL file which you will find in the ````software/Resolve/GamutCompress.dctl```` folder of the config. Place this into the Davinci Resolve LUT directory, which you can get to by clicking "Open LUT folder" in the Preferences, copying the files, and then clicking "update lists" to refresh. 
+Gamut compression is done in DaVinci Resolve Studio using a DCTL file which you will find in the ````software/Resolve/GamutCompress.dctl```` folder of the config. Place this into the DaVinci Resolve LUT directory, which you can get to by clicking "Open LUT folder" in the Preferences, copying the files, and then clicking "update lists" to refresh. 
 
 ![Resolve](img/Resolve2.jpg)
 
