@@ -11,11 +11,13 @@ The ANM config ````config_ANM.ocio```` is designed for work on CG animation shor
 
 ![img](img/nuke6.jpg)
 
-The Display Transforms for the above ANM config are all in sRGB display for viewing on artist's monitors, and contain the Reference Gamut Compression (RGC) baked into the view to compensate for hue skews with highly saturated colors in CG (see the [gamut](gamut.md) page. They contain two modifications of the standard ACES view transform using Look Transforms. 
+The Display Transforms for the above ANM config are all in sRGB display for viewing on artist's monitors. They contain two modifications of the standard ACES view transform using Look Transforms that customize them for the animation pipeline and incorporate visual improvements over the standard display, based on the feedback given from artistists for the ACESNext project. 
 
 **Neutral Look** is intended as a neutral starting point for lookdev work. 
 
-**Filmic Look** is intended for shot work and has a similar filmic look to the standard ACES 1.0 RRT, with slightly reduced contrast. You can read details about both of these in [tone mapping](tonemap.md) page.  Additionally, The *Filmic* and *Neutral* Look Transforms provide [highlight desaturation](docs/highlight.md) of blackbody color temperatures, and [reduced hue shifts](docs/chroma.md) compared to the default ACES 1.0 Output Transform. Finally, the new [Gamut Compression](docs/gamut.md) is baked into the view to address hue shifts in CG renders with ACES. Note that Reference Gamut Compression is not baked into the view in a VFX pipeline.
+**Filmic Look** is intended for shot work and has a similar filmic look to the standard ACES 1.0 RRT, with slightly reduced contrast. 
+
+You can read details about both the differences between the *Neutral Look* and *Filmic Look* on the [tone mapping](tonemap.md) page.  Additionally, both Look Transforms provide [highlight desaturation](docs/highlight.md) of blackbody color temperatures, and [reduced hue shifts](docs/chroma.md) compared to the default ACES 1.0 Output Transform. Finally, the new [Gamut Compression](docs/gamut.md) is baked into the view to address hue shifts in CG renders with ACES. (Note that Reference Gamut Compression is not baked into the view for the [VFX config](#VFX-Config) )
 
 **Show Look** is for the show specific look LUT decided on by the director for the ANM config. This Look is combined with the Filmic Look.
 
