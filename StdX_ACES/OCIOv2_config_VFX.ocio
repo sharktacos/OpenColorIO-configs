@@ -27,7 +27,7 @@ roles:
   compositing_log: ACEScct
   data: Raw
   default: Raw
-  reference: Raw
+  reference: ACES2065-1
   rendering: ACEScg
   scene_linear: ACEScg
 #   Nuke 8-bit default:  #
