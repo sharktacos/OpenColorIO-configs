@@ -32,9 +32,6 @@ nuke.knobDefault("Root.floatLut", "reference")
 See the [VFX Pulls](VFXpulls.md) doc for details on how client footage should be delivered to VFX in an ACES pipeline.
 
 
-![img](img/nuke7.jpg)
-
-
 
 
 ## Display Transforms
