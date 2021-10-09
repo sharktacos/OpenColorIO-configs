@@ -27,6 +27,15 @@ The config also contains the color spaces from all major film cameras if you nee
 
 ![img](img/nuke7.jpg)
 
+Currently Nuke uses the OCIO scene_linear role for both the working space and the reference space. We however need these to be different, namely the working space should be ACEScg and the reference space should be ACES-2065-1. Hopefully this will be update soon in Nuke, but in the mean time you can add the following to your init.py file located in the *.nuke* folder in the home directory of your computer. 
+
+````
+import nuke
+nuke.knobDefault("Root.colorManagement", "OCIO")
+nuke.knobDefault("Root.floatLut", "reference")
+````
+
+
 ## Display Transforms
 
 Nuke traditionally has three display transforms: sRGB, Rec.709, and BT.1886. There is often confusion regarding these. Many people think of Rec.709 as an aesthetic preference, that is, they chose it because they "like the look of it." It's important to understand that this is not the intent of a display transform. [The Foundry explains,](https://support.foundry.com/hc/en-us/articles/115000229764-Q100319-How-to-use-colorspaces-in-Nuke-)
