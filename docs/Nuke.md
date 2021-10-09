@@ -27,8 +27,6 @@ nuke.knobDefault("Root.colorManagement", "OCIO")
 nuke.knobDefault("Root.floatLut", "reference")
 ````
 
-![gamuts](img/gamuts2.png)
-
 - **ACEScc** and **ACEScct** - AP1 log space. This is used by DI to grade in log. When viewing a client LUT in Nuke the LUT processing space needs to be set to match the space it was created in. This is done automagically in the OCIO config for the Shot Look view transform. Nevertheless, it's good practice to append the color space to the end of the file name for clarity. For example ````shot01_cct.cube````. 
 
 See the [VFX Pulls](VFXpulls.md) doc for details on how client footage should be delivered to VFX in an ACES pipeline.
