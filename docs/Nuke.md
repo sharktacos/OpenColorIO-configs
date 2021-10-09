@@ -4,6 +4,14 @@ Nuke currently supports OCIOv1. To load the config Press “S” to access **Pro
 
 ![nk](img/Nuke1.png)
 
+Currently Nuke uses the OCIO scene_linear role for both the working space and the reference space. We however need these to be different, namely the working space should be ACEScg (determined by the scene_linear role in the config) and the reference space should be ACES-2065-1 (determined by the reference role in the config). Hopefully this will be updated soon in Nuke, but in the meantime you can add the following to your init.py file located in the *.nuke* folder in the home directory of your computer. 
+
+````
+import nuke
+nuke.knobDefault("Root.colorManagement", "OCIO")
+nuke.knobDefault("Root.floatLut", "reference")
+````
+
 ## Input Transforms
 
 In Nuke the input transform is set in the color space dropdown menu of a Read node. 
@@ -18,13 +26,7 @@ Managing that chaos is the motivation for color *management*. The core aim of AC
 
 - **ACEScg** - AP1 scene-linear. The color space for CG renders, and also the working space in Nuke, Maya, and other VFX software. This is a much larger gamut color space than Nuke's native linear color space which is sRGB/Rec709. In fact, ACEScg is slightly larger than Rec.2020 the standard for Ultra High Definition Televisions (UHDTV) and a lot larger than P3-DCI the standard for film projectors. So lots of room to grow.
 
-Currently Nuke uses the OCIO scene_linear role for both the working space and the reference space. We however need these to be different, namely the working space should be ACEScg (determined by the scene_linear role in the config) and the reference space should be ACES-2065-1 (determined by the reference role in the config). Hopefully this will be updated soon in Nuke, but in the meantime you can add the following to your init.py file located in the *.nuke* folder in the home directory of your computer. 
 
-````
-import nuke
-nuke.knobDefault("Root.colorManagement", "OCIO")
-nuke.knobDefault("Root.floatLut", "reference")
-````
 
 ![gamuts](img/gamuts2.png)
 
