@@ -31,7 +31,6 @@ nuke.knobDefault("Root.floatLut", "reference")
 
 See the [VFX Pulls](VFXpulls.md) doc for details on how client footage should be delivered to VFX in an ACES pipeline.
 
-The config also contains the color spaces from all major film cameras if you need to work with camera raw files. This is not typical for VFX pulls though and more commonly ACES2065-1 is used as the interchange format.
 
 ![img](img/nuke7.jpg)
 
