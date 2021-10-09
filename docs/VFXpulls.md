@@ -37,18 +37,7 @@ Each section below will step you through the following diagram. Note that becaus
 
 Modern digital cinema cameras raw or log modes have a known mathematical relationship to the light in the photographed scene, which ACES uses to bring it into the ACES color space. This is called an Input Transform. There are options from ACES product partners like [Pomfort LiveGrade Pro](https://pomfort.com/store/livegradepro/subscription/) which enable filmmakers to view a live preview of the camera signal in the ACES color pipeline, and for a DIT (Digital Image Technician) to use the same tools as DI to create custom looks for on-set. 
 
-There are however also options for low budget productions. You can create LUTs for your camera using the free version of Resolve and use these LUTs, either in-camera or in an external LUT box, for on-set viewing on a standard Rec.709 reference monitor. This ensures that what you see on-set is accurately carried all the way through production and post. This is done using the ACES Transform OFX plugin in resolve. The first step to do this is to set Color Management to *DaVinci YRGB* in the Project Settings. Then create the following serial nodes:
-
-- *Input Transform*: Apply an OFX ACES Transform to the first serial node and set its input to your camera, and the output to ACEScct. 
-- *(optional) Look Transform*: This is where you would apply whatever custom grade is desired to the middle node. 
-- *Output Transform*: Apply an OFX ACES Transform to the final serial node and set its input to ACEScct, and the output to Rec.709 for viewing on.
-
-![LUTs](img/Resolve13.png)
-
-Then simply export the 3D LUT with the “Generate 3D LUT (CUBE)” command. This will create a full range .cube LUT, also called *extended range* (EE). This [chart](http://www.antlerpost.com/downloads/LUT_ranges.pdf) lists compatibility of various cameras and LUT boxes with *extended range* (EE) and legal range (LL) LUTs. for the few cameras that require legal range, you can add the [provided DCTLs](../StdX_ACES/software/Resolve/) ````StdX_ACES/software/Resolve/Range_smpte_to_full.dctl```` at the beginning of the above node chain and  ````StdX_ACES/software/Resolve/Range_full_to_smpte.dctl```` at the end to bring the LUT into SMPTE legal video range. If you are using an ARRI, as in the above example, you can use [free software from ARRI](https://www.arri.com/en/learn-help/learn-help-camera-system/tools/arri-look-creator) to convert this to ARRI look format.
-
-If you don't want to "roll your own" LUTs, cinematographer Geoff Boyle has a [set of free LUTs](https://community.acescentral.com/t/luts-that-emulate-the-aces-workflow/1334/21) you can download for just about every film camera out there.
-
+There are however also options for low budget productions. You can [create LUTs for your camera using the free version of Resolve](Resolve.md#creating-luts-for-on-set-monitoring) and use these LUTs, either in-camera or in an external LUT box, for on-set viewing on a standard Rec.709 reference monitor. This ensures that what you see on-set is accurately carried all the way through production and post. 
 
 
 # <a name="dailies"></a>Dailies & Editorial
