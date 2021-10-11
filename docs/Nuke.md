@@ -47,6 +47,8 @@ The aim here is that when the same image is viewed side by side on a computer mo
 
 Another point of confusion is that when a client says to VFX “we are working in Rec.709" because they have broadcast monitors at the facility calibrated to Rec.709 this does not mean that a comper should set their display transform to Rec.709 to match. The opposite is the case, if you were to set your sRGB monitor to have a Rec.709 display transform in Nuke, this would mean the images viewed side by side *would not match*. Again, one chooses the display transform based on the calibration of the display they are using. Since we will be doing the majority of our VFX work on the sRGB monitors in the labs, our config defaults to having sRGB selected for the Display transform in both Nuke and Maya. One would only need to change this if, for example, viewing shots in 400a on an HDTV monitor (in which case it would be set to Rec.709).
 
+The ANM config config_ANM.ocio is designed for work on CG animation shorts and features. The VFX config config_VFX.ocio in contrast is designed for integrating CG and VFX with live action film. Consequently each has different Display Transforms geared for its particular pipeline needs. These are covered in the [ANM and VFX Configs page.](configs.md)
+
 
 ## Input/Output pipeline
 
