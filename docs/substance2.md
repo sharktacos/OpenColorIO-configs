@@ -9,3 +9,11 @@ Our work-around is to create a layer to darken the color layers below, setting t
 
 
 mode with black color to burn (darken). white color works for dodge (lighten), but using "value" mode with retain saturation.
+
+## Ambient Occlusion mask
+
+Drag AO texture into mask on fill layer (into fill in mask). Add paint layer into mask stack to modify AO.
+
+## dirt
+
+Drag noise/grunge texture into stencil for paint. Also use brushes (charcoal etc) 
