@@ -17,3 +17,7 @@ Drag AO texture into mask on fill layer (into fill in mask). Add paint layer int
 ## dirt
 
 Drag noise/grunge texture into stencil for paint. Also use brushes (charcoal etc) 
+
+## transfer Mari to Substance
+
+Export PSD for layers...
