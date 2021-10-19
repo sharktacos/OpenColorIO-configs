@@ -29,7 +29,7 @@ export and import into fill.
 Can't hide tile display, so can't move to side. Can't adjust visibility. Does hide when painting.
 
 ## copy color to use as bump?
-
+nope. Export and import map into fill :P
 
 ## try symmetry in SP and Mari
 The mirror symmetry can be enabled in the contextual toolbar (top)
