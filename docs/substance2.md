@@ -20,17 +20,20 @@ Drag noise/grunge texture into stencil for paint. Also use brushes (charcoal etc
 
 ## transfer Mari to Substance
 
-SP only exports to PSD. No import.
+X SP only exports to PSD. No import.
 
 ## merge layers
-export and import into fill. 
+X export and import into fill. 
 
 ## stencils hide
 Can't hide tile display, so can't move to side. Can't adjust visibility. Does hide when painting.
 stencil display opacity in display settings.
 
 ## copy color to use as bump?
-nope. Export and import map into fill :P
+X nope. Export and import map into fill :P
 
 ## try symmetry in SP and Mari
 The mirror symmetry can be enabled in the contextual toolbar (top)
+
+## HDR maps and camera import
+test camera import, test HDR projection
