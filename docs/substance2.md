@@ -36,4 +36,5 @@ X nope. Export and import map into fill :P
 The mirror symmetry can be enabled in the contextual toolbar (top)
 
 ## HDR maps and camera import
-test camera import, test HDR projection
+camera import works, HDR projection works, test projection from camera accuracy.
+Test sphere projection for panorama HDR
