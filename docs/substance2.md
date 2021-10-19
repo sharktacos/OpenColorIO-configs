@@ -21,3 +21,9 @@ Drag noise/grunge texture into stencil for paint. Also use brushes (charcoal etc
 ## transfer Mari to Substance
 
 Export PSD for layers...
+
+## merge layers
+export and import into fill. Maybe export to PSD, merge and back?
+
+## stencils hide
+stencil display? Move off to side and tile?
