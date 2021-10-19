@@ -18,6 +18,18 @@ Drag AO texture into mask on fill layer (into fill in mask). Add paint layer int
 
 Drag noise/grunge texture into stencil for paint. Also use brushes (charcoal etc) 
 
+## stencils hide
+Can't hide tile display, so can't move to side. Does hide when painting. Stencil display opacity in display settings.
+
+## symmetry in SP 
+The mirror symmetry can be enabled in the contextual toolbar (top)
+
+## HDR maps and camera import
+camera import works, HDR projection works, test projection from camera accuracy.
+Test sphere projection for panorama HDR
+
+# Missing features
+
 ## transfer Mari to Substance
 
 X SP only exports to PSD. No import.
@@ -25,16 +37,7 @@ X SP only exports to PSD. No import.
 ## merge layers
 X export and import into fill. 
 
-## stencils hide
-Can't hide tile display, so can't move to side. Can't adjust visibility. Does hide when painting.
-stencil display opacity in display settings.
-
 ## copy color to use as bump?
 X nope. Export and import map into fill :P
 
-## try symmetry in SP and Mari
-The mirror symmetry can be enabled in the contextual toolbar (top)
 
-## HDR maps and camera import
-camera import works, HDR projection works, test projection from camera accuracy.
-Test sphere projection for panorama HDR
