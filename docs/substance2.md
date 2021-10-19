@@ -27,6 +27,7 @@ export and import into fill.
 
 ## stencils hide
 Can't hide tile display, so can't move to side. Can't adjust visibility. Does hide when painting.
+stencil display opacity in display settings.
 
 ## copy color to use as bump?
 nope. Export and import map into fill :P
