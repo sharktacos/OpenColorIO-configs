@@ -29,3 +29,6 @@ export and import into fill. Maybe export to PSD, merge and back?
 stencil display? Move off to side and tile?
 
 ## copy color to use as bump?
+
+## try symmetry in SP and Mari
+
