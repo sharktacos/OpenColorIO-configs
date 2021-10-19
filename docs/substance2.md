@@ -27,3 +27,5 @@ export and import into fill. Maybe export to PSD, merge and back?
 
 ## stencils hide
 stencil display? Move off to side and tile?
+
+## copy color to use as bump?
