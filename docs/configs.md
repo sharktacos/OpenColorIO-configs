@@ -4,9 +4,9 @@ The ANM config ````config_ANM.ocio```` is designed for work on CG animation shor
 
 ## ANM Config
 
-- *OCIOv1_config_ANM.ocio.ocio*
+- *OCIOv1_config_ANM.ocio*
    is designed for a CG animation pipeline 
- - *OCIOv2_config_ANM.ocio.ocio*
+ - *OCIOv2_config_ANM.ocio*
    is the same, but using OCIOv2 for Maya 2022
 
 ![img](img/nuke6.jpg)
@@ -30,9 +30,9 @@ The remaining view transforms are the same as the default Maya 2022 config and a
 
 ## VFX Config
 
-- *OCIOv1_config_VFX.ocio.ocio*
+- *OCIOv1_config_VFX.ocio*
    is designed for a VFX pipeline integrating CG and VFX into live action film.
- - *OCIOv2_config_VFX.ocio.ocio*
+ - *OCIOv2_config_VFX.ocio*
    is the same, but using OCIOv2 for Maya 2022
    
 ![img](img/nuke5.jpg)
