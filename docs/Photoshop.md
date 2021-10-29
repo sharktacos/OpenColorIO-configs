@@ -6,7 +6,7 @@ This config contains ICC profiles for all of the Look Transforms for the various
 
 ## EXR Files in Photoshop
 
-Photoshop has a very limited toolset in 32 bit mode (meaning most of your favorite tools in Photoshop wont be available). So if you're wanting to edit scene-linear EXR files, a better option may be Affinity Photo, which is free and works with OCIO.
+Photoshop has a very limited toolset in 32 bit mode (meaning most of your favorite tools in Photoshop wont be available). So if you're wanting to edit scene-linear EXR files, a better option may be Krita, which is free and works with OCIO.
 
 [Alex Fry](https://community.acescentral.com/t/aces-photoshop-friendly-workflows/1369/31) has provided a workflow for EXR files in Photoshop: 
 
