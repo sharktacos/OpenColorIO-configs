@@ -25,7 +25,11 @@ roles:
   matte_paint: Graphics - Inverse ODT  
 #   Nuke 16-bit log default:  #
   texture_paint: ACEScct
- 
+
+# Renderman roles #
+  srgb_linear: hdr
+  srgb_texture: dif
+
   mari_monitor: sRGB - Look Neutral
   mari_scaler_monitor: Raw
   mari_color_picker: scene-linear Rec.709-sRGB 
