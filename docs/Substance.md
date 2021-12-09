@@ -1,6 +1,6 @@
 # Substance Painter
 
-As of v7.4 Substance Painter supports OCIO. In the initial release OCIO roles are not supported so the file types need to be set manually when creating a new project ( file > new ), or in the Project Configuration. 
+As of v7.4 Substance Painter supports OCIO. In the initial release OCIO roles are not supported so the file types need to be set manually when creating a new project ( file > new ), or in the Project Configuration. Below the proper settings are pictured. 
 
 ![img](img/substance-ocio.jpg)
 
