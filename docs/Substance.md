@@ -1,6 +1,12 @@
 # Substance Painter
 
-Substance Painter does not currently work with OCIO, so we need to use a workaround using these EXR files as LUTs, which will allow us to view our asset through the  Filmic and Neutral Look transforms.
+As of v7.4 Substance Painter supports OCIO. In the initial release OCIO roles are not supported so the file types need to be set manually when creating a new project ( file > new ), or in the Project Configuration. Below the proper settings are pictured. 
+
+![img](img/substance-ocio.jpg)
+
+## Earlier versions
+
+Substance Painter prior to v7.4 does not work with OCIO, so for older versions we need to use a workaround using these EXR files as LUTs, which will allow us to view our asset through the  Filmic and Neutral Look transforms.
 
 [StdX_ACES/software/SubstancePainter](https://github.com/sharktacos/OpenColorIO-configs/tree/main/StdX_ACES/software/SubstancePainter)
 
