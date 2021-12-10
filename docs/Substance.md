@@ -1,8 +1,10 @@
 # Substance Painter
 
-As of v7.4 Substance Painter supports OCIO. In the initial release OCIO roles are not supported so the file types need to be set manually when creating a new project ( file > new ), or in the Project Configuration. Below the proper settings are pictured. 
+As of v7.4 Substance Painter supports OCIO! In the initial release OCIO roles are not yet supported so the color spaces need to be set manually when creating a new project `File > new` or in the Project Configuration `Edit > Project Configuration`. Below the proper settings are pictured. 
 
 ![img](img/substance-ocio.jpg)
+
+This replaces the older workaround described below.
 
 ## Earlier versions
 
@@ -17,7 +19,7 @@ These files need to be copied into the Substance Painter shelf folder.
 | Windows	  | 7.2 or newer	| C:\Users\username\Documents\Adobe\Adobe Substance 3D Painter\assets\colorluts\
 |           |  Legacy	      | C:\Users\username\Documents\Allegorithmic\Substance Painter\shelf\colorluts\
 | Mac	      | 7.2 or newer	| /Users/username/Documents/Adobe/Adobe Substance 3D Painter/assets/colorluts/
-|           | Legacy	      |/Users/username/Documents/Allegorithmic/Substance Painter/shelf/colorluts/
+|           | Legacy	      | /Users/username/Documents/Allegorithmic/Substance Painter/shelf/colorluts/
 
 
 In the Display Settings, enable Activate Post Effects and Tone Mapping. Set *function* to Log and slide the *mapping factor* to the max (63.99). This will tonemap scene-linear into a 0-1 range so speculars do not clip in the view.
