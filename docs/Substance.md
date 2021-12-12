@@ -8,7 +8,7 @@ This replaces the older workaround described below.
 
 ## Color picker
 
-The color picker works in the working color space (ACEScg). Therefore in order to pick a color from the viewport the Display color space needs to be set to Raw to sample the color. 
+The color picker works in the working color space (ACEScg). Therefore in order to pick a color from the viewport the Display color space needs to temporarily be set to Raw to sample the color. 
 
 ## Earlier versions
 
