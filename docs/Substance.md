@@ -6,7 +6,13 @@ As of v7.4 Substance Painter supports OCIO! In the initial release OCIO roles ar
 
 This replaces the older workaround described below.
 
+## Color picker
+
+The color picker works in the working color space (ACEScg). Therefore in order to pick a color from the viewport the Display color space needs to be set to raw to sample the color. 
+
 ## Earlier versions
+
+*Depreciated*
 
 Substance Painter prior to v7.4 does not work with OCIO, so for older versions we need to use a workaround using these EXR files as LUTs, which will allow us to view our asset through the  Filmic and Neutral Look transforms.
 
