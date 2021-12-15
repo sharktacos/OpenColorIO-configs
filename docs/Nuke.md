@@ -1,6 +1,6 @@
 # Nuke
 
-Nuke currently supports OCIOv1. To load the config Press “S” to access **Project Settings → Color**. Set *color management* to "OCIO," select "custom" from the *OpenColorIO Config* dropdown and then enter the file path to the  ````StdX_ACES_OCIOv1.config```` file . 
+Nuke v13.1 now supports OCIOv2. To load the config Press “S” to access **Project Settings → Color**. Set *color management* to "OCIO," select "custom" from the *OpenColorIO Config* dropdown and then enter the file path to the  ````StdX_ACES_OCIOv1.config```` file . 
 
 ![nk](img/Nuke1.png)
 
