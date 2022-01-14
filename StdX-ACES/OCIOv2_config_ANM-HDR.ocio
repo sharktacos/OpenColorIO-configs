@@ -28,6 +28,7 @@ roles:
   matte_paint: Output - ACES 1.0 SDR-video (sRGB)  
 #   Nuke 16-bit log default:  #
   texture_paint: ACEScct
+  
   substance_3d_bitmap_import_8bit: Color sRGB Texture
   substance_3d_bitmap_import_16bit: Color sRGB Texture
   substance_3d_bitmap_import_floating: Raw
@@ -35,6 +36,17 @@ roles:
   substance_3d_bitmap_export_16bit: Color sRGB Texture
   substance_3d_bitmap_export_floating: Raw
   substance_3d_substance_material: Color sRGB Texture
+  
+  mari_monitor: sRGB - Look Neutral
+  mari_scaler_monitor: Raw
+  mari_color_picker: scene-linear Rec.709-sRGB 
+  mari_blending: Raw 
+  mari_int8: Color sRGB - Texture
+  mari_int16: ACEScct
+  mari_int_scalar: Raw
+  mari_float: ACEScg
+
+
 
 
 file_rules:
