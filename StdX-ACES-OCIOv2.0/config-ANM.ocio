@@ -1,0 +1,559 @@
+# Maya 2022 default config.
+# Modified by Derek for StudioX
+#
+
+
+ocio_profile_version: 2
+
+description: Maya 2022 default config, modified by Derek Flood for StudioX
+name: Maya_2022_default
+
+environment: {}
+
+search_path: "show:studio"
+
+roles:
+  aces_interchange: ACES2065-1
+  cie_xyz_d65_interchange: CIE-XYZ D65
+  color_timing: ACEScct
+  color_picking: hdr
+  compositing_linear: ACEScg  
+  compositing_log: ACEScct
+  data: Raw
+  default: Raw
+  reference: ACEScg
+  rendering: ACEScg
+  scene_linear: ACEScg
+#   Nuke 8-bit default:  #
+  matte_paint: Output - ACES 1.0 SDR-video (sRGB)  
+#   Nuke 16-bit log default:  #
+  texture_paint: ACEScct
+
+  mari_monitor: Output - Neutral Look (sRGB)
+  mari_scaler_monitor: Raw
+  mari_color_picker: hdr 
+  mari_blending: Raw 
+  mari_int8: Color sRGB Texture
+  mari_int16: ACEScct
+  mari_int_scalar: Raw
+  mari_float: ACEScg
+
+
+file_rules:
+
+  - !<Rule> {name: tx, colorspace: Raw, pattern: "*", extension: tx}
+  - !<Rule> {name: hdr, colorspace: scene-linear Rec.709-sRGB, pattern: "*", extension: hdr}
+  - !<Rule> {name: exr, colorspace: Raw, pattern: "*", extension: exr}
+  - !<Rule> {name: jpg, colorspace: Color sRGB Texture, pattern: "*", extension: jpg}
+  - !<Rule> {name: png, colorspace: Color sRGB Texture, pattern: "*", extension: png}
+  - !<Rule> {name: ColorSpaceNamePathSearch}
+  - !<Rule> {name: Default, colorspace: default}
+
+
+shared_views:
+
+  - !<View> {name: Neutral Look, view_transform: Neutral View, display_colorspace: <USE_DISPLAY_NAME>}
+  - !<View> {name: Filmic Look, view_transform: Filmic View, display_colorspace: <USE_DISPLAY_NAME>}
+  - !<View> {name: Show Look, view_transform: ACES 1.0 SDR-video, looks: Show_LUT, display_colorspace: <USE_DISPLAY_NAME>}
+  - !<View> {name: ACES 1.0 SDR-video, view_transform: ACES 1.0 SDR-video, display_colorspace: <USE_DISPLAY_NAME>}
+  - !<View> {name: Un-tone-mapped, view_transform: Un-tone-mapped, display_colorspace: <USE_DISPLAY_NAME>}
+  - !<View> {name: Log, colorspace: ACEScct}
+  - !<View> {name: Raw, colorspace: Raw}
+
+
+
+displays:
+
+  sRGB:
+    - !<Views> [Neutral Look, Filmic Look, Show Look, ACES 1.0 SDR-video, Un-tone-mapped, Log, Raw]
+
+  sRGB - Gamut Compress:
+    - !<View> {name: Neutral Look, view_transform: Neutral View, looks: LMT_gamut, display_colorspace: sRGB - Gamut Compress}
+    - !<View> {name: Filmic Look, view_transform: Filmic View, looks: LMT_gamut, display_colorspace: sRGB - Gamut Compress}
+    - !<View> {name: ACES 1.0 SDR-video, view_transform: ACES 1.0 SDR-video, looks: LMT_gamut, display_colorspace: sRGB - Gamut Compress}
+    - !<Views> [Un-tone-mapped, Log, Raw]
+
+#  Gamma 2.2 - Rec.709:
+#    - !<Views> [Neutral Look, Filmic Look, Show Look, ACES 1.0 SDR-video, Un-tone-mapped, Log, Raw]
+
+#  Rec.1886 - Rec.709 video:
+#    - !<Views> [Neutral Look, Filmic Look, Show Look, ACES 1.0 SDR-video, Un-tone-mapped, Log, Raw]
+
+
+view_transforms:
+
+  - !<ViewTransform>
+    name: Un-tone-mapped
+    from_scene_reference: !<MatrixTransform> {matrix: [ 0.938279849277, -0.004451445812, 0.016627523587, 0, 0.337368890788, 0.729521566690, -0.066890457478, 0, 0.001173950850, -0.003710706402, 1.091594506312, 0, 0, 0, 0, 1 ]}
+
+  - !<ViewTransform>
+    name: ACES 1.0 SDR-video
+    from_scene_reference: !<GroupTransform>
+      children:
+        - !<FileTransform> {src: ACES_to_CIE-XYZ_1.0.ctf}
+        - !<MatrixTransform> {matrix: [1.660585326491, -0.315295560826, -0.241509327608, 0, -0.659926063224, 1.608391469566, 0.017298594705, 0, 0.009002569138, -0.003566876390, 0.913643312763, 0, 0, 0, 0, 1]}
+        - !<FixedFunctionTransform> {style: ACES_DarkToDim10}
+        - !<MatrixTransform> {matrix: [0.949056010175, 0.047185723607, 0.003758266219, 0, 0.019056010175, 0.977185723607, 0.003758266219, 0, 0.019056010175, 0.047185723607, 0.933758266219, 0, 0, 0, 0, 1]}
+        - !<MatrixTransform> {matrix: [0.652237541886, 0.128236136000, 0.169982249166, 0, 0.267672180125, 0.674339988802, 0.057987831073, 0, -0.005381815766, 0.001369060209, 1.093070506317, 0, 0, 0, 0, 1]}
+
+  - !<ViewTransform>
+    name: Neutral View
+    from_scene_reference: !<GroupTransform>
+      children:
+        - !<LookTransform> {src: ACES2065-1, dst: ACES2065-1, looks: LMT_neutral}
+        - !<FileTransform> {src: ACES_to_CIE-XYZ_1.0.ctf}
+        - !<MatrixTransform> {matrix: [1.660585326491, -0.315295560826, -0.241509327608, 0, -0.659926063224, 1.608391469566, 0.017298594705, 0, 0.009002569138, -0.003566876390, 0.913643312763, 0, 0, 0, 0, 1]}
+        - !<FixedFunctionTransform> {style: ACES_DarkToDim10}
+        - !<MatrixTransform> {matrix: [0.949056010175, 0.047185723607, 0.003758266219, 0, 0.019056010175, 0.977185723607, 0.003758266219, 0, 0.019056010175, 0.047185723607, 0.933758266219, 0, 0, 0, 0, 1]}
+        - !<MatrixTransform> {matrix: [0.652237541886, 0.128236136000, 0.169982249166, 0, 0.267672180125, 0.674339988802, 0.057987831073, 0, -0.005381815766, 0.001369060209, 1.093070506317, 0, 0, 0, 0, 1]}
+
+  - !<ViewTransform>
+    name: Filmic View
+    from_scene_reference: !<GroupTransform>
+      children:
+        - !<LookTransform> {src: ACES2065-1, dst: ACES2065-1, looks: LMT_filmic}
+        - !<FileTransform> {src: ACES_to_CIE-XYZ_1.0.ctf}
+        - !<MatrixTransform> {matrix: [1.660585326491, -0.315295560826, -0.241509327608, 0, -0.659926063224, 1.608391469566, 0.017298594705, 0, 0.009002569138, -0.003566876390, 0.913643312763, 0, 0, 0, 0, 1]}
+        - !<FixedFunctionTransform> {style: ACES_DarkToDim10}
+        - !<MatrixTransform> {matrix: [0.949056010175, 0.047185723607, 0.003758266219, 0, 0.019056010175, 0.977185723607, 0.003758266219, 0, 0.019056010175, 0.047185723607, 0.933758266219, 0, 0, 0, 0, 1]}
+        - !<MatrixTransform> {matrix: [0.652237541886, 0.128236136000, 0.169982249166, 0, 0.267672180125, 0.674339988802, 0.057987831073, 0, -0.005381815766, 0.001369060209, 1.093070506317, 0, 0, 0, 0, 1]}
+
+looks:
+
+  - !<Look>
+    name: LMT_gamut
+    process_space: Gamut Shaper
+    transform: !<FileTransform> {src: aces_RGC_33.cube, interpolation: linear}  
+
+  - !<Look>
+    name: LMT_filmic
+    process_space: ACEScct
+    transform: !<FileTransform> {src: LMT_filmic_ACEScct_33.cube, interpolation: linear} 
+	
+  - !<Look>
+    name: LMT_neutral
+    process_space: ACEScct
+    transform: !<FileTransform> {src: LMT_neutral_ACEScct_33.cube, interpolation: linear} 
+
+  - !<Look>
+    name: Show_LUT
+    process_space: ACEScct
+    transform: !<FileTransform> {src: Show_LMT_cct.cube, interpolation: linear}
+
+
+
+
+inactive_colorspaces: [CIE-XYZ D65, sRGB - Gamut Compress,  Gamut Shaper, Gamma 2.2 - Rec.709, Rec.1886 - Rec.709 video, sRGB, Inverse sRGB Output, Premiere Pro - AP0 2.4 gamma, Premiere Pro - AP0 2.2 gamma, Premiere Pro - AP0 sRGB EOTF]
+
+
+
+colorspaces:
+
+# Rendering #
+
+  - !<ColorSpace>
+    name: Color sRGB Texture
+    aliases: [ dif, BaseColor ]
+    family: Input/File-io
+    description: |
+      sRGB texture color space (piecewise sRGB EOTF)
+    isdata: false
+    categories: [ file-io ]
+    encoding: sdr-video
+    to_reference: !<GroupTransform>
+      children:
+        - !<CDLTransform> {slope: [ 0.8, 0.8, 0.8 ], offset: [ 0.06525, 0.06525, 0.06525 ], sat: 1.0 }
+        - !<ExponentWithLinearTransform> {gamma: 2.4, offset: 0.055}
+        - !<MatrixTransform> {matrix:  [ 0.439632981919, 0.382988698152, 0.177378319929, 0, 0.089776442959, 0.813439428749, 0.096784128292, 0, 0.017541170383, 0.111546553302, 0.870912276314, 0, 0, 0, 0, 1 ]}
+
+
+  - !<ColorSpace>
+    name: Pick Rec709-sRGB Desat
+    aliases: [ picker ]
+    family: Input/File-io
+    bitdepth: 32f
+    description: |
+      color picking of sRGB primaries with slight desaturation (sat 0.85 based on rec709 luma 0.2126 0.7152 0.0722)
+    isdata: false
+    encoding: scene-linear
+    to_reference: !<GroupTransform>
+      children:
+        - !<MatrixTransform> {matrix: [ 0.88189, 0.10728, 0.01083, 0, 0.03189, 0.95728, 0.01083, 0, 0.03189, 0.10728, 0.86083, 0, 0, 0, 0, 1 ]}
+        - !<MatrixTransform> {matrix:  [ 0.439632981919, 0.382988698152, 0.177378319929, 0, 0.089776442959, 0.813439428749, 0.096784128292, 0, 0.017541170383, 0.111546553302, 0.870912276314, 0, 0, 0, 0, 1 ]}
+
+  - !<ColorSpace>
+    name: Raw
+    family: Input/File-io
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Raw (no color processing)
+    isdata: true
+    categories: [ file-io ]
+    encoding: data
+
+  - !<ColorSpace>
+    name: scene-linear Rec.709-sRGB
+    aliases: [ hdr ]
+    family: Input/File-io
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Scene-linear Rec.709 or sRGB primaries to ACES primaries
+    isdata: false
+    categories: [ file-io, working-space, scene_linear_working_space ]
+    encoding: scene-linear
+    to_reference: !<MatrixTransform> {matrix: [ 0.439632981919, 0.382988698152, 0.177378319929, 0, 0.089776442959, 0.813439428749, 0.096784128292, 0, 0.017541170383, 0.111546553302, 0.870912276314, 0, 0, 0, 0, 1 ]}
+
+  - !<ColorSpace>
+    name: Gamut Shaper
+    family: Input/File-io
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Logarithmic function with a linear segment, reflected by its intersection point with the Y-axis, 
+      essentially mirroring the ACEScct shaper. Covers large amount of negative values for gamut mapping.
+    isdata: false
+    encoding: scene-linear
+    to_reference: !<GroupTransform>
+      children:
+        - !<FileTransform> {src: aces_gm_lut_shaper_to_linear_v01.spi1d, interpolation: linear}
+        - !<MatrixTransform> {matrix: [0.695452, 0.140679, 0.163869, 0, 0.0447946, 0.859671, 0.0955343, 0, -0.00552588, 0.00402521, 1.0015, 0, 0, 0, 0, 1]}
+
+
+# ACES #
+
+  - !<ColorSpace>
+    name: ACEScg
+    family: ACES
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      ACEScg to ACES2065-1
+    isdata: false
+    categories: [ file-io, working-space, scene_linear_working_space ]
+    encoding: scene-linear
+    to_reference: !<MatrixTransform> {matrix: [ 0.695452241357, 0.140678696470, 0.163869062172, 0, 0.044794563372, 0.859671118456, 0.095534318172, 0, -0.005525882558, 0.004025210306, 1.001500672252, 0, 0, 0, 0, 1 ]}
+
+  - !<ColorSpace>
+    name: ACES2065-1
+    aliases: [ AP0 ]
+    family: ACES
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      The Academy Color Encoding System reference color space
+    isdata: false
+    categories: [ file-io, working-space, scene_linear_working_space ]
+    encoding: scene-linear
+
+  - !<ColorSpace>
+    name: ACEScct
+    family: ACES
+    description: |
+      ACES log working space
+    isdata: false
+    categories: [ file-io ]
+    encoding: log
+    to_reference: !<BuiltinTransform> {style: "ACEScct_to_ACES2065-1"}
+
+  - !<ColorSpace>
+    name: ACEScc
+    family: ACES
+    description: |
+      ACES log working space
+    isdata: false
+    categories: [ file-io, advanced-2d ]
+    encoding: log
+    to_scene_reference: !<BuiltinTransform> {style: "ACEScc_to_ACES2065-1"}
+
+# Extra #
+  - !<ColorSpace>
+    name: Inverse sRGB Output
+    family: Input/File-io
+    description: |
+      sRGB monitor (piecewise EOTF)
+    isdata: false
+    categories: [ file-io ]
+    encoding: sdr-video
+    to_reference: !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: sRGB, view: "ACES 1.0 SDR-video"}
+
+
+  - !<ColorSpace>
+    name: Premiere Pro - AP0 2.4 gamma
+    family: Input/Adobe
+    equalitygroup: ""
+    bitdepth: 32f
+    description: AP0 with 2.4 gamma.
+    isdata: false
+    categories: [ advanced-2d ]
+    encoding: sdr-video
+    allocation: uniform
+#    to_scene_reference: !<ExponentTransform> {value: [2.4, 2.4, 2.4, 1], negativeStyle: NEGATIVE_MIRROR}
+    to_scene_reference: !<ExponentTransform> {value: [2.4, 2.4, 2.4, 1]}
+
+  - !<ColorSpace>
+    name: Premiere Pro - AP0 2.2 gamma
+    family: Input/Adobe
+    equalitygroup: ""
+    bitdepth: 32f
+    description: AP0 with 2.2 gamma.
+    isdata: false
+    categories: [ advanced-2d ]
+    encoding: sdr-video
+    allocation: uniform
+#    to_scene_reference: !<ExponentTransform> {value: [2.2, 2.2, 2.2, 1], negativeStyle: NEGATIVE_MIRROR}
+    to_scene_reference: !<ExponentTransform> {value: [2.2, 2.2, 2.2, 1]}
+
+  - !<ColorSpace>
+    name: Premiere Pro - AP0 sRGB EOTF
+    family: Input/Adobe
+    equalitygroup: ""
+    bitdepth: 32f
+    description: AP0 with sRGB EOTF
+    isdata: false
+    categories: [ advanced-2d ]
+    encoding: sdr-video
+    allocation: uniform
+    to_scene_reference: !<ExponentWithLinearTransform> {gamma: 2.4, offset: 0.055}
+
+# Cameras #
+
+  - !<ColorSpace>
+    name: ARRI LogC (v3-EI800) - AlexaWideGamut
+    family: Input/Camera/ARRI
+    description: |
+      Alexa-v3-LogC-EI800 (no camera black) to ACES2065-1 (SUP v3 color science)
+    isdata: false
+#    categories: [ file-io ]
+    encoding: log
+    to_reference: !<BuiltinTransform> {style: "ARRI_ALEXA-LOGC-EI800-AWG_to_ACES2065-1"}
+
+  - !<ColorSpace>
+    name: RED Log3G10 - REDWideGamutRGB
+    family: Input/Camera/RED
+    description: |
+      RED Log3G10 / REDWideGamutRGB (no camera black)
+    isdata: false
+#    categories: [ file-io ]
+    encoding: log
+    to_reference: !<BuiltinTransform> {style: "RED_LOG3G10-RWG_to_ACES2065-1"}
+
+  - !<ColorSpace>
+    name: Sony SLog3 - SGamut3
+    family: Input/Camera/Sony
+    description: |
+      Sony SLog3 / SGamut3 (no camera black)
+    isdata: false
+#    categories: [ file-io ]
+    encoding: log
+    to_reference: !<BuiltinTransform> {style: "SONY_SLOG3-SGAMUT3_to_ACES2065-1"}
+
+  - !<ColorSpace>
+    name: Sony SLog3 - SGamut3Cine
+    family: Input/Camera/Sony
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Convert Sony S-Log3 S-Gamut3.Cine to ACES2065-1
+      
+      ACEStransformID: urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.SLog3_SGamut3Cine_to_ACES.a1.1.0
+    isdata: false
+#    categories: [file-io]
+    encoding: log
+    allocation: uniform
+    to_scene_reference: !<BuiltinTransform> {style: SONY_SLOG3-SGAMUT3.CINE_to_ACES2065-1}
+
+  - !<ColorSpace>
+    name: Sony SLog3 - Venice SGamut3
+    family: Input/Camera/Sony
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Convert Sony S-Log3 S-Gamut3 for the Venice camera to ACES2065-1
+      
+      ACEStransformID: urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.SLog3_Venice_SGamut3_to_ACES.a1.1.0
+    isdata: false
+#    categories: [file-io]
+    encoding: log
+    allocation: uniform
+    to_scene_reference: !<BuiltinTransform> {style: SONY_SLOG3-SGAMUT3-VENICE_to_ACES2065-1}
+
+  - !<ColorSpace>
+    name: Sony SLog3 - Venice SGamut3Cine
+    family: Input/Camera/Sony
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Convert Sony S-Log3 S-Gamut3.Cine for the Venice camera to ACES2065-1
+      
+      ACEStransformID: urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.SLog3_Venice_SGamut3Cine_to_ACES.a1.1.0
+    isdata: false
+#    categories: [file-io]
+    encoding: log
+    allocation: uniform
+    to_scene_reference: !<BuiltinTransform> {style: SONY_SLOG3-SGAMUT3.CINE-VENICE_to_ACES2065-1}
+
+  - !<ColorSpace>
+    name: Canon CLog2 CGamut
+    family: Input/Camera/Canon
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Convert Canon Log 2 Cinema Gamut to ACES2065-1
+      
+      ACEStransformID: urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.CLog2_CGamut_to_ACES.a1.1.0
+    isdata: false
+#    categories: [file-io]
+    encoding: log
+    allocation: uniform
+    to_scene_reference: !<BuiltinTransform> {style: CANON_CLOG2-CGAMUT_to_ACES2065-1}
+
+  - !<ColorSpace>
+    name: Canon CLog3 CGamut
+    family: Input/Camera/Canon
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Convert Canon Log 3 Cinema Gamut to ACES2065-1
+      
+      ACEStransformID: urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.CLog3_CGamut_to_ACES.a1.1.0
+    isdata: false
+#    categories: [file-io]
+    encoding: log
+    allocation: uniform
+    to_scene_reference: !<BuiltinTransform> {style: CANON_CLOG3-CGAMUT_to_ACES2065-1}
+
+  - !<ColorSpace>
+    name: Log film scan (ADX10)
+    family: Input/Camera/Film
+    description: |
+      ADX10 Academy Density Encoding
+    isdata: false
+#    categories: [ file-io ]
+    encoding: log
+    to_reference: !<BuiltinTransform> {style: "ADX10_to_ACES2065-1"}
+
+# Output #
+
+#Neutral Look, Filmic Look, Show Look, ACES 1.0 SDR-video
+
+  - !<ColorSpace>
+    name: Output - Neutral Look (sRGB)
+    family: Output
+    description: Output Neutral Look (sRGB display)
+    isdata: false
+#    categories: [ file-io ]
+    encoding: sdr-video
+    from_reference: !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Neutral Look"}
+
+  - !<ColorSpace>
+    name: Output - Filmic Look (sRGB)
+    family: Output
+    description: Output Neutral Look (sRGB display)
+    isdata: false
+#    categories: [ file-io ]
+    encoding: sdr-video
+    from_reference: !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Filmic Look"}
+
+  - !<ColorSpace>
+    name: Output - ACES 1.0 SDR-video (sRGB)
+    family: Output
+    description: Output ACES 1.0 SDR-video (sRGB display)
+    isdata: false
+#    categories: [ file-io ]
+    encoding: sdr-video
+    from_reference: !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "ACES 1.0 SDR-video"}
+
+  - !<ColorSpace>
+    name: Output - Show Look (sRGB)
+    family: Output
+    description: Output Show Look (sRGB display)
+    isdata: false
+#    categories: [ file-io ]
+    encoding: sdr-video
+    from_reference: !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Show Look"}
+
+
+display_colorspaces:
+
+  - !<ColorSpace>
+    name: CIE-XYZ D65
+    family: Output
+    description: |
+      Display connection space, CIE XYZ with D65 adopted white point
+    encoding: display-linear
+    isdata: false
+
+  - !<ColorSpace>
+    name: sRGB
+    family: Output
+    description: |
+      sRGB monitor (piecewise EOTF)
+    isdata: false
+    categories: [ file-io ]
+    encoding: sdr-video
+    from_display_reference: !<GroupTransform>
+      children:
+        - !<MatrixTransform> {matrix: [ 3.240969941905, -1.537383177570, -0.498610760293, 0, -0.969243636281, 1.875967501508, 0.041555057407, 0, 0.055630079697, -0.203976958889, 1.056971514243, 0, 0, 0, 0, 1 ]}
+        - !<ExponentWithLinearTransform> {gamma: 2.4, offset: 0.055, direction: inverse}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: sRGB - Gamut Compress
+    family: Output
+    description: |
+      sRGB monitor (piecewise EOTF)
+    isdata: false
+#    categories: [ file-io ]
+    encoding: sdr-video
+    from_display_reference: !<GroupTransform>
+      children:
+        - !<MatrixTransform> {matrix: [ 3.240969941905, -1.537383177570, -0.498610760293, 0, -0.969243636281, 1.875967501508, 0.041555057407, 0, 0.055630079697, -0.203976958889, 1.056971514243, 0, 0, 0, 0, 1 ]}
+        - !<ExponentWithLinearTransform> {gamma: 2.4, offset: 0.055, direction: inverse}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: Gamma 2.2 - Rec.709
+    family: Output
+    description: |
+      Gamma 2.2 monitor with Rec.709 or sRGB primaries
+    isdata: false
+#    categories: [ file-io ]
+    encoding: sdr-video
+    from_display_reference: !<GroupTransform>
+      children:
+        - !<MatrixTransform> {matrix: [ 3.240969941905, -1.537383177570, -0.498610760293, 0, -0.969243636281, 1.875967501508, 0.041555057407, 0, 0.055630079697, -0.203976958889, 1.056971514243, 0, 0, 0, 0, 1 ]}
+        - !<ExponentTransform> {value: 2.2, direction: inverse}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: Rec.1886 - Rec.709 video
+    family: Output
+    description: |
+      Rec.709 broadcast monitor with Rec.1886 gamma (2.4)
+    isdata: false
+#    categories: [ file-io ]
+    encoding: sdr-video
+    from_display_reference: !<GroupTransform>
+      children:
+        - !<MatrixTransform> {matrix: [ 3.240969941905, -1.537383177570, -0.498610760293, 0, -0.969243636281, 1.875967501508, 0.041555057407, 0, 0.055630079697, -0.203976958889, 1.056971514243, 0, 0, 0, 0, 1 ]}
+        - !<ExponentTransform> {value: 2.4, direction: inverse}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: Cineon Log to Lin2
+    aliases: [ Cineon ]
+    family: Input/File-io
+    description: |
+      Traditional Cineon-style log-to-lin with RefWhite=695, RefBlack=95, Gamma=0.6
+    transform: !<LogAffineTransform>
+      log_side_slope:  0.293255131965
+      log_side_offset: 0.669599217986
+      lin_side_slope:  0.989202248377
+      lin_side_offset: 0.010797751623
+      base: 10
+      direction: inverse
+
+
+
