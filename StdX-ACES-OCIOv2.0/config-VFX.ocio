@@ -15,8 +15,8 @@ environment:
   LUT_NAME: clientShotLUTname_ACEScct.cube
   SHAPER: ACEScct
 # ------------------------------------------------------------------- # 
-  
-search_path: "studio:${LUT_PATH}"
+
+search_path: "show:studio:${LUT_PATH}"
 
 roles:
   aces_interchange: ACES2065-1
@@ -27,16 +27,25 @@ roles:
   compositing_log: ACEScct
   data: Raw
   default: Raw
+# --- set reference to ACES2065-1 for VFX:
   reference: ACES2065-1
   rendering: ACEScg
   scene_linear: ACEScg
   
-#   Nuke 8-bit default:  #
-  matte_paint: Output - ACES 1.0 SDR-video (sRGB)  
-#   Nuke 16-bit log default:  #
+#   Nuke 8-bit default:  
+  matte_paint: Color sRGB Texture  
+#   Nuke 16-bit log default:  
   texture_paint: ACEScct
+  
+  substance_3d_bitmap_import_8bit: Color sRGB Texture
+  substance_3d_bitmap_import_16bit: Color sRGB Texture
+  substance_3d_bitmap_import_floating: Raw
+  substance_3d_bitmap_export_8bit: Color sRGB Texture
+  substance_3d_bitmap_export_16bit: Color sRGB Texture
+  substance_3d_bitmap_export_floating: Raw
+  substance_3d_substance_material: Color sRGB Texture
 
-#  mari_monitor: ACES 1.0 SDR-video
+  mari_monitor: Output - Neutral Look (sRGB)
   mari_scaler_monitor: Raw
   mari_color_picker: hdr 
   mari_blending: Raw 
@@ -44,6 +53,7 @@ roles:
   mari_int16: ACEScct
   mari_int_scalar: Raw
   mari_float: ACEScg
+
 
 file_rules:
 
@@ -56,60 +66,93 @@ file_rules:
 
 shared_views:
 
-  - !<View> {name: ACES 1.0 SDR-video, view_transform: ACES 1.0 SDR-video, display_colorspace: <USE_DISPLAY_NAME>}
-  - !<View> {name: Shot Look, view_transform: ACES 1.0 SDR-video, looks: LMT_shot, display_colorspace: <USE_DISPLAY_NAME>}
+  - !<View> {name: ACES 1.0 - SDR-video - RGC, view_transform: Output - SDR Video - ACES 1.0, looks: LMT_gamut, display_colorspace: <USE_DISPLAY_NAME>}
+  - !<View> {name: ACES 1.0 - SDR-video, view_transform: Output - SDR Video - ACES 1.0, display_colorspace: <USE_DISPLAY_NAME>}
+  - !<View> {name: Neutral Look - SDR-video, view_transform: Output - SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_neutral", display_colorspace: <USE_DISPLAY_NAME>}
+  - !<View> {name: Filmic Look - SDR-video, view_transform: Output - SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_filmic", display_colorspace: <USE_DISPLAY_NAME>}
+  
+  - !<View> {name: Shot Look, view_transform: Output - SDR Video - ACES 1.0, looks: LMT_shot, display_colorspace: <USE_DISPLAY_NAME>}
+  - !<View> {name: Show Look, view_transform: Output - SDR Video - ACES 1.0, looks: "LMT_gamut, Show_LUT", display_colorspace: <USE_DISPLAY_NAME>}
+  
+  - !<View> {name: P3-500 nits - HDR-video, view_transform: Output - HDR Video (500 nits & P3 lim) - ACES, looks: LMT_gamut, display_colorspace: <USE_DISPLAY_NAME>}   
+  - !<View> {name: P3-1000 nits - HDR-video, view_transform: Output - HDR Video (1000 nits & P3 lim) - ACES 1.1, looks: LMT_gamut, display_colorspace: <USE_DISPLAY_NAME>}
+    
   - !<View> {name: Un-tone-mapped, view_transform: Un-tone-mapped, display_colorspace: <USE_DISPLAY_NAME>}
-  - !<View> {name: Log, colorspace: ACEScct}
-  - !<View> {name: Raw, colorspace: Raw}
 
 
-
+  
 displays:
 
   sRGB:
-    - !<Views> [ACES 1.0 SDR-video, Shot Look, Un-tone-mapped, Log, Raw]
+    - !<Views> [ACES 1.0 - SDR-video, ACES 1.0 - SDR-video - RGC, Neutral Look - SDR-video, Filmic Look - SDR-video, Shot Look, Show Look, Un-tone-mapped]
+  Gamma 2.2 - Rec.709:
+    - !<Views> [ACES 1.0 - SDR-video, ACES 1.0 - SDR-video - RGC, Neutral Look - SDR-video, Filmic Look - SDR-video, Shot Look, Show Look, Un-tone-mapped]
+  Apple Display P3:
+    - !<Views> [ACES 1.0 - SDR-video, ACES 1.0 - SDR-video - RGC, P3-500 nits - HDR-video, P3-1000 nits - HDR-video, Neutral Look - SDR-video, Filmic Look - SDR-video, Un-tone-mapped]
+  DCI-P3 D65:
+    - !<Views> [ACES 1.0 - SDR-video, P3-500 nits - HDR-video, P3-1000 nits - HDR-video, Neutral Look - SDR-video, Filmic Look - SDR-video, Shot Look, Show Look, Un-tone-mapped]
   Rec.1886 - Rec.709 video:
-    - !<Views> [ACES 1.0 SDR-video, Shot Look, Un-tone-mapped, Log, Raw]
+    - !<Views> [ACES 1.0 - SDR-video, ACES 1.0 - SDR-video - RGC, Neutral Look - SDR-video, Filmic Look - SDR-video, Shot Look, Show Look, Un-tone-mapped]
+  USE ONLY FOR CHECKING COMPS:
+    - !<View> {name: Log, colorspace: ACEScct}
+  USE ONLY FOR CHECKING RENDERS:
+    - !<View> {name: Raw, colorspace: Raw}
+
+
+#-- ANM config:
+#active_displays: [sRGB, Gamma 2.2 - Rec.709, Apple Display P3, USE ONLY FOR CHECKING COMPS, USE ONLY FOR CHECKING RENDERS]
+
+#active_views: [ACES 1.0 - SDR-video, Neutral Look - SDR-video, Filmic Look - SDR-video, Show Look, Un-tone-mapped, Log, Raw, P3-500 nits - HDR-video, P3-1000 nits - HDR-video]
+
+#inactive_colorspaces: [CIE-XYZ D65, sRGB - Gamut Compress,  Gamut Shaper, Inverse sRGB Output, DCI-P3 D65, ST2084-P3-D65, P3-D65, Apple Display P3, Pick Rec709-sRGB Desat, sRGB, Gamma 2.2 - Rec.709, Rec.1886 - Rec.709 video, Shot_shaper, Output - Shot Look (sRGB), Output - Shot Look (Gamma 2.2), Output - Shot Look (Rec.1886 - Rec.709 video), Output - ACES 1.0 SDR-video (Rec.1886 - Rec.709 video)]
+
+#-- VFX config:
+active_displays: [Gamma 2.2 - Rec.709, Apple Display P3, Rec.1886 - Rec.709 video, USE ONLY FOR CHECKING COMPS, USE ONLY FOR CHECKING RENDERS]
+
+active_views: [ACES 1.0 - SDR-video, Shot Look, Un-tone-mapped, Log, Raw, P3-500 nits - HDR-video, P3-1000 nits - HDR-video]
+
+inactive_colorspaces: [CIE-XYZ D65, sRGB - Gamut Compress,  Gamut Shaper, Inverse sRGB Output, DCI-P3 D65, ST2084-P3-D65, P3-D65, Apple Display P3, Pick Rec709-sRGB Desat, sRGB, Gamma 2.2 - Rec.709, Rec.1886 - Rec.709 video, Shot_shaper, Output - Neutral Look (sRGB), Output - Filmic Look (sRGB), Output - Show Look (sRGB), Output - Neutral Look (Gamma 2.2), Output - Filmic Look (Gamma 2.2), Output - Show Look (Gamma 2.2)]
+
+
 
 
 view_transforms:
 
   - !<ViewTransform>
     name: Un-tone-mapped
-    from_scene_reference: !<MatrixTransform> {matrix: [ 0.938279849277, -0.004451445812, 0.016627523587, 0, 0.337368890788, 0.729521566690, -0.066890457478, 0, 0.001173950850, -0.003710706402, 1.091594506312, 0, 0, 0, 0, 1 ]}
+    from_scene_reference: !<BuiltinTransform> {style: UTILITY - ACES-AP0_to_CIE-XYZ-D65_BFD}
 
   - !<ViewTransform>
-    name: ACES 1.0 SDR-video
-    from_scene_reference: !<GroupTransform>
-      children:
-        - !<FileTransform> {src: ACES_to_CIE-XYZ_1.0.ctf}
-        - !<MatrixTransform> {matrix: [1.660585326491, -0.315295560826, -0.241509327608, 0, -0.659926063224, 1.608391469566, 0.017298594705, 0, 0.009002569138, -0.003566876390, 0.913643312763, 0, 0, 0, 0, 1]}
-        - !<FixedFunctionTransform> {style: ACES_DarkToDim10}
-        - !<MatrixTransform> {matrix: [0.949056010175, 0.047185723607, 0.003758266219, 0, 0.019056010175, 0.977185723607, 0.003758266219, 0, 0.019056010175, 0.047185723607, 0.933758266219, 0, 0, 0, 0, 1]}
-        - !<MatrixTransform> {matrix: [0.652237541886, 0.128236136000, 0.169982249166, 0, 0.267672180125, 0.674339988802, 0.057987831073, 0, -0.005381815766, 0.001369060209, 1.093070506317, 0, 0, 0, 0, 1]}
+    name: Output - SDR Video - ACES 1.0
+    description: Component of ACES Output Transforms for SDR D65 video
+    from_scene_reference: !<BuiltinTransform> {style: ACES-OUTPUT - ACES2065-1_to_CIE-XYZ-D65 - SDR-VIDEO_1.0}
 
   - !<ViewTransform>
-    name: Neutral View
-    from_scene_reference: !<GroupTransform>
-      children:
-        - !<LookTransform> {src: ACES2065-1, dst: ACES2065-1, looks: LMT_neutral}
-        - !<FileTransform> {src: ACES_to_CIE-XYZ_1.0.ctf}
-        - !<MatrixTransform> {matrix: [1.660585326491, -0.315295560826, -0.241509327608, 0, -0.659926063224, 1.608391469566, 0.017298594705, 0, 0.009002569138, -0.003566876390, 0.913643312763, 0, 0, 0, 0, 1]}
-        - !<FixedFunctionTransform> {style: ACES_DarkToDim10}
-        - !<MatrixTransform> {matrix: [0.949056010175, 0.047185723607, 0.003758266219, 0, 0.019056010175, 0.977185723607, 0.003758266219, 0, 0.019056010175, 0.047185723607, 0.933758266219, 0, 0, 0, 0, 1]}
-        - !<MatrixTransform> {matrix: [0.652237541886, 0.128236136000, 0.169982249166, 0, 0.267672180125, 0.674339988802, 0.057987831073, 0, -0.005381815766, 0.001369060209, 1.093070506317, 0, 0, 0, 0, 1]}
+    name: Output - SDR Video (P3 lim) - ACES 1.1
+    description: Component of ACES Output Transforms for SDR D65 video
+    from_scene_reference: !<BuiltinTransform> {style: ACES-OUTPUT - ACES2065-1_to_CIE-XYZ-D65 - SDR-VIDEO-P3lim_1.1}
+    
+  - !<ViewTransform>
+    name: Output - ACES 1.1 SDR-cinema
+    from_scene_reference: !<BuiltinTransform> {style: "ACES-OUTPUT - ACES2065-1_to_CIE-XYZ-D65 - SDR-CINEMA_1.0"}
 
   - !<ViewTransform>
-    name: Filmic View
+    name: Output - HDR Video (500 nits & P3 lim) - ACES
+    description: Component of ACES Output Transforms for 500 nit HDR D65 video
     from_scene_reference: !<GroupTransform>
       children:
-        - !<LookTransform> {src: ACES2065-1, dst: ACES2065-1, looks: LMT_filmic}
-        - !<FileTransform> {src: ACES_to_CIE-XYZ_1.0.ctf}
-        - !<MatrixTransform> {matrix: [1.660585326491, -0.315295560826, -0.241509327608, 0, -0.659926063224, 1.608391469566, 0.017298594705, 0, 0.009002569138, -0.003566876390, 0.913643312763, 0, 0, 0, 0, 1]}
-        - !<FixedFunctionTransform> {style: ACES_DarkToDim10}
-        - !<MatrixTransform> {matrix: [0.949056010175, 0.047185723607, 0.003758266219, 0, 0.019056010175, 0.977185723607, 0.003758266219, 0, 0.019056010175, 0.047185723607, 0.933758266219, 0, 0, 0, 0, 1]}
-        - !<MatrixTransform> {matrix: [0.652237541886, 0.128236136000, 0.169982249166, 0, 0.267672180125, 0.674339988802, 0.057987831073, 0, -0.005381815766, 0.001369060209, 1.093070506317, 0, 0, 0, 0, 1]}
+        - !<BuiltinTransform> {style: ACEScct_to_ACES2065-1, direction: inverse}
+        - !<FileTransform> {src: ACEScct_to_XYZ_HDR_500_PQ.spi3d, interpolation: tetrahedral}
+        - !<BuiltinTransform> {style: CURVE - ST-2084_to_LINEAR}
 
+  - !<ViewTransform>
+    name: Output - HDR Video (1000 nits & P3 lim) - ACES 1.1
+    description: Component of ACES Output Transforms for 1000 nit HDR D65 video
+    from_scene_reference: !<BuiltinTransform> {style: ACES-OUTPUT - ACES2065-1_to_CIE-XYZ-D65 - HDR-VIDEO-1000nit-15nit-P3lim_1.1}
+
+
+    
+    
 looks:
 
   - !<Look>
@@ -138,7 +181,6 @@ looks:
     transform: !<FileTransform> {src: "${LUT_NAME}", interpolation: linear} 
 
 
-inactive_colorspaces: [CIE-XYZ D65, sRGB - Gamut Compress,  Gamut Shaper, Gamma 2.2 - Rec.709, Rec.1886 - Rec.709 video, sRGB, Inverse sRGB Output, Output - Filmic Look (sRGB), Output - Neutral Look (sRGB), Shot_shaper]
 
 
 
@@ -232,7 +274,6 @@ colorspaces:
 
   - !<ColorSpace>
     name: ACES2065-1
-    aliases: [ AP0 ]
     family: ACES
     equalitygroup: ""
     bitdepth: 32f
@@ -262,7 +303,6 @@ colorspaces:
     encoding: log
     to_scene_reference: !<BuiltinTransform> {style: "ACEScc_to_ACES2065-1"}
 
-
   - !<ColorSpace>
     name: Shot_shaper
     family: Utility
@@ -276,7 +316,6 @@ colorspaces:
     to_reference: !<ColorSpaceTransform> {src: "${SHAPER}", dst: ACES2065-1}
 
 # Extra #
-
   - !<ColorSpace>
     name: Inverse sRGB Output
     family: Input/File-io
@@ -286,7 +325,6 @@ colorspaces:
     categories: [ file-io ]
     encoding: sdr-video
     to_reference: !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: sRGB, view: "ACES 1.0 SDR-video"}
-
 
 
 # Cameras #
@@ -408,43 +446,132 @@ colorspaces:
 
 # Output #
 
-#Neutral Look, Filmic Look, Show Look, ACES 1.0 SDR-video
-
-  - !<ColorSpace>
-    name: Output - Neutral Look (sRGB)
-    family: Output
-    description: Output Neutral Look (sRGB display)
-    isdata: false
-#    categories: [ file-io ]
-    encoding: sdr-video
-    from_reference: !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Neutral Look"}
-
-  - !<ColorSpace>
-    name: Output - Filmic Look (sRGB)
-    family: Output
-    description: Output Neutral Look (sRGB display)
-    isdata: false
-#    categories: [ file-io ]
-    encoding: sdr-video
-    from_reference: !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Filmic Look"}
+#sRGB Display:
 
   - !<ColorSpace>
     name: Output - ACES 1.0 SDR-video (sRGB)
-    family: Output
-    description: Output ACES 1.0 SDR-video (sRGB display)
+    family: Output/sRGB monitor
     isdata: false
-#    categories: [ file-io ]
     encoding: sdr-video
-    from_reference: !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "ACES 1.0 SDR-video"}
+    from_reference: !<GroupTransform>
+      children:
+        - !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "ACES 1.0 SDR-video"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: Output - Neutral Look (sRGB)
+    family: Output/sRGB monitor
+    isdata: false
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Neutral Look"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: Output - Filmic Look (sRGB)
+    family: Output/sRGB monitor
+    isdata: false
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Filmic Look"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: Output - Show Look (sRGB)
+    family: Output/sRGB monitor
+    isdata: false
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Show Look"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
     name: Output - Shot Look (sRGB)
-    family: Output
-    description: Output Show Look (sRGB display)
+    family: Output/sRGB monitor
     isdata: false
-#    categories: [ file-io ]
     encoding: sdr-video
-    from_reference: !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Shot Look"}
+    from_reference: !<GroupTransform>
+      children:
+        - !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Shot Look"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+#2.2 Display:
+
+  - !<ColorSpace>
+    name: Output - ACES 1.0 SDR-video (Gamma 2.2)
+    family: Output/Gamma 2.2 monitor
+    isdata: false
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<DisplayViewTransform> {src: ACES2065-1, display: Gamma 2.2 - Rec.709, view: "ACES 1.0 SDR-video"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: Output - Neutral Look (Gamma 2.2)
+    family: Output/Gamma 2.2 monitor
+    isdata: false
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<DisplayViewTransform> {src: ACES2065-1, display: Gamma 2.2 - Rec.709, view: "Neutral Look"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: Output - Filmic Look (Gamma 2.2)
+    family: Output/Gamma 2.2 monitor
+    isdata: false
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<DisplayViewTransform> {src: ACES2065-1, display: Gamma 2.2 - Rec.709, view: "Filmic Look"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: Output - Show Look (Gamma 2.2)
+    family: Output/Gamma 2.2 monitor
+    isdata: false
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<DisplayViewTransform> {src: ACES2065-1, display: Gamma 2.2 - Rec.709, view: "Show Look"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: Output - Shot Look (Gamma 2.2)
+    family: Output/Gamma 2.2 monitor
+    isdata: false
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<DisplayViewTransform> {src: ACES2065-1, display: Gamma 2.2 - Rec.709, view: "Shot Look"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+
+#Video display:
+
+  - !<ColorSpace>
+    name: Output - ACES 1.0 SDR-video (Rec.1886 - Rec.709 video)
+    family: Output/Rec.1886 HDTV display
+    isdata: false
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<DisplayViewTransform> {src: ACES2065-1, display: Rec.1886 - Rec.709 video, view: "ACES 1.0 SDR-video"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: Output - Shot Look (Rec.1886 - Rec.709 video)
+    family: Output/Rec.1886 HDTV display
+    isdata: false
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<DisplayViewTransform> {src: ACES2065-1, display: Rec.1886 - Rec.709 video, view: "Shot Look"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
 
 display_colorspaces:
@@ -472,20 +599,6 @@ display_colorspaces:
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
-    name: sRGB - Gamut Compress
-    family: Output
-    description: |
-      sRGB monitor (piecewise EOTF)
-    isdata: false
-#    categories: [ file-io ]
-    encoding: sdr-video
-    from_display_reference: !<GroupTransform>
-      children:
-        - !<MatrixTransform> {matrix: [ 3.240969941905, -1.537383177570, -0.498610760293, 0, -0.969243636281, 1.875967501508, 0.041555057407, 0, 0.055630079697, -0.203976958889, 1.056971514243, 0, 0, 0, 0, 1 ]}
-        - !<ExponentWithLinearTransform> {gamma: 2.4, offset: 0.055, direction: inverse}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
-
-  - !<ColorSpace>
     name: Gamma 2.2 - Rec.709
     family: Output
     description: |
@@ -501,9 +614,10 @@ display_colorspaces:
 
   - !<ColorSpace>
     name: Rec.1886 - Rec.709 video
+    aliases: [ rec709 ]
     family: Output
     description: |
-      Rec.709 broadcast monitor with Rec.1886 gamma (2.4)
+      Rec.709 HD broadcast monitor with Rec.1886 EOTF (gamma 2.4)
     isdata: false
 #    categories: [ file-io ]
     encoding: sdr-video
@@ -512,6 +626,68 @@ display_colorspaces:
         - !<MatrixTransform> {matrix: [ 3.240969941905, -1.537383177570, -0.498610760293, 0, -0.969243636281, 1.875967501508, 0.041555057407, 0, 0.055630079697, -0.203976958889, 1.056971514243, 0, 0, 0, 0, 1 ]}
         - !<ExponentTransform> {value: 2.4, direction: inverse}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+
+  - !<ColorSpace>
+    name: Apple Display P3 
+    family: Output
+    equalitygroup: ""
+    bitdepth: 32f
+    description: Convert CIE XYZ (D65 white) to P3-D65 with 2.2 Gamma EOTF
+    isdata: false
+#    categories: [file-io]
+    encoding: sdr-video
+    allocation: uniform
+    from_display_reference: !<GroupTransform>
+      children:
+        - !<MatrixTransform> {matrix: [ 2.493496911941426, -0.931383617919124, -0.402710784450717, 0, -0.829488969561575, 1.762664060318346, 0.023624685841944, 0, 0.035845830243784, -0.076172389268042, 0.956884524007687, 0, 0, 0, 0, 1 ]}
+        - !<ExponentTransform> {value: [2.2, 2.2, 2.2, 1], direction: inverse}
+
+
+
+  - !<ColorSpace>
+    name: ST2084-P3-D65
+    family: 
+    description: |
+      DCI-P3 monitor/projector with D65 white point and ST-2084 (PQ) EOTF
+    isdata: false
+#    categories: [ file-io ]
+    encoding: sdr-video
+    from_display_reference: !<GroupTransform>
+      children:
+        - !<BuiltinTransform> {style: "DISPLAY - CIE-XYZ-D65_to_ST2084-P3-D65"}
+#        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+
+  - !<ColorSpace>
+    name: P3-D65
+    family: 
+    description: |
+      DCI-P3 monitor/projector with D65 white point and 2.6 gamma EOTF
+    isdata: false
+#    categories: [ file-io ]
+    encoding: sdr-video
+    from_display_reference: !<GroupTransform>
+      children:
+        - !<BuiltinTransform> {style: "DISPLAY - CIE-XYZ-D65_to_G2.6-P3-D65"}
+#        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: DCI-P3 D65
+    family: Display
+    description: |
+      DCI-P3 monitor with D65 white point and 2.6 gamma
+    isdata: false
+#    categories: [ file-io ]
+    encoding: sdr-video
+    from_display_reference: !<GroupTransform>
+      children:
+        - !<MatrixTransform> {matrix: [ 2.493496911941, -0.931383617919, -0.402710784451, 0, -0.829488969562, 1.762664060318, 0.023624685842, 0, 0.035845830244, -0.076172389268, 0.956884524008, 0, 0, 0, 0, 1 ]}
+        - !<ExponentTransform> {value: 2.6, direction: inverse}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+
+ 
 
 
 
