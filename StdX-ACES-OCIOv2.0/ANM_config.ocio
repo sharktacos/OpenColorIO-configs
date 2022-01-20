@@ -68,8 +68,8 @@ shared_views:
 
   - !<View> {name: ACES 1.0 - SDR-video - RGC, view_transform: Output - SDR Video - ACES 1.0, looks: LMT_gamut, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: ACES 1.0 - SDR-video, view_transform: Output - SDR Video - ACES 1.0, display_colorspace: <USE_DISPLAY_NAME>}
-  - !<View> {name: Neutral Look - SDR-video, view_transform: Output - SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_neutral", display_colorspace: <USE_DISPLAY_NAME>}
-  - !<View> {name: Filmic Look - SDR-video, view_transform: Output - SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_filmic", display_colorspace: <USE_DISPLAY_NAME>}
+  - !<View> {name: Neutral Look, view_transform: Output - SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_neutral", display_colorspace: <USE_DISPLAY_NAME>}
+  - !<View> {name: Filmic Look, view_transform: Output - SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_filmic", display_colorspace: <USE_DISPLAY_NAME>}
   
   - !<View> {name: Shot Look, view_transform: Output - SDR Video - ACES 1.0, looks: LMT_shot, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: Show Look, view_transform: Output - SDR Video - ACES 1.0, looks: "LMT_gamut, Show_LUT", display_colorspace: <USE_DISPLAY_NAME>}
@@ -84,15 +84,15 @@ shared_views:
 displays:
 
   sRGB:
-    - !<Views> [ACES 1.0 - SDR-video, ACES 1.0 - SDR-video - RGC, Neutral Look - SDR-video, Filmic Look - SDR-video, Shot Look, Show Look, Un-tone-mapped]
+    - !<Views> [ACES 1.0 - SDR-video, ACES 1.0 - SDR-video - RGC, Neutral Look, Filmic Look, Shot Look, Show Look, Un-tone-mapped]
   Gamma 2.2 - Rec.709:
-    - !<Views> [ACES 1.0 - SDR-video, ACES 1.0 - SDR-video - RGC, Neutral Look - SDR-video, Filmic Look - SDR-video, Shot Look, Show Look, Un-tone-mapped]
+    - !<Views> [ACES 1.0 - SDR-video, ACES 1.0 - SDR-video - RGC, Neutral Look, Filmic Look, Shot Look, Show Look, Un-tone-mapped]
   Apple Display P3:
-    - !<Views> [ACES 1.0 - SDR-video, ACES 1.0 - SDR-video - RGC, P3-500 nits - HDR-video, P3-1000 nits - HDR-video, Neutral Look - SDR-video, Filmic Look - SDR-video, Un-tone-mapped]
+    - !<Views> [ACES 1.0 - SDR-video, ACES 1.0 - SDR-video - RGC, P3-500 nits - HDR-video, P3-1000 nits - HDR-video, Neutral Look, Filmic Look, Un-tone-mapped]
   DCI-P3 D65:
-    - !<Views> [ACES 1.0 - SDR-video, P3-500 nits - HDR-video, P3-1000 nits - HDR-video, Neutral Look - SDR-video, Filmic Look - SDR-video, Shot Look, Show Look, Un-tone-mapped]
+    - !<Views> [ACES 1.0 - SDR-video, P3-500 nits - HDR-video, P3-1000 nits - HDR-video, Neutral Look, Filmic Look, Shot Look, Show Look, Un-tone-mapped]
   Rec.1886 - Rec.709 video:
-    - !<Views> [ACES 1.0 - SDR-video, ACES 1.0 - SDR-video - RGC, Neutral Look - SDR-video, Filmic Look - SDR-video, Shot Look, Show Look, Un-tone-mapped]
+    - !<Views> [ACES 1.0 - SDR-video, ACES 1.0 - SDR-video - RGC, Neutral Look, Filmic Look, Shot Look, Show Look, Un-tone-mapped]
   USE ONLY FOR CHECKING COMPS:
     - !<View> {name: Log, colorspace: ACEScct}
   USE ONLY FOR CHECKING RENDERS:
@@ -102,16 +102,18 @@ displays:
 #-- ANM config:
 active_displays: [sRGB, Gamma 2.2 - Rec.709, Apple Display P3, USE ONLY FOR CHECKING COMPS, USE ONLY FOR CHECKING RENDERS]
 
-active_views: [ACES 1.0 - SDR-video, Neutral Look - SDR-video, Filmic Look - SDR-video, Show Look, Un-tone-mapped, Log, Raw, P3-500 nits - HDR-video, P3-1000 nits - HDR-video]
+active_views: [ACES 1.0 - SDR-video, Neutral Look, Filmic Look, Show Look, Un-tone-mapped, Log, Raw, P3-500 nits - HDR-video, P3-1000 nits - HDR-video]
 
 inactive_colorspaces: [CIE-XYZ D65, sRGB - Gamut Compress,  Gamut Shaper, Inverse sRGB Output, DCI-P3 D65, ST2084-P3-D65, P3-D65, Apple Display P3, Pick Rec709-sRGB Desat, sRGB, Gamma 2.2 - Rec.709, Rec.1886 - Rec.709 video, Shot_shaper, Output - Shot Look (sRGB), Output - Shot Look (Gamma 2.2), Output - Shot Look (Rec.1886 - Rec.709 video), Output - ACES 1.0 SDR-video (Rec.1886 - Rec.709 video)]
 
 #-- VFX config:
+#active_displays: [Gamma 2.2 - Rec.709, Apple Display P3, Rec.1886 - Rec.709 video, USE ONLY FOR CHECKING COMPS, USE ONLY FOR CHECKING RENDERS]
+
 #active_views: [ACES 1.0 - SDR-video, Shot Look, Un-tone-mapped, Log, Raw, P3-500 nits - HDR-video, P3-1000 nits - HDR-video]
 
 #inactive_colorspaces: [CIE-XYZ D65, sRGB - Gamut Compress,  Gamut Shaper, Inverse sRGB Output, DCI-P3 D65, ST2084-P3-D65, P3-D65, Apple Display P3, Pick Rec709-sRGB Desat, sRGB, Gamma 2.2 - Rec.709, Rec.1886 - Rec.709 video, Shot_shaper, Output - Neutral Look (sRGB), Output - Filmic Look (sRGB), Output - Show Look (sRGB), Output - Neutral Look (Gamma 2.2), Output - Filmic Look (Gamma 2.2), Output - Show Look (Gamma 2.2)]
 
-#active_displays: [Gamma 2.2 - Rec.709, Apple Display P3, Rec.1886 - Rec.709 video]
+
 
 
 view_transforms:
@@ -442,9 +444,9 @@ colorspaces:
     encoding: log
     to_reference: !<BuiltinTransform> {style: "ADX10_to_ACES2065-1"}
 
-# Output #
+#--------------- Output --------------------------------#
 
-#sRGB Display:
+#--- sRGB Display:
 
   - !<ColorSpace>
     name: Output - ACES 1.0 SDR-video (sRGB)
