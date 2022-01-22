@@ -104,7 +104,7 @@ displays:
 
 #active_views: [ACES 1.0 - SDR-video, Neutral Look, Filmic Look, Show Look, Un-tone-mapped, Log, Raw, P3-500 nits - HDR-video, P3-1000 nits - HDR-video]
 
-#inactive_colorspaces: [CIE-XYZ D65, sRGB - Gamut Compress,  Gamut Shaper, Inverse sRGB Output, DCI-P3 D65, ST2084-P3-D65, P3-D65, Apple Display P3, Pick Rec709-sRGB Desat, sRGB, Gamma 2.2 - Rec.709, Rec.1886 - Rec.709 video, Shot_shaper, Output - Shot Look (sRGB), Output - Shot Look (Gamma 2.2), Output - Shot Look (Rec.1886 - Rec.709 video), Output - ACES 1.0 SDR-video (Rec.1886 - Rec.709 video)]
+#inactive_colorspaces: [CIE-XYZ D65, sRGB - Gamut Compress,  Gamut Shaper, DCI-P3 D65, ST2084-P3-D65, P3-D65, Apple Display P3, Pick Rec709-sRGB Desat, sRGB, Gamma 2.2 - Rec.709, Rec.1886 - Rec.709 video, Shot_shaper, Output - Shot Look (sRGB), Output - Shot Look (Gamma 2.2), Output - Shot Look (Rec.1886 - Rec.709 video), Output - ACES 1.0 SDR-video (Rec.1886 - Rec.709 video)]
 
 #-- VFX config:
 active_displays: [Gamma 2.2 - Rec.709, Apple Display P3, Rec.1886 - Rec.709 video, USE ONLY FOR CHECKING COMPS, USE ONLY FOR CHECKING RENDERS]
@@ -324,7 +324,7 @@ colorspaces:
     isdata: false
     categories: [ file-io ]
     encoding: sdr-video
-    to_reference: !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: sRGB, view: "ACES 1.0 SDR-video"}
+    to_reference: !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: sRGB, view: "ACES 1.0 - SDR-video"}
 
 
 # Cameras #
@@ -453,9 +453,10 @@ colorspaces:
     family: Output/sRGB monitor
     isdata: false
     encoding: sdr-video
+    to_reference: !<DisplayViewTransform> {src: "ACES2065-1", display: "sRGB", view: "ACES 1.0 - SDR-video", direction: inverse}
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "ACES 1.0 SDR-video"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "ACES 1.0 - SDR-video"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
@@ -507,7 +508,7 @@ colorspaces:
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: Gamma 2.2 - Rec.709, view: "ACES 1.0 SDR-video"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: Gamma 2.2 - Rec.709, view: "ACES 1.0 - SDR-video"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
@@ -560,7 +561,7 @@ colorspaces:
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: Rec.1886 - Rec.709 video, view: "ACES 1.0 SDR-video"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: Rec.1886 - Rec.709 video, view: "ACES 1.0 - SDR-video"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
