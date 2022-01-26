@@ -100,7 +100,7 @@ displays:
 
 
 #-- ANM config:
-active_displays: [sRGB, Gamma 2.2 - Rec.709, Apple Display P3, USE ONLY FOR CHECKING COMPS, USE ONLY FOR CHECKING RENDERS]
+active_displays: [sRGB, Gamma 2.2 - Rec.709, Apple Display P3,  Rec.1886 - Rec.709 video, USE ONLY FOR CHECKING COMPS, USE ONLY FOR CHECKING RENDERS]
 
 active_views: [ACES 1.0 - SDR-video, Neutral Look, Filmic Look, Show Look, Un-tone-mapped, Log, Raw, P3-500 nits - HDR-video, P3-1000 nits - HDR-video]
 
