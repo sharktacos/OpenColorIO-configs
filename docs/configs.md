@@ -11,7 +11,7 @@ The above Display Transforms contain the following views:
 - **ACES 1.0 SDR - (RGC)** The standard ACES RRT with added [Referrence Gamut Compression (RGC)](docs/gamut.md)
 - **Neutral Look** is intended as a neutral starting point for lookdev work. 
 - **Filmic Look** is intended for lighting shot work and has a similar filmic look to the standard ACES 1.0 RRT, with slightly reduced contrast. 
-- **Show Look** is for the show specific look LUT decided on by the director for the ANM config. This Look is combined with the Filmic Look. See "Shot Looks" below for setup.
+- **Show Look** is for the show specific look LUT decided on by the director for the ANM config. This Look is combined with the Filmic Look. See "Shot LUTs" below for setup.
 - **Un-tone-mapped** the default Nuke transform without tone mapping.
 
 You can read details about the *Neutral Look* and *Filmic Look* look transoforms on the [tone mapping](tonemap.md) page.  Additionally, both Look Transforms provide [highlight desaturation](docs/highlight.md) of blackbody color temperatures, and [reduced hue shifts](docs/chroma.md) compared to the default ACES 1.0 Output Transform. Finally, the new [Referrence Gamut Compression (RGC)](docs/gamut.md) is baked into all of the display tranforms (including the ACES 1.0 SDR) to address hue shifts in CG renders with ACES. Note that this is not the case for the VFX config below.
@@ -53,7 +53,7 @@ There are again transoforms for diagnostic purposes.
 And finally there is 
 - **DPX Shot Look** for displaying client LUTS from a display-referred non-color managed pipeline. See below.
 
-# Shot Looks 
+# Shot & Show LUTs 
 
 Both the **Show Look** from the ANM config and the **Shot Look** and **DPX Shot Look** view transforms from the VFX config use contextual variables to apply the shot-specific look LUT provided by the client to the view. The variables are defined in the config and can be set by the artist. **Shot Look** is intended for LUTs in an ACES pipline (the client is delivering EXR files in ACES2065-1 color space) and **DPX Shot Look** is for LUTs in a non-color managed display-referred pipeline (ther client is delivering DPX in the log space of the oroiginal camera raw).
 
