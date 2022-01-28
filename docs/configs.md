@@ -63,4 +63,4 @@ Therefore to go up a directory simply use ```../``` at the front of the file pat
 With the variables set, The OCIO config will then display that shot LUT in the program they load the OCIO config into (Maya, Nuke, etc.). The *SHAPER* variable refers to the working color space the LUT was created in (this is referred to as a "shaper" LUT). This will be either ACEScct or (less commonly) ACEScc, based on the Project Settings in DaVinci Resolve. VFX needs to know this in order to properly process the LUT in comp. It is good practice to have the client append the shaper space to the file name for clarity. See [ACES for Indie Filmmakers](VFXpulls.md#require) for details on requirements for VFX pulls.
 
 
-
+<iframe src="https://player.vimeo.com/video/670932546?h=ffdbf2d358" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
