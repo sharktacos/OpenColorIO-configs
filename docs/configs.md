@@ -4,7 +4,7 @@ The ANM config ````ANM_config.ocio```` is designed for work on CG animation shor
 
 ## ANM Config
 
-![img](img/nuke6.jpg)
+![img](img/Nuke_view_anm.png)
 
 The Display Transforms for the above ANM config are all in either sRGB or Gamma 2.2 display for viewing on artist's computer monitors. Additionally, the Apple P3 Display is included for use with a MacBookPro M1 display. Each display type contains two modifications of the standard ACES view transform using Look Transforms that customize them for the animation pipeline and incorporate visual improvements over the standard display, based on the feedback given from artistists for the ACESNext project. 
 
@@ -25,7 +25,7 @@ The remaining view transforms are the same as the default Maya 2022 config and a
 
 ## VFX Config
    
-![img](img/nuke5.jpg)
+![img](img/Nuke_view_vfx.png)
 
 The Display Transforms for the above VFX config contain sRGB, Gamma 2.2, and Apple P3 displays for viewing on the corresponding computer monitors as well as  BT.1886/Rec.709 for viewing in editorial on a Rec.709 reference monitor or on a HDTV display for dailies. In a VFX pipeline [gamut compression](gamut.md) is applied as a node in VFX and thus not included in the Display Transform. The views include the standard **ACES 1.0 RRT**, **Shot Look** (see below) for each display type, as well as several diagnostic views (**un-tone-mapped, Raw, Log**), and finally **Shot Look DPX** for displaying client LUTS from a display-referred non-color managed pipeline. **Un-tone-mapped** is the equivalent to Nuke's native sRGB which is a simple sRGB Gamma function without [tone mapping](tonemap.md).  
 
