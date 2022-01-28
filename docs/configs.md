@@ -8,19 +8,19 @@ The ANM config ````ANM_config.ocio```` is designed for work on CG animation shor
 
 The above Display Transforms contain the following views:
 
-**ACES 1.0 SDR - (RGC)** The standard ACES RRT with added [Referrence Gamut Compression (RGC)](docs/gamut.md)
-**Neutral Look** is intended as a neutral starting point for lookdev work. 
-**Filmic Look** is intended for lighting shot work and has a similar filmic look to the standard ACES 1.0 RRT, with slightly reduced contrast. 
-**Show Look** is for the show specific look LUT decided on by the director for the ANM config. This Look is combined with the Filmic Look.
-**Un-tone-mapped** the default Nuke transform without tone mapping.
+- **ACES 1.0 SDR - (RGC)** The standard ACES RRT with added [Referrence Gamut Compression (RGC)](docs/gamut.md)
+- **Neutral Look** is intended as a neutral starting point for lookdev work. 
+- **Filmic Look** is intended for lighting shot work and has a similar filmic look to the standard ACES 1.0 RRT, with slightly reduced contrast. 
+- **Show Look** is for the show specific look LUT decided on by the director for the ANM config. This Look is combined with the Filmic Look. See "Shot Looks" below for setup.
+- **Un-tone-mapped** the default Nuke transform without tone mapping.
 
 You can read details about the *Neutral Look* and *Filmic Look* look transoforms on the [tone mapping](tonemap.md) page.  Additionally, both Look Transforms provide [highlight desaturation](docs/highlight.md) of blackbody color temperatures, and [reduced hue shifts](docs/chroma.md) compared to the default ACES 1.0 Output Transform. Finally, the new [Referrence Gamut Compression (RGC)](docs/gamut.md) is baked into all of the display tranforms (including the ACES 1.0 SDR) to address hue shifts in CG renders with ACES. Note that this is not the case for the VFX config below.
 
 Each of these above views is paired with an output display:
 
-**sRGB** For viewing on artist's computer monitors calibrated to sRGB Peicewise EOTF
-**Gamma 2.0 - Rec.709** For viewing on artist's computer monitors calibrated to pure gamma 2.2
-**Apple Display P3** For viewing on the MacBookPro M1 in the wider P3 gamut used for film. This also contains options for HDR display.
+- **sRGB** For viewing on artist's computer monitors calibrated to sRGB Peicewise EOTF
+- **Gamma 2.0** For viewing on artist's computer monitors calibrated to pure gamma 2.2
+- **Apple Display P3** For viewing on the MacBookPro M1 in the wider P3 gamut used for film. This also contains options for HDR display.
 
 The remaining view transforms are the same as the default Maya 2022 config and are used for diagnostic purposes.
 
@@ -36,26 +36,26 @@ As noted above, in a VFX pipeline [gamut compression](gamut.md) is applied as a 
 
 The VFX config has the following views:
 
-**ACES 1.0 SDR - (RGC)** The standard ACES RRT
-**Shot Look** This view transform uses contextual variables to apply the shot-specific look LUT provided by the client to the view. The variables are defined in the config and can be set by the artist. See below.
-**Un-tone-mapped** is the equivalent to Nuke's native sRGB which is a simple sRGB Gamma function without [tone mapping](tonemap.md). 
+- **ACES 1.0 SDR - (RGC)** The standard ACES RRT
+- **Shot Look** This view transform uses contextual variables to apply the shot-specific look LUT provided by the client to the view. The variables are defined in the config and can be set by the artist. See below.
+- **Un-tone-mapped** is the equivalent to Nuke's native sRGB which is a simple sRGB Gamma function without [tone mapping](tonemap.md). 
 
 Each of these above views is paired with an output display:
 
-**sRGB** For viewing on artist's computer monitors calibrated to sRGB Peicewise EOTF
-**Gamma 2.0 - Rec.709** For viewing on artist's computer monitors calibrated to pure gamma 2.2
-**Rec.1886 - Rec.709** For viewing in editorial on a Rec.709 (Gamma 2.4) reference monitor or on a HDTV display for dailies. 
+- **sRGB** For viewing on artist's computer monitors calibrated to sRGB Peicewise EOTF
+- **Gamma 2.0** For viewing on artist's computer monitors calibrated to pure gamma 2.2
+- **Rec.709 - BT.1886 HDTV** For viewing in editorial on a Rec.709 (Gamma 2.4) reference monitor or on a HDTV display for dailies. 
 
 There are again transoforms for diagnostic purposes.
-- **Raw** 
-- **Log**
+- **Raw** For checking renders
+- **Log** For checking comps
 
 And finally there is 
-**DPX Shot Look** for displaying client LUTS from a display-referred non-color managed pipeline. See below.
+- **DPX Shot Look** for displaying client LUTS from a display-referred non-color managed pipeline. See below.
 
-#Shot Looks 
+# Shot Looks 
 
-Both the **Shot Look** and **DPX Shot Look** view transforms use contextual variables to apply the shot-specific look LUT provided by the client to the view. The variables are defined in the config and can be set by the artist. **Shot Look** is intended for LUTs in an ACES pipline (the client is delivering EXR files in ACES2065-1 color space) and **DPX Shot Look** is for LUTs in a non-color managed display-referred pipeline (ther client is delivering DPX in the log space of the oroiginal camera raw).
+Both the **Show Look** from the ANM config and the **Shot Look** and **DPX Shot Look** view transforms from the VFX config use contextual variables to apply the shot-specific look LUT provided by the client to the view. The variables are defined in the config and can be set by the artist. **Shot Look** is intended for LUTs in an ACES pipline (the client is delivering EXR files in ACES2065-1 color space) and **DPX Shot Look** is for LUTs in a non-color managed display-referred pipeline (ther client is delivering DPX in the log space of the oroiginal camera raw).
 
 The config has the following section at the top.
 
