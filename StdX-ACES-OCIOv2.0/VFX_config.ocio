@@ -17,9 +17,10 @@ environment:
   LUT_NAME: clientShotLUTname_ACEScct.cube
 #--------------
 # Camera aliases are: ARRI, RED, CLog2, CLog3, 
-# Sony, SonyCine, SonyVenice, SonyVeniceCine, ADX10
+# Sony, SonyCine, SonyVenice, SonyVeniceCine, ADX10.
+# CAMERA variable is set to ACEScct for ACES EXR workflow, and to camera for DPX for display-referred workflow
 #--------------
-  CAMERA: ARRI
+  CAMERA: ACEScct
   SHAPER: ACEScct
 # ------------------------------------------------------------------- # 
 
@@ -102,7 +103,7 @@ displays:
   Rec.709 - BT.1886 HDTV:
     - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Neutral Look", "Filmic Look", "Shot Look", "Show Look", Un-tone-mapped]
   USE ONLY FOR CHECKING COMPS:
-    - !<View> {name: Log, colorspace: ACEScct}
+    - !<View> {name: Log, colorspace: camera_log}
   USE ONLY FOR CHECKING RENDERS:
     - !<View> {name: Raw, colorspace: Raw}
   Display-Referred Workflow:
@@ -315,6 +316,8 @@ colorspaces:
     encoding: log
     to_scene_reference: !<BuiltinTransform> {style: "ACEScc_to_ACES2065-1"}
 
+# Extra #
+
   - !<ColorSpace>
     name: Shot_shaper
     family: Utility
@@ -327,7 +330,18 @@ colorspaces:
     encoding: log
     to_reference: !<ColorSpaceTransform> {src: "${SHAPER}", dst: ACES2065-1}
 
-# Extra #
+  - !<ColorSpace>
+    name: camera_log
+    family: Utility
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Camera log color space based on context variable
+    isdata: false
+    categories: [ file-io ]
+    encoding: log
+    to_reference: !<ColorSpaceTransform> {src: "${CAMERA}", dst: ACES2065-1}
+
   - !<ColorSpace>
     name: Inverse sRGB Output
     family: Input/File-io
