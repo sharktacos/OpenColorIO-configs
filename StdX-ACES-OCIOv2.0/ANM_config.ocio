@@ -18,7 +18,7 @@ environment:
 #--------------
 # Camera aliases are: ARRI, RED, CLog2, CLog3, 
 # Sony, SonyCine, SonyVenice, SonyVeniceCine, ADX10.
-# CAMERA variable is set to ACEScct for ACES EXR workflow, and to camera for DPX for display-referred workflow
+# CAMERA variable is set to ACEScct for ACES EXR workflow, and to the camera type for DPX display-referred workflow
 #--------------
   CAMERA: ACEScct
   SHAPER: ACEScct
@@ -114,13 +114,13 @@ displays:
 
 active_displays: [sRGB, "Gamma 2.2", "Apple Display P3", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS"]
 active_views: [ACES 1.0 - SDR-video - RGC, Neutral Look, Filmic Look, Show Look, Un-tone-mapped, Log, Raw, P3-500 nits - HDR-video, P3-1000 nits - HDR-video]
-inactive_colorspaces: [CIE-XYZ D65, Gamut Shaper, DCI-P3 D65, ST2084-P3-D65, P3-D65, Pick Rec709-sRGB Desat, Shot_shaper, Output - Shot Look (sRGB), Output - Shot Look (Gamma 2.2), Output - Shot Look (Rec.709 - BT.1886 HDTV), Output - ACES 1.0 SDR-video (Rec.709 - BT.1886 HDTV), Output - DPX Shot Look (Non-Color Managed), Rec.709 - BT.1886 HDTV]
+inactive_colorspaces: [CIE-XYZ D65, Gamut Shaper, camera_log, DCI-P3 D65, ST2084-P3-D65, P3-D65, Pick Rec709-sRGB Desat, Shot_shaper, Output - Shot Look (sRGB), Output - Shot Look (Gamma 2.2), Output - Shot Look (Rec.709 - BT.1886 HDTV), Output - ACES 1.0 SDR-video (Rec.709 - BT.1886 HDTV), Output - DPX Shot Look (Non-Color Managed), Rec.709 - BT.1886 HDTV]
 
 #-- VFX config:
 
 #active_displays: [sRGB, "Gamma 2.2", "Rec.709 - BT.1886 HDTV", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS", "Display-Referred Workflow"]
 #active_views: [ACES 1.0 - SDR-video, Shot Look, Un-tone-mapped, Log, Raw, DPX Shot Look, P3-500 nits - HDR-video, P3-1000 nits - HDR-video]
-#inactive_colorspaces: [CIE-XYZ D65,  Gamut Shaper, Inverse sRGB Output, DCI-P3 D65, ST2084-P3-D65, P3-D65, Apple Display P3, Pick Rec709-sRGB Desat, Shot_shaper, Output - Neutral Look (sRGB), Output - Filmic Look (sRGB), Output - Show Look (sRGB), Output - Neutral Look (Gamma 2.2), Output - Filmic Look (Gamma 2.2), Output - Show Look (Gamma 2.2)]
+#inactive_colorspaces: [CIE-XYZ D65,  Gamut Shaper, camera_log, Inverse sRGB Output, DCI-P3 D65, ST2084-P3-D65, P3-D65, Apple Display P3, Pick Rec709-sRGB Desat, Shot_shaper, Output - Neutral Look (sRGB), Output - Filmic Look (sRGB), Output - Show Look (sRGB), Output - Neutral Look (Gamma 2.2), Output - Filmic Look (Gamma 2.2), Output - Show Look (Gamma 2.2)]
 
 
 
