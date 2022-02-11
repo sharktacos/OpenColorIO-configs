@@ -73,11 +73,11 @@ Traditional 10-bit DPX files are not recommended, as they are [not sufficient](h
 <img src="img/gamuts.jpg">
 </p>
 
-A *VFX pull* involves "pulling" select film plates from the conform and sending them to VFX so they can add their magic to them. This is likewise exported with the ACES  "interchange" image format.  Let's take a look at that process in detail:
+A *VFX pull* involves "pulling" select film plates from the conform and sending them to VFX so they can add their magic to them. Let's take a look at that process in detail:
 
 ### <a name="require"></a>VFX Pull requirements:
 
-- **Debayering to OpenEXR.** VFX pulls should be debayered from the original RAW camera files and exported as 16-bit EXR in the ACES AP0 interchange format (ACES2065-1) with PIZ compression. Netflix Studios has a great [step-by-step guide for Resolve](https://partnerhelp.netflixstudios.com/hc/en-us/articles/360002088888-Color-Managed-Workflow-in-Resolve-ACES-) that will walk you through the process in detail.  
+- **Debayering to OpenEXR.** VFX pulls should be debayered from the original RAW camera files and exported as 16-bit EXR in the ACES AP0 interchange format (ACES2065-1) with PIZ compression. Netflix Studios has a great [step-by-step guide for Resolve](https://partnerhelp.netflixstudios.com/hc/en-us/articles/360002088888-Color-Managed-Workflow-in-Resolve-ACES-) that will walk you through the process in detail. The only difference is that we use PIZ compression. If needed, you can easily transfer footage from Premiere Pro (````File>Export>Final Cut XML````) into Resolve (````File > Import Timeline > Import AAF, EDL, XML…````) with an XML file.
 
 - **Ungraded footage.** All color correction and grades should be *disabled* for a VFX pull. An easy way to do this is to turn on "Enable Flat Pass" in the Resolve Delivery advanced options (again, see the above step-by-step guide). The basic idea is that VFX returns the ungraded plate to DI, with the VFX added, so that DI gets the full quality film plate back *as if it were filmed that way*. DI can then seamlessly insert it back into the conform and color grade everything together.
 
