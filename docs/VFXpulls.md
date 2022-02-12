@@ -65,7 +65,11 @@ Since editorial is working "offline" with proxy video clips with the ACES look b
  
 # <a name="pulls"></a>Conform & VFX Pulls
  
-The conform is where the proxy files are swapped out in the final edit for the original camera RAW files. For example, editorial working in Premiere exports an XML (````File>Export>Final Cut XML````) which is then imported into Resolve (````File > Import Timeline > Import AAF, EDL, XML…````) where the proxy files are swapped for the camera RAW files. For details on this, check out Part 7 "Import and Conform Projects" in the [Resolve Reference Manual](https://documents.blackmagicdesign.com/UserManuals/DaVinci_Resolve_17_Reference_Manual.pdf).
+The conform is where the proxy files are swapped out in the final edit for the original camera RAW files. For example, editorial working in Premiere exports an XML (````File>Export>Final Cut XML````) which is then imported into Resolve (````File > Import Timeline > Import AAF, EDL, XML…````) where the proxy files are swapped for the camera RAW files. For details on this, check out Part 7 "Import and Conform Projects" in the [Resolve Reference Manual](https://documents.blackmagicdesign.com/UserManuals/DaVinci_Resolve_17_Reference_Manual.pdf). Here's the flow chart again from above. We are now at the yellow box:
+
+<p align="center">
+<img src="img/pipeline.jpg">
+</p>
 
 In a traditional workflow these files are then passed to DI, either as Camera RAW files on rare occasion, or more typically as integer log DPX files. The ACES workflow replaces the older DPX format with its official interchange and archival format: 16-bit OpenEXR in ACES2065-1 color space. The advantage is that the ACES interchange format is able to hold all of the quality and dynamic range of the original camera RAW files.
 
