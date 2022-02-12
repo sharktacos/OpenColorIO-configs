@@ -65,7 +65,9 @@ Since editorial is working "offline" with proxy video clips with the ACES look b
  
 # <a name="pulls"></a>Conform & VFX Pulls
  
-The conform is where the proxy files are swapped out in the final edit for the original camera RAW files. For example, working in Resolve with ACES, the DIT uses an EDL/AAF/XML file provided by editorial to swap in the original camera RAW files. This again needs to be done in a software that can properly debayer RAW camera files in a color managed ACES workflow, such as DaVinci Resolve. In a traditional workflow these files are then passed to DI, either as Camera RAW files on rare occasion, or more typically as integer log DPX files. The ACES workflow replaces the older DPX format with its official interchange and archival format: 16-bit OpenEXR in ACES2065-1 color space. The advantage is that the ACES interchange format is able to hold all of the quality and dynamic range of the original camera RAW files.
+The conform is where the proxy files are swapped out in the final edit for the original camera RAW files. For example, editorial working in Premiere exports an XML (````File>Export>Final Cut XML````) which is then imported into Resolve (````File > Import Timeline > Import AAF, EDL, XML…````) where the proxy files are swapped for the camera RAW files. For details on this, check out Part 7 "Import and Conform Projects" in the [Resolve Reference Manual](https://documents.blackmagicdesign.com/UserManuals/DaVinci_Resolve_17_Reference_Manual.pdf).
+
+In a traditional workflow these files are then passed to DI, either as Camera RAW files on rare occasion, or more typically as integer log DPX files. The ACES workflow replaces the older DPX format with its official interchange and archival format: 16-bit OpenEXR in ACES2065-1 color space. The advantage is that the ACES interchange format is able to hold all of the quality and dynamic range of the original camera RAW files.
 
 Traditional 10-bit DPX files are not recommended, as they are [not sufficient](https://acescentral.com/uploads/default/original/1X/25ec1472d70b169ceabb215beacdd501d1a27fac.pdf) to contain all the information captured by modern digital cameras (For example RED camera RAW files are 16-bit). In contrast, [OpenEXR](https://www.openexr.com/) is 16-bit float with a dynamic range of 30+ exposure stops, and a wide gamut color space (ACES2065-1) that contains the full color gamut visible to the human eye (see graphic below). In short: Using 10-bit DPX involves a degradation of quality from the original camera footage, while EXR *more than* covers the full fidelity and range of any camera RAW file. It has become [common industry practice](https://partnerhelp.netflixstudios.com/hc/en-us/articles/360000611467-VFX-Best-Practices) to use PIZ or ZIP *lossless* compression on these ACES OpenEXR files. This results in file sizes that are *smaller* than DPX files! 
 
@@ -73,13 +75,11 @@ Traditional 10-bit DPX files are not recommended, as they are [not sufficient](h
 <img src="img/gamuts.jpg">
 </p>
 
-A *VFX pull* involves "pulling" select film plates from the conform and sending them to VFX so they can add their magic to them. Let's take a look at that process in detail:
+These ACES interchange OpenEXR files, called ACES2065-1 or AP0, are therefore the perfect container for the high-quality files, retaining all of the quality of the original camera RAW at a resonable file size. These are then passed to DI for the grade, or are sent to VFX in what is known as a *VFX pull*. This involves "pulling" select film plates from the conform and sending them to VFX so they can add their magic to them. Let's take a look at that process in detail:
 
 ### <a name="require"></a>VFX Pull requirements:
 
 - **Debayering to OpenEXR.** VFX pulls should be debayered from the original RAW camera files and exported as 16-bit EXR in the ACES AP0 interchange format (ACES2065-1) with PIZ compression. Netflix Studios has a great [step-by-step guide for Resolve](https://partnerhelp.netflixstudios.com/hc/en-us/articles/360002088888-Color-Managed-Workflow-in-Resolve-ACES-) that will walk you through the process in detail. The only difference is that we use PIZ compression. 
-
-- If needed, you can easily transfer footage from Premiere Pro (````File>Export>Final Cut XML````) into Resolve (````File > Import Timeline > Import AAF, EDL, XML…````) with an XML file. To roundtrip back to Premiere, open the Edit page in Resolve, right-click the timeline from the Media Pool, and choose ````Timelines > Export > AAF/XML````, then when the export window appears choose XML from the file type dropdown and save.
 
 - **Ungraded footage.** All color correction and grades should be *disabled* for a VFX pull. An easy way to do this is to turn on "Enable Flat Pass" in the Resolve Delivery advanced options (again, see the above step-by-step guide). The basic idea is that VFX returns the ungraded plate to DI, with the VFX added, so that DI gets the full quality film plate back *as if it were filmed that way*. DI can then seamlessly insert it back into the conform and color grade everything together.
 
