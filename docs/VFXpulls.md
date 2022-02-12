@@ -75,7 +75,7 @@ Traditional 10-bit DPX files are not recommended, as they are [not sufficient](h
 <img src="img/gamuts.jpg">
 </p>
 
-These ACES interchange OpenEXR files, called ACES2065-1 or AP0, are therefore the perfect container for the high-quality files, retaining all of the quality of the original camera RAW at a resonable file size. These are then passed to DI for the grade, or are sent to VFX in what is known as a *VFX pull*. This involves "pulling" select film plates from the conform and sending them to VFX so they can add their magic to them. Let's take a look at that process in detail:
+These ACES interchange OpenEXR files, called ACES2065-1 or AP0, is therefore the perfect container for the high-quality media, retaining all of the quality of the original camera RAW at a resonable file size. These ACES EXR files are then passed to DI for the final grade, or are sent to VFX in what is known as a *VFX pull*. This involves "pulling" select film plates from the conform and sending them to VFX so they can add their magic to them. Let's take a look at that process in detail:
 
 ### <a name="require"></a>VFX Pull requirements:
 
