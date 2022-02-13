@@ -32,6 +32,11 @@ For a RED camera you need to first change the image pipeline from legacy to IPP2
 
 ![img](img/premiereB2.jpg)
 
+This will display your footage in the log color space of your camera
+
+![img](img/premiereB7.jpg)
+
+
 ## OpenColorIO (OCIO)
 
 The OpenColorIO plugin is located in ````Effects > Video Effects > Utility > OpenColorIO````. 
@@ -49,11 +54,15 @@ in Convert mode, set the **Input Space** to your camera type, and the **Output S
 
 ![img](img/premiereB5.jpg)
 
+This converts the image into scene-linear color space, meaning that the pixel values correspond to the photons on set.
+
+![img](img/premiereB8.jpg)
+
 ## Exporting OpenEXR
 
 Traditional 10-bit DPX files are not recommended, as they are not sufficient to contain all the information captured by modern digital cameras (For example RED camera RAW files are 16-bit and ARRI are 12-bit). In contrast, OpenEXR is 16-bit float with a dynamic range of 30+ exposure stops. That means it is able to preserve the full dynamic range of the camera RAW file at a reasonable file size. Using PIZ lossless compression an EXR file is actually smaller than a DPX.
 
-Choose ```File > Export > Media... ``` menu and in the dialog choose OpenEXR with PIZ compression with "Bypass linear conversion" on. 
+Choose the ```File > Export > Media... ``` menu, and in the dialog choose OpenEXR with PIZ compression with "Bypass linear conversion" on. 
 
 ![img](img/premiereB6.jpg)
 
