@@ -45,29 +45,17 @@ Drag it onto the Effect Controls panel, under your camera RAW footage. Then clic
 
 ![img](img/premiereB4.jpg)
 
-With the Configutation toggled to "convert" Set the Input Space to your camera type, and the Output Space to either **ACES2065-1** if you are working in ACES, or to **scene-linear Rec709-sRGB** if you are not. Below we have the settings for a RED camera going to scene-linear Rec709-sRGB.
+in Convert mode, set the **Input Space** to your camera type, and the **Output Space* to either *ACES2065-1* if you are working in ACES, or to *scene-linear Rec709-sRGB* if you are not. Below we have the settings for a RED camera going to scene-linear Rec709-sRGB.
 
 ![img](img/premiereB5.jpg)
 
+Choose ```File > Export > Media... ``` menu and in the dialog choose OpenEXR with PIZ compression with "Bypass linear conversion" on. 
 
+![img](img/premiereB6.jpg)
 
+Be sure to append the file name with the output color space, "ap0" for ACES and "lin" for scene-linear Rec709-sRGB. For example frame 1 of shot 4 would be
+"Shot04**_lin**.0001.exr"
 
-On the RAW file Effect Controls make sure the Output Transform Settings are set to match the Primary settings for Color Space and Gamma, and that the Output Tone Map and Highligh Roll-Off are both set to "none".  
-
-Using the OCIOv2 config, you will make two OCIO FXs (located in ````Effects > Video Effects > Utility > OpenColorIO````), one to read in the files, and another to display them. So your FX layers would be:
-
-   1. **OCIO input** (in: Camera color space, out: ACES2065-1)<br>
-   For example for a RED camera the transform is in the ````Input/Camera/RED``` folder
-   2.  **OCIO display** (in: ACES2065-1, out: Rec.709 BT1886 HDTV)
-   The out transform should be set to match the display you are viewing on, so Rec.709 BT1886 HDTV would be for viewing on a reference broadcast monitor. If viewing on a computer monitor you would instead use Gamma 2.2.
-   
-To export a file in EXR disable the OCIO display above. This will put the file into ACES2065-1 space. Then export the media with the following settings:
-   - Format: OpenEXR
-   - Compression: PIZ
-   - Bypass linear conversion: ON
-   
-   ![img](img/Premiere1.jpg)
- 
 
 
 [Back to main](../StdX_ACES)
