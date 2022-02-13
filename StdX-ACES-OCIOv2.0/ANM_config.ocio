@@ -16,7 +16,7 @@ environment:
   LUT_PATH: path_to/shot_lut/
   LUT_NAME: clientShotLUTname_ACEScct.cube
 #--------------
-# Camera aliases are: ARRI, RED, CLog2, CLog3, 
+# Camera aliases are: ARRI, RED, CLog2, CLog3, Panasonic,
 # Sony, SonyCine, SonyVenice, SonyVeniceCine, ADX10.
 # CAMERA variable is set to ACEScct for ACES EXR workflow, and to camera for DPX for display-referred workflow
 #--------------
@@ -454,6 +454,16 @@ colorspaces:
     encoding: log
     allocation: uniform
     to_scene_reference: !<BuiltinTransform> {style: CANON_CLOG3-CGAMUT_to_ACES2065-1}
+
+  - !<ColorSpace>
+    name: Panasonic - VLog VGamut
+    aliases: [ Panasonic ]
+    family: Input/Camera/Panasonic
+    description: |
+      Convert Panasonic Varicam V-Log V-Gamut to ACES2065-1
+    isdata: false
+    encoding: log
+    to_reference: !<BuiltinTransform> {style: PANASONIC_VLOG-VGAMUT_to_ACES2065-1}
 
   - !<ColorSpace>
     name: Log film scan (ADX10)
