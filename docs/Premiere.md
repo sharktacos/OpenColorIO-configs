@@ -17,7 +17,7 @@ It is possible to debayer a couple camera RAW footage in Premiere (specifically 
 
 Don't worry about the name, it works in both Premiere and After Effects.
 
-  2. Download [this OCIO config](https://github.com/sharktacos/OpenColorIO-configs/blob/main/software/Premiere/VFX_mini.ocio) which is configured specifically for converting camera RAW files to OpenEXR in Premiere. 
+  2. Download the [VFX_mini.ocio](https://github.com/sharktacos/OpenColorIO-configs/blob/main/software/Premiere/VFX_mini.ocio) config, which is configured specifically for converting camera RAW files to OpenEXR in Premiere. 
 
   3. In Premiere open the Sequence Settings and turn on  **Max Bit Depth**. Otherwise Premiere will clip any image values over 1. 
   4. **Ungraded footage.** All color correction and grades should be *disabled* for a VFX pull.
