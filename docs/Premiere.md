@@ -11,20 +11,21 @@ It is possible to debayer camera RAW footage in Premiere for some camera RAW typ
 
 The free [OCIO plugin for After Effects](https://fnordware.blogspot.com/2012/05/opencolorio-for-after-effects.html) also works in Premiere Pro. You just need to place it in the common plugin folder, which on Windows is:<br>
 
-| Platform	| Version	      | Path
-|-----------|---------------|---------------------------------------------------------------
-| Windows	  | 7.2 or newer	| C:\Users\username\Documents\Adobe\Adobe Substance 3D Painter\assets\colorluts\
-|           |  Legacy	      | C:\Users\username\Documents\Allegorithmic\Substance Painter\shelf\colorluts\
-| Mac	      | 7.2 or newer	| /Users/username/Documents/Adobe/Adobe Substance 3D Painter/assets/colorluts/
-|           | Legacy	      | /Users/username/Documents/Allegorithmic/Substance Painter/shelf/colorluts/
+| Platform	| Path
+|-----------|---------------------------------------------------------------
+| Windows	| C:\Program Files\Adobe\Common\Plug-ins\7.0\MediaCore
+| Mac	      | /Library/Application Support/Adobe/Common/Plug-ins/7.0/MediaCore/ 
+
+
+Next download [this OCIO config](https://github.com/sharktacos/OpenColorIO-configs/blob/main/StdX-ACES-OCIOv2.0/VFX_mini.ocio) which is configured specifically for converting camera RAW files to OpenEXR in Premiere. 
+
+In Premiere open the Sequence Settings and turn on  **Max Bit Depth**. Otherwise Premiere will clip any image values over 1. 
+
+The camera RAW file needs to be set to display in its camera log space. This is done in the Effect Controls and differs for each camera. For example an ARRI camera looks like this:
 
 
 
-C:\Program Files\Adobe\Common\Plug-ins\7.0\MediaCore
 
-Next you need to download an OCIOv2 config (which you can download from this repo). 
-
-In the Sequence Settings turn  **Max Bit Depth**. Otherwise Premiere will clip any image values over 1. 
 
 On the RAW file Effect Controls make sure the Output Transform Settings are set to match the Primary settings for Color Space and Gamma, and that the Output Tone Map and Highligh Roll-Off are both set to "none".  
 
