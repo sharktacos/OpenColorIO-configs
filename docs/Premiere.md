@@ -2,9 +2,7 @@
 
 ## Overview
 
-For VFX pulls we highly recommend editing in Premiere and debayering camera RAW files in DaVinci Resolve. Broadly speaking Premiere is a great software for editing in Rec.709, but was not designed for scene-referred color management or debayering camera RAW footage. Resolve supports all camera RAW fomats, and is free. If you would like to go this route for a VFX pull, it is [outlined here](VFXpulls.html).
-
-It is possible to debayer a couple camera RAW footage in Premiere (specifically ARRI and RED cameras), and export OpenEXR files using OpenColorIO (OCIO). That alternate workflow is decribed below.
+Broadly speaking Premiere is a great software for editing, but is limited in it's ability to debayer camera RAW files. That said, Premiere can debayer ARRI and RED camera RAW files (.ari and .R3D). Using the OpenColorIO (OCIO) plugin it is then possible to export these to EXR. That workflow is decribed below.
 
 ## Setup
 
