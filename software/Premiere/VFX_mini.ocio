@@ -41,7 +41,7 @@ displays:
 
 active_displays: [Rec.709 - BT.1886 HDTV, Gamma 2.2]
 active_views: [ACES 1.0 - SDR-video]
-inactive_colorspaces: [CIE-XYZ D65, ACEScg, ACEScct, ACEScc, Gamma 2.2, Rec.709 - BT.1886 HDTV, Raw]
+inactive_colorspaces: [CIE-XYZ D65, ACEScg, ACEScct, ACEScc, Gamma 2.2, Rec.709 - BT.1886 HDTV, Raw, scene-linear Rec.709-sRGB]
 
 
 view_transforms:
@@ -51,16 +51,9 @@ view_transforms:
     description: Component of ACES Output Transforms for SDR D65 video
     from_scene_reference: !<BuiltinTransform> {style: ACES-OUTPUT - ACES2065-1_to_CIE-XYZ-D65 - SDR-VIDEO_1.0}
 
-    
-    
 looks:
 
-
-
 colorspaces:
-
-
-
 
 #---------------------- Cameras ----------------------#
 
