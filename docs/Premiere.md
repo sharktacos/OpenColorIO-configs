@@ -8,9 +8,17 @@ It is possible to debayer camera RAW footage in Premiere for some camera RAW typ
 
 ## Debayering in Premiere
 
-Are you still there? Well. okay, don't say I didn't warn you! 
 
 The free [OCIO plugin for After Effects](https://fnordware.blogspot.com/2012/05/opencolorio-for-after-effects.html) also works in Premiere Pro. You just need to place it in the common plugin folder, which on Windows is:<br>
+
+| Platform	| Version	      | Path
+|-----------|---------------|---------------------------------------------------------------
+| Windows	  | 7.2 or newer	| C:\Users\username\Documents\Adobe\Adobe Substance 3D Painter\assets\colorluts\
+|           |  Legacy	      | C:\Users\username\Documents\Allegorithmic\Substance Painter\shelf\colorluts\
+| Mac	      | 7.2 or newer	| /Users/username/Documents/Adobe/Adobe Substance 3D Painter/assets/colorluts/
+|           | Legacy	      | /Users/username/Documents/Allegorithmic/Substance Painter/shelf/colorluts/
+
+
 
 C:\Program Files\Adobe\Common\Plug-ins\7.0\MediaCore
 
