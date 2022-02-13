@@ -17,9 +17,10 @@ environment:
   LUT_NAME: clientShotLUTname_ACEScct.cube
 #--------------
 # Camera aliases are: ARRI, RED, CLog2, CLog3, 
-# Sony, SonyCine, SonyVenice, SonyVeniceCine, ADX10
+# Sony, SonyCine, SonyVenice, SonyVeniceCine, ADX10.
+# CAMERA variable is set to ACEScct for ACES EXR workflow, and to camera for DPX for display-referred workflow
 #--------------
-  CAMERA: ARRI
+  CAMERA: ACEScct
   SHAPER: ACEScct
 # ------------------------------------------------------------------- # 
 
@@ -34,7 +35,7 @@ roles:
   compositing_linear: ACEScg  
   compositing_log: ACEScct
   data: Raw
-  default: Raw
+  default: ap0
 # --- set reference to ap0 for VFX:
   reference: ap0
   rendering: ACEScg
@@ -102,7 +103,7 @@ displays:
   Rec.709 - BT.1886 HDTV:
     - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Neutral Look", "Filmic Look", "Shot Look", "Show Look", Un-tone-mapped]
   USE ONLY FOR CHECKING COMPS:
-    - !<View> {name: Log, colorspace: ACEScct}
+    - !<View> {name: Log, colorspace: camera_log}
   USE ONLY FOR CHECKING RENDERS:
     - !<View> {name: Raw, colorspace: Raw}
   Display-Referred Workflow:
@@ -117,7 +118,7 @@ displays:
 
 #-- VFX config:
 
-active_displays: [sRGB, "Gamma 2.2", "Rec.709 - BT.1886 HDTV", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS", "Display-Referred Workflow"]
+active_displays: [Gamma 2.2, Rec.709 - BT.1886 HDTV, "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS", "Display-Referred Workflow"]
 active_views: [ACES 1.0 - SDR-video, Shot Look, Un-tone-mapped, Log, Raw, DPX Shot Look, P3-500 nits - HDR-video, P3-1000 nits - HDR-video]
 inactive_colorspaces: [CIE-XYZ D65,  Gamut Shaper, Inverse sRGB Output, DCI-P3 D65, ST2084-P3-D65, P3-D65, Apple Display P3, Pick Rec709-sRGB Desat, Shot_shaper, Output - Neutral Look (sRGB), Output - Filmic Look (sRGB), Output - Show Look (sRGB), Output - Neutral Look (Gamma 2.2), Output - Filmic Look (Gamma 2.2), Output - Show Look (Gamma 2.2)]
 
@@ -197,6 +198,17 @@ colorspaces:
 #---------------------- Rendering -------------------------------#
 
   - !<ColorSpace>
+    name: Raw
+    family: Input/File-io
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Raw (no color processing)
+    isdata: true
+    categories: [ file-io ]
+    encoding: data
+
+  - !<ColorSpace>
     name: Color sRGB Texture
     aliases: [ dif, BaseColor ]
     family: Input/File-io
@@ -225,17 +237,6 @@ colorspaces:
       children:
         - !<MatrixTransform> {matrix: [ 0.88189, 0.10728, 0.01083, 0, 0.03189, 0.95728, 0.01083, 0, 0.03189, 0.10728, 0.86083, 0, 0, 0, 0, 1 ]}
         - !<MatrixTransform> {matrix:  [ 0.439632981919, 0.382988698152, 0.177378319929, 0, 0.089776442959, 0.813439428749, 0.096784128292, 0, 0.017541170383, 0.111546553302, 0.870912276314, 0, 0, 0, 0, 1 ]}
-
-  - !<ColorSpace>
-    name: Raw
-    family: Input/File-io
-    equalitygroup: ""
-    bitdepth: 32f
-    description: |
-      Raw (no color processing)
-    isdata: true
-    categories: [ file-io ]
-    encoding: data
 
   - !<ColorSpace>
     name: scene-linear Rec.709-sRGB
@@ -315,6 +316,8 @@ colorspaces:
     encoding: log
     to_scene_reference: !<BuiltinTransform> {style: "ACEScc_to_ACES2065-1"}
 
+# Extra #
+
   - !<ColorSpace>
     name: Shot_shaper
     family: Utility
@@ -327,7 +330,18 @@ colorspaces:
     encoding: log
     to_reference: !<ColorSpaceTransform> {src: "${SHAPER}", dst: ACES2065-1}
 
-# Extra #
+  - !<ColorSpace>
+    name: camera_log
+    family: Utility
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Camera log color space based on context variable
+    isdata: false
+    categories: [ file-io ]
+    encoding: log
+    to_reference: !<ColorSpaceTransform> {src: "${CAMERA}", dst: ACES2065-1}
+
   - !<ColorSpace>
     name: Inverse sRGB Output
     family: Input/File-io
