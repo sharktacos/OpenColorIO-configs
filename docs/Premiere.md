@@ -45,7 +45,7 @@ Drag it onto the Effect Controls panel, under your camera RAW footage. Then clic
 
 ![img](img/premiereB4.jpg)
 
-Set the Input Space to your camera type, and the Output Space to either **ACES2065-1** if you are working in ACES, or to **scene-linear Rec709-sRGB** if you are not.
+With the Configutation toggled to "convert" Set the Input Space to your camera type, and the Output Space to either **ACES2065-1** if you are working in ACES, or to **scene-linear Rec709-sRGB** if you are not. Below we have the settings for a RED camera going to scene-linear Rec709-sRGB.
 
 ![img](img/premiereB5.jpg)
 
