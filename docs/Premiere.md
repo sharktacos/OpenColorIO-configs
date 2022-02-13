@@ -27,10 +27,27 @@ Don't worry about the name, it works in both Premiere and After Effects.
 
 ## Camera log
 
-Next the camera RAW file needs to be set to display in its native log space. This is done in the Effect Controls panel, and differs for each camera. For example an ARRI camera looks like this:
+Next the camera RAW file needs to be set to display in its native log space. This is done in the Effect Controls panel, and differs for each camera. For example for an ARRI camera you simply need to change to color space to LogC:
 
 ![img](img/premiereB1.jpg)
 
+For a RED camera you need to first change the image pipeline from legacy to IPP2, and then set the Output Transforms Settings to match the Primary (RedWideGamutRGB color space, Log3G10 gamma)
+
+![img](img/premiereB2.jpg)
+
+## OpenColorIO (OCIO)
+
+The OpenColorIO plugin is located in ````Effects > Video Effects > Utility > OpenColorIO````. 
+
+![img](img/premiereB3.jpg)
+
+Drag it onto the Effect Controls panel, under your camera RAW footage. Then click the Configuration drop-down menu, choose "custom" and load the [VFX_mini.ocio](https://github.com/sharktacos/OpenColorIO-configs/blob/main/software/Premiere/VFX_mini.ocio) file.
+
+![img](img/premiereB4.jpg)
+
+Set the Input Space to your camera type, and the Output Space to either **ACES2065-1** if you are working in ACES, or to **scene-linear Rec709-sRGB** if you are not.
+
+![img](img/premiereB5.jpg)
 
 
 
