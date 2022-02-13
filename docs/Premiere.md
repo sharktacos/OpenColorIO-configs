@@ -53,8 +53,8 @@ Choose ```File > Export > Media... ``` menu and in the dialog choose OpenEXR wit
 
 ![img](img/premiereB6.jpg)
 
-Be sure to append the file name with the output color space, "ap0" for ACES and "lin" for scene-linear Rec709-sRGB. For example frame 1 of shot 4 would be
-"Shot04**_lin**.0001.exr"
+Be sure to append the file name with the output color space, "ap0" for ACES and "lin" for scene-linear Rec709-sRGB. For example 
+AGM_104_065_010_PL01_v001_**ap0*.0001.exr for an ACES file and AGM_104_065_010_PL01_v001_**lin**.0001.exr for a non-ACES EXR.
 
 
 
