@@ -1,15 +1,18 @@
-# Premiere Pro
+# Exporting OpenEXR from camera RAW with Premiere Pro
 
 ## Overview
 
-There are many possible ways to work in Premiere Pro. The most common is to work in Rec.709 with proxy video clips. These would later be swapped out with the high res footage in the [conform](VFXpulls.md) stage of production with an EDL/XML/AFF file. 
+For debayering camera RAW files into OpenEXR our recommended workflow is exporting an XML file from Premiere, importing this into Davinci Resolve, and dabayer your footage there. Broadly speaking Premiere is a great software for editing in Rec.709, but was not designed for scene-referred color management or debayering camera RAW footage. If you would like to go this route for a VFX pull, it is [outlined here](VFXPulls.html).
 
-It is possible to debayer camera RAW footage in Premiere for some camera RAW types (ARRI and RED). This is a rather complex process that involves installing a plugin, downloading an OCIO config, and changing a lot of settings in Premiere. On top of that Premiere will be very slow. An alternative workflow is to export an XML file from Premiere and read this into Davinci Resolve and dabayer your footage there. This is simple to do, works with all camera types, and is fast. Plus Resolve is free.
+It is possible to debayer camera RAW footage in Premiere for some camera RAW types (ARRI and RED), and export OpenEXR files using OpenColorIO (OCIO). That alternate workflow is decribed below.
 
-## Debayering in Premiere
+Note that traditional 10-bit DPX files are not recommended, as they are not sufficient to contain all the information captured by modern digital cameras (For example RED camera RAW files are 16-bit). In contrast, OpenEXR is 16-bit float with a dynamic range of 30+ exposure stops. 
 
+We work in an ACES pipeline for VFX, but are also able to accomidate other workflows. 
 
-The free [OCIO plugin for After Effects](https://fnordware.blogspot.com/2012/05/opencolorio-for-after-effects.html) also works in Premiere Pro. You just need to place it in the common plugin folder, which on Windows is:<br>
+## Setup
+
+Download the free [OCIO plugin for After Effects](https://fnordware.blogspot.com/2012/05/opencolorio-for-after-effects.html) also works in Premiere Pro. You just need to place it in the common plugin folder, which on Windows is:<br>
 
 | Platform	| Path
 |-----------|---------------------------------------------------------------
