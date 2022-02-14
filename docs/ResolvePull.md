@@ -56,7 +56,7 @@ When rendering images in display color spaces, such as those required for IMF Ma
 
 Turn off the ACES Output Transform in order to output ACES AP0/Linear data as shown below. This put the clip in ACES2065-1 used for interchange if images between facilities or softwares in an ACES pipeline, such as VFX plates.
 
-![img](img/Netflix4.jpg)
+![img](img/Netflix5.jpg)
 
 To disable the grade for your VFX render, the **Enable Flat Pass** option on the **Deliver** page can be used. See screenshot from the DaVinci Resolve Manual below.
 
