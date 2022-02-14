@@ -64,15 +64,15 @@ Next we need to convert from the log space of your camera into ACES scene-linear
 
 ![img](img/premiereB5.jpg)
 
+This will convert the media from camera log into scene-linear, specifically the ACES interchange color space ACES2065-1 (AP0).
+
 
 ## Exporting OpenEXR
 
-Traditional 10-bit DPX files are not recommended, as they are not sufficient to contain all the information captured by modern digital cameras (For example RED camera RAW files are 16-bit and ARRI are 12-bit). In contrast, OpenEXR is 16-bit float with a dynamic range of 30+ exposure stops. That means it is able to preserve the full dynamic range of the camera RAW file at a reasonable file size. Using PIZ lossless compression an EXR file is actually smaller than a DPX.
-
-Choose the ```File > Export > Media... ``` menu, and in the dialog choose the following options:
+With our media in scene-linear we are ready to write to OpenEXR. Choose the ```File > Export > Media... ``` menu, and in the dialog choose the following options:
 
  - Format: OpenEXR
- - Compression: PIZ  
+ - Compression: PIZ lossless compression 
  - Bypass linear conversion: ON
 
 ![img](img/premiereB6.jpg)
