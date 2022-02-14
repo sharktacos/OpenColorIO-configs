@@ -41,7 +41,7 @@ displays:
 
 active_displays: [Rec.709 - BT.1886 HDTV, Gamma 2.2]
 active_views: [ACES 1.0 - SDR-video]
-inactive_colorspaces: [CIE-XYZ D65, ACEScg, ACEScct, ACEScc, Gamma 2.2, Rec.709 - BT.1886 HDTV, Raw, scene-linear Rec.709-sRGB, Log film scan (ADX10), Canon CLog3 CGamut, Canon CLog2 CGamut, Sony SLog3 - Venice SGamut3Cine, Sony SLog3 - Venice SGamut3, Sony SLog3 - SGamut3Cine, Sony SLog3 - SGamut3Cine, Sony SLog3 - SGamut3]
+inactive_colorspaces: [CIE-XYZ D65, ACEScg, ACEScct, ACEScc, Gamma 2.2, Rec.709 - BT.1886 HDTV, Raw, scene-linear Rec.709-sRGB, Log film scan (ADX10)]
 
 
 view_transforms:
