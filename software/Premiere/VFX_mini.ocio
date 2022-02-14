@@ -158,6 +158,16 @@ colorspaces:
     to_scene_reference: !<BuiltinTransform> {style: CANON_CLOG3-CGAMUT_to_ACES2065-1}
 
   - !<ColorSpace>
+    name: Panasonic - VLog VGamut
+    aliases: [ Panasonic ]
+    family: Input/Camera/Panasonic
+    description: |
+      Convert Panasonic Varicam V-Log V-Gamut to ACES2065-1
+    isdata: false
+    encoding: log
+    to_reference: !<BuiltinTransform> {style: PANASONIC_VLOG-VGAMUT_to_ACES2065-1}
+
+  - !<ColorSpace>
     name: Log film scan (ADX10)
     aliases: [ ADX10 ]
     family: Input/Film
