@@ -1,4 +1,4 @@
-# VFX Pulls and Conform in Resolve
+# VFX Pulls in Resolve
 
 For more information about the ACES implementation in Davinci Resolve, please go to the ‘Color Management using ACES’ chapter in the “The Data Levels, Color Management, and ACES” section of the latest DaVinci Resolve Manual.
 
