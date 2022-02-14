@@ -2,7 +2,7 @@
 
 ## Overview
 
-Broadly speaking Premiere is a great software for editing, but is limited in it's ability to debayer camera RAW files. Premiere can *not* properly debayer the following. For these Resolve will need to be used, which can debayer all camera RAW formats.
+Broadly speaking Premiere is a great software for editing, but is limited in it's ability to debayer camera RAW files. Premiere can *not* properly debayer the following. For these Resolve will need to be used, which can debayer all camera RAW formats (with the exception of ProRes RAW).
 
 - Black Magic (.BRAW) - Cannot read at all.
 - CinemaDNG - Reads in Rec.709 only
@@ -13,6 +13,7 @@ That said, Premiere can debayer camera RAW files from:
  - ARRI (.ari)
  - RED (.R3D)
  - Canon (.CRM)
+ - ProRes RAW (.mov)
  - MXF (a container format that supports many cameras including Sony, Panasonic, ARRI, etc.)
 
 Note that for MXF files, by default Premiere reads these in as Rec.709. You can however right-click the media and go to Source Settings where you can select the camera log space.
