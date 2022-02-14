@@ -7,6 +7,7 @@ Broadly speaking Premiere is a great software for editing, but is limited in it'
  - ARRI (.ari)
  - RED (.R3D)
  - Canon (.CRM)
+ - MXF (Material Exchange Format is a container for many camera types, for example Sony. By default Premiere reads these in as Rec.709. You can however right-click the media and go to Source Settings where you can select the camera log space)
  
 Using the OpenColorIO (OCIO) plugin it is then possible to export these to EXR. That workflow is decribed below.
 
@@ -14,7 +15,6 @@ Premiere can *not* properly debayer files from Black Magic cameras, nor can it p
 
 - Black Magic (.BRAW)
 - CinemaDNG
-- MXF
 
 For these Resolve will need to be used, which can debayer all camera RAW formats.
 
