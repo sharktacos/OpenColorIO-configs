@@ -12,7 +12,7 @@ For these Resolve will need to be used, which can debayer all camera RAW formats
  - ARRI (.ari)
  - RED (.R3D)
  - Canon (.CRM)
- - MXF (Material Exchange Format is a container for many camera types, for example Sony)
+ - MXF (MXF is a container format that supports many cameras including Sony, Panasonic, etc.)
 
 Note that for MXF files, by default Premiere reads these in as Rec.709. You can however right-click the media and go to Source Settings where you can select the camera log space.
  
