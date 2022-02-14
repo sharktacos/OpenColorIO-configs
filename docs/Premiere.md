@@ -6,7 +6,7 @@ Broadly speaking Premiere is a great software for editing, but is limited in it'
 
 - Black Magic (.BRAW) - Cannot read at all.
 - CinemaDNG - Reads in Rec.709 only
-- ProRes RAW - Reads in Rec.709 only
+- ProRes 4444 - Reads in Rec.709 only
 
 That said, Premiere can debayer camera RAW files from:
 
