@@ -6,6 +6,7 @@ Broadly speaking Premiere is a great software for editing, but is limited in it'
 
 - Black Magic (.BRAW)
 - CinemaDNG
+- ProRes RAW
 
 For these Resolve will need to be used, which can debayer all camera RAW formats. That said, Premiere can debayer camera RAW files from:
 
