@@ -2,13 +2,13 @@
 
 ## Overview
 
-Broadly speaking Premiere is a great software for editing, but is limited in it's ability to debayer camera RAW files. Premiere can *not* properly debayer the following:
+Broadly speaking Premiere is a great software for editing, but is limited in it's ability to debayer camera RAW files. Premiere can *not* properly debayer the following. For these Resolve will need to be used, which can debayer all camera RAW formats.
 
 - Black Magic (.BRAW)
 - CinemaDNG
 - ProRes RAW
 
-For these Resolve will need to be used, which can debayer all camera RAW formats. That said, Premiere can debayer camera RAW files from:
+That said, Premiere can debayer camera RAW files from:
 
  - ARRI (.ari)
  - RED (.R3D)
