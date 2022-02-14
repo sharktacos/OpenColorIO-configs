@@ -2,7 +2,13 @@
 
 ## Overview
 
-Broadly speaking Premiere is a great software for editing, but is limited in it's ability to debayer camera RAW files. That said, Premiere can debayer ARRI and RED camera RAW files (.ari and .R3D). Using the OpenColorIO (OCIO) plugin it is then possible to export these to EXR. That workflow is decribed below.
+Broadly speaking Premiere is a great software for editing, but is limited in it's ability to debayer camera RAW files. That said, Premiere can debayer camera RW files from:
+
+ - ARRI (.ari)
+ - RED (.R3D)
+ - Canon (.CRM)
+ 
+Using the OpenColorIO (OCIO) plugin it is then possible to export these to EXR. That workflow is decribed below.
 
 ## Setup
 
