@@ -10,11 +10,11 @@ Broadly speaking Premiere is a great software for editing, but is limited in it'
  
 Using the OpenColorIO (OCIO) plugin it is then possible to export these to EXR. That workflow is decribed below.
 
-Premiere can *not* properly debayer the following camera RAW formats:
+Premiere can *not* properly debayer files from Black Magic cameras, nor can it properly interpret the following open file formats to log, instead displaying them in display-encoded Rec.709/BT.1886.
 
 - Black Magic (.BRAW)
 - CinemaDNG
-- Sony (.mxf)
+- MXF
 
 For these Resolve will need to be used, which can debayer all camera RAW formats.
 
