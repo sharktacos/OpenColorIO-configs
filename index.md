@@ -15,7 +15,7 @@ Instructions for use of the configs in various software, including those that do
 - [Substance Painter](docs/Substance.md) 
 - [Houdini](https://www.sidefx.com/docs/houdini/io/ocio.html) 
 - [Davinci Resolve](docs/Resolve.md) 
-- [Premiere Pro](docs/Premiere.md)
+- [Premiere Pro](docs/PremierePull.md)
 - [Photoshop](docs/Photoshop.md) 
 
 
