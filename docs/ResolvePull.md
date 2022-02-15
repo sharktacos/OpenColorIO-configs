@@ -24,7 +24,7 @@ Set your ACES Output Device Transform to match the calibration and capacities of
 
  - Process Node LUTs will only apply in the event that you are loading LMTs as LUTs to the project. The setting will vary depending on how those LMTs were generated. Note that "Process node luts in: ACEScc:AP1 timeline space" is a bit of a misnomer. With this setting Resolve will process luts in the AP1 timeline space that set in the coresponding "Color Science" section above (set here to ACEScct).
 
-An important note is that when the ACES Output Device Transform is set to **None**, Resolve will output ACES images a.k.a. ACES 2065-1 or ACES Linear (AP0).
+ - An important note is that when the ACES Output Device Transform is set to **None**, Resolve will output ACES images a.k.a. ACES 2065-1 or ACES Linear (AP0).
 
 ## Bringing in Clips
 
