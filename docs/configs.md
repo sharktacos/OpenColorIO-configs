@@ -75,13 +75,13 @@ environment:
   SHAPER: ACEScct
 # ------------------------------------------------------------------- # 
 ````
-Each artist would have a VFX config file in their local directory for the show they are working on, and set the above variables to correspond to the location (*LUT_PATH*) and name (*LUT_NAME*) of the LUT for the shot they are working on. Additionally if the client is delivering a LUT for display-referred DPX footage, the color space of the original camera should be entered into the **CAMERA** variable to set the log space for the **Shot Look DPX** display transform. 
+Because the config file uses OCIOv2 it is self-contained and does not require external LUTs, instead using built-in mathematical transforms. Therefore each artist can simply copy the ```VFX_config.ocio``` file into their local directory for the show they are working on, and edit the file setting the above variables to correspond to the location (*LUT_PATH*) and name (*LUT_NAME*) of the LUT for the shot they are working on. Additionally if the client is delivering a LUT for display-referred DPX footage, the color space of the original camera should be entered into the **CAMERA** variable to set the log space for the **Shot Look DPX** display transform. 
 
 In the StudioX VFX directory structure, the OCIO config directory is parallel to the shots directory:
 
 - **Show/**
-  - <b>Shots/</b>SM_020_018/01_Client_Original_Footage/5_LUT/clientShotLUTname_ACEScct.cube
-  - <b>StdX_ACES/</b>OCIOv1_config_VFX.ocio
+  - <b>shots/</b>SM_020_018/01_Client_Original_Footage/5_LUT/clientShotLUTname_ACEScct.cube
+  - <b>ocio/</b>VFX_config.ocio
 
 Therefore to go up a directory simply use ```../``` at the front of the file path. Like so:
 
