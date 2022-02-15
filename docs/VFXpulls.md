@@ -13,6 +13,8 @@
 
 **Ungraded footage.** All color correction and grades should be *disabled* for a VFX pull. An easy way to do this is to turn on "Enable Flat Pass" in the Resolve Delivery advanced options (again, see the above step-by-step guide). The basic idea is that VFX returns the ungraded plate to DI, with the VFX added, so that DI gets the full quality film plate back *as if it were filmed that way*. DI can then seamlessly insert it back into the conform and color grade everything together.
 
+Additionally frame pulls for VFX should NOT have the Reference Gamut Compression (RGC) baked in with Resolve. VFX will then have the flexibility to apply the RGC wherever is best for their compositing chain and will return the frames with RGC applied.
+
 **Color Reference and LUTs.** VFX pulls should include 
   - *A reference frame for checking color against existing dailies.* <br>This should be an 8-bit JPG or PNG in sRGB color space. A screen grab works fine.
   - *A "shot LUT" to achieve dailies color, along with the working color space.* <br>In Resolve the "generate LUT" command can be used to export all enabled grades, both in the timeline and the clip, including any CDLs, all into a single *Shot LUT* for VFX to use. The LUT's working color space, i.e. the color space it ws created in, should be noted in the file name (For example ````shot01_ACEScct.cube```` for Resolve and ````shot01_Rec709.cube```` for Premiere). VFX needs to know this in order to properly process the LUT in comp. 
