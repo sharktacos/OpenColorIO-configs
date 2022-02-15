@@ -25,7 +25,7 @@ environment:
 # ------------------------------------------------------------------- # 
 
 
-search_path: "studio:${LUT_PATH}"
+search_path: "${LUT_PATH}"
 
 roles:
   aces_interchange: ACES2065-1
