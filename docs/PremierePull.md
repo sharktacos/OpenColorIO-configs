@@ -80,4 +80,5 @@ With our media in scene-linear we are ready to write to OpenEXR. Choose the ```F
 ![img](img/premiereB6.jpg)
 
 
-[Back to main](../StdX_ACES)
+
+[Back to VFX Pulls](VFXpulls.md)
