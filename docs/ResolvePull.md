@@ -62,7 +62,9 @@ To disable the grade for your VFX render, the **Enable Flat Pass** option on the
 
 ![img](img/Netflix6.jpg)
 
-Additionally frame pulls for VFX should have the ACES Reference Gamut Compression (RGC) *DISABLED* in Resolve. This can be done for individual clips by right-clicking the clip and chosing ```ACES Gamut Compress > None```. The RGC will be added by VFX in the returned plates.
+Frame pulls for VFX should have the ACES Reference Gamut Compression (RGC) *DISABLED* in Resolve. This can be done in the Color Management Settings. The RGC will be added by VFX in the returned plates.
+
+![img](img/Netflix8.jpg)
 
 Ensure you have the following render settings:
 
