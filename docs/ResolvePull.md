@@ -73,8 +73,9 @@ Ensure you have the following render settings:
  - **Codec:** 	RGB half, PIZ lossless compression (note: this is 16-bit half float)
  - **Render Resolution:** 	Equal to the scene’s Working Format
  - **ACES Output Device Transform (in Project Settings):** 	No Output Transform
+ - **Apply ACES Referece Gamut Compress (in Project Settings):** OFF
  - **Enable Flat Pass:** 	Always On
- - **ACES Gamut Compress (on clip):** None
+
 
 
 ![img](img/Netflix7.jpg)
