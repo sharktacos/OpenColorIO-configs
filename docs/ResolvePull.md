@@ -33,8 +33,6 @@ Notes:
 
 ## Bringing in Clips
 
-Camera RAW files can either be read directly into the Media pool, or if desired the edit can be exported as XML/AAF and imported into Resolve. 
-
 By default, for RAW clips, Resolve will automatically debayer images into ACES and you should see a normal looking image. 
 
 For non-RAW formats (such as DPX, ProRes, XAVC, etc), Resolve may not automatically detect the color space, so you will have to manually select your ACES Input Device Transform (IDT).
