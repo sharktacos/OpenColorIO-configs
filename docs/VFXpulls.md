@@ -16,7 +16,7 @@ Specifically for VFX work, the two main reasons we use ACES is quality andf cont
 <img src="img/gamuts.jpg">
 </p>
 
-Second, with ACES the whole image pipeline is standarized and managed to avoid mistakes and chaos when passing images between facilities. From editorial to conform to VFX to DI the image stays the same, allowing you as artist and filmmaker to be in control of your own artistic vision. Okay, enough theory, let's get to it!
+Secondly is consistency and control, with ACES the whole image pipeline is standarized and managed to avoid mistakes and chaos when passing images between facilities. From editorial to conform to VFX to DI the image stays the same, using a (SMPTE) standard that allows you as artist and filmmaker to be in control of your own artistic vision. Okay, enough theory, let's get to it!
 
 # <a name="require"></a>VFX Pull requirements
 
