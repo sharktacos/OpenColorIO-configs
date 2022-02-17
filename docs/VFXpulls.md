@@ -8,15 +8,15 @@ The conform is where the display-referred proxy files used by offline editorial 
 
 # Why we use ACES
 
-ACES (short for Academy Color Encoding System) was developed as an industry standard for color management used in every stage of the filmmaking process. It is based on solid color science and a wealth of production experience, and has been widely adopted in major film and VFX studios. Marvel for instance uses ACES for all of their films. However, ACES is not just for major tentpole productions and VFX blockbusters. Because ACES is free and open source indy productions can benefit from it too. As educators, part of our mission is to share this knowledge with you! [This video](https://www.youtube.com/watch?v=vdmFjFoE2YA&list=PLsJrJgQkAdTnNB5sbmkRLZaZkcd63W8Nb&index=8), created by Netflix Studios, offers a great overview of the advantages of an ACES color managed workflow for filmmakers. 
+For StudioX VFX work we use the ACES workflow. ACES (short for Academy Color Encoding System) was developed as an industry standard for color management used in every stage of the filmmaking process. It is based on solid color science and a wealth of production experience, and has been widely adopted in major film and VFX studios. Marvel for instance uses ACES for all of their films. However, ACES is not just for major tentpole productions and VFX blockbusters. Because ACES is free and open source indy productions can benefit from it too. As educators, part of our mission is to share this knowledge with you! [This video](https://www.youtube.com/watch?v=vdmFjFoE2YA&list=PLsJrJgQkAdTnNB5sbmkRLZaZkcd63W8Nb&index=8), created by Netflix Studios, offers a great overview of the advantages of an ACES color managed workflow for filmmakers. 
 
-Specifically for VFX work, the two main reasons we use an ACES pipeline is quality andf continuity. ACES ensures that your film footage stays at the highest dynamic range and color fidelity, and that the whole image pipeline is standarized and managed to avoid mistakes and chaos, allowing you as artist and filmmaker to be in control of your own artistic vision. Let take a look at this in a bit of detail: For the VFX pull you will be converting your camera RAW files into to the ACES interchange format known as ACES2065-1 (AP0). As shown in the graphic below, these files have a wide gamut color space that contains every color visible to the human eye, with a dynamic range of 30+ exposure stops. That far exceeds the dynamic range and color fidelity of any camera RAW file, at a file size that is smaller than a DPX!
+Specifically for VFX work, the two main reasons we use ACES is quality andf continuity. First, ACES ensures that your film footage stays at the absolute highest dynamic range and color fidelity. For the VFX pull you will be converting your camera RAW files into to the ACES interchange format known as ACES2065-1 (AP0). As shown in the graphic below, these files have a wide gamut color space that contains every color visible to the human eye, with a dynamic range of 30+ exposure stops. That far exceeds the dynamic range and color fidelity of any camera RAW file, at a file size that is smaller than a DPX! 
 
 <p align="center">
 <img src="img/gamuts.jpg">
 </p>
 
-Okay, enough theory, let's get to it.
+Second, with ACES the whole image pipeline is standarized and managed to avoid mistakes and chaos when passing images between facilities. From editorial to conform to VFX to DI the image stays the same, allowing you as artist and filmmaker to be in control of your own artistic vision. Okay, enough theory, let's get to it!
 
 # <a name="require"></a>VFX Pull requirements
 
