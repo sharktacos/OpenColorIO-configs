@@ -2,7 +2,10 @@
 
 For more information about the ACES implementation in Davinci Resolve, please go to the ‘Color Management using ACES’ chapter in the “The Data Levels, Color Management, and ACES” section of the latest DaVinci Resolve Manual.
 
-The following is from the [Netflix Partner Help Center](https://partnerhelp.netflixstudios.com/hc/en-us/articles/360002088888-Color-Managed-Workflow-in-Resolve-ACES-)
+The following is from the [Netflix Partner Help Center](https://partnerhelp.netflixstudios.com/hc/en-us/articles/360002088888-Color-Managed-Workflow-in-Resolve-ACES-). If you like video instruction, you may also want to check out the following videos made by Netflix in partner ship with Blackmagic:
+
+[ACES Set Up in DaVinci Resolve](https://www.youtube.com/watch?v=u9Rvm5xiuhk&list=PLsJrJgQkAdTnNB5sbmkRLZaZkcd63W8Nb&index=4)
+[ACES Deliveries in DaVinci Resolve](https://www.youtube.com/watch?v=2-H3jgXXTiQ&list=PLsJrJgQkAdTnNB5sbmkRLZaZkcd63W8Nb&index=5)
 
 ## Project Settings
 
@@ -30,6 +33,8 @@ Notes:
 
 ## Bringing in Clips
 
+Camera RAW files can either be read directly into the Media pool, or if desired the edit can be exported as XML/AAF and imported into Resolve. 
+
 By default, for RAW clips, Resolve will automatically debayer images into ACES and you should see a normal looking image. 
 
 For non-RAW formats (such as DPX, ProRes, XAVC, etc), Resolve may not automatically detect the color space, so you will have to manually select your ACES Input Device Transform (IDT).
@@ -56,15 +61,15 @@ When rendering images in display color spaces, such as those required for IMF Ma
  
 **VFX Pulls**
 
-Turn off the ACES Output Transform in order to output ACES AP0/Linear data as shown below. This put the clip in ACES2065-1 used for interchange if images between facilities or softwares in an ACES pipeline, such as VFX plates.
+ - **Set color space to ACES2065 (AP0** Turn off the ACES Output Transform in order to output ACES AP0/Linear data as shown below. This put the clip in ACES2065-1 used for interchange if images between facilities or softwares in an ACES pipeline, such as VFX plates.
 
 ![img](img/Netflix5.jpg)
 
-To disable the grade for your VFX render, the **Enable Flat Pass** option on the **Deliver** page can be used. See screenshot from the DaVinci Resolve Manual below.
+ - **Disable all grades** To disable the grade for your VFX render, the **Enable Flat Pass** option on the **Deliver** page can be used. See screenshot from the DaVinci Resolve Manual below. The basic idea is that VFX returns the ungraded plate to DI, with the VFX added, so that DI gets the full quality film plate back *as if it were filmed that way*. DI can then seamlessly insert it back into the conform and color grade everything together. 
 
 ![img](img/Netflix6.jpg)
 
-Frame pulls for VFX should have the ACES Reference Gamut Compression (RGC) *DISABLED* in Resolve. This can be done in the Color Management Settings. The RGC will be added by VFX in the returned plates.
+ - **Disable ACES gamut compression** Frame pulls for VFX should have the ACES Reference Gamut Compression (RGC) *DISABLED* in Resolve. This can be done in the Color Management Settings. The RGC will be added by VFX in the returned plates.
 
 ![img](img/Netflix8.jpg)
 
@@ -74,17 +79,13 @@ Ensure you have the following render settings:
  - **File Type:** 	EXR
  - **Codec:** 	RGB half, PIZ lossless compression (note: this is 16-bit half float)
  - **Render Resolution:** 	Equal to the scene’s Working Format
- - **ACES Output Device Transform (in Project Settings):** 	No Output Transform
+ - **ACES Output Device Transform (in Project Settings):** 	No Output Transform (ACES2065-1)
  - **Apply ACES Referece Gamut Compress (in Project Settings):** OFF
  - **Enable Flat Pass:** 	Always On
-
-
 
 ![img](img/Netflix7.jpg)
 
 *Tip: The setting ‘Force debayer to highest quality’  will automatically select what Resolve considers to be the highest debayering quality for each RAW file on the timeline. This may differ from your own findings. Please feel free to select your preferred debayering algorithm instead, and untick this option if you prefer.*
-
-*Tip: Resolution may vary depending on the project’s framing, but should be at UHD resolution (3840 x 2160) or higher.*
 
 
 
