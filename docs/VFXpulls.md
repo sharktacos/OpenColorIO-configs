@@ -6,18 +6,13 @@
 
 # <a name="require"></a>VFX Pull requirements:
 
-**Debayering to OpenEXR.** VFX pulls should be debayered from the original RAW camera files and exported as 16-bit EXR in the ACES AP0 interchange format (ACES2065-1) with PIZ lossless compression. This can be done in either Resolve or Premiere. Note that the process in Resolve is much more streamlined and robust than in Premiere, which was not designed for color management or ACES workflows.
+**Debayering to OpenEXR.** VFX pulls should be debayered from the original RAW camera files and exported as 16-bit EXR in the ACES AP0 interchange format (ACES2065-1) with PIZ lossless compression, with all grades disabled. This should be done is a software that supports an ACES color managed workflow and can properly debayer the camera RAW files. A great choice for the filmmaker on a budget is Davinci Resolve. It is free for SDR and UHD resolution, and the paid version is just $300, and does not require special knowledge or skills to do. The guide below will step you through the process:
 
  - [VFX Pulls with Resolve](ResolvePull.md)
- - [VFX Pulls with Premiere](PremierePull.md)
-
-**Ungraded footage.** All color correction and grades should be *disabled* for a VFX pull. An easy way to do this is to turn on "Enable Flat Pass" in the Resolve Delivery advanced options (again, see the above step-by-step guide). The basic idea is that VFX returns the ungraded plate to DI, with the VFX added, so that DI gets the full quality film plate back *as if it were filmed that way*. DI can then seamlessly insert it back into the conform and color grade everything together.
-
-Additionally frame pulls for VFX should NOT have the Reference Gamut Compression (RGC) baked in with Resolve. VFX will then have the flexibility to apply the RGC wherever is best for their compositing chain and will return the frames with RGC applied.
 
 **Color Reference and LUTs.** VFX pulls should include 
   - *A reference frame for checking color against existing dailies.* <br>This should be an 8-bit JPG or PNG in sRGB color space. A screen grab works fine.
-  - *A "shot LUT" to achieve dailies color, along with the working color space.* <br>In Resolve the "generate LUT" command can be used to export all enabled grades, both in the timeline and the clip, including any CDLs, all into a single *Shot LUT* for VFX to use. The LUT's working color space, i.e. the color space it ws created in, should be noted in the file name (For example ````shot01_ACEScct.cube```` for Resolve and ````shot01_Rec709.cube```` for Premiere). VFX needs to know this in order to properly process the LUT in comp. 
+  - *A "shot LUT" to achieve dailies color, along with the working color space.* <br>In Resolve the "generate LUT" command can be used to export all enabled grades, both in the timeline and the clip, including any CDLs, all into a single *Shot LUT* for VFX to use. The LUT's working color space, i.e. the color space it ws created in, should be noted in the file name (For example ````shot01_ACEScct.cube```` for Resolve and ````shot01_Rec709.cube```` for Premiere). VFX needs to know this in order to properly process the LUT in comp.
 
 # <a name="vfx-deliver"></a>VFX Delivery.
 
