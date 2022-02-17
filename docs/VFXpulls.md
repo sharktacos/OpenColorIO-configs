@@ -6,7 +6,7 @@
 
 # <a name="require"></a>VFX Pull requirements:
 
-**Debayering to OpenEXR.** VFX pulls should be debayered from the original RAW camera files and exported as 16-bit EXR in the ACES AP0 interchange format (ACES2065-1) with PIZ lossless compression, with all grades disabled. This should be done is a software that supports an ACES color managed workflow and can properly debayer the camera RAW files. A great choice for the filmmaker on a budget is Davinci Resolve. It is free for SDR and UHD resolution, and the paid version is just $300, and does not require special knowledge or skills to do. The guide below will step you through the process:
+**Debayering to OpenEXR.** VFX pulls should be debayered from the original RAW camera files and exported as 16-bit EXR in the ACES AP0 interchange format (ACES2065-1) with PIZ lossless compression, with all grades disabled. This should be done is a software that supports an ACES color managed workflow and can properly debayer the camera RAW files. A great choice for the filmmaker on a budget is Davinci Resolve. It is free for SDR up to UHD resolution, and the paid version is just $300, and with the ACES workflow you can be confident that you will be keeping your film at the highest possible quality. The guide below will step you through the process:
 
  - [VFX Pulls with Resolve](ResolvePull.md)
 
