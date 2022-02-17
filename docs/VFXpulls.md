@@ -7,13 +7,13 @@ For a VFX pull the camera RAW files need to be debayerd and saved out in a forma
 <img src="img/pipeline.jpg">
 </p>
 
-Our preferred format for these high quality files is ACES color management. If you are unfamiliar with ACES, [this video](https://www.youtube.com/watch?v=vdmFjFoE2YA&list=PLsJrJgQkAdTnNB5sbmkRLZaZkcd63W8Nb&index=8), created by Netflix Studios, offers a great overview of the advantages of an ACES color managed workflow for filmmakers. Specifically for VFX work, the two main reasons we use ACES is quality and continuity. First, ACES ensures that your film footage stays at the absolute highest dynamic range and color fidelity. As shown in the graphic below, the ACES interchange format, known as ACES2065-1 (AP0) has a wide gamut color space that contains every color visible to the human eye meaning it can accommodate any delivery medium or targeted display type, now and into the future. 
+Our preferred format for these high quality files is ACES OpenEXR files. If you are unfamiliar with ACES, [this video](https://www.youtube.com/watch?v=vdmFjFoE2YA&list=PLsJrJgQkAdTnNB5sbmkRLZaZkcd63W8Nb&index=8), created by Netflix Studios, offers a great overview of the advantages of an ACES color managed workflow for filmmakers. Specifically for VFX work, the two main reasons we use ACES is quality and continuity. First, ACES ensures that your film footage stays at the absolute highest dynamic range and color fidelity. As shown in the graphic below, the ACES interchange format, known as ACES2065-1 (AP0) has a wide gamut color space that contains every color visible to the human eye meaning it can accommodate any delivery medium or targeted display type, now and into the future. 
 
 <p align="center">
 <img src="img/gamuts.jpg">
 </p>
 
-Additionally these files have a dynamic range of over 30 exposure stops. This far exceeds the dynamic range of any camera RAW file, at a file size that is smaller than a DPX! Secondly is consistency and control. With ACES the whole image pipeline is standarized and managed to avoid mistakes and chaos when passing images between facilities. 
+Additionally these files are 16-bit float with a dynamic range of over 30 exposure stops. This far exceeds the dynamic range of any camera RAW file, at a file size that is smaller than a DPX! The second benefit is consistency and control. With ACES the whole image pipeline is standarized and managed to avoid mistakes and chaos when passing images between facilities. 
 
 # <a name="require"></a>VFX Pull requirements
 
