@@ -17,7 +17,7 @@ Our preferred format for these scene-referred files is ACES, the Academy Color E
 <img src="img/gamuts.jpg">
 </p>
 
-Additionally these files are 16-bit float with a dynamic range of over 30 exposure stops. As a point of comparrison the most of any digital cinema camera RAW file is 15 stop. So this far exceeds the dynamic range of any camera RAW file, at a file size that is smaller than a DPX! The second benefit is consistency and control. Because ACES represents an industry (SMPTE) standard, the whole image pipeline is standarized and managed to avoid mistakes and chaos when passing images between facilities. Unlike DPX file, which can have any number of log color spaces with no way of knowing which one you have, the ACES interchange format is known and stadardlized. 
+Additionally these files are 16-bit float with a dynamic range of over 30 exposure stops. As a point of comparrison the most of any digital cinema camera RAW file is 15 stop. So this far exceeds the dynamic range of any camera RAW file, at a file size that is smaller than a DPX! The second benefit is consistency and control. Unlike DPX file, which can have any number of log color spaces with no way of knowing which one you have, because the ACES image format represents an industry (SMPTE) standard, the whole image pipeline is controlled and managed, taking out the guess work and avoiding mistakes and chaos when passing images between facilities.
 
 # <a name="require"></a>VFX Pull requirements
 
