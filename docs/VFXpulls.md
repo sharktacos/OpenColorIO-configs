@@ -1,5 +1,7 @@
 
 
+For a VFX pull you can simple read the clip into the Media pool of Resolve. If you are doing the conform in Resolve then you can export the edit as an EDL/XML/AAF and read this into Resolve. [This video](https://www.youtube.com/watch?v=u9Rvm5xiuhk&list=PLsJrJgQkAdTnNB5sbmkRLZaZkcd63W8Nb&index=4) offers a nice walk through of the conform process in Resolve. Here we will focus specifcally on VFX pulls. 
+
 <p align="center">
 <img src="img/pipeline.jpg">
 </p>
