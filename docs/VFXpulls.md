@@ -1,5 +1,4 @@
-# Conform and VFX Pulls
-# VFX Pulls
+# VFX Pulls and ACES Color Management
 
 Cameras are able to capture high dynamic range images, containing a huge gamut of colors and multiple stops of exposure. This is known as *scene-referred* data because it captures the light values of the physical scene the camera was pointing at. However, displays are not as capable as cameras in terms of dynamic range and color. So in order to look correct on a display, some of the image data must be thrown away in order to fit or limit the data to the range of the particular display, whether that's a computer monitor, a TV, an HDR display, or a movie projector. This is known as *display-referred* or *display-encoded* data where the data is limited to fit onto the particular display.
 
@@ -21,7 +20,15 @@ Additionally, these files are 16-bit float with a dynamic range of over 30 expos
 
 # <a name="require"></a>VFX Pull Requirements
 
-**Debayering to OpenEXR.** VFX pulls should be debayered from the original RAW camera files and exported as 16-bit EXR in the ACES AP0 interchange format (ACES2065-1) with PIZ lossless compression, with all grades disabled. This should be done in a software that supports an ACES color managed workflow and can properly debayer the camera RAW files. A great choice for the filmmaker on a budget is DaVinci Resolve. The free version has a resolution limit of Ultra HD (3840 x 2160), but the full software is just $300 dollars for a permanent license, which is a steal for people being able to afford a subscription for Adobe, and certainly less than paying a DI facility to perform a VFX pull!
+**Debayering to OpenEXR.** VFX pulls should be debayered from the original RAW camera files and exported as 16-bit EXR in the ACES AP0 interchange format (ACES2065-1) with PIZ lossless compression. 
+
+ - Format: OpenEXR 16-bit half float
+ - Compression: PIZ lossless compression
+ - Color Space: ACES2065-1 (AP0)
+ - All color grades disabled. 
+ - ACES Gamut Compression disabled
+
+This should be done in a software that supports an ACES color managed workflow and can properly debayer the camera RAW files. A great choice for the filmmaker on a budget is DaVinci Resolve. The free version has a resolution limit of Ultra HD (3840 x 2160), but the full software is just $300 dollars for a permanent license, which is a steal for people being able to afford a subscription for Adobe, and certainly less than paying a DI facility to perform a VFX pull!
 
 The guide below will walk you through the process:
  - [VFX Pulls with Resolve](ResolvePull.md)
