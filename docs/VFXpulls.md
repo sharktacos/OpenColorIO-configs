@@ -20,12 +20,12 @@ Additionally, these files are 16-bit float with a dynamic range of over 30 expos
 
 # <a name="require"></a>VFX Pull Requirements
 
-**Debayering to OpenEXR.** VFX pulls should be debayered from the original RAW camera files and exported as 16-bit EXR in the ACES AP0 interchange format (ACES2065-1) with PIZ lossless compression. 
+**Debayering to OpenEXR.** VFX pulls should be debayered from the original RAW camera files and exported in the ACES file interchange format (ACES2065-1) with PIZ lossless compression. 
 
  - Format: OpenEXR 16-bit half float
  - Compression: PIZ lossless compression
  - Color Space: ACES2065-1 (AP0)
- - All color grades disabled. 
+ - All color grades disabled 
  - ACES Gamut Compression disabled
 
 This should be done in a software that supports an ACES color managed workflow and can properly debayer the camera RAW files. A great choice for the filmmaker on a budget is DaVinci Resolve. The free version has a resolution limit of Ultra HD (3840 x 2160), but the full software is just $300 dollars for a permanent license, which is a steal for people being able to afford a subscription for Adobe, and certainly less than paying a DI facility to perform a VFX pull!
