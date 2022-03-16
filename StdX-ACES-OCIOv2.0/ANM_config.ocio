@@ -46,6 +46,7 @@ roles:
 #   Nuke 16-bit log default:  
   texture_paint: ACEScct
   
+#     substance_3d_painter_standard_srgb: hdr
   substance_3d_painter_bitmap_import_8bit: Color sRGB Texture
   substance_3d_painter_bitmap_import_16bit: Color sRGB Texture
   substance_3d_painter_bitmap_import_floating: Raw
@@ -53,6 +54,7 @@ roles:
   substance_3d_painter_bitmap_export_16bit: Color sRGB Texture
   substance_3d_painter_bitmap_export_floating: Raw
   substance_3d_painter_substance_material: Color sRGB Texture
+  
 
   mari_monitor: Output - Neutral Look (sRGB)
   mari_scaler_monitor: Raw
@@ -114,13 +116,13 @@ displays:
 
 active_displays: [Gamma 2.2, sRGB, "Apple Display P3", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS"]
 active_views: [ACES 1.0 - SDR-video - RGC, Neutral Look, Filmic Look, Show Look, Un-tone-mapped, Log, Raw, P3-500 nits - HDR-video, P3-1000 nits - HDR-video]
-inactive_colorspaces: [CIE-XYZ D65, Gamut Shaper, DCI-P3 D65, ST2084-P3-D65, P3-D65, Pick Rec709-sRGB Desat, Shot_shaper, Output - Shot Look (sRGB), Output - Shot Look (Gamma 2.2), Output - Shot Look (Rec.709 - BT.1886 HDTV), Output - ACES 1.0 SDR-video (Rec.709 - BT.1886 HDTV), Output - DPX Shot Look (Non-Color Managed), Rec.709 - BT.1886 HDTV]
+inactive_colorspaces: [CIE-XYZ D65, Gamut Shaper, DCI-P3 D65, ST2084-P3-D65, P3-D65, Pick Rec709-sRGB Desat, Shot_shaper, Output - Shot Look (sRGB), Output - Shot Look (Gamma 2.2), Output - Shot Look (Rec.709 - BT.1886 HDTV), Output - ACES 1.0 SDR-video (Rec.709 - BT.1886 HDTV), Output - DPX Shot Look (Non-Color Managed), sRGB, Gamma 2.2, Rec.709 - BT.1886 HDTV, Apple Display P3, camera_log]
 
 #-- VFX config:
 
 #active_displays: [sRGB, "Gamma 2.2", "Rec.709 - BT.1886 HDTV", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS", "Display-Referred Workflow"]
 #active_views: [ACES 1.0 - SDR-video, Shot Look, Un-tone-mapped, Log, Raw, DPX Shot Look, P3-500 nits - HDR-video, P3-1000 nits - HDR-video]
-#inactive_colorspaces: [CIE-XYZ D65,  Gamut Shaper, Inverse sRGB Output, DCI-P3 D65, ST2084-P3-D65, P3-D65, Apple Display P3, Pick Rec709-sRGB Desat, Shot_shaper, Output - Neutral Look (sRGB), Output - Filmic Look (sRGB), Output - Show Look (sRGB), Output - Neutral Look (Gamma 2.2), Output - Filmic Look (Gamma 2.2), Output - Show Look (Gamma 2.2)]
+#inactive_colorspaces: [CIE-XYZ D65,  Gamut Shaper, Inverse sRGB Output, DCI-P3 D65, ST2084-P3-D65, P3-D65, Apple Display P3, Pick Rec709-sRGB Desat, Shot_shaper, Output - Neutral Look (sRGB), Output - Filmic Look (sRGB), Output - Show Look (sRGB), Output - Neutral Look (Gamma 2.2), Output - Filmic Look (Gamma 2.2), Output - Show Look (Gamma 2.2), camera_log]
 
 
 
@@ -200,7 +202,7 @@ colorspaces:
   - !<ColorSpace>
     name: Color sRGB Texture
     aliases: [ dif, BaseColor ]
-    family: Input/File-io
+    family: Texture Input
     description: |
       sRGB texture color space (piecewise sRGB EOTF)
     isdata: false
@@ -216,7 +218,7 @@ colorspaces:
   - !<ColorSpace>
     name: Pick Rec709-sRGB Desat
     aliases: [ picker ]
-    family: Input/File-io
+    family: Texture Input
     bitdepth: 32f
     description: |
       color picking of sRGB primaries with slight desaturation (sat 0.85 based on rec709 luma 0.2126 0.7152 0.0722)
@@ -229,7 +231,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Raw
-    family: Input/File-io
+    family: Texture Input
     equalitygroup: ""
     bitdepth: 32f
     description: |
@@ -241,7 +243,7 @@ colorspaces:
   - !<ColorSpace>
     name: scene-linear Rec.709-sRGB
     aliases: [ hdr ]
-    family: Input/File-io
+    family: Texture Input
     equalitygroup: ""
     bitdepth: 32f
     description: |
@@ -253,7 +255,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Gamut Shaper
-    family: Input/File-io
+    family: Texture Input
     equalitygroup: ""
     bitdepth: 32f
     description: |
@@ -344,7 +346,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Inverse sRGB Output
-    family: Input/File-io
+    family: Texture Input
     description: |
       sRGB monitor (piecewise EOTF)
     isdata: false
@@ -358,7 +360,7 @@ colorspaces:
   - !<ColorSpace>
     name: ARRI LogC (v3-EI800) - AlexaWideGamut
     aliases: [ ARRI ]
-    family: Input/Camera/ARRI
+    family: Camera Input/ARRI
     description: |
       Alexa-v3-LogC-EI800 (no camera black) to ACES2065-1 (SUP v3 color science)
     isdata: false
@@ -368,7 +370,7 @@ colorspaces:
   - !<ColorSpace>
     name: RED Log3G10 - REDWideGamutRGB
     aliases: [ RED ]
-    family: Input/Camera/RED
+    family: Camera Input/RED
     description: |
       RED Log3G10 / REDWideGamutRGB (no camera black)
     isdata: false
@@ -378,7 +380,7 @@ colorspaces:
   - !<ColorSpace>
     name: Sony SLog3 - SGamut3
     aliases: [ Sony ]
-    family: Input/Camera/Sony
+    family: Camera Input/Sony
     description: |
       Sony SLog3 / SGamut3 (no camera black)
     isdata: false
@@ -388,7 +390,7 @@ colorspaces:
   - !<ColorSpace>
     name: Sony SLog3 - SGamut3Cine
     aliases: [ SonyCine ]
-    family: Input/Camera/Sony
+    family: Camera Input/Sony
     equalitygroup: ""
     bitdepth: 32f
     description: |
@@ -402,7 +404,7 @@ colorspaces:
   - !<ColorSpace>
     name: Sony SLog3 - Venice SGamut3
     aliases: [ SonyVenice ]
-    family: Input/Camera/Sony
+    family: Camera Input/Sony
     equalitygroup: ""
     bitdepth: 32f
     description: |
@@ -416,7 +418,7 @@ colorspaces:
   - !<ColorSpace>
     name: Sony SLog3 - Venice SGamut3Cine
     aliases: [ SonyVeniceCine ]
-    family: Input/Camera/Sony
+    family: Camera Input/Sony
     equalitygroup: ""
     bitdepth: 32f
     description: |
@@ -430,7 +432,7 @@ colorspaces:
   - !<ColorSpace>
     name: Canon CLog2 CGamut
     aliases: [ CLog2 ]
-    family: Input/Camera/Canon
+    family: Camera Input/Canon
     equalitygroup: ""
     bitdepth: 32f
     description: |
@@ -444,7 +446,7 @@ colorspaces:
   - !<ColorSpace>
     name: Canon CLog3 CGamut
     aliases: [ CLog3 ]
-    family: Input/Camera/Canon
+    family: Camera Input/Canon
     equalitygroup: ""
     bitdepth: 32f
     description: |
@@ -458,7 +460,7 @@ colorspaces:
   - !<ColorSpace>
     name: Panasonic - VLog VGamut
     aliases: [ Panasonic ]
-    family: Input/Camera/Panasonic
+    family: Camera Input/Panasonic
     description: |
       Convert Panasonic Varicam V-Log V-Gamut to ACES2065-1
     isdata: false
@@ -468,7 +470,7 @@ colorspaces:
   - !<ColorSpace>
     name: Log film scan (ADX10)
     aliases: [ ADX10 ]
-    family: Input/Camera/Film
+    family: Camera Input/Film
     description: |
       ADX10 Academy Density Encoding
     isdata: false
@@ -481,7 +483,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Output - ACES 1.0 SDR-video (sRGB)
-    family: Output/sRGB monitor
+    family: Display-Encoded Output/sRGB monitor
     isdata: false
     encoding: sdr-video
     to_reference: !<DisplayViewTransform> {src: "ACES2065-1", display: "sRGB", view: "ACES 1.0 - SDR-video", direction: inverse}
@@ -492,7 +494,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Output - Neutral Look (sRGB)
-    family: Output/sRGB monitor
+    family: Display-Encoded Output/sRGB monitor
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
@@ -502,7 +504,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Output - Filmic Look (sRGB)
-    family: Output/sRGB monitor
+    family: Display-Encoded Output/sRGB monitor
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
@@ -512,7 +514,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Output - Show Look (sRGB)
-    family: Output/sRGB monitor
+    family: Display-Encoded Output/sRGB monitor
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
@@ -522,7 +524,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Output - Shot Look (sRGB)
-    family: Output/sRGB monitor
+    family: Display-Encoded Output/sRGB monitor
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
@@ -534,7 +536,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Output - ACES 1.0 SDR-video (Gamma 2.2)
-    family: Output/Gamma 2.2 monitor
+    family: Display-Encoded Output/Gamma 2.2 monitor
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
@@ -544,7 +546,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Output - Neutral Look (Gamma 2.2)
-    family: Output/Gamma 2.2 monitor
+    family: Display-Encoded Output/Gamma 2.2 monitor
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
@@ -554,7 +556,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Output - Filmic Look (Gamma 2.2)
-    family: Output/Gamma 2.2 monitor
+    family: Display-Encoded Output/Gamma 2.2 monitor
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
@@ -564,7 +566,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Output - Show Look (Gamma 2.2)
-    family: Output/Gamma 2.2 monitor
+    family: Display-Encoded Output/Gamma 2.2 monitor
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
@@ -574,7 +576,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Output - Shot Look (Gamma 2.2)
-    family: Output/Gamma 2.2 monitor
+    family: Display-Encoded Output/Gamma 2.2 monitor
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
@@ -587,7 +589,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Output - ACES 1.0 SDR-video (Rec.709 - BT.1886 HDTV)
-    family: Output/Rec.1886 HDTV display
+    family: Display-Encoded Output/Rec.1886 HDTV display
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
@@ -597,7 +599,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Output - Shot Look (Rec.709 - BT.1886 HDTV)
-    family: Output/Rec.1886 HDTV display
+    family: Display-Encoded Output/Rec.1886 HDTV display
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
@@ -609,7 +611,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Output - DPX Shot Look (Non-Color Managed)
-    family: Output/Display-Referred Workflow
+    family: Display-Encoded Output/Display-Referred Workflow
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
@@ -625,7 +627,7 @@ display_colorspaces:
 
   - !<ColorSpace>
     name: CIE-XYZ D65
-    family: Output
+    family: Utility
     description: |
       Display connection space, CIE XYZ with D65 adopted white point
     encoding: display-linear
@@ -633,7 +635,7 @@ display_colorspaces:
 
   - !<ColorSpace>
     name: sRGB
-    family: Display
+    family: Display EOTF
     description: |
       sRGB monitor (piecewise EOTF)
     isdata: false
@@ -647,7 +649,7 @@ display_colorspaces:
 
   - !<ColorSpace>
     name: Gamma 2.2
-    family: Display
+    family: Display EOTF
     description: |
       Gamma 2.2 monitor with Rec.709 or sRGB primaries
     isdata: false
@@ -662,7 +664,7 @@ display_colorspaces:
   - !<ColorSpace>
     name: Rec.709 - BT.1886 HDTV
     aliases: [ rec709 ]
-    family: Display
+    family: Display EOTF
     description: |
       Rec.709 HD broadcast monitor with Rec.1886 EOTF (gamma 2.4)
     isdata: false
@@ -677,7 +679,7 @@ display_colorspaces:
 
   - !<ColorSpace>
     name: Apple Display P3 
-    family: Display
+    family: Display EOTF
     equalitygroup: ""
     bitdepth: 32f
     description: Convert CIE XYZ (D65 white) to P3-D65 with 2.2 Gamma EOTF
@@ -694,7 +696,7 @@ display_colorspaces:
 
   - !<ColorSpace>
     name: ST2084-P3-D65
-    family: Display
+    family: Display EOTF
     description: |
       DCI-P3 monitor/projector with D65 white point and ST-2084 (PQ) EOTF
     isdata: false
@@ -708,7 +710,7 @@ display_colorspaces:
 
   - !<ColorSpace>
     name: P3-D65
-    family: Display
+    family: Display EOTF
     description: |
       DCI-P3 monitor/projector with D65 white point and 2.6 gamma EOTF
     isdata: false
@@ -721,7 +723,7 @@ display_colorspaces:
 
   - !<ColorSpace>
     name: DCI-P3 D65
-    family: Display
+    family: Display EOTF
     description: |
       DCI-P3 monitor with D65 white point and 2.6 gamma
     isdata: false
@@ -742,7 +744,7 @@ named_transforms:
   - !<NamedTransform>
     name: Cineon Log to Lin
     aliases: [ Cineon ]
-    family: Input/File-io
+    family: Texture Input
     description: |
       Traditional Cineon-style log-to-lin with RefWhite=695, RefBlack=95, Gamma=0.6
     transform: !<LogAffineTransform>
