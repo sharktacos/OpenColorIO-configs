@@ -46,13 +46,13 @@ roles:
 #   Nuke 16-bit log default:  
   texture_paint: ACEScct
   
-  substance_3d_bitmap_import_8bit: Color sRGB Texture
-  substance_3d_bitmap_import_16bit: Color sRGB Texture
-  substance_3d_bitmap_import_floating: Raw
-  substance_3d_bitmap_export_8bit: Color sRGB Texture
-  substance_3d_bitmap_export_16bit: Color sRGB Texture
-  substance_3d_bitmap_export_floating: Raw
-  substance_3d_substance_material: Color sRGB Texture
+  substance_3d_painter_bitmap_import_8bit: Color sRGB Texture
+  substance_3d_painter_bitmap_import_16bit: Color sRGB Texture
+  substance_3d_painter_bitmap_import_floating: Raw
+  substance_3d_painter_bitmap_export_8bit: Color sRGB Texture
+  substance_3d_painter_bitmap_export_16bit: Color sRGB Texture
+  substance_3d_painter_bitmap_export_floating: Raw
+  substance_3d_painter_substance_material: Color sRGB Texture
 
   mari_monitor: Output - Neutral Look (sRGB)
   mari_scaler_monitor: Raw
