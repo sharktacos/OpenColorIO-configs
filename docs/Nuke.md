@@ -4,6 +4,9 @@ Nuke v13.1 now supports OCIOv2. To load the config Press “S” to access **Pro
 
 ![nk](img/Nuke1.png)
 
+## Roles
+
+Nuke's implementation of OCIO roles can be confusing and unintuitive. For this reason, you may wish to turn them off in the Preferences. Under the Color Management section uncheck "Allow OCIO Roles in color space knobs" and "prioritize OCIO Roles". Nuke needs to be restarted for this to take effect. This will result in a more organized color space menu in Read and Write nodes.
 
 ## Input Transforms
 
