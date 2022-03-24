@@ -18,9 +18,9 @@ Below is a roadmap how RGC integrates into a VFX pipeline.
 
 ![gamut](img/pipeline3.jpg)
 
-[The ANM config](config.md)  uses Reference Gamut Compression (RGC) to address [hue shifts in CG colors](chroma.md). Here the RGC is automatically applied in the view transforms of the ANM OCIO config, and also baked into the output when writing out to sRGB using 3D LUTS. This is accomplished with a 1D shaper function that transforms both negative and positive input value ranges into the 0.0→1.0 domain, essentially the ACEScct function mirrorred at the Y-axis. 
+[The ANM config](configs.md)  uses Reference Gamut Compression (RGC) to address [hue shifts in CG colors](chroma.md). Here the RGC is automatically applied in the view transforms of the ANM OCIO config, and also baked into the output when writing out to sRGB using 3D LUTS. This is accomplished with a 1D shaper function that transforms both negative and positive input value ranges into the 0.0→1.0 domain, essentially the ACEScct function mirrorred at the Y-axis. 
 
-[The VFX config](config.md) in contrast does not have RGC as a view transform or output and instead uses the [Nuke Gizmo](Nuke.md#gamut-compression-and-nuke).
+[The VFX config](configs.md) in contrast does not have RGC as a view transform or output and instead uses the [Nuke Gizmo](Nuke.md#gamut-compression-and-nuke).
  
 If you read through all of that you deserve to see some pretty pictures (Well, at least they are pretty after the gamut compression!) Let's begin with some film footage with out-of-gamut colors, illustrating the problem. Note for instance the crazy banding or posterizing happening on the spotlight behind the head of the woman (left image), and the blobs of blue on the ceiling of the bar scene resulting in loss  of  texture detail on the wood boards (right).
   
