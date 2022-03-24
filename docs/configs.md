@@ -14,7 +14,7 @@ The above Display Transforms contain the following views:
 - **Show Look** is for the show specific look LUT decided on by the director for the ANM config. This Look is combined with the Filmic Look. See "Shot LUTs" below for setup.
 - **Un-tone-mapped** the default Nuke transform without tone mapping.
 
-You can read details about the *Neutral Look* and *Filmic Look* look transoforms on the [tone mapping](tonemap.md) page.  Additionally, both Look Transforms provide [highlight desaturation](docs/highlight.md) of blackbody color temperatures, and [reduced hue shifts](docs/chroma.md) compared to the default ACES 1.0 Output Transform. Finally, the new [Referrence Gamut Compression (RGC)](docs/gamut.md) is baked into all of the display tranforms (including the ACES 1.0 SDR) to address hue shifts in CG renders with ACES. Note that this is not the case for the VFX config below.
+You can read details about the *Neutral Look* and *Filmic Look* look transoforms on the [tone mapping](tonemap.md) page.  Additionally, both Look Transforms provide [highlight desaturation](highlight.md) of blackbody color temperatures, and [reduced hue shifts](chroma.md) compared to the default ACES 1.0 Output Transform. Finally, the new [Referrence Gamut Compression (RGC)](gamut.md) is baked into all of the display tranforms (including the ACES 1.0 SDR) to address hue shifts in CG renders with ACES. Note that this is not the case for the VFX config below.
 
 Each of these above views is paired with an output display:
 
@@ -32,7 +32,7 @@ The remaining view transforms are the same as the default Maya 2022 config and a
    
 ![img](img/Nuke_view_vfx.png)
 
-As noted above, in a VFX pipeline [gamut compression](gamut.md) is applied as a node in VFX and thus not included in the Display Transform. 
+As noted above, in a VFX pipeline [gamut compression](Nuke.md#gamut-compression-and-nuke) is applied as a node in VFX and thus not included in the Display Transform. 
 
 The VFX config has the following views:
 
