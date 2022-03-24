@@ -8,7 +8,7 @@ The ANM config ````ANM_config.ocio```` is designed for work on CG animation shor
 
 The above Display Transforms contain the following views:
 
-- **ACES 1.0 SDR - (RGC)** The standard ACES RRT with added [Referrence Gamut Compression (RGC)](docs/gamut.md)
+- **ACES 1.0 SDR - (RGC)** The standard ACES RRT with added [Referrence Gamut Compression (RGC)](gamut.md)
 - **Neutral Look** is intended as a neutral starting point for lookdev work. 
 - **Filmic Look** is intended for lighting shot work and has a similar filmic look to the standard ACES 1.0 RRT, with slightly reduced contrast. 
 - **Show Look** is for the show specific look LUT decided on by the director for the ANM config. This Look is combined with the Filmic Look. See "Shot LUTs" below for setup.
