@@ -59,7 +59,7 @@ When rendering images in display color spaces, such as those required for IMF Ma
  
 **VFX Pulls**
 
- - **Set color space to ACES2065 (AP0** Turn off the ACES Output Transform in order to output ACES AP0/Linear data as shown below. This put the clip in ACES2065-1 used for interchange if images between facilities or softwares in an ACES pipeline, such as VFX plates.
+ - **Set color space to ACES2065 (AP0)** This done in Resolve by disabling the ACES Output Transform in order to output ACES AP0/Linear data as shown below. This puts the clip in ACES2065-1 used for interchange if images between facilities or softwares in an ACES pipeline, such as VFX plates. Disabling the Output Transform will display your footage in scene-linear color space, which will appear dark. This is expected. 
 
 ![img](img/Netflix5.jpg)
 
