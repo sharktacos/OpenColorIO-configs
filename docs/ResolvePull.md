@@ -35,7 +35,7 @@ Notes:
 
 By default, for RAW clips, Resolve will automatically debayer images into ACES and you should see a normal looking image. 
 
-For non-RAW formats (such as DPX, ProRes, XAVC, etc), Resolve may not automatically detect the color space, so you will have to manually select your ACES Input Device Transform (IDT).
+For non-RAW formats (such as MXF, DPX, ProRes, XAVC, etc), Resolve may not automatically detect the color space, so you will have to manually select your ACES Input Device Transform (IDT).
 
 You can do this by right-clicking on a shot or group of shots in the Media Pool, as shown in the screenshot below. 
 
