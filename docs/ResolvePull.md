@@ -35,9 +35,9 @@ Notes:
 
 By default, for RAW clips, Resolve will automatically debayer images into ACES and you should see a normal looking image. 
 
-For non-RAW formats (such as MXF, DPX, ProRes, XAVC, etc), Resolve may not automatically detect the color space, so you will have to manually select your ACES Input Device Transform (IDT).
+For non-RAW formats (such as MXF, DPX, ProRes, XAVC, etc), Resolve may not automatically detect the color space, and read the footage in with the native camera log color space. An indication of this is if your image looks washed out, which is typical of log footage. 
 
-You can do this by right-clicking on a shot or group of shots in the Media Pool, as shown in the screenshot below. 
+In such cases you will need to manually select your ACES Input Device Transform (IDT). You can do this by right-clicking on a shot or group of shots in the Media Pool, as shown in the screenshot below. 
 
 *Example: you shot XAVC on the Sony F55 using the SLog3-SGamut3.CINE color space, and bring these clips into the Media Pool. Resolve is not able to recognize this based on the metadata, so you must manually select “Sony SLog3 SGamut3CINE” from the ACES Input Device Transform dropdown list.*
 
