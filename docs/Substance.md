@@ -4,7 +4,7 @@ As of v7.4 Substance Painter supports OCIOv2! In the initial release OCIO roles 
 
 ![img](img/substance-ocio.jpg)
 
-As of v7.2 OCIO roles are supported, and defined in the configs here on this repo.
+As of v7.4.2 OCIO roles are supported, and defined in the configs here on this repo.
 
 This replaces the older workaround described below.
 
