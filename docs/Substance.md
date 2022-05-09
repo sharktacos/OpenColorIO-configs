@@ -1,8 +1,10 @@
 # Substance Painter
 
-As of v7.4 Substance Painter supports OCIOv2! In the initial release OCIO roles are not yet supported so the color spaces need to be set manually when creating a new project `File > new` or in the Project Configuration `Edit > Project Configuration`. Below the proper settings are pictured. 
+As of v7.4 Substance Painter supports OCIOv2! In the initial release OCIO roles were not yet supported so the color spaces needed to be set manually when creating a new project `File > new` or in the Project Configuration `Edit > Project Configuration`. Below the proper settings are pictured. 
 
 ![img](img/substance-ocio.jpg)
+
+As of v7.2 OCIO roles are supported, and defined in the configs here on this repo.
 
 This replaces the older workaround described below.
 
