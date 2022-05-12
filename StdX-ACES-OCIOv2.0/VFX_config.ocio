@@ -16,11 +16,11 @@ environment:
   LUT_PATH: path_to/shot_lut/
   LUT_NAME: clientShotLUTname_ACEScct.cube
 #--------------
-# Camera aliases are: ARRI, RED, CLog2, CLog3, Panasonic,
+# Camera aliases are: ARRI, RED, CLog2, CLog3, 
 # Sony, SonyCine, SonyVenice, SonyVeniceCine, ADX10.
-# CAMERA variable is set to ACEScct for ACES EXR workflow, and to camera for DPX for display-referred workflow
+# CAMERA variable is set to ACEScct for ACES EXR workflow, and to the camera type for DPX display-referred workflow
 #--------------
-  CAMERA: ACEScct
+  CAMERA: ARRI
   SHAPER: ACEScct
 # ------------------------------------------------------------------- # 
 
@@ -35,7 +35,7 @@ roles:
   compositing_linear: ACEScg  
   compositing_log: ACEScct
   data: Raw
-  default: ap0
+  default: Raw
 # --- set reference to ap0 for VFX:
   reference: ap0
   rendering: ACEScg
@@ -79,7 +79,8 @@ shared_views:
   - !<View> {name: ACES 1.0 - SDR-video, view_transform: Output - SDR Video - ACES 1.0, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: Neutral Look, view_transform: Output - SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_neutral", display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: Filmic Look, view_transform: Output - SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_filmic", display_colorspace: <USE_DISPLAY_NAME>}
-  
+
+  - !<View> {name: Neutral Grade, view_transform: Output - SDR Video - ACES 1.0, looks: FilmNeutralGrade, display_colorspace: <USE_DISPLAY_NAME>} 
   - !<View> {name: Shot Look, view_transform: Output - SDR Video - ACES 1.0, looks: LMT_shot, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: Show Look, view_transform: Output - SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_shot", display_colorspace: <USE_DISPLAY_NAME>}
   
@@ -93,15 +94,15 @@ shared_views:
 displays:
 
   sRGB:
-    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Neutral Look", "Filmic Look", "Shot Look", "Show Look", Un-tone-mapped]
+    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Neutral Look", "Filmic Look", "Shot Look", "Show Look", "Neutral Grade", Un-tone-mapped]
   Gamma 2.2:
-    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Neutral Look", "Filmic Look", "Shot Look", "Show Look", Un-tone-mapped]
+    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Neutral Look", "Filmic Look", "Shot Look", "Show Look", "Neutral Grade", Un-tone-mapped]
   Apple Display P3:
-    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "P3-500 nits - HDR-video", "P3-1000 nits - HDR-video", "Neutral Look", "Filmic Look", Un-tone-mapped]
+    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "P3-500 nits - HDR-video", "P3-1000 nits - HDR-video", "Neutral Look", "Filmic Look", "Neutral Grade", Un-tone-mapped]
   DCI-P3 D65:
-    - !<Views> ["ACES 1.0 - SDR-video", "P3-500 nits - HDR-video", "P3-1000 nits - HDR-video", "Neutral Look", "Filmic Look", "Shot Look", "Show Look", Un-tone-mapped]
+    - !<Views> ["ACES 1.0 - SDR-video", "P3-500 nits - HDR-video", "P3-1000 nits - HDR-video", "Neutral Look", "Filmic Look", "Shot Look", "Show Look", "Neutral Grade", Un-tone-mapped]
   Rec.709 - BT.1886 HDTV:
-    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Neutral Look", "Filmic Look", "Shot Look", "Show Look", Un-tone-mapped]
+    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Neutral Look", "Filmic Look", "Shot Look", "Show Look", "Neutral Grade", Un-tone-mapped]
   USE ONLY FOR CHECKING COMPS:
     - !<View> {name: Log, colorspace: camera_log}
   USE ONLY FOR CHECKING RENDERS:
@@ -114,13 +115,13 @@ displays:
 
 #active_displays: [sRGB, "Gamma 2.2", "Apple Display P3", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS"]
 #active_views: [ACES 1.0 - SDR-video - RGC, Neutral Look, Filmic Look, Show Look, Un-tone-mapped, Log, Raw, P3-500 nits - HDR-video, P3-1000 nits - HDR-video]
-#inactive_colorspaces: [CIE-XYZ D65, Gamut Shaper, DCI-P3 D65, ST2084-P3-D65, P3-D65, Pick Rec709-sRGB Desat, Shot_shaper, Output - Shot Look (sRGB), Output - Shot Look (Gamma 2.2), Output - Shot Look (Rec.709 - BT.1886 HDTV), Output - ACES 1.0 SDR-video (Rec.709 - BT.1886 HDTV), Output - DPX Shot Look (Non-Color Managed), Rec.709 - BT.1886 HDTV]
+#inactive_colorspaces: [CIE-XYZ D65, Gamut Shaper, camera_log, DCI-P3 D65, ST2084-P3-D65, P3-D65, Pick Rec709-sRGB Desat, Shot_shaper, Output - Shot Look (sRGB), Output - Shot Look (Gamma 2.2), Output - Shot Look (Rec.709 - BT.1886 HDTV), Output - ACES 1.0 SDR-video (Rec.709 - BT.1886 HDTV), Output - DPX Shot Look (Non-Color Managed), Rec.709 - BT.1886 HDTV]
 
 #-- VFX config:
 
-active_displays: [Gamma 2.2, Rec.709 - BT.1886 HDTV, "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS", "Display-Referred Workflow"]
-active_views: [ACES 1.0 - SDR-video, Shot Look, Un-tone-mapped, Log, Raw, DPX Shot Look, P3-500 nits - HDR-video, P3-1000 nits - HDR-video]
-inactive_colorspaces: [CIE-XYZ D65,  Gamut Shaper, DCI-P3 D65, ST2084-P3-D65, P3-D65, Apple Display P3, Pick Rec709-sRGB Desat, Shot_shaper, Output - Neutral Look (sRGB), Output - Filmic Look (sRGB), Output - Show Look (sRGB), Output - Neutral Look (Gamma 2.2), Output - Filmic Look (Gamma 2.2), Output - Show Look (Gamma 2.2), sRGB, Gamma 2.2, Rec.709 - BT.1886 HDTV, camera_log]
+active_displays: ["Gamma 2.2", "Rec.709 - BT.1886 HDTV", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS", "Display-Referred Workflow"]
+active_views: [ACES 1.0 - SDR-video, Shot Look, Neutral Grade, Un-tone-mapped, Log, Raw, DPX Shot Look, P3-500 nits - HDR-video, P3-1000 nits - HDR-video]
+inactive_colorspaces: [CIE-XYZ D65,  Gamut Shaper, Inverse sRGB Output, DCI-P3 D65, ST2084-P3-D65, P3-D65, sRGB, Apple Display P3, Pick Rec709-sRGB Desat, Shot_shaper, Output - Neutral Look (sRGB), Output - Filmic Look (sRGB), Output - Show Look (sRGB), Output - Neutral Look (Gamma 2.2), Output - Filmic Look (Gamma 2.2), Output - Show Look (Gamma 2.2)]
 
 
 
@@ -183,6 +184,11 @@ looks:
     name: Show_LUT
     process_space: ACEScct
     transform: !<FileTransform> {src: Show_LMT_cct.cube, interpolation: linear}
+	
+  - !<Look>
+    name: FilmNeutralGrade
+    process_space: ACEScct
+    transform: !<CDLTransform> {slope: [0.85, 0.85, 0.85], offset: [0.06525, 0.06525, 0.06525], power: [0.98, 0.98, 0.98]}
 
   - !<Look>
     name: LMT_shot
@@ -198,20 +204,9 @@ colorspaces:
 #---------------------- Rendering -------------------------------#
 
   - !<ColorSpace>
-    name: Raw
-    family: Texture Input
-    equalitygroup: ""
-    bitdepth: 32f
-    description: |
-      Raw (no color processing)
-    isdata: true
-    categories: [ file-io ]
-    encoding: data
-
-  - !<ColorSpace>
     name: Color sRGB Texture
     aliases: [ dif, BaseColor ]
-    family: Texture Input
+    family: Input/File-io
     description: |
       sRGB texture color space (piecewise sRGB EOTF)
     isdata: false
@@ -227,7 +222,7 @@ colorspaces:
   - !<ColorSpace>
     name: Pick Rec709-sRGB Desat
     aliases: [ picker ]
-    family: Texture Input
+    family: Input/File-io
     bitdepth: 32f
     description: |
       color picking of sRGB primaries with slight desaturation (sat 0.85 based on rec709 luma 0.2126 0.7152 0.0722)
@@ -239,9 +234,20 @@ colorspaces:
         - !<MatrixTransform> {matrix:  [ 0.439632981919, 0.382988698152, 0.177378319929, 0, 0.089776442959, 0.813439428749, 0.096784128292, 0, 0.017541170383, 0.111546553302, 0.870912276314, 0, 0, 0, 0, 1 ]}
 
   - !<ColorSpace>
+    name: Raw
+    family: Input/File-io
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Raw (no color processing)
+    isdata: true
+    categories: [ file-io ]
+    encoding: data
+
+  - !<ColorSpace>
     name: scene-linear Rec.709-sRGB
     aliases: [ hdr ]
-    family: Texture Input
+    family: Input/File-io
     equalitygroup: ""
     bitdepth: 32f
     description: |
@@ -253,7 +259,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Gamut Shaper
-    family: Texture Input
+    family: Input/File-io
     equalitygroup: ""
     bitdepth: 32f
     description: |
@@ -316,6 +322,266 @@ colorspaces:
     encoding: log
     to_scene_reference: !<BuiltinTransform> {style: "ACEScc_to_ACES2065-1"}
 
+
+
+#---------------------- Cameras ----------------------#
+
+  - !<ColorSpace>
+    name: ARRI LogC (v3-EI800) - AlexaWideGamut
+    aliases: [ ARRI ]
+    family: Input/Camera/ARRI
+    description: |
+      Alexa-v3-LogC-EI800 (no camera black) to ACES2065-1 (SUP v3 color science)
+    isdata: false
+    encoding: log
+    to_reference: !<BuiltinTransform> {style: "ARRI_ALEXA-LOGC-EI800-AWG_to_ACES2065-1"}
+
+  - !<ColorSpace>
+    name: RED Log3G10 - REDWideGamutRGB
+    aliases: [ RED ]
+    family: Input/Camera/RED
+    description: |
+      RED Log3G10 / REDWideGamutRGB (no camera black)
+    isdata: false
+    encoding: log
+    to_reference: !<BuiltinTransform> {style: "RED_LOG3G10-RWG_to_ACES2065-1"}
+
+  - !<ColorSpace>
+    name: Sony SLog3 - SGamut3
+    aliases: [ Sony ]
+    family: Input/Camera/Sony
+    description: |
+      Sony SLog3 / SGamut3 (no camera black)
+    isdata: false
+    encoding: log
+    to_reference: !<BuiltinTransform> {style: "SONY_SLOG3-SGAMUT3_to_ACES2065-1"}
+
+  - !<ColorSpace>
+    name: Sony SLog3 - SGamut3Cine
+    aliases: [ SonyCine ]
+    family: Input/Camera/Sony
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Convert Sony S-Log3 S-Gamut3.Cine to ACES2065-1
+      ACEStransformID: urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.SLog3_SGamut3Cine_to_ACES.a1.1.0
+    isdata: false
+    encoding: log
+    allocation: uniform
+    to_scene_reference: !<BuiltinTransform> {style: SONY_SLOG3-SGAMUT3.CINE_to_ACES2065-1}
+
+  - !<ColorSpace>
+    name: Sony SLog3 - Venice SGamut3
+    aliases: [ SonyVenice ]
+    family: Input/Camera/Sony
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Convert Sony S-Log3 S-Gamut3 for the Venice camera to ACES2065-1
+      ACEStransformID: urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.SLog3_Venice_SGamut3_to_ACES.a1.1.0
+    isdata: false
+    encoding: log
+    allocation: uniform
+    to_scene_reference: !<BuiltinTransform> {style: SONY_SLOG3-SGAMUT3-VENICE_to_ACES2065-1}
+
+  - !<ColorSpace>
+    name: Sony SLog3 - Venice SGamut3Cine
+    aliases: [ SonyVeniceCine ]
+    family: Input/Camera/Sony
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Convert Sony S-Log3 S-Gamut3.Cine for the Venice camera to ACES2065-1
+      ACEStransformID: urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.SLog3_Venice_SGamut3Cine_to_ACES.a1.1.0
+    isdata: false
+    encoding: log
+    allocation: uniform
+    to_scene_reference: !<BuiltinTransform> {style: SONY_SLOG3-SGAMUT3.CINE-VENICE_to_ACES2065-1}
+
+  - !<ColorSpace>
+    name: Canon CLog2 CGamut
+    aliases: [ CLog2 ]
+    family: Input/Camera/Canon
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Convert Canon Log 2 Cinema Gamut to ACES2065-1
+      ACEStransformID: urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.CLog2_CGamut_to_ACES.a1.1.0
+    isdata: false
+    encoding: log
+    allocation: uniform
+    to_scene_reference: !<BuiltinTransform> {style: CANON_CLOG2-CGAMUT_to_ACES2065-1}
+
+  - !<ColorSpace>
+    name: Canon CLog3 CGamut
+    aliases: [ CLog3 ]
+    family: Input/Camera/Canon
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Convert Canon Log 3 Cinema Gamut to ACES2065-1
+      ACEStransformID: urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.CLog3_CGamut_to_ACES.a1.1.0
+    isdata: false
+    encoding: log
+    allocation: uniform
+    to_scene_reference: !<BuiltinTransform> {style: CANON_CLOG3-CGAMUT_to_ACES2065-1}
+
+  - !<ColorSpace>
+    name: Log film scan (ADX10)
+    aliases: [ ADX10 ]
+    family: Input/Camera/Film
+    description: |
+      ADX10 Academy Density Encoding
+    isdata: false
+    encoding: log
+    to_reference: !<BuiltinTransform> {style: "ADX10_to_ACES2065-1"}
+
+#--------------- Output --------------------------------#
+
+#--- sRGB Display:
+
+  - !<ColorSpace>
+    name: Output - ACES 1.0 SDR-video (sRGB)
+    family: Output/sRGB monitor
+    isdata: false
+    encoding: sdr-video
+    to_reference: !<DisplayViewTransform> {src: "ACES2065-1", display: "sRGB", view: "ACES 1.0 - SDR-video", direction: inverse}
+    from_reference: !<GroupTransform>
+      children:
+        - !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "ACES 1.0 - SDR-video"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: Output - Neutral Look (sRGB)
+    family: Output/sRGB monitor
+    isdata: false
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Neutral Look"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: Output - Filmic Look (sRGB)
+    family: Output/sRGB monitor
+    isdata: false
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Filmic Look"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: Output - Show Look (sRGB)
+    family: Output/sRGB monitor
+    isdata: false
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Show Look"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: Output - Shot Look (sRGB)
+    family: Output/sRGB monitor
+    isdata: false
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Shot Look"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+#-- 2.2 Gamma Display:
+
+  - !<ColorSpace>
+    name: Output - ACES 1.0 SDR-video (Gamma 2.2)
+    family: Output/Gamma 2.2 monitor
+    isdata: false
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "ACES 1.0 - SDR-video"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: Output - Neutral Look (Gamma 2.2)
+    family: Output/Gamma 2.2 monitor
+    isdata: false
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "Neutral Look"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: Output - Filmic Look (Gamma 2.2)
+    family: Output/Gamma 2.2 monitor
+    isdata: false
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "Filmic Look"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: Output - Show Look (Gamma 2.2)
+    family: Output/Gamma 2.2 monitor
+    isdata: false
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "Show Look"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: Output - Shot Look (Gamma 2.2)
+    family: Output/Gamma 2.2 monitor
+    isdata: false
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "Shot Look"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+
+#-- BT.1886 Video display:
+
+  - !<ColorSpace>
+    name: Output - ACES 1.0 SDR-video (Rec.709 - BT.1886 HDTV)
+    family: Output/Rec.1886 HDTV display
+    isdata: false
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec.709 - BT.1886 HDTV", view: "ACES 1.0 - SDR-video"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: Output - Shot Look (Rec.709 - BT.1886 HDTV)
+    family: Output/Rec.1886 HDTV display
+    isdata: false
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec.709 - BT.1886 HDTV", view: "Shot Look"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+#-- DPX Non-Color Managed display:
+
+  - !<ColorSpace>
+    name: Output - DPX Shot Look (Non-Color Managed)
+    family: Output/Display-Referred Workflow
+    isdata: false
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<ColorSpaceTransform> {src: ACES2065-1, dst: "${CAMERA}"}
+        - !<FileTransform> {src: "${LUT_NAME}", interpolation: linear}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+
+#------------------------ Displays (EOTF) --------------------------
+
 # Extra #
 
   - !<ColorSpace>
@@ -332,7 +598,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: camera_log
-    family: Utility
+    family: Output/CHECKING COMP ONLY
     equalitygroup: ""
     bitdepth: 32f
     description: |
@@ -344,7 +610,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Inverse sRGB Output
-    family: Texture Input
+    family: Input/File-io
     description: |
       sRGB monitor (piecewise EOTF)
     isdata: false
@@ -353,279 +619,15 @@ colorspaces:
     to_reference: !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: sRGB, view: "ACES 1.0 - SDR-video"}
 
 
-#---------------------- Cameras ----------------------#
-
-  - !<ColorSpace>
-    name: Panasonic - VLog VGamut
-    aliases: [ Panasonic ]
-    family: Camera Input/Panasonic
-    description: |
-      Convert Panasonic Varicam V-Log V-Gamut to ACES2065-1
-    isdata: false
-    encoding: log
-    to_reference: !<BuiltinTransform> {style: PANASONIC_VLOG-VGAMUT_to_ACES2065-1}
-
-  - !<ColorSpace>
-    name: ARRI LogC (v3-EI800) - AlexaWideGamut
-    aliases: [ ARRI ]
-    family: Camera Input/ARRI
-    description: |
-      Alexa-v3-LogC-EI800 (no camera black) to ACES2065-1 (SUP v3 color science)
-    isdata: false
-    encoding: log
-    to_reference: !<BuiltinTransform> {style: "ARRI_ALEXA-LOGC-EI800-AWG_to_ACES2065-1"}
-
-  - !<ColorSpace>
-    name: RED Log3G10 - REDWideGamutRGB
-    aliases: [ RED ]
-    family: Camera Input/RED
-    description: |
-      RED Log3G10 / REDWideGamutRGB (no camera black)
-    isdata: false
-    encoding: log
-    to_reference: !<BuiltinTransform> {style: "RED_LOG3G10-RWG_to_ACES2065-1"}
-
-  - !<ColorSpace>
-    name: Sony SLog3 - SGamut3
-    aliases: [ Sony ]
-    family: Camera Input/Sony
-    description: |
-      Sony SLog3 / SGamut3 (no camera black)
-    isdata: false
-    encoding: log
-    to_reference: !<BuiltinTransform> {style: "SONY_SLOG3-SGAMUT3_to_ACES2065-1"}
-
-  - !<ColorSpace>
-    name: Sony SLog3 - SGamut3Cine
-    aliases: [ SonyCine ]
-    family: Camera Input/Sony
-    equalitygroup: ""
-    bitdepth: 32f
-    description: |
-      Convert Sony S-Log3 S-Gamut3.Cine to ACES2065-1
-      ACEStransformID: urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.SLog3_SGamut3Cine_to_ACES.a1.1.0
-    isdata: false
-    encoding: log
-    allocation: uniform
-    to_scene_reference: !<BuiltinTransform> {style: SONY_SLOG3-SGAMUT3.CINE_to_ACES2065-1}
-
-  - !<ColorSpace>
-    name: Sony SLog3 - Venice SGamut3
-    aliases: [ SonyVenice ]
-    family: Camera Input/Sony
-    equalitygroup: ""
-    bitdepth: 32f
-    description: |
-      Convert Sony S-Log3 S-Gamut3 for the Venice camera to ACES2065-1
-      ACEStransformID: urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.SLog3_Venice_SGamut3_to_ACES.a1.1.0
-    isdata: false
-    encoding: log
-    allocation: uniform
-    to_scene_reference: !<BuiltinTransform> {style: SONY_SLOG3-SGAMUT3-VENICE_to_ACES2065-1}
-
-  - !<ColorSpace>
-    name: Sony SLog3 - Venice SGamut3Cine
-    aliases: [ SonyVeniceCine ]
-    family: Camera Input/Sony
-    equalitygroup: ""
-    bitdepth: 32f
-    description: |
-      Convert Sony S-Log3 S-Gamut3.Cine for the Venice camera to ACES2065-1
-      ACEStransformID: urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.SLog3_Venice_SGamut3Cine_to_ACES.a1.1.0
-    isdata: false
-    encoding: log
-    allocation: uniform
-    to_scene_reference: !<BuiltinTransform> {style: SONY_SLOG3-SGAMUT3.CINE-VENICE_to_ACES2065-1}
-
-  - !<ColorSpace>
-    name: Canon CLog2 CGamut
-    aliases: [ CLog2 ]
-    family: Camera Input/Canon
-    equalitygroup: ""
-    bitdepth: 32f
-    description: |
-      Convert Canon Log 2 Cinema Gamut to ACES2065-1
-      ACEStransformID: urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.CLog2_CGamut_to_ACES.a1.1.0
-    isdata: false
-    encoding: log
-    allocation: uniform
-    to_scene_reference: !<BuiltinTransform> {style: CANON_CLOG2-CGAMUT_to_ACES2065-1}
-
-  - !<ColorSpace>
-    name: Canon CLog3 CGamut
-    aliases: [ CLog3 ]
-    family: Camera Input/Canon
-    equalitygroup: ""
-    bitdepth: 32f
-    description: |
-      Convert Canon Log 3 Cinema Gamut to ACES2065-1
-      ACEStransformID: urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.CLog3_CGamut_to_ACES.a1.1.0
-    isdata: false
-    encoding: log
-    allocation: uniform
-    to_scene_reference: !<BuiltinTransform> {style: CANON_CLOG3-CGAMUT_to_ACES2065-1}
-
-  - !<ColorSpace>
-    name: Log film scan (ADX10)
-    aliases: [ ADX10 ]
-    family: Camera Input/Film
-    description: |
-      ADX10 Academy Density Encoding
-    isdata: false
-    encoding: log
-    to_reference: !<BuiltinTransform> {style: "ADX10_to_ACES2065-1"}
-
-#--------------- Output --------------------------------#
-
-#--- sRGB Display:
-
-  - !<ColorSpace>
-    name: Output - ACES 1.0 SDR-video (sRGB)
-    family: Display-Encoded Output/sRGB monitor
-    isdata: false
-    encoding: sdr-video
-    to_reference: !<DisplayViewTransform> {src: "ACES2065-1", display: "sRGB", view: "ACES 1.0 - SDR-video", direction: inverse}
-    from_reference: !<GroupTransform>
-      children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "ACES 1.0 - SDR-video"}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
-
-  - !<ColorSpace>
-    name: Output - Neutral Look (sRGB)
-    family: Display-Encoded Output/sRGB monitor
-    isdata: false
-    encoding: sdr-video
-    from_reference: !<GroupTransform>
-      children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Neutral Look"}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
-
-  - !<ColorSpace>
-    name: Output - Filmic Look (sRGB)
-    family: Display-Encoded Output/sRGB monitor
-    isdata: false
-    encoding: sdr-video
-    from_reference: !<GroupTransform>
-      children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Filmic Look"}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
-
-  - !<ColorSpace>
-    name: Output - Show Look (sRGB)
-    family: Display-Encoded Output/sRGB monitor
-    isdata: false
-    encoding: sdr-video
-    from_reference: !<GroupTransform>
-      children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Show Look"}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
-
-  - !<ColorSpace>
-    name: Output - Shot Look (sRGB)
-    family: Display-Encoded Output/sRGB monitor
-    isdata: false
-    encoding: sdr-video
-    from_reference: !<GroupTransform>
-      children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Shot Look"}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
-
-#-- 2.2 Gamma Display:
-
-  - !<ColorSpace>
-    name: Output - ACES 1.0 SDR-video (Gamma 2.2)
-    family: Display-Encoded Output/Gamma 2.2 monitor
-    isdata: false
-    encoding: sdr-video
-    from_reference: !<GroupTransform>
-      children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "ACES 1.0 - SDR-video"}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
-
-  - !<ColorSpace>
-    name: Output - Neutral Look (Gamma 2.2)
-    family: Display-Encoded Output/Gamma 2.2 monitor
-    isdata: false
-    encoding: sdr-video
-    from_reference: !<GroupTransform>
-      children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "Neutral Look"}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
-
-  - !<ColorSpace>
-    name: Output - Filmic Look (Gamma 2.2)
-    family: Display-Encoded Output/Gamma 2.2 monitor
-    isdata: false
-    encoding: sdr-video
-    from_reference: !<GroupTransform>
-      children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "Filmic Look"}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
-
-  - !<ColorSpace>
-    name: Output - Show Look (Gamma 2.2)
-    family: Display-Encoded Output/Gamma 2.2 monitor
-    isdata: false
-    encoding: sdr-video
-    from_reference: !<GroupTransform>
-      children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "Show Look"}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
-
-  - !<ColorSpace>
-    name: Output - Shot Look (Gamma 2.2)
-    family: Display-Encoded Output/Gamma 2.2 monitor
-    isdata: false
-    encoding: sdr-video
-    from_reference: !<GroupTransform>
-      children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "Shot Look"}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
 
-#-- BT.1886 Video display:
 
-  - !<ColorSpace>
-    name: Output - ACES 1.0 SDR-video (Rec.709 - BT.1886 HDTV)
-    family: Display-Encoded Output/Rec.1886 HDTV display
-    isdata: false
-    encoding: sdr-video
-    from_reference: !<GroupTransform>
-      children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec.709 - BT.1886 HDTV", view: "ACES 1.0 - SDR-video"}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
-
-  - !<ColorSpace>
-    name: Output - Shot Look (Rec.709 - BT.1886 HDTV)
-    family: Display-Encoded Output/Rec.1886 HDTV display
-    isdata: false
-    encoding: sdr-video
-    from_reference: !<GroupTransform>
-      children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec.709 - BT.1886 HDTV", view: "Shot Look"}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
-
-#-- DPX Non-Color Managed display:
-
-  - !<ColorSpace>
-    name: Output - DPX Shot Look (Non-Color Managed)
-    family: Display-Encoded Output/Display-Referred Workflow
-    isdata: false
-    encoding: sdr-video
-    from_reference: !<GroupTransform>
-      children:
-        - !<ColorSpaceTransform> {src: ACES2065-1, dst: "${CAMERA}"}
-        - !<FileTransform> {src: "${LUT_NAME}", interpolation: linear}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
-
-
-#------------------------ Displays (EOTF) --------------------------
 
 display_colorspaces:
 
   - !<ColorSpace>
     name: CIE-XYZ D65
-    family: Display-Encoded Output
+    family: Output
     description: |
       Display connection space, CIE XYZ with D65 adopted white point
     encoding: display-linear
@@ -742,7 +744,7 @@ named_transforms:
   - !<NamedTransform>
     name: Cineon Log to Lin
     aliases: [ Cineon ]
-    family: Texture Input
+    family: Input/File-io
     description: |
       Traditional Cineon-style log-to-lin with RefWhite=695, RefBlack=95, Gamma=0.6
     transform: !<LogAffineTransform>
