@@ -496,7 +496,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Output - ACES 1.0 SDR-video (sRGB)
-    family: Baked Output/View on sRGB monitor
+    family: Bake Viewer/View on sRGB monitor
     isdata: false
     encoding: sdr-video
     to_reference: !<DisplayViewTransform> {src: "ACES2065-1", display: "sRGB", view: "ACES 1.0 - SDR-video", direction: inverse}
@@ -507,7 +507,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Output - Neutral Look (sRGB)
-    family: Baked Output/View on sRGB monitor
+    family: Bake Viewer/View on sRGB monitor
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
@@ -517,7 +517,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Output - Filmic Look (sRGB)
-    family: Baked Output/View on sRGB monitor
+    family: Bake Viewer/View on sRGB monitor
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
@@ -527,7 +527,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Output - Show Look (sRGB)
-    family: Baked Output/View on sRGB monitor
+    family: Bake Viewer/View on sRGB monitor
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
@@ -537,7 +537,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Output - Shot Look (sRGB)
-    family: Baked Output/View on sRGB monitor
+    family: Bake Viewer/View on sRGB monitor
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
@@ -549,7 +549,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Output - ACES 1.0 SDR-video (Gamma 2.2 Display)
-    family: Baked View Transform
+    family: Baked View
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
@@ -559,7 +559,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Output - Neutral Look (Gamma 2.2 Display)
-    family: Baked View Transform
+    family: Baked View
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
@@ -569,7 +569,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Output - Filmic Look (Gamma 2.2 Display)
-    family: Baked View Transform
+    family: Baked View
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
@@ -579,7 +579,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Output - Show Look (Gamma 2.2 Display)
-    family: Baked View Transform
+    family: Baked View
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
@@ -589,7 +589,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Output - Shot Look (Gamma 2.2 Display)
-    family: Baked View Transform
+    family: Baked View
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
