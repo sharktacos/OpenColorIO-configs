@@ -56,7 +56,7 @@ roles:
   substance_3d_painter_substance_material: Color sRGB Texture
   
 
-  mari_monitor: Output - Neutral Look (sRGB)
+  mari_monitor: Output - Lookdev (sRGB)
   mari_scaler_monitor: Raw
   mari_color_picker: hdr 
   mari_blending: Raw 
@@ -79,8 +79,8 @@ shared_views:
 
   - !<View> {name: ACES 1.0 - SDR-video - RGC, view_transform: Output - SDR Video - ACES 1.0, looks: LMT_gamut, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: ACES 1.0 - SDR-video, view_transform: Output - SDR Video - ACES 1.0, display_colorspace: <USE_DISPLAY_NAME>}
-  - !<View> {name: Neutral Look, view_transform: Output - SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_neutral", display_colorspace: <USE_DISPLAY_NAME>}
-  - !<View> {name: Filmic Look, view_transform: Output - SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_filmic", display_colorspace: <USE_DISPLAY_NAME>}
+  - !<View> {name: Lookdev, view_transform: Output - SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_neutral", display_colorspace: <USE_DISPLAY_NAME>}
+  - !<View> {name: Lighting, view_transform: Output - SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_filmic", display_colorspace: <USE_DISPLAY_NAME>}
   
   - !<View> {name: Shot Look, view_transform: Output - SDR Video - ACES 1.0, looks: LMT_shot, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: Show Look, view_transform: Output - SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_shot", display_colorspace: <USE_DISPLAY_NAME>}
@@ -95,15 +95,15 @@ shared_views:
 displays:
 
   sRGB:
-    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Neutral Look", "Filmic Look", "Shot Look", "Show Look", Un-tone-mapped]
+    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Lookdev", "Lighting", "Shot Look", "Show Look", Un-tone-mapped]
   Gamma 2.2:
-    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Neutral Look", "Filmic Look", "Shot Look", "Show Look", Un-tone-mapped]
+    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Lookdev", "Lighting", "Shot Look", "Show Look", Un-tone-mapped]
   Apple Display P3:
-    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "P3-500 nits - HDR-video", "P3-1000 nits - HDR-video", "Neutral Look", "Filmic Look", Un-tone-mapped]
+    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "P3-500 nits - HDR-video", "P3-1000 nits - HDR-video", "Lookdev", "Lighting", Un-tone-mapped]
   DCI-P3 D65:
-    - !<Views> ["ACES 1.0 - SDR-video", "P3-500 nits - HDR-video", "P3-1000 nits - HDR-video", "Neutral Look", "Filmic Look", "Shot Look", "Show Look", Un-tone-mapped]
+    - !<Views> ["ACES 1.0 - SDR-video", "P3-500 nits - HDR-video", "P3-1000 nits - HDR-video", "Lookdev", "Lighting", "Shot Look", "Show Look", Un-tone-mapped]
   Rec.709 - BT.1886 HDTV:
-    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Neutral Look", "Filmic Look", "Shot Look", "Show Look", Un-tone-mapped]
+    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Lookdev", "Lighting", "Shot Look", "Show Look", Un-tone-mapped]
   USE ONLY FOR CHECKING COMPS:
     - !<View> {name: Log, colorspace: camera_log}
   USE ONLY FOR CHECKING RENDERS:
@@ -114,15 +114,15 @@ displays:
 
 #-- ANM config:
 
-active_displays: [Gamma 2.2, sRGB, "Apple Display P3", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS"]
-active_views: [ACES 1.0 - SDR-video - RGC, Neutral Look, Filmic Look, Show Look, Un-tone-mapped, Log, Raw, P3-500 nits - HDR-video, P3-1000 nits - HDR-video]
-inactive_colorspaces: [CIE-XYZ D65, Gamut Shaper, DCI-P3 D65, ST2084-P3-D65, P3-D65, Pick Rec709-sRGB Desat, Shot_shaper, Output - Shot Look (sRGB), Output - Shot Look (Gamma 2.2 Display), Output - Shot Look (Rec.709 - BT.1886 HDTV), Output - ACES 1.0 SDR-video (Rec.709 - BT.1886 HDTV), Output - DPX Shot Look (Non-Color Managed), Output - ACES 1.0 SDR-video (sRGB), Output - Shot Look (sRGB), Output - Neutral Look (sRGB), Output - Filmic Look (sRGB), Output - Show Look (sRGB), sRGB, Gamma 2.2, Rec.709 - BT.1886 HDTV, Apple Display P3, camera_log]
+active_displays: [Gamma 2.2, "Apple Display P3", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS"]
+active_views: [ACES 1.0 - SDR-video - RGC, Lookdev, Lighting, Show Look, Log, Raw]
+inactive_colorspaces: [CIE-XYZ D65, Gamut Shaper, DCI-P3 D65, ST2084-P3-D65, P3-D65, Pick Rec709-sRGB Desat, Shot_shaper, Output - Shot Look (sRGB), Output - Shot Look (Gamma 2.2 Display), Output - Shot Look (Rec.709 - BT.1886 HDTV), Output - ACES 1.0 SDR-video (Rec.709 - BT.1886 HDTV), Output - DPX Shot Look (Non-Color Managed), Output - ACES 1.0 SDR-video (sRGB), Output - Shot Look (sRGB), Output - Lookdev (sRGB), Output - Lighting (sRGB), Output - Show Look (sRGB), sRGB, Gamma 2.2, Rec.709 - BT.1886 HDTV, Apple Display P3, camera_log]
 
 #-- VFX config:
 
 #active_displays: [sRGB, "Gamma 2.2", "Rec.709 - BT.1886 HDTV", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS", "Display-Referred Workflow"]
 #active_views: [ACES 1.0 - SDR-video, Shot Look, Un-tone-mapped, Log, Raw, DPX Shot Look, P3-500 nits - HDR-video, P3-1000 nits - HDR-video]
-#inactive_colorspaces: [CIE-XYZ D65,  Gamut Shaper, Inverse sRGB Output, DCI-P3 D65, ST2084-P3-D65, P3-D65, Apple Display P3, Pick Rec709-sRGB Desat, Shot_shaper, Output - Neutral Look (sRGB), Output - Filmic Look (sRGB), Output - Show Look (sRGB), Output - Neutral Look (Gamma 2.2 Display), Output - Filmic Look (Gamma 2.2 Display), Output - Show Look (Gamma 2.2 Display), camera_log]
+#inactive_colorspaces: [CIE-XYZ D65,  Gamut Shaper, Inverse sRGB Output, DCI-P3 D65, ST2084-P3-D65, P3-D65, Apple Display P3, Pick Rec709-sRGB Desat, Shot_shaper, Output - Lookdev (sRGB), Output - Lighting (sRGB), Output - Show Look (sRGB), Output - Lookdev (Gamma 2.2 Display), Output - Lighting (Gamma 2.2 Display), Output - Show Look (Gamma 2.2 Display), camera_log]
 
 
 
@@ -506,23 +506,23 @@ colorspaces:
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
-    name: Output - Neutral Look (sRGB)
+    name: Output - Lookdev (sRGB)
     family: Bake Viewer/View on sRGB monitor
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Neutral Look"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Lookdev"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
-    name: Output - Filmic Look (sRGB)
+    name: Output - Lighting (sRGB)
     family: Bake Viewer/View on sRGB monitor
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Filmic Look"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Lighting"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
@@ -558,23 +558,23 @@ colorspaces:
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
-    name: Output - Neutral Look (Gamma 2.2 Display)
+    name: Output - Lookdev (Gamma 2.2 Display)
     family: Baked View
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "Neutral Look"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "Lookdev"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
-    name: Output - Filmic Look (Gamma 2.2 Display)
+    name: Output - Lighting (Gamma 2.2 Display)
     family: Baked View
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "Filmic Look"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "Lighting"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
