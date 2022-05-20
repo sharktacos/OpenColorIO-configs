@@ -354,6 +354,19 @@ colorspaces:
     encoding: sdr-video
     to_reference: !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: sRGB, view: "ACES 1.0 - SDR-video"}
 
+  - !<ColorSpace>
+    name: rec709
+    alias: 
+    family: Texture
+    description: |
+      sRGB monitor (piecewise EOTF)
+    isdata: false
+    categories: [ file-io ]
+    encoding: sdr-video
+    to_reference: !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: Rec.709 - BT.1886 HDTV, view: "ACES 1.0 - SDR-video"}
+
+
+
 
 #---------------------- Cameras ----------------------#
 
@@ -663,7 +676,7 @@ display_colorspaces:
 
   - !<ColorSpace>
     name: Rec.709 - BT.1886 HDTV
-    aliases: [ rec709 ]
+#    aliases: [ rec709 ]
     family: Display EOTF
     description: |
       Rec.709 HD broadcast monitor with Rec.1886 EOTF (gamma 2.4)
