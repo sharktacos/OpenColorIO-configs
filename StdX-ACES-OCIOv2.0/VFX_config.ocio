@@ -121,8 +121,8 @@ displays:
 
 #-- VFX config:
 
-active_displays: ["Gamma 2.2", "Rec.709 - BT.1886 HDTV", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS", "Non-Color Managed DPX Workflow"]
-active_views: [ACES 1.0 - SDR-video, Shot Look, Neutral Contrast, "Neutral Contrast +1 Stops", "Neutral Contrast +2 Stops", Log, Raw, DPX Shot Look, P3-500 nits - HDR-video, P3-1000 nits - HDR-video]
+active_displays: ["Gamma 2.2", "Rec.709 - BT.1886 HDTV", "Apple Display P3", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS", "Non-Color Managed DPX Workflow"]
+active_views: [ACES 1.0 - SDR-video, Shot Look, Neutral Contrast, "Neutral Contrast +1 Stops", "Neutral Contrast +2 Stops", Log, Raw, DPX Shot Look]
 inactive_colorspaces: [CIE-XYZ D65,  Gamut Shaper, DCI-P3 D65, ST2084-P3-D65, P3-D65, sRGB, Rec.709 - BT.1886 HDTV, Gamma 2.2, Apple Display P3, Pick Rec709-sRGB Desat, Shot_shaper, Output - ACES 1.0 SDR-video (sRGB), Output - Shot Look (sRGB), Output - Neutral Look (sRGB), Output - Filmic Look (sRGB), Output - Show Look (sRGB), Output - Neutral Look (Gamma 2.2 Display), Output - Filmic Look (Gamma 2.2 Display), Output - Show Look (Gamma 2.2 Display)]
 
 
@@ -190,7 +190,7 @@ looks:
   - !<Look>
     name: LowContrastCDL
     process_space: ACEScct
-    transform: !<CDLTransform> {slope: [0.85, 0.85, 0.85], offset: [0.06525, 0.06525, 0.06525], power: [0.98, 0.98, 0.98]}
+    transform: !<CDLTransform> {slope: [0.85, 0.85, 0.85], offset: [0.06525, 0.06525, 0.06525], power: [1.0, 1.0, 1.0]}
 
   - !<Look>
     name: Exposure1Stop

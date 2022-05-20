@@ -81,6 +81,8 @@ shared_views:
   - !<View> {name: ACES 1.0 - SDR-video, view_transform: Output - SDR Video - ACES 1.0, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: Lookdev, view_transform: Output - SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_neutral", display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: Lighting, view_transform: Output - SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_filmic", display_colorspace: <USE_DISPLAY_NAME>}
+  - !<View> {name: Neutral Contrast - RGC, view_transform: Output - SDR Video - ACES 1.0, looks: "LMT_gamut, LowContrastCDL", display_colorspace: <USE_DISPLAY_NAME>} 
+
   
   - !<View> {name: Shot Look, view_transform: Output - SDR Video - ACES 1.0, looks: LMT_shot, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: Show Look, view_transform: Output - SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_shot", display_colorspace: <USE_DISPLAY_NAME>}
@@ -95,11 +97,11 @@ shared_views:
 displays:
 
   sRGB:
-    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Lookdev", "Lighting", "Shot Look", "Show Look", Un-tone-mapped]
+    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Lookdev", "Lighting", Neutral Contrast - RGC, "Shot Look", "Show Look", Un-tone-mapped]
   Gamma 2.2:
-    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Lookdev", "Lighting", "Shot Look", "Show Look", Un-tone-mapped]
+    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Lookdev", "Lighting", Neutral Contrast - RGC, "Shot Look", "Show Look", Un-tone-mapped]
   Apple Display P3:
-    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "P3-500 nits - HDR-video", "P3-1000 nits - HDR-video", "Lookdev", "Lighting", Un-tone-mapped]
+    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "P3-500 nits - HDR-video", "P3-1000 nits - HDR-video", "Lookdev", "Lighting", Neutral Contrast - RGC, Un-tone-mapped]
   DCI-P3 D65:
     - !<Views> ["ACES 1.0 - SDR-video", "P3-500 nits - HDR-video", "P3-1000 nits - HDR-video", "Lookdev", "Lighting", "Shot Look", "Show Look", Un-tone-mapped]
   Rec.709 - BT.1886 HDTV:
@@ -115,7 +117,7 @@ displays:
 #-- ANM config:
 
 active_displays: [Gamma 2.2, "Apple Display P3", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS"]
-active_views: [ACES 1.0 - SDR-video - RGC, Lookdev, Lighting, Show Look, Log, Raw]
+active_views: [ACES 1.0 - SDR-video - RGC, Neutral Contrast - RGC, Show Look, Log, Raw]
 inactive_colorspaces: [CIE-XYZ D65, Gamut Shaper, DCI-P3 D65, ST2084-P3-D65, P3-D65, Pick Rec709-sRGB Desat, Shot_shaper, Output - Shot Look (sRGB), Output - Shot Look (Gamma 2.2 Display), Output - Shot Look (Rec.709 - BT.1886 HDTV), Output - ACES 1.0 SDR-video (Rec.709 - BT.1886 HDTV), Output - DPX Shot Look (Non-Color Managed), Output - ACES 1.0 SDR-video (sRGB), Output - Shot Look (sRGB), Output - Lookdev (sRGB), Output - Lighting (sRGB), Output - Show Look (sRGB), sRGB, Gamma 2.2, Rec.709 - BT.1886 HDTV, Apple Display P3, camera_log]
 
 #-- VFX config:
@@ -190,6 +192,12 @@ looks:
     name: LMT_shot
     process_space: Shot_shaper
     transform: !<FileTransform> {src: "${LUT_NAME}", interpolation: linear} 
+
+  - !<Look>
+    name: LowContrastCDL
+    process_space: ACEScct
+    transform: !<CDLTransform> {slope: [0.85, 0.85, 0.85], offset: [0.06525, 0.06525, 0.06525], power: [1.0, 1.0, 1.0]}
+
 
 
 
