@@ -80,9 +80,9 @@ shared_views:
   - !<View> {name: Neutral Look, view_transform: Output - SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_neutral", display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: Filmic Look, view_transform: Output - SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_filmic", display_colorspace: <USE_DISPLAY_NAME>}
 
-  - !<View> {name: Neutral Contrast, view_transform: Output - SDR Video - ACES 1.0, looks: LowContrastCDL, display_colorspace: <USE_DISPLAY_NAME>} 
-  - !<View> {name: "Neutral Contrast +1 Stops", view_transform: Output - SDR Video - ACES 1.0, looks: "Exposure1Stop, LowContrastCDL", display_colorspace: <USE_DISPLAY_NAME>} 
-  - !<View> {name: "Neutral Contrast +2 Stops", view_transform: Output - SDR Video - ACES 1.0, looks: "Exposure2Stop, LowContrastCDL", display_colorspace: <USE_DISPLAY_NAME>} 
+  - !<View> {name: Low Contrast, view_transform: Output - SDR Video - ACES 1.0, looks: LowContrastCDL, display_colorspace: <USE_DISPLAY_NAME>} 
+  - !<View> {name: "Low Contrast +1 Stops", view_transform: Output - SDR Video - ACES 1.0, looks: "Exposure1Stop, LowContrastCDL", display_colorspace: <USE_DISPLAY_NAME>} 
+  - !<View> {name: "Low Contrast +2 Stops", view_transform: Output - SDR Video - ACES 1.0, looks: "Exposure2Stop, LowContrastCDL", display_colorspace: <USE_DISPLAY_NAME>} 
   - !<View> {name: Shot Look, view_transform: Output - SDR Video - ACES 1.0, looks: LMT_shot, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: Show Look, view_transform: Output - SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_shot", display_colorspace: <USE_DISPLAY_NAME>}
   
@@ -96,15 +96,15 @@ shared_views:
 displays:
 
   sRGB:
-    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Neutral Look", "Filmic Look", "Shot Look", "Show Look", "Neutral Contrast", "Neutral Contrast +1 Stops", "Neutral Contrast +2 Stops", Un-tone-mapped]
+    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Shot Look", "Show Look", "Low Contrast", "Low Contrast +1 Stops", "Low Contrast +2 Stops", Un-tone-mapped]
   Gamma 2.2:
-    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Neutral Look", "Filmic Look", "Shot Look", "Show Look", "Neutral Contrast", "Neutral Contrast +1 Stops", "Neutral Contrast +2 Stops", Un-tone-mapped]
+    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Shot Look", "Show Look", "Low Contrast", "Low Contrast +1 Stops", "Low Contrast +2 Stops", Un-tone-mapped]
   Apple Display P3:
-    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "P3-500 nits - HDR-video", "P3-1000 nits - HDR-video", "Neutral Look", "Filmic Look", "Neutral Contrast", "Neutral Contrast +1 Stops", "Neutral Contrast +2 Stops",  Un-tone-mapped]
+    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "P3-500 nits - HDR-video", "P3-1000 nits - HDR-video", "Shot Look", "Show Look", "Low Contrast", "Low Contrast +1 Stops", "Low Contrast +2 Stops",  Un-tone-mapped]
   DCI-P3 D65:
-    - !<Views> ["ACES 1.0 - SDR-video", "P3-500 nits - HDR-video", "P3-1000 nits - HDR-video", "Neutral Look", "Filmic Look", "Shot Look", "Show Look", "Neutral Contrast", "Neutral Contrast +1 Stops", "Neutral Contrast +2 Stops", Un-tone-mapped]
+    - !<Views> ["ACES 1.0 - SDR-video", "P3-500 nits - HDR-video", "P3-1000 nits - HDR-video", "Shot Look", "Show Look", "Low Contrast", "Low Contrast +1 Stops", "Low Contrast +2 Stops", Un-tone-mapped]
   Rec.709 - BT.1886 HDTV:
-    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Neutral Look", "Filmic Look", "Shot Look", "Show Look", "Neutral Contrast", "Neutral Contrast +1 Stops", "Neutral Contrast +2 Stops", Un-tone-mapped]
+    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Shot Look", "Show Look", "Low Contrast", "Low Contrast +1 Stops", "Low Contrast +2 Stops", Un-tone-mapped]
   USE ONLY FOR CHECKING COMPS:
     - !<View> {name: Log, colorspace: camera_log}
   USE ONLY FOR CHECKING RENDERS:
@@ -122,7 +122,7 @@ displays:
 #-- VFX config:
 
 active_displays: ["Gamma 2.2", "Rec.709 - BT.1886 HDTV", "Apple Display P3", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS", "Non-Color Managed DPX Workflow"]
-active_views: [ACES 1.0 - SDR-video, Shot Look, Neutral Contrast, "Neutral Contrast +1 Stops", "Neutral Contrast +2 Stops", Log, Raw, DPX Shot Look]
+active_views: [ACES 1.0 - SDR-video, Shot Look, Low Contrast, "Low Contrast +1 Stops", "Low Contrast +2 Stops", Log, Raw, DPX Shot Look]
 inactive_colorspaces: [CIE-XYZ D65,  Gamut Shaper, DCI-P3 D65, ST2084-P3-D65, P3-D65, sRGB, Rec.709 - BT.1886 HDTV, Gamma 2.2, Apple Display P3, Pick Rec709-sRGB Desat, Shot_shaper, Output - ACES 1.0 SDR-video (sRGB), Output - Shot Look (sRGB), Output - Neutral Look (sRGB), Output - Filmic Look (sRGB), Output - Show Look (sRGB), Output - Neutral Look (Gamma 2.2 Display), Output - Filmic Look (Gamma 2.2 Display), Output - Show Look (Gamma 2.2 Display)]
 
 
@@ -268,7 +268,7 @@ colorspaces:
     aliases: [ dif, BaseColor ]
     family: Texture
     description: |
-      sRGB texture color space (piecewise sRGB EOTF) with 80% neutral contrast ASC_CDL
+      sRGB texture color space (piecewise sRGB EOTF) with 80% Low Contrast ASC_CDL
     isdata: false
     categories: [ file-io ]
     encoding: sdr-video
@@ -567,33 +567,33 @@ colorspaces:
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
-    name: Output - Neutral Contrast (Gamma 2.2 Display)
+    name: Output - Low Contrast (Gamma 2.2 Display)
     family: Bake Viewer/View on sRGB Display (Pure 2.2)
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "Neutral Contrast"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "Low Contrast"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
-    name: Output - Neutral Contrast +1 Stops (Gamma 2.2 Display)
+    name: Output - Low Contrast +1 Stops (Gamma 2.2 Display)
     family: Bake Viewer/View on sRGB Display (Pure 2.2)
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "Neutral Contrast +1 Stops"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "Low Contrast +1 Stops"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
-    name: Output - Neutral Contrast +2 Stops (Gamma 2.2 Display)
+    name: Output - Low Contrast +2 Stops (Gamma 2.2 Display)
     family: Bake Viewer/View on sRGB Display (Pure 2.2)
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "Neutral Contrast +2 Stops"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "Low Contrast +2 Stops"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
 
@@ -620,33 +620,33 @@ colorspaces:
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
-    name: Output - Neutral Contrast (Rec.709 - BT.1886 HDTV)
+    name: Output - Low Contrast (Rec.709 - BT.1886 HDTV)
     family: Bake Viewer/View on Rec709 HDTV Display
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec.709 - BT.1886 HDTV", view: "Neutral Contrast"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec.709 - BT.1886 HDTV", view: "Low Contrast"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
-    name: Output - Neutral Contrast +1 Stops (Rec.709 - BT.1886 HDTV)
+    name: Output - Low Contrast +1 Stops (Rec.709 - BT.1886 HDTV)
     family: Bake Viewer/View on Rec709 HDTV Display
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec.709 - BT.1886 HDTV", view: "Neutral Contrast +1 Stops"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec.709 - BT.1886 HDTV", view: "Low Contrast +1 Stops"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
-    name: Output - Neutral Contrast +2 Stops (Rec.709 - BT.1886 HDTV)
+    name: Output - Low Contrast +2 Stops (Rec.709 - BT.1886 HDTV)
     family: Bake Viewer/View on Rec709 HDTV Display
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec.709 - BT.1886 HDTV", view: "Neutral Contrast +2 Stops"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec.709 - BT.1886 HDTV", view: "Low Contrast +2 Stops"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
 
