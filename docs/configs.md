@@ -9,8 +9,8 @@ The ANM config ````ANM_config.ocio```` is designed for work on CG animation shor
 The above Display Transforms contain the following views:
 
 - **ACES 1.0 SDR - (RGC)** The standard ACES RRT with added [Referrence Gamut Compression (RGC)](gamut.md)
-- **Neutral Look** is intended as a neutral starting point for lookdev work. 
-- **Filmic Look** is intended for lighting shot work and has a similar filmic look to the standard ACES 1.0 RRT, with slightly reduced contrast. 
+- **Low Contrast Look (RGC)** For use in lookdev, lowering the contrast of the ACES Output Transform a bit. This is done using an ASC CDL transform which mirrors lowering contrast in Resolve to 0.85 in log space (ACEScct).
+- **Film Print Look** Based on [Alex Fry's implementation](https://github.com/alexfry/NukeAnalyticLMTs) of the [Academy Analytic LMT 3](https://community.acescentral.com/t/lmts-part-4-how-do-they-work-and-how-are-they-made-continued/1217) which is modeled after a print film emulation. I have added tweaks to it to increase saturation (chroma rasied from 0.7 to 0.85), lift the shadows (gamma lowered from 1.5 to 0.95), and color balance (warmth 0.1, tint 0.03) reducing the "yellow dinge" a bit, and bringing back green (reducing the hue rotation of green to yellow from -15 to -10). Intended for lighting shot work.
 - **Show Look** is for the show specific look LUT decided on by the director for the ANM config. This Look is combined with the Filmic Look. See "Shot LUTs" below for setup.
 - **Un-tone-mapped** the default Nuke transform without tone mapping.
 
