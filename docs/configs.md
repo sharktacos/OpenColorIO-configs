@@ -14,7 +14,7 @@ The ANM config ````ANM_config.ocio```` is designed for work on CG animation shor
 - **Show Look** <br> Look transform for the show specific look LUT decided on by the director for the ANM config. See "Shot LUTs" below for setup.
 - **Un-tone-mapped** <br> The default Nuke transform without tone mapping. Intended for diagnostic purposes only. See the [tone mapping](tonemap.md) page for details on the importance of ACES tone-mapping for CG work and integration with film.
 
-- **RCG** <br> Note above where the view transforms have "RGC" in their name they contain added [Referrence Gamut Compression (RGC)](gamut.md). For CG renders this has the happy accident of [highlight desaturation](highlight.md) of blackbody color temperatures, and [reduced hue shifts](chroma.md). Note that this is not the case for the VFX config below, where the RGC is applied as a comp node in Nuke.
+- **RGC - Referrence Gamut Compression** <br> Note above where the view transforms have "RGC" in their name they contain added [Referrence Gamut Compression (RGC)](gamut.md). For CG renders this has the happy accident of [highlight desaturation](highlight.md) of blackbody color temperatures, and [reduced hue shifts](chroma.md). Note that this is not the case for the VFX config below, where the RGC is applied as a comp node in Nuke.
 
 ### Display Transforms
 A View Transform is paired with a Display Transform corresponding to the display it is being viewed on.
