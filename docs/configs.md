@@ -6,21 +6,23 @@ The ANM config ````ANM_config.ocio```` is designed for work on CG animation shor
 
 ![img](img/Nuke_view_anm.png)
 
-The above Display Transforms contain the following views:
+### View Transforms
 
-- **ACES 1.0 SDR - RGC** The standard ACES RRT with added [Referrence Gamut Compression (RGC)](gamut.md). Note that all looks below with "RGC" in their name include this.
-- **Low Contrast Look - RGC** For use in lookdev, lowering the contrast of the ACES Output Transform a bit. This is done using an ASC CDL transform which mirrors lowering contrast in Resolve to 0.85 in log space (ACEScct).
-- **Film Print Look - RGC** Based on [Alex Fry's Nuke implementation](https://github.com/alexfry/NukeAnalyticLMTs) of the [Academy Analytic LMT 3](https://community.acescentral.com/t/lmts-part-4-how-do-they-work-and-how-are-they-made-continued/1217) modeling a print film emulation. Tweaked to taste, restoring saturation (chroma raised from 0.7 to 0.85), lifting the shadows (gamma lowered from 1.5 to 0.95), and introducing a color balance (warmth 0.1, tint 0.03) to lessen the "yellow dinge" a bit, and bringing back green (reducing the hue rotation of green to yellow from -15 to -10). I like it, YMMV.
-- **Show Look** is for the show specific look LUT decided on by the director for the ANM config. See "Shot LUTs" below for setup.
-- **Un-tone-mapped** the default Nuke transform without tone mapping.
+- **ACES 1.0 SDR - RGC** <br> The standard ACES RRT with added RGC (see below).
+- **Low Contrast Look - RGC** <br> Look transform that lowers contrast of the ACES Output Transform a wee bit intendewd to provide a neutral starting point for lookdev work. This is done using an ASC CDL transform which mirrors lowering contrast in Resolve to 0.85 in log space (ACEScct).
+- **Film Print Look - RGC** <br> Look transform for film print emulation. Based on [Alex Fry's Nuke implementation](https://github.com/alexfry/NukeAnalyticLMTs) of the [Academy Analytic LMT 3](https://community.acescentral.com/t/lmts-part-4-how-do-they-work-and-how-are-they-made-continued/1217) with some added tweaks: restoring saturation (chroma raised from 0.7 to 0.85), lifting the shadows (gamma lowered from 1.5 to 0.95), and introducing a color balance (warmth 0.1, tint 0.03) to lessen the "yellow dinge" a bit, and bringing back green (reducing the hue rotation of green to yellow from -15 to -10). I like it, YMMV.
+- **Show Look** <br> Look transform for the show specific look LUT decided on by the director for the ANM config. See "Shot LUTs" below for setup.
+- **Un-tone-mapped** <br> The default Nuke transform without tone mapping. Intended for diagnostic purposes only.
 
-You can read details about the *Neutral Look* and *Filmic Look* look transoforms on the [tone mapping](tonemap.md) page.  Additionally, both Look Transforms provide [highlight desaturation](highlight.md) of blackbody color temperatures, and [reduced hue shifts](chroma.md) compared to the default ACES 1.0 Output Transform. Finally, the new [Referrence Gamut Compression (RGC)](gamut.md) is baked into all of the display tranforms (including the ACES 1.0 SDR) to address hue shifts in CG renders with ACES. Note that this is not the case for the VFX config below.
+**RCG** Note above where the view transforms have "RGC" in their name they contain added [Referrence Gamut Compression (RGC)](gamut.md). For CG renders this has the happy accident of [highlight desaturation](highlight.md) of blackbody color temperatures, and [reduced hue shifts](chroma.md). Note that this is not the case for the VFX config below, where the RGC is applied as a comp node in Nuke.
 
-Each of these above views is paired with an output display:
+You can read details about the *Neutral Look* and *Filmic Look* look transoforms on the [tone mapping](tonemap.md) page.  
 
-- **sRGB** For viewing on artist's computer monitors calibrated to sRGB Peicewise EOTF
-- **Gamma 2.0** For viewing on artist's computer monitors calibrated to pure gamma 2.2
-- **Apple Display P3** For viewing on the MacBookPro M1 in the wider P3 gamut used for film. This also contains options for HDR display.
+### Display Transform.
+A View Transform is paired with a Display Transform corresponding to the display it is being viewed on.
+
+- **Gamma 2.0** For viewing on artist's computer monitors. This uses the pure gamma 2.2, rather than the piece-wise sRGB EOTF. If an image is encoded for a 2.2 display, but shown on a piece-wise sRGB display in can appear a bit low contrast. Conversely if an image is encoded for a piece-wsie sRGB display, but shown on a pure gamma 2.2 display the shadows will appear crushed. Since there is no way to control the calibration of a viewers computer monitor, best practice is for artists  to work in pure gamma 2.2.
+- **Apple Display P3** Display transform for the MacBookPro M1 XDR display in the wider P3 gamut used for film with a pure 2.2 gamma. This display transform also contains options for HDR display.
 
 The remaining view transforms are the same as the default Maya 2022 config and are used for diagnostic purposes.
 
