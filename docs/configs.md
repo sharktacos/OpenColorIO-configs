@@ -16,7 +16,7 @@ All View Transforms in the ANM config contain the ACES [Referrence Gamut Compres
 - **Show Look - RGC** <br> Look transform for the show specific look LUT decided on by the director for the ANM config. See "Shot LUTs" below for setup.
 
 ### Display Transforms
-A View Transform is paired with a Display Transform corresponding to the display it is being viewed on. As you can see above, in Nuke these are all in a single drop-down menu with the display listed in parenthesis after the view. In Maya, the View and Display are seperate drop-downs.
+In OCIO, a View Transform is paired with a Display Transform corresponding to the display it is being viewed on. As you can see in the image above, in Nuke these are all in a single drop-down menu with the display listed in parenthesis after the view. In Maya, the View and Display are seperate drop-downs.
 
 - **Gamma 2.0** <br> For viewing on artist's computer monitors. This uses the pure gamma 2.2, rather than the piece-wise sRGB EOTF. If an image is encoded for a 2.2 display, but shown on a piece-wise sRGB display in can appear a bit low contrast. Conversely if an image is encoded for a piece-wsie sRGB display, but shown on a pure gamma 2.2 display the shadows will appear crushed. Since there is no way to control the calibration of a viewers computer monitor, best practice is for artists  to work in pure gamma 2.2.
 - **Apple Display P3** <br> Display transform for the MacBookPro M1 XDR display in the wider P3 gamut used for film with a pure 2.2 gamma. This display transform also contains options for HDR display.
@@ -41,7 +41,7 @@ As noted above, in a VFX pipeline [gamut compression](Nuke.md#gamut-compression-
 - **Low Contrast +1 stop** <br> Low Contrast Look Transform with +1 exposure stop.
 - **Low Contrast +2 stops** <br> Low Contrast Look Transform with +2 exposure stops.
 
-Each of these above views is paired with an output display. A View Transform is paired with a Display Transform corresponding to the display it is being viewed on. As you can see above, in Nuke these are all in a single drop-down menu with the display listed in parenthesis after the view. In Maya, the View and Display are seperate drop-downs.
+In OCIO, a View Transform is paired with a Display Transform corresponding to the display it is being viewed on. As you can see in the image above, in Nuke these are all in a single drop-down menu with the display listed in parenthesis after the view. In Maya, the View and Display are seperate drop-downs.
 
 ### Display Transforms
 
