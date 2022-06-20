@@ -35,24 +35,26 @@ As noted above, in a VFX pipeline [gamut compression](Nuke.md#gamut-compression-
 
 The VFX config has the following views:
 
-- **ACES 1.0 SDR - (RGC)** The standard ACES RRT
-- **Shot Look** This view transform uses contextual variables to apply the shot-specific look LUT provided by the client to the view. The variables are defined in the config and can be set by the artist. See below.
-- **Un-tone-mapped** is the equivalent to Nuke's native sRGB which is a simple sRGB Gamma function without [tone mapping](tonemap.md). 
+- **ACES 1.0 SDR-video** <br> The standard ACES RRT [tone mapping](tonemap.md)
+- **Shot Look** <br> This view transform uses contextual variables to apply the shot-specific look LUT provided by the client to the view. The variables are defined in the config and can be set by the artist. See below.
+- **Low Contrast** <br> Same as the Low Constrast Look Transform in the ANM config above. Note that because this is based on an ASC CDL transform, thbis can easily be given to a client an applied in other color correction programs.
+- **Low Contrast +1 stop** <br> Low Contrast Look Transform with +1 exposure stop.
+- **Low Contrast +2 stops** <br> Low Contrast Look Transform with +2 exposure stops.
 
 Each of these above views is paired with an output display:
 
-- **sRGB** For viewing on artist's computer monitors calibrated to sRGB Peicewise EOTF
-- **Gamma 2.0** For viewing on artist's computer monitors calibrated to pure gamma 2.2
-- **Rec.709 - BT.1886 HDTV** For viewing in editorial on a Rec.709 (Gamma 2.4) reference monitor or on a HDTV display for dailies. 
+- **Gamma 2.0** <br> For viewing on artist's computer monitors. This uses the pure gamma 2.2, rather than the piece-wise sRGB EOTF. If an image is encoded for a 2.2 display, but shown on a piece-wise sRGB display in can appear a bit low contrast. Conversely if an image is encoded for a piece-wsie sRGB display, but shown on a pure gamma 2.2 display the shadows will appear crushed. Since there is no way to control the calibration of a viewers computer monitor, best practice is for artists  to work in pure gamma 2.2.
+- **Rec.709 - BT.1886 HDTV** <br> For viewing in editorial on a Rec.709 (Gamma 2.4) reference monitor or on a HDTV display for dailies. 
+- **Apple Display P3** <br> Display transform for the MacBookPro M1 XDR display in the wider P3 gamut used for film with a pure 2.2 gamma. This display transform also contains options for HDR display.
 
-There are again transoforms for diagnostic purposes.
+There are again transforms for diagnostic purposes.
+- **Log** For checking comps. This uses the camera log space defined in the contextual variable, described below.
 - **Raw** For checking renders
-- **Log** For checking comps
 
 And finally there is 
 - **DPX Shot Look** for displaying client LUTS from a display-referred non-color managed pipeline. See below.
 
-# Shot & Show LUTs 
+# Defining Shot & Show LUT contextual variables
 
 Both the **Show Look** from the ANM config and the **Shot Look** and **DPX Shot Look** view transforms from the VFX config use contextual variables to apply the shot-specific look LUT provided by the client to the view. The variables are defined in the config and can be set by the artist. **Shot Look** is intended for LUTs in an ACES pipline (the client is delivering EXR files in ACES2065-1 color space) and **DPX Shot Look** is for LUTs in a non-color managed display-referred pipeline (ther client is delivering DPX in the log space of the oroiginal camera raw).
 
