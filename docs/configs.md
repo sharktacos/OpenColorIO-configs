@@ -2,7 +2,7 @@
 
 The ANM config ````ANM_config.ocio```` is designed for work on CG animation shorts and features. The VFX config ````VFX_config.ocio```` in contrast is designed for integrating CG and VFX with live action film. Consequently each has different Display Transforms geared for its particular pipeline needs.
 
-## ANM Config
+# ANM Config
 
 ![img](img/Nuke_view_anm.png)
 
@@ -27,7 +27,7 @@ The remaining view transforms are the same as the default Maya 2022 config and a
 - **Log**
 
 
-## VFX Config
+# VFX Config
    
 ![img](img/Nuke_view_vfx.png)
 
