@@ -80,12 +80,12 @@ shared_views:
   - !<View> {name: ACES 1.0 - SDR-video - RGC, view_transform: Output - SDR Video - ACES 1.0, looks: LMT_gamut, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: ACES 1.0 - SDR-video, view_transform: Output - SDR Video - ACES 1.0, display_colorspace: <USE_DISPLAY_NAME>}
 #  - !<View> {name: Lookdev, view_transform: Output - SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_neutral", display_colorspace: <USE_DISPLAY_NAME>}
-  - !<View> {name: Film Print Look - RGC, view_transform: Output - SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_filmic", display_colorspace: <USE_DISPLAY_NAME>}
+  - !<View> {name: Studio Look - RGC, view_transform: Output - SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_filmic", display_colorspace: <USE_DISPLAY_NAME>}  
   - !<View> {name: Low Contrast Look - RGC, view_transform: Output - SDR Video - ACES 1.0, looks: "LMT_gamut, LowContrastCDL", display_colorspace: <USE_DISPLAY_NAME>} 
 
   
-  - !<View> {name: Shot Look, view_transform: Output - SDR Video - ACES 1.0, looks: LMT_shot, display_colorspace: <USE_DISPLAY_NAME>}
-  - !<View> {name: Show Look, view_transform: Output - SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_shot", display_colorspace: <USE_DISPLAY_NAME>}
+  - !<View> {name: Shot Look - RGC, view_transform: Output - SDR Video - ACES 1.0, looks: LMT_shot, display_colorspace: <USE_DISPLAY_NAME>}
+  - !<View> {name: Show Look - RGC, view_transform: Output - SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_shot", display_colorspace: <USE_DISPLAY_NAME>}
   
   - !<View> {name: P3-500 nits - HDR-video, view_transform: Output - HDR Video (500 nits & P3 lim) - ACES, looks: LMT_gamut, display_colorspace: <USE_DISPLAY_NAME>}   
   - !<View> {name: P3-1000 nits - HDR-video, view_transform: Output - HDR Video (1000 nits & P3 lim) - ACES 1.1, looks: LMT_gamut, display_colorspace: <USE_DISPLAY_NAME>}
@@ -97,15 +97,15 @@ shared_views:
 displays:
 
   sRGB:
-    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Low Contrast Look - RGC", "Film Print Look - RGC", "Shot Look", "Show Look", Un-tone-mapped]
+    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Low Contrast Look - RGC", "Studio Look - RGC", "Shot Look - RGC", "Show Look - RGC", Un-tone-mapped]
   Gamma 2.2:
-    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Low Contrast Look - RGC", "Film Print Look - RGC", "Shot Look", "Show Look", Un-tone-mapped]
+    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Low Contrast Look - RGC", "Studio Look - RGC", "Shot Look - RGC", "Show Look - RGC", Un-tone-mapped]
   Apple Display P3:
-    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "P3-500 nits - HDR-video", "P3-1000 nits - HDR-video", "Low Contrast Look - RGC", "Film Print Look - RGC", Un-tone-mapped]
+    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "P3-500 nits - HDR-video", "P3-1000 nits - HDR-video", "Low Contrast Look - RGC", "Studio Look - RGC", Un-tone-mapped]
   DCI-P3 D65:
-    - !<Views> ["ACES 1.0 - SDR-video", "P3-500 nits - HDR-video", "P3-1000 nits - HDR-video", "Low Contrast Look - RGC", "Film Print Look - RGC", "Shot Look", "Show Look", Un-tone-mapped]
+    - !<Views> ["ACES 1.0 - SDR-video", "P3-500 nits - HDR-video", "P3-1000 nits - HDR-video", "Low Contrast Look - RGC", "Studio Look - RGC", "Shot Look - RGC", "Show Look - RGC", Un-tone-mapped]
   Rec.709 - BT.1886 HDTV:
-    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Low Contrast Look - RGC", "Film Print Look - RGC", "Shot Look", "Show Look", Un-tone-mapped]
+    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Low Contrast Look - RGC", "Shot Look - RGC", "Show Look - RGC", Un-tone-mapped]
   USE ONLY FOR CHECKING COMPS:
     - !<View> {name: Log, colorspace: camera_log}
   USE ONLY FOR CHECKING RENDERS:
@@ -117,14 +117,14 @@ displays:
 #-- ANM config:
 
 active_displays: [Gamma 2.2, "Apple Display P3", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS"]
-active_views: ["ACES 1.0 - SDR-video - RGC", "Low Contrast Look - RGC", "Film Print Look - RGC", Show Look, Log, Raw]
-inactive_colorspaces: [CIE-XYZ D65, Gamut Shaper, DCI-P3 D65, ST2084-P3-D65, P3-D65, Pick Rec709-sRGB Desat, Shot_shaper, Output - Shot Look (sRGB), Output - Shot Look (Gamma 2.2 Display), Output - Shot Look (Rec.709 - BT.1886 HDTV), Output - ACES 1.0 SDR-video (Rec.709 - BT.1886 HDTV), Output - DPX Shot Look (Non-Color Managed), Output - ACES 1.0 SDR-video (sRGB), Output - Shot Look (sRGB), Output - Low Contrast Look - RGC (sRGB), Output - Film Print Look - RGC (sRGB), Output - Show Look (sRGB), sRGB, Gamma 2.2, Rec.709 - BT.1886 HDTV, Apple Display P3, camera_log]
+active_views: ["ACES 1.0 - SDR-video - RGC", "Low Contrast Look - RGC", "Studio Look - RGC", Show Look, Log, Raw]
+inactive_colorspaces: [CIE-XYZ D65, Gamut Shaper, DCI-P3 D65, ST2084-P3-D65, P3-D65, Pick Rec709-sRGB Desat, Shot_shaper, "Output - Shot Look - RGC (sRGB)", "Output - Shot Look - RGC (Gamma 2.2 Display)", "Output - Shot Look - RGC (Rec.709 - BT.1886 HDTV)", "Output - ACES 1.0 SDR-video (Rec.709 - BT.1886 HDTV)", "Output - DPX Shot Look (Non-Color Managed)", "Output - ACES 1.0 SDR-video (sRGB)", "Output - Shot Look - RGC (sRGB)", "Output - Low Contrast Look - RGC (sRGB)", "Output - Studio Look - RGC (sRGB)", "Output - Show Look - RGC (sRGB)", sRGB, Gamma 2.2, Rec.709 - BT.1886 HDTV, Apple Display P3, camera_log]
 
 #-- VFX config:
 
 #active_displays: [sRGB, "Gamma 2.2", "Rec.709 - BT.1886 HDTV", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS", "Display-Referred Workflow"]
-#active_views: [ACES 1.0 - SDR-video, Shot Look, Un-tone-mapped, Log, Raw, DPX Shot Look, P3-500 nits - HDR-video, P3-1000 nits - HDR-video]
-#inactive_colorspaces: [CIE-XYZ D65,  Gamut Shaper, Inverse sRGB Output, DCI-P3 D65, ST2084-P3-D65, P3-D65, Apple Display P3, Pick Rec709-sRGB Desat, Shot_shaper, Output - Low Contrast Look - RGC (sRGB), Output - Film Print Look - RGC (sRGB), Output - Show Look (sRGB), Output - Low Contrast Look - RGC (Gamma 2.2 Display), Output - Film Print Look - RGC (Gamma 2.2 Display), Output - Show Look (Gamma 2.2 Display), camera_log]
+#active_views: [ACES 1.0 - SDR-video, Shot Look - RGC, Un-tone-mapped, Log, Raw, DPX Shot Look, P3-500 nits - HDR-video, P3-1000 nits - HDR-video]
+#inactive_colorspaces: [CIE-XYZ D65,  Gamut Shaper, Inverse sRGB Output, DCI-P3 D65, ST2084-P3-D65, P3-D65, Apple Display P3, Pick Rec709-sRGB Desat, Shot_shaper, Output - Low Contrast Look - RGC (sRGB), Output - Studio Look - RGC (sRGB), Output - Show Look - RGC (sRGB), Output - Low Contrast Look - RGC (Gamma 2.2 Display), Output - Studio Look - RGC (Gamma 2.2 Display), Output - Show Look - RGC (Gamma 2.2 Display), camera_log]
 
 
 
@@ -176,8 +176,8 @@ looks:
   - !<Look>
     name: LMT_filmic
     process_space: ACEScct
-    transform: !<FileTransform> {src: LMT_AnalyticFilmic2_ACEScct_33.cube, interpolation: linear} 
-	
+    transform: !<FileTransform> {src: LMT_AnalyticFilmic7_ACEScct_33.cube, interpolation: linear} 
+
   - !<Look>
     name: LMT_neutral
     process_space: ACEScct
@@ -524,33 +524,33 @@ colorspaces:
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
-    name: Output - Film Print Look - RGC (sRGB)
+    name: Output - Studio Look - RGC (sRGB)
     family: Bake Viewer/View on sRGB monitor
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Film Print Look - RGC"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Studio Look - RGC"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
-    name: Output - Show Look (sRGB)
+    name: Output - Show Look - RGC (sRGB)
     family: Bake Viewer/View on sRGB monitor
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Show Look"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Show Look - RGC"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
-    name: Output - Shot Look (sRGB)
+    name: Output - Shot Look - RGC (sRGB)
     family: Bake Viewer/View on sRGB monitor
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Shot Look"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Shot Look - RGC"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
 #-- 2.2 Gamma Display:
@@ -576,33 +576,33 @@ colorspaces:
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
-    name: Output - Film Print Look - RGC (Gamma 2.2 Display)
+    name: Output - Studio Look - RGC (Gamma 2.2 Display)
     family: Baked View
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "Film Print Look - RGC"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "Studio Look - RGC"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
-    name: Output - Show Look (Gamma 2.2 Display)
+    name: Output - Show Look - RGC (Gamma 2.2 Display)
     family: Baked View
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "Show Look"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "Show Look - RGC"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
-    name: Output - Shot Look (Gamma 2.2 Display)
+    name: Output - Shot Look - RGC (Gamma 2.2 Display)
     family: Baked View
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "Shot Look"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "Shot Look - RGC"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
 
@@ -619,13 +619,13 @@ colorspaces:
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
-    name: Output - Shot Look (Rec.709 - BT.1886 HDTV)
+    name: Output - Shot Look - RGC (Rec.709 - BT.1886 HDTV)
     family: Baked Output/Rec.1886 HDTV display
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec.709 - BT.1886 HDTV", view: "Shot Look"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec.709 - BT.1886 HDTV", view: "Shot Look - RGC"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
 #-- DPX Non-Color Managed display:
