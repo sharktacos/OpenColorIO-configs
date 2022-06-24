@@ -79,7 +79,6 @@ shared_views:
 
   - !<View> {name: ACES 1.0 - SDR-video - RGC, view_transform: Output - SDR Video - ACES 1.0, looks: LMT_gamut, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: ACES 1.0 - SDR-video, view_transform: Output - SDR Video - ACES 1.0, display_colorspace: <USE_DISPLAY_NAME>}
-#  - !<View> {name: Lookdev, view_transform: Output - SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_neutral", display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: Studio Look - RGC, view_transform: Output - SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_filmic", display_colorspace: <USE_DISPLAY_NAME>}  
   - !<View> {name: Low Contrast Look - RGC, view_transform: Output - SDR Video - ACES 1.0, looks: "LMT_gamut, LowContrastCDL", display_colorspace: <USE_DISPLAY_NAME>} 
 
@@ -175,13 +174,8 @@ looks:
 
   - !<Look>
     name: LMT_filmic
-    process_space: ACEScct
-    transform: !<FileTransform> {src: LMT_AnalyticFilmic7_ACEScct_33.cube, interpolation: linear} 
-
-  - !<Look>
-    name: LMT_neutral
-    process_space: ACEScct
-    transform: !<FileTransform> {src: LMT_neutral_ACEScct_33.cube, interpolation: linear} 
+    process_space: ap0
+    transform: !<FileTransform> {src: LMT_AnalyticFilmic7_csc-ACEScct.clf, interpolation: linear} 
 
   - !<Look>
     name: Show_LUT
