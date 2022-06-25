@@ -175,7 +175,7 @@ looks:
   - !<Look>
     name: LMT_filmic
     process_space: ap0
-    transform: !<FileTransform> {src: LMT_AnalyticFilmic7_csc-ACEScct.clf, interpolation: linear} 
+    transform: !<FileTransform> {src: LMT_AnalyticFilmic8_csc-ACEScct.clf, interpolation: linear} 
 
   - !<Look>
     name: Show_LUT
