@@ -174,7 +174,7 @@ looks:
 
   - !<Look>
     name: LMT_neutral
-    process_space: ap0
+    process_space: ACEScct
     transform: !<FileTransform> {src: LMT_Soft_v9_cct_33.cube, interpolation: linear} 
 
   - !<Look>
