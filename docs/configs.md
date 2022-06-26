@@ -11,11 +11,8 @@ All View Transforms in the ANM config contain the ACES [Referrence Gamut Compres
 ### View Transforms
 
 - **ACES 1.0 SDR - RGC** <br> The standard ACES [tone mapping](tonemap.md) with added RGC (see above). 
-- **Low Contrast Look - RGC** <br> Look transform that lowers contrast of the ACES Output Transform by 85% intended to provide a neutral starting point for lookdev work. This is done using an ASC CDL transform which mirrors lowering contrast in Resolve to 0.85 in log space (ACEScct).
-- **Soft Look - RGC** <br> Both the contrast and saturaturation are softened a bit. The saturation is kept in the shadows but slightly reduced in the midtones and highlights to give a more natural appearance. In terms of color, the luminance of reds are lowered, the chroma of magenta is reduced, and green is shifted towards yellow slightly. 
-- 
-- Using the Look Tool created by Jed Smith, this transform address two aesthetic complaints about the ACES RRT, the first being to soften the contrast of ACES while keeping saturation in the shadows, giving a more neutral look, akin to the feel of camera transforms such as RED's IPP2 or ARRI's K1S1. Additionally, the neon quality of non-luminous objects is reduced in general, producing more natural colors. In particular red is reduced in both chroma and luminance. 
-
+- **Low Contrast Look - RGC** <br> Look transform that lowers contrast of the ACES Output Transform by 85%. This is done using an ASC CDL transform which mirrors lowering contrast in Resolve to 0.85 in log space (ACEScct).
+- **Neutral Look - RGC** <br> Many folks feel that ACES has too strong of a look -- too harsh contrast, too saturated. This Neutral Look softens both the contrast and saturaturation in an attempt to provde a neutral starting point which feels more natural. The saturation is kept in the shadows but slightly reduced in the midtones and highlights to give a more natural appearance. In terms of color, the luminance of reds are lowered, the chroma of magenta is reduced, and green is shifted towards yellow slightly. 
 - **Show Look - RGC** <br> Look transform for the show specific look LUT decided on by the director for the ANM config. See "Shot LUTs" below for setup.
 
 ### Display Transforms
