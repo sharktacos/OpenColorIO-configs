@@ -212,10 +212,23 @@ colorspaces:
     encoding: sdr-video
     to_reference: !<GroupTransform>
       children:
-        - !<CDLTransform> {slope: [ 0.8, 0.8, 0.8 ], offset: [ 0.06525, 0.06525, 0.06525 ], sat: 1.0 }
         - !<ExponentWithLinearTransform> {gamma: 2.4, offset: 0.055}
         - !<MatrixTransform> {matrix:  [ 0.439632981919, 0.382988698152, 0.177378319929, 0, 0.089776442959, 0.813439428749, 0.096784128292, 0, 0.017541170383, 0.111546553302, 0.870912276314, 0, 0, 0, 0, 1 ]}
 
+  - !<ColorSpace>
+    name: Color sRGB Texture lowCon
+    #aliases: [ dif, BaseColor ]
+    family: Texture
+    description: |
+      sRGB texture color space (piecewise sRGB EOTF)
+    isdata: false
+    categories: [ file-io ]
+    encoding: sdr-video
+    to_reference: !<GroupTransform>
+      children:
+        - !<CDLTransform> {slope: [ 0.8, 0.8, 0.8 ], offset: [ 0.06525, 0.06525, 0.06525 ], sat: 1.0 }
+        - !<ExponentWithLinearTransform> {gamma: 2.4, offset: 0.055}
+        - !<MatrixTransform> {matrix:  [ 0.439632981919, 0.382988698152, 0.177378319929, 0, 0.089776442959, 0.813439428749, 0.096784128292, 0, 0.017541170383, 0.111546553302, 0.870912276314, 0, 0, 0, 0, 1 ]}
 
   - !<ColorSpace>
     name: Pick Rec709-sRGB Desat
