@@ -56,7 +56,7 @@ roles:
   substance_3d_painter_substance_material: Color sRGB Texture
   
 
-  mari_monitor: Output - Low Contrast Look - RGC (sRGB)
+  mari_monitor: Output - Low Contrast Look - RGC (Gamma 2.2 sRGB Display)
   mari_scaler_monitor: Raw
   mari_color_picker: hdr 
   mari_blending: Raw 
@@ -95,9 +95,7 @@ shared_views:
   
 displays:
 
-  sRGB:
-    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Low Contrast Look - RGC", "Neutral Look - RGC", "Shot Look - RGC", "Show Look - RGC", Un-tone-mapped]
-  Gamma 2.2:
+  Gamma 2.2 sRGB Display:
     - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Low Contrast Look - RGC", "Neutral Look - RGC", "Shot Look - RGC", "Show Look - RGC", Un-tone-mapped]
   Apple Display P3:
     - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "P3-500 nits - HDR-video", "P3-1000 nits - HDR-video", "Low Contrast Look - RGC", "Neutral Look - RGC", Un-tone-mapped]
@@ -115,15 +113,15 @@ displays:
 
 #-- ANM config:
 
-active_displays: [Gamma 2.2, "Apple Display P3", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS"]
+active_displays: [Gamma 2.2 sRGB Display, "Apple Display P3", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS"]
 active_views: ["ACES 1.0 - SDR-video - RGC", "Low Contrast Look - RGC", "Neutral Look - RGC", Show Look, Log, Raw]
-inactive_colorspaces: [CIE-XYZ D65, Gamut Shaper, DCI-P3 D65, ST2084-P3-D65, P3-D65, Pick Rec709-sRGB Desat, Shot_shaper, "Output - Shot Look - RGC (sRGB)", "Output - Shot Look - RGC (Gamma 2.2 Display)", "Output - Shot Look - RGC (Rec.709 - BT.1886 HDTV)", "Output - ACES 1.0 SDR-video (Rec.709 - BT.1886 HDTV)", "Output - DPX Shot Look (Non-Color Managed)", "Output - ACES 1.0 SDR-video (sRGB)", "Output - Shot Look - RGC (sRGB)", "Output - Low Contrast Look - RGC (sRGB)", "Output - Neutral Look - RGC (sRGB)", "Output - Show Look - RGC (sRGB)", sRGB, Gamma 2.2, Rec.709 - BT.1886 HDTV, Apple Display P3, camera_log]
+inactive_colorspaces: [CIE-XYZ D65, Gamut Shaper, DCI-P3 D65, ST2084-P3-D65, P3-D65, Pick Rec709-sRGB Desat, Shot_shaper, "Output - Shot Look - RGC (Gamma 2.2 sRGB Display)", "Output - Shot Look - RGC (Rec.709 - BT.1886 HDTV)", "Output - ACES 1.0 SDR-video (Rec.709 - BT.1886 HDTV)", "Output - DPX Shot Look (Non-Color Managed)", "Gamma 2.2 sRGB Display", "Rec.709 - BT.1886 HDTV", "Apple Display P3", camera_log]
 
 #-- VFX config:
 
-#active_displays: [sRGB, "Gamma 2.2", "Rec.709 - BT.1886 HDTV", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS", "Display-Referred Workflow"]
+#active_displays: ["Gamma 2.2 sRGB Display", "Rec.709 - BT.1886 HDTV", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS", "Display-Referred Workflow"]
 #active_views: [ACES 1.0 - SDR-video, Shot Look - RGC, Un-tone-mapped, Log, Raw, DPX Shot Look, P3-500 nits - HDR-video, P3-1000 nits - HDR-video]
-#inactive_colorspaces: [CIE-XYZ D65,  Gamut Shaper, Inverse sRGB Output, DCI-P3 D65, ST2084-P3-D65, P3-D65, Apple Display P3, Pick Rec709-sRGB Desat, Shot_shaper, Output - Low Contrast Look - RGC (sRGB), Output - Neutral Look - RGC (sRGB), Output - Show Look - RGC (sRGB), Output - Low Contrast Look - RGC (Gamma 2.2 Display), Output - Neutral Look - RGC (Gamma 2.2 Display), Output - Show Look - RGC (Gamma 2.2 Display), camera_log]
+#inactive_colorspaces: [CIE-XYZ D65,  Gamut Shaper, Inverse sRGB Output, DCI-P3 D65, ST2084-P3-D65, P3-D65, Apple Display P3, Pick Rec709-sRGB Desat, Shot_shaper, Output - Low Contrast Look - RGC (Gamma 2.2 sRGB Display) 2.2 Display), Output - Neutral Look - RGC (Gamma 2.2 sRGB Display), Output - Show Look - RGC (Gamma 2.2 sRGB Display), camera_log]
 
 
 
@@ -367,7 +365,7 @@ colorspaces:
     isdata: false
     categories: [ file-io ]
     encoding: sdr-video
-    to_reference: !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: sRGB, view: "ACES 1.0 - SDR-video"}
+    to_reference: !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: "Gamma 2.2 sRGB Display", view: "ACES 1.0 - SDR-video"}
 
   - !<ColorSpace>
     name: rec709
@@ -507,109 +505,58 @@ colorspaces:
 
 #--------------- Output --------------------------------#
 
-#--- sRGB Display:
 
-  - !<ColorSpace>
-    name: Output - ACES 1.0 SDR-video (sRGB)
-    family: Bake Viewer/View on sRGB monitor
-    isdata: false
-    encoding: sdr-video
-    to_reference: !<DisplayViewTransform> {src: "ACES2065-1", display: "sRGB", view: "ACES 1.0 - SDR-video", direction: inverse}
-    from_reference: !<GroupTransform>
-      children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "ACES 1.0 - SDR-video"}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
-
-  - !<ColorSpace>
-    name: Output - Low Contrast Look - RGC (sRGB)
-    family: Bake Viewer/View on sRGB monitor
-    isdata: false
-    encoding: sdr-video
-    from_reference: !<GroupTransform>
-      children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Low Contrast Look - RGC"}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
-
-  - !<ColorSpace>
-    name: Output - Neutral Look - RGC (sRGB)
-    family: Bake Viewer/View on sRGB monitor
-    isdata: false
-    encoding: sdr-video
-    from_reference: !<GroupTransform>
-      children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Neutral Look - RGC"}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
-
-  - !<ColorSpace>
-    name: Output - Show Look - RGC (sRGB)
-    family: Bake Viewer/View on sRGB monitor
-    isdata: false
-    encoding: sdr-video
-    from_reference: !<GroupTransform>
-      children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Show Look - RGC"}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
-
-  - !<ColorSpace>
-    name: Output - Shot Look - RGC (sRGB)
-    family: Bake Viewer/View on sRGB monitor
-    isdata: false
-    encoding: sdr-video
-    from_reference: !<GroupTransform>
-      children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: sRGB, view: "Shot Look - RGC"}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
 #-- 2.2 Gamma Display:
 
   - !<ColorSpace>
-    name: Output - ACES 1.0 SDR-video (Gamma 2.2 Display)
+    name: Output - ACES 1.0 SDR-video (Gamma 2.2 sRGB Display)
     family: Baked View
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "ACES 1.0 - SDR-video"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2 sRGB Display", view: "ACES 1.0 - SDR-video"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
-    name: Output - Low Contrast Look - RGC (Gamma 2.2 Display)
+    name: Output - Low Contrast Look - RGC (Gamma 2.2 sRGB Display)
     family: Baked View
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "Low Contrast Look - RGC"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2 sRGB Display", view: "Low Contrast Look - RGC"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
-    name: Output - Neutral Look - RGC (Gamma 2.2 Display)
+    name: Output - Neutral Look - RGC (Gamma 2.2 sRGB Display)
     family: Baked View
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "Neutral Look - RGC"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2 sRGB Display", view: "Neutral Look - RGC"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
-    name: Output - Show Look - RGC (Gamma 2.2 Display)
+    name: Output - Show Look - RGC (Gamma 2.2 sRGB Display)
     family: Baked View
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "Show Look - RGC"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2 sRGB Display", view: "Show Look - RGC"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
-    name: Output - Shot Look - RGC (Gamma 2.2 Display)
+    name: Output - Shot Look - RGC (Gamma 2.2 sRGB Display)
     family: Baked View
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "Shot Look - RGC"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2 sRGB Display", view: "Shot Look - RGC"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
 
@@ -662,21 +609,7 @@ display_colorspaces:
     isdata: false
 
   - !<ColorSpace>
-    name: sRGB
-    family: Display EOTF
-    description: |
-      sRGB monitor (piecewise EOTF)
-    isdata: false
-    categories: [ file-io ]
-    encoding: sdr-video
-    from_display_reference: !<GroupTransform>
-      children:
-        - !<MatrixTransform> {matrix: [ 3.240969941905, -1.537383177570, -0.498610760293, 0, -0.969243636281, 1.875967501508, 0.041555057407, 0, 0.055630079697, -0.203976958889, 1.056971514243, 0, 0, 0, 0, 1 ]}
-        - !<ExponentWithLinearTransform> {gamma: 2.4, offset: 0.055, direction: inverse}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
-
-  - !<ColorSpace>
-    name: Gamma 2.2
+    name: Gamma 2.2 sRGB Display
     family: Display EOTF
     description: |
       Gamma 2.2 monitor with Rec.709 or sRGB primaries
