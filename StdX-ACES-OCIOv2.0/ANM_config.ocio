@@ -564,7 +564,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Output - ACES 1.0 SDR-video (Rec.709 - BT.1886 HDTV)
-    family: Baked Output/Rec.1886 HDTV display
+    family: Baked View
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
@@ -574,7 +574,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Output - Shot Look - RGC (Rec.709 - BT.1886 HDTV)
-    family: Baked Output/Rec.1886 HDTV display
+    family: Baked View
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
@@ -586,7 +586,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Output - DPX Shot Look (Non-Color Managed)
-    family: Baked Output/Display-Referred Workflow
+    family: Baked View
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
