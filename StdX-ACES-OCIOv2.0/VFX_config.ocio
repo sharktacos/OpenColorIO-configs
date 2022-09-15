@@ -725,7 +725,7 @@ colorspaces:
         - !<BuiltinTransform> {style: "RED_LOG3G10-RWG_to_ACES2065-1", direction: inverse}
 #        - !<MatrixTransform> {matrix: [ 1.26597452, -0.13733399, -0.12864085, 0, -0.01987531, 0.94153333, 0.07834250, 0, 0.06245933, 0.20903273, 0.72850806, 0, 0, 0, 0, 1 ]}
 #        - !<LogCameraTransform> {base: 10.0, lin_side_offset: 2.55975327, lin_side_slope: 155.975327, log_side_offset: 0.0, log_side_slope: 0.224282, lin_side_break: -0.01, direction: forward}
-        - !<FileTransform> {src: RWG_Log3G10 to REC709_BT1886 with HIGH_CONTRAST and R_2_Medium size_33 v1.13.cube, interpolation: tetrahedral} 
+#        - !<FileTransform> {src: RWG_Log3G10 to REC709_BT1886 with HIGH_CONTRAST and R_2_Medium size_33 v1.13.cube, interpolation: tetrahedral} 
 
 
 #------------------------ Displays (EOTF) --------------------------
