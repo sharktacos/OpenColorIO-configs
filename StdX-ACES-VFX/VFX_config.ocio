@@ -25,7 +25,7 @@ environment:
 # ------------------------------------------------------------------- # 
 
 
-search_path: "CLF:${LUT_PATH}"
+search_path: "Looks:${LUT_PATH}"
 
 roles:
   aces_interchange: ACES2065-1

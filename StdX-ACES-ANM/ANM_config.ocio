@@ -116,13 +116,7 @@ displays:
 
 active_displays: [Gamma 2.2, Rec709, "Apple Display P3", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS"]
 active_views: [RED IPP2 Look, "ACES 1.0 - SDR-video - RGC", Show Look, Log, Raw]
-inactive_colorspaces: [CIE-XYZ D65, Gamut Shaper, DCI-P3 D65, ST2084-P3-D65, P3-D65, Pick Rec709-sRGB Desat, Shot_shaper, "Shot Look - RGC (Gamma 2.2)", "Shot Look - RGC (Rec709)", "ACES 1.0 SDR-video (Rec709)", "DPX Shot Look (Non-Color Managed)", "Gamma 2.2", "Rec709", "Apple Display P3", camera_log]
-
-#-- VFX config:
-
-#active_displays: ["Gamma 2.2", "Rec709", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS", "Display-Referred Workflow"]
-#active_views: [ACES 1.0 - SDR-video, Shot Look - RGC, Un-tone-mapped, Log, Raw, DPX Shot Look, P3-500 nits - HDR-video, P3-1000 nits - HDR-video]
-#inactive_colorspaces: [CIE-XYZ D65,  Gamut Shaper, Inverse sRGB Output, DCI-P3 D65, ST2084-P3-D65, P3-D65, Apple Display P3, Pick Rec709-sRGB Desat, Shot_shaper, Low Contrast Look - RGC (Gamma 2.2) 2.2 Display), Neutral Look - RGC (Gamma 2.2), Show Look - RGC (Gamma 2.2), camera_log]
+inactive_colorspaces: [CIE-XYZ D65, Gamut Shaper, DCI-P3 D65, ST2084-P3-D65, P3-D65, Pick Rec709-sRGB Desat, Shot_shaper, "Shot Look - RGC (Gamma 2.2)", "Shot Look - RGC (Rec709)", "ACES 1.0 SDR-video (Rec709)", "DPX Shot Look (Non-Color Managed)", "Gamma 2.2", "Rec709", "Apple Display P3", Low Contrast Look - RGC (Gamma 2.2), Neutral Look - RGC (Gamma 2.2), RED IPP2 Look (Rec709), camera_log]
 
 
 
@@ -392,128 +386,6 @@ colorspaces:
 
 
 
-
-#---------------------- Cameras ----------------------#
-
-  - !<ColorSpace>
-    name: ARRI LogC (v3-EI800) - AlexaWideGamut
-    aliases: [ ARRI ]
-    family: Camera Input/ARRI
-    description: |
-      Alexa-v3-LogC-EI800 (no camera black) to ACES2065-1 (SUP v3 color science)
-    isdata: false
-    encoding: log
-    to_reference: !<BuiltinTransform> {style: "ARRI_ALEXA-LOGC-EI800-AWG_to_ACES2065-1"}
-
-  - !<ColorSpace>
-    name: RED Log3G10 - REDWideGamutRGB
-    aliases: [ RED ]
-    family: Camera Input/RED
-    description: |
-      RED Log3G10 / REDWideGamutRGB (no camera black)
-    isdata: false
-    encoding: log
-    to_reference: !<BuiltinTransform> {style: "RED_LOG3G10-RWG_to_ACES2065-1"}
-
-  - !<ColorSpace>
-    name: Sony SLog3 - SGamut3
-    aliases: [ Sony ]
-    family: Camera Input/Sony
-    description: |
-      Sony SLog3 / SGamut3 (no camera black)
-    isdata: false
-    encoding: log
-    to_reference: !<BuiltinTransform> {style: "SONY_SLOG3-SGAMUT3_to_ACES2065-1"}
-
-  - !<ColorSpace>
-    name: Sony SLog3 - SGamut3Cine
-    aliases: [ SonyCine ]
-    family: Camera Input/Sony
-    equalitygroup: ""
-    bitdepth: 32f
-    description: |
-      Convert Sony S-Log3 S-Gamut3.Cine to ACES2065-1
-      ACEStransformID: urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.SLog3_SGamut3Cine_to_ACES.a1.1.0
-    isdata: false
-    encoding: log
-    allocation: uniform
-    to_scene_reference: !<BuiltinTransform> {style: SONY_SLOG3-SGAMUT3.CINE_to_ACES2065-1}
-
-  - !<ColorSpace>
-    name: Sony SLog3 - Venice SGamut3
-    aliases: [ SonyVenice ]
-    family: Camera Input/Sony
-    equalitygroup: ""
-    bitdepth: 32f
-    description: |
-      Convert Sony S-Log3 S-Gamut3 for the Venice camera to ACES2065-1
-      ACEStransformID: urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.SLog3_Venice_SGamut3_to_ACES.a1.1.0
-    isdata: false
-    encoding: log
-    allocation: uniform
-    to_scene_reference: !<BuiltinTransform> {style: SONY_SLOG3-SGAMUT3-VENICE_to_ACES2065-1}
-
-  - !<ColorSpace>
-    name: Sony SLog3 - Venice SGamut3Cine
-    aliases: [ SonyVeniceCine ]
-    family: Camera Input/Sony
-    equalitygroup: ""
-    bitdepth: 32f
-    description: |
-      Convert Sony S-Log3 S-Gamut3.Cine for the Venice camera to ACES2065-1
-      ACEStransformID: urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.SLog3_Venice_SGamut3Cine_to_ACES.a1.1.0
-    isdata: false
-    encoding: log
-    allocation: uniform
-    to_scene_reference: !<BuiltinTransform> {style: SONY_SLOG3-SGAMUT3.CINE-VENICE_to_ACES2065-1}
-
-  - !<ColorSpace>
-    name: Canon CLog2 CGamut
-    aliases: [ CLog2 ]
-    family: Camera Input/Canon
-    equalitygroup: ""
-    bitdepth: 32f
-    description: |
-      Convert Canon Log 2 Cinema Gamut to ACES2065-1
-      ACEStransformID: urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.CLog2_CGamut_to_ACES.a1.1.0
-    isdata: false
-    encoding: log
-    allocation: uniform
-    to_scene_reference: !<BuiltinTransform> {style: CANON_CLOG2-CGAMUT_to_ACES2065-1}
-
-  - !<ColorSpace>
-    name: Canon CLog3 CGamut
-    aliases: [ CLog3 ]
-    family: Camera Input/Canon
-    equalitygroup: ""
-    bitdepth: 32f
-    description: |
-      Convert Canon Log 3 Cinema Gamut to ACES2065-1
-      ACEStransformID: urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.CLog3_CGamut_to_ACES.a1.1.0
-    isdata: false
-    encoding: log
-    allocation: uniform
-    to_scene_reference: !<BuiltinTransform> {style: CANON_CLOG3-CGAMUT_to_ACES2065-1}
-
-  - !<ColorSpace>
-    name: Panasonic - VLog VGamut
-    aliases: [ Panasonic ]
-    family: Camera Input/Panasonic
-    description: |
-      Convert Panasonic Varicam V-Log V-Gamut to ACES2065-1
-    isdata: false
-    encoding: log
-    to_reference: !<BuiltinTransform> {style: PANASONIC_VLOG-VGAMUT_to_ACES2065-1}
-
-  - !<ColorSpace>
-    name: Log film scan (ADX10)
-    aliases: [ ADX10 ]
-    family: Camera Input/Film
-    description: |
-      ADX10 Academy Density Encoding
-    isdata: false
-    encoding: log
-    to_reference: !<BuiltinTransform> {style: "ADX10_to_ACES2065-1"}
 
 #--------------- Output --------------------------------#
 
