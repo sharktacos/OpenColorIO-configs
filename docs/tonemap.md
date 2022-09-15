@@ -29,21 +29,6 @@ With tone mapping, rather than the artist needing to compensate and fight with t
 
 Where ACES comes into the picture is where we wish to marry CG images to film. As explained above, it's essential that we view renders through a tone mapped transform to make them look photoreal, and we also want to view the film footage through that same filmic view transform so they can match. ACES provides that unified view transform, available in pretty much all software programs -- from film set, to edit, to VFX, to DI so there is consistency of artistic vision through every step of the film making process.
 
-## Lower Contrast Tone Mapping Look Transforms
-
-However there have been some complaints about the ACES view transform. Perhaps the top request of the ACES Output Transform (RRT) is that it be more neutral with less contrast. The [ACES Retrospective and Enhancements](https://community.acescentral.com/uploads/default/original/1X/38d7ee7ca7720701873914094d6f4a1d4ca031ef.pdf) paper states for example,
-
-> “The defined ACES rendering intent has been questioned by a number of expert users... It is not uncommon to hear people saying they do not like the cumulative effects: crushing effect on shadows, and heavy highlight roll off, with too much look”
-
-The two Look Transforms provided in this config are intended to address those complaints by lowering the contrast of the ACES tone curve. This pulls the shadows and highlights slightly out of the toe and shoulder curves, resulting in less crushing of shadows and more gentle highlight rolloff. The idea being to have the **Filmic Look** make the ACES Output Transform have "slightly less contrast" and the **Neutral Look** has even less in order to serve as a *neutral* starting point for DI and Lookdev. Note in the images below the details visible in the shadow areas compared to the ACES 1.0 Output Transform:
-
-![rrt](img/tone_rrt.png)
-![rrt](img/tone_filmic9.png)
-![rrt](img/tone_neutral8.png)
-
-The **Neutral Look** contrast is implemented with an ASC CDL (American Society of Cinematographers Color Decision List), inspired by Geoff Boyle's approach described on [this ACEScentral thread](https://community.acescentral.com/t/luts-that-emulate-the-aces-workflow/1334) of setting the contrast to 0.85 and the offset to 0.06525 in log (ACEScct) which matches the default pivot in Resolve and Baselight. The **Filmic Look** is simply a linear offset of 0.008 to lift the toe a bit avoiding crushed shadows, but otherwise maintaining the ACES tone curve. 
-
-The take away is that these Look Transforms allow you to work with tone mapping which doesn't impose a strong look, but instead provides a more neutral starting point from which you can do further grading work, and at the same time allows for the proper photographic integration of CG and film.
 
 [Back to main](../StdX_ACES)
 
