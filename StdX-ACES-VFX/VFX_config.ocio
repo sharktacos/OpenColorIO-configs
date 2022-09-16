@@ -89,7 +89,7 @@ shared_views:
 
   - !<View> {name: ARRI ALF-2 Look, view_transform: SDR Video - ACES 1.0, looks: "ACESLooks LMT - ARRI ALF-2 Look", display_colorspace: <USE_DISPLAY_NAME>} 
   - !<View> {name: ARRI K1S1 Look, view_transform: SDR Video - ACES 1.0, looks: "ACESLooks LMT - ARRI K1S1 Look", display_colorspace: <USE_DISPLAY_NAME>} 
-  - !<View> {name: RED IPP2 Look, view_transform: SDR Video - ACES 1.0, looks: "RedExp, ACESLooks LMT - RED IPP2 Look", display_colorspace: <USE_DISPLAY_NAME>} 
+  - !<View> {name: RED IPP2 Look, view_transform: SDR Video - ACES 1.0, looks: "ACESLooks LMT - RED IPP2 Look", display_colorspace: <USE_DISPLAY_NAME>} 
   
   - !<View> {name: Shot Look - RGC, view_transform: SDR Video - ACES 1.0, looks: LMT_shot, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: Show Look - RGC, view_transform: SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_shot", display_colorspace: <USE_DISPLAY_NAME>}
@@ -120,22 +120,12 @@ displays:
     - !<View> {name: "DPX Shot Look", colorspace: "DPX Shot Look (Non-Color Managed)"}
 
 
-#-- ANM config:
-
-#active_displays: [Gamma 2.2, "Apple P3", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS"]
-#active_views: ["ACES 1.0 - SDR-video - RGC", "Low Contrast Look - RGC", "Neutral Look - RGC", Show Look, Log, Raw]
-#inactive_colorspaces: [CIE-XYZ D65, Gamut Shaper, DCI-P3 D65, ST2084-P3-D65, P3-D65, Pick Rec709-sRGB Desat, Shot_shaper, "Shot Look - RGC (Gamma 2.2)", "Shot Look - RGC (Rec709)", "ACES 1.0 SDR-video (Rec709)", "DPX Shot Look (Non-Color Managed)", "Gamma 2.2", "Rec709", "Apple P3", camera_log]
 
 #-- VFX config:
-
-#active_displays: ["Gamma 2.2", "Rec709", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS", "Display-Referred Workflow"]
-#active_views: [ACES 1.0 - SDR-video, Shot Look - RGC, Un-tone-mapped, Log, Raw, DPX Shot Look, P3-500 nits - HDR-video, P3-1000 nits - HDR-video]
-#inactive_colorspaces: [CIE-XYZ D65,  Gamut Shaper, Inverse sRGB Output, DCI-P3 D65, ST2084-P3-D65, P3-D65, Apple P3, Pick Rec709-sRGB Desat, Shot_shaper, Low Contrast Look - RGC (Gamma 2.2) 2.2 Display), Neutral Look - RGC (Gamma 2.2), Show Look - RGC (Gamma 2.2), camera_log]
 
 active_displays: ["Rec709", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS", "Non-Color Managed DPX Workflow"]
 active_views: [ACES 1.0 - SDR-video, Shot Look, Low Contrast, "Low Contrast +1 Stops", "Low Contrast +2 Stops", ARRI ALF-2 Look, ARRI K1S1 Look, RED IPP2 Look, Un-tone-mapped, Log, Raw, DPX Shot Look]
 inactive_colorspaces: [CIE-XYZ D65, Gamut Shaper, DCI-P3 D65, ST2084-P3-D65, P3-D65, Pick Rec709-sRGB Desat, Shot_shaper, "Gamma 2.2", "Rec709", "Apple P3", "Neutral Look - RGC (Gamma 2.2)", "Show Look - RGC (Gamma 2.2)", camera_log, "ACES 1.0 SDR-video (Gamma 2.2)", "Low Contrast Look - RGC (Gamma 2.2)", "Shot Look - RGC (Gamma 2.2)", RED IPP2 (Rec709) ]
-# inactive_colorspaces: [CIE-XYZ D65, Gamut Shaper, DCI-P3 D65, ST2084-P3-D65, P3-D65, Pick Rec709-sRGB Desat, Shot_shaper, "Gamma 2.2", "Rec709", "Apple P3", camera_log]
 
 
 

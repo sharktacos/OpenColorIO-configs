@@ -79,7 +79,7 @@ shared_views:
 
   - !<View> {name: ACES 1.0 - SDR-video - RGC, view_transform: SDR Video - ACES 1.0, looks: LMT_gamut, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: ACES 1.0 - SDR-video, view_transform: SDR Video - ACES 1.0, display_colorspace: <USE_DISPLAY_NAME>}
-  - !<View> {name: RED IPP2 Look, view_transform: SDR Video - ACES 1.0, looks: "LMT_gamut, RedExp, ACESLooks LMT - RED IPP2 Look", display_colorspace: <USE_DISPLAY_NAME>} 
+  - !<View> {name: RED IPP2 Look, view_transform: SDR Video - ACES 1.0, looks: "LMT_gamut, ACESLooks LMT - RED IPP2 Look", display_colorspace: <USE_DISPLAY_NAME>} 
   - !<View> {name: Neutral Look - RGC, view_transform: SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_neutral", display_colorspace: <USE_DISPLAY_NAME>}  
   - !<View> {name: Low Contrast Look - RGC, view_transform: SDR Video - ACES 1.0, looks: "LMT_gamut, LowContrastCDL", display_colorspace: <USE_DISPLAY_NAME>} 
 
@@ -114,7 +114,7 @@ displays:
 
 #-- ANM config:
 
-active_displays: [Gamma 2.2, Rec709, "Apple Display P3", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS"]
+active_displays: [Gamma 2.2, "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS"]
 active_views: [RED IPP2 Look, "ACES 1.0 - SDR-video - RGC", Show Look, Log, Raw]
 inactive_colorspaces: [CIE-XYZ D65, Gamut Shaper, DCI-P3 D65, ST2084-P3-D65, P3-D65, Pick Rec709-sRGB Desat, Shot_shaper, "Shot Look - RGC (Gamma 2.2)", "Shot Look - RGC (Rec709)", "ACES 1.0 SDR-video (Rec709)", "DPX Shot Look (Non-Color Managed)", "Gamma 2.2", "Rec709", "Apple Display P3", Low Contrast Look - RGC (Gamma 2.2), Neutral Look - RGC (Gamma 2.2), RED IPP2 Look (Rec709), camera_log]
 
@@ -188,7 +188,7 @@ looks:
   - !<Look>
     name: RedExp
     process_space: ACES2065-1
-    transform: !<ExposureContrastTransform> {style: linear, exposure: -0.5, contrast: 1.0, gamma: 1.0, pivot: 0.18}
+    transform: !<ExposureContrastTransform> {style: linear, exposure: -0.3, contrast: 1.0, gamma: 1.0, pivot: 0.18}
 
   - !<Look>
     name: ACESLooks LMT - RED IPP2 Look
