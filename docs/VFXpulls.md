@@ -63,12 +63,7 @@ For this reason, a preferred workflow for Premiere is an offline edit. This invo
 <img src="img/pipeline.jpg">
 </p>
 
-An alternative approach to the offline edit with proxy media is to edit the camera RAW files directly applying a viewer LUT. As mentioned above, VFX can deliver two types of files: High resolution ungraded OpenEXR files for finalling, and proxy media with the look baked in for inclusion in the offline edit. If desired, we can also provide a LUT to transform the camera RAW source material into the the ACES Rec709 display chosen for the VFX proxy media. 
-
-
-
-
-
+If you are not using this offline edit workflow or otherwise need help in how best to integrate ACES into your existing image pipeline, we are happy to discuss options with you. One posibility, for cases where the camera RAW files are being read directly into Premiere and viewed in log, is to provide a LUT to view your camera log footage through the the ACES Output Transform chosen for the VFX proxy media. Note that this is again intended as an alternate way to view the media in the (offline) edit preserving artistic intent, and not as a substitute for proper color grading for finalling and archive. 
 
 
 [Back to main](../StdX_ACES)
