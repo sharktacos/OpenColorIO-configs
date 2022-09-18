@@ -55,7 +55,7 @@ When you are ready to render your deliverables, open up the Deliver page.
  
 **IMF Master, Video Display Master (VDM) or Quicktime references**
 
-When rendering images in display color spaces, such as those required for IMF Master deliverables, a VDM source for IMF creation, or Quicktime references, make sure your ACES Output Transform is enabled and matches the intended display type. For example if sending clips to editorial for offline editing of proxy media viewed on a broadcast reference monitor, the Output Transform would be set to "Rec709" (HDTV). If sending clips to VFX as reference the Output Transform would be set to "sRGB" for display on a computer monitor.
+When rendering images in display color spaces, such as those required for IMF Master deliverables, a VDM source for IMF creation, or Quicktime references, make sure your ACES Output Transform is enabled and matches the intended display type. For example if sending clips to editorial for offline editing of proxy media viewed on a broadcast reference monitor, the Output Transform would be set to "Rec709" (HDTV). If sending clips to VFX as reference the Output Transform would likewise be set to Rec709.
  
 **VFX Pulls**
 
