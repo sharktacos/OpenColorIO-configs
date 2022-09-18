@@ -37,7 +37,7 @@ VFX can deliver two types of files:
   - *High resolution ungraded OpenEXR files with VFX added are sent to DI for the final color grade and finishing.* <br>The EXR files are returned to DI in the same interchange format they were received: ACES2065-1 AP0. 
   - *Proxy media to editorial for inclusion in the offline edit.* <br> The ACES transform (as well as any client provided shot LUTs) are baked into the proxy media in the color space of the reference monitor used by editorial (typically Rec.709 with Rec.1886 gamma). Editorial should provide proxy media format requirements to VFX. There are a number of options here:
 
-# Proxy Output Transforms
+## Proxy Output Transforms
   - *ACES 1.0 SDR (Rec709)* This is the standard ACES Output Transform for a Rec709 display.
   - *Low Contrast Look* The ACES look with lowered contrast of 0.85 using an ASC-CDL transform.
   - *ARRI ALF-2 Look (Rec709)* An emulation of the ARRI ALF-2 Look. This is applied as an LMT so that the show remains ACES compliant.
