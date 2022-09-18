@@ -39,32 +39,31 @@ VFX can deliver two types of files:
 
 # Proxy Output Transforms
   - *ACES 1.0 SDR (Rec709)* This is the standard ACES Output Transform for a Rec709 display.
-  - *Lowe Contrast Look* The ACES look with lowered contrast of 0.85 using an ASC-CDL transform.
+  - *Low Contrast Look* The ACES look with lowered contrast of 0.85 using an ASC-CDL transform.
   - *ARRI ALF-2 Look (Rec709)* An emulation of the ARRI ALF-2 Look. This is applied as an LMT so that the show remains ACES compliant.
   - *ARRI K1S1 Look (Rec709)* An emulation of the ARRI classic K1S1 Look. This is applied as an LMT so that the show remains ACES compliant.
   - *ARRI RED IPP2 Look (Rec709)* An emulation of the RED IPP2 Look. This is applied as an LMT so that the show remains ACES compliant.
 
-All of the above Looks are avaialble as CLF and DCTL files for use in an ACES workflow in programs such as Davinci Resolve for finalling and DI. It is not recommended to do the final edit or color corrections in a program such as Adobe Premiere as it is not currently able to work properly with ACES color managment or EXR files (i.e. it is extremely slow). See the section below for more on this and recommended workflow with editorial.
+All of the above Looks are avaialble as CLF and DCTL files for use in an ACES workflow in programs such as Davinci Resolve for finalling and DI. That is, they are ACES Look Transforms that allow the show to remain ACES complient, and still have the desired DRT that colorists and filmmakers love to grade with, such as the ARRI K1S1.
 
 
 # Offline Edit
 
-Many editing programs (for example Premiere Pro) lack the ability to properly process and display these scene-referred files. For example, this is what footage from an ARRI camera looks like in Premiere. Note the washed out look. This is because Premiere is incorrectly displaying the image in its camera native log color space.
+Many editing programs (for example Premiere Pro) lack the ability to properly process and display these scene-referred files. This is the case both for the final EXR files from VFX as well as for the source Camera native log files. For example, this is what footage from an ARRI camera looks like in Premiere. Note the washed-out look. This is because Premiere is incorrectly displaying the image in its camera native log color space.
 
 <img src="img/premiereB10.jpg">
 
-Images are not meant to be viewed in log, rather log is a method to store the full dynamic range of the image as discussed above. Below you can see the way the image looks with the ARRI classic K1S1 LUT for Rec709 applied to it.
+Images encoded in log are not meant to be viewed that way, rather log is a method to effiently store the full dynamic range of the image as discussed above, similar to a photo negative. In the same way as one is not intended to view a negative, one should not view a log file (nor should one view a scene-linear EXR). Rather these scene-referred files need to be viewed with the appropriate DRT for the target display device. For example, below you can see the way the image looks with the ARRI classic K1S1 DRT for Rec709 applied to it.
 
 <img src="img/premiereB9.jpg">
 
-For this reason, a preferred workflow is an offline edit. This involves the shots from set dailies being written out from a program like Davinci Resolve 
-as display-encoded proxy media with the look baked into them, and for these to be sent to (offline) editorial. Typically this would be Prores or DNxHD files in Rec709 color space, which is the standard for broadcast HDTV. Editorial works with these proxy files, which looks great, and then later in the conform these proxy file are swapped out for the camera RAW files for finalling. This workflow is shown in the diagram below. The advantage of this workflow is that it preserves the image integrity of the master, while allowing filmmakers to view their movie in the edit as they intend for it to look. 
+For this reason, a preferred workflow for Premiere is an offline edit. This involves the shots from set dailies being written out from a program like Davinci Resolve as display-encoded proxy media with the look baked into them, and for these to be sent to (offline) editorial. Typically this would be Prores or DNxHD files in Rec709 color space, which is the standard for broadcast HDTV. Editorial works with these proxy files, allowing everyone to view the files as they were intended to look in editorial, which of course is important for editorial as the color affects the emotional mood of the film. Friends don't let friends view their camera footage in log! Later in the conform these proxy files are swapped out for the camera RAW files as well as the EXR files from VFX for finalling. This workflow is shown in the diagram below. The advantage of this workflow is that it preserves the image integrity of the master, while allowing filmmakers to view their movie as they intend for it to look thorughout every stage of the filmmaking process. 
 
 <p align="center">
 <img src="img/pipeline.jpg">
 </p>
 
-An alternative approach to the offline edit with proxy media is to edit the camera RAW files directly applying a viewer LUT. As mentioned above, VFX can deliver two types of files: High resolution ungraded OpenEXR files for finalling, and proxy media with the look baked in for inclusion in the offline edit. If desired we can also provide a LUT to transform the camera RAW source material into the the ACES Rec709 display chosen for the VFX proxy media. 
+An alternative approach to the offline edit with proxy media is to edit the camera RAW files directly applying a viewer LUT. As mentioned above, VFX can deliver two types of files: High resolution ungraded OpenEXR files for finalling, and proxy media with the look baked in for inclusion in the offline edit. If desired, we can also provide a LUT to transform the camera RAW source material into the the ACES Rec709 display chosen for the VFX proxy media. 
 
 
 
