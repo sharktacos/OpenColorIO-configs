@@ -1,22 +1,38 @@
 # VFX Pulls and ACES Color Management
 
-Cameras are able to capture high dynamic range images, containing a huge gamut of colors and multiple stops of exposure. This is known as *scene-referred* data because it captures the light values of the physical scene the camera was pointing at. However, displays are not as capable as cameras in terms of dynamic range and color. So in order to look correct on a display, some of the image data must be thrown away in order to fit or limit the data to the range of the particular display, whether that's a computer monitor, a TV, an HDR display, or a movie projector. This is known as *display-referred* or *display-encoded* data where the data is limited to fit onto the particular display.
+Cameras are able to capture high dynamic range images, containing a huge gamut of colors and multiple stops of exposure. This is known as *scene-referred* data because it captures the light values of the physical scene the camera was pointing at. However, displays are not as capable as cameras in terms of dynamic range and color. So in order to look correct on a display, some of the image data must be thrown away in order to fit or limit the data to the range of the particular display, whether that's a computer monitor, a TV, an HDR display, or a movie projector. This is known as *display-referred* or *display-encoded* data where the data is limited to fit onto the particular display. Our preferred format for these scene-referred files is ACES, the Academy Color Encoding System. If you are unfamiliar with ACES, [this video](https://www.youtube.com/watch?v=vdmFjFoE2YA&list=PLsJrJgQkAdTnNB5sbmkRLZaZkcd63W8Nb&index=8), created by Netflix Studios, offers a great overview of the advantages of an ACES color managed workflow for filmmakers. 
 
-For a VFX pull, the camera RAW files need to be debayerd and saved out in a format that preserves the full quality and dynamic range of the original camera RAW files in scene-referred space. The basic idea is that VFX returns the ungraded plate to DI, with the VFX added, so that DI gets the full quality film plate back *as if it were filmed that way*. DI can then seamlessly insert it back into the conform, and color grade everything together. This ensures that the master contains all the original camera data so it can accommodate any delivery medium or targeted display type. 
+# Offline Edit
 
-Many editing programs (for example Premiere Pro) lack the ability to properly process and display these scene-referred files. Therefore the common practice is for VFX to deliver both the wide gamut high dynamic range files to the conform and DI, and also deliver display-encoded proxy media to (offline) editorial. Typically this would be Prores or DNxHD files in Rec709 color space, which is the standard for broadcast HDTV. This workflow is shown in the diagram below. 
+Many editing programs (for example Premiere Pro) lack the ability to properly process and display these scene-referred files. For example, this is what footage from an ARRI camera looks like in Premiere. Note the washed out look. This is because Premiere is incorrectly displaying the image in its camera native log color space.
+
+<img src="img/premiereB10.jpg">
+
+Images are not meant to be viewed in log, rather log is a method to store the full dynamic range of the image as discussed above. Below you can see the way the image looks with the ARRI classic K1S1 LUT for Rec709 applied to it.
+
+<img src="img/premiereB9.jpg">
+
+For this reason, a preferred workflow is an offline edit. This involves the shots from set dailies being written out from a program like Davinci Resolve 
+as display-encoded proxy media with the look baked into them, and for these to be sent to (offline) editorial. Typically this would be Prores or DNxHD files in Rec709 color space, which is the standard for broadcast HDTV. Editorial works with these proxy files, which looks great, and then later in the conform these proxy file are swapped out for the camera RAW files for finalling. This workflow is shown in the diagram below. 
 
 <p align="center">
 <img src="img/pipeline.jpg">
 </p>
 
-Our preferred format for these scene-referred files is ACES, the Academy Color Encoding System. If you are unfamiliar with ACES, [this video](https://www.youtube.com/watch?v=vdmFjFoE2YA&list=PLsJrJgQkAdTnNB5sbmkRLZaZkcd63W8Nb&index=8), created by Netflix Studios, offers a great overview of the advantages of an ACES color managed workflow for filmmakers. Specifically for VFX work, the two main reasons we use ACES are quality and control. First, ACES ensures that your film footage stays at the absolute highest dynamic range and color fidelity. As shown in the graphic below, the ACES interchange format, known as ACES2065-1 (AP0) has a wide gamut color space that contains every color visible to the human eye, meaning it can accommodate any delivery medium or targeted display type, now and into the future. 
+The advantage of this workflow is that it preserves the image integrity of the master, while allowing filmmakers to view their movie in the edit as they intend for it to look. 
+
+# ACES and the OpenEXR image format
+
+For a VFX pull, the camera RAW files need to be debayerd and saved out in a format that preserves the full quality and dynamic range of the original camera RAW files in scene-referred space. The basic idea is that VFX returns the ungraded plate to DI, with the VFX added, returning the full quality film plate back *as if it were filmed that way*. This ensures that the master contains all the original camera data so it can accommodate any delivery medium or targeted display type. 
+
+Our preferred format for these scene-referred files is ACES, the Academy Color Encoding System. Specifically for VFX work, the two main reasons we use ACES are quality and control. First, ACES ensures that your film footage stays at the absolute highest dynamic range and color fidelity. As shown in the graphic below, the ACES interchange format, known as ACES2065-1 (AP0) has a wide gamut color space that contains every color visible to the human eye, meaning it can accommodate any delivery medium or targeted display type, now and into the future. 
 
 <p align="center">
 <img src="img/gamuts.jpg">
 </p>
 
 Additionally, these files are 16-bit float with a dynamic range of over 30 exposure stops. As a point of comparison, the most of any digital cinema camera RAW file is 15 stops. So ACES files far exceed the dynamic range of any camera RAW file, at a file size that is smaller than a DPX! The second benefit is consistency and control. Unlike DPX files, which can have any number of log color spaces with no way of knowing which one you have, because the ACES image format represents an industry (SMPTE) standard, the whole image pipeline is controlled and managed, taking out the guesswork and avoiding mistakes and chaos when passing images between facilities.
+
 
 # <a name="require"></a>VFX Pull Requirements
 
