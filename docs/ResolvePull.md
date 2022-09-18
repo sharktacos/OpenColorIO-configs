@@ -59,9 +59,13 @@ When rendering images in display color spaces, such as those required for IMF Ma
  
 **VFX Pulls**
 
- - **Set color space to ACES2065 (AP0)** This done in Resolve by disabling the ACES Output Transform in order to output ACES AP0/Linear data as shown below. This puts the clip in ACES2065-1 used for interchange if images between facilities or softwares in an ACES pipeline, such as VFX plates. Disabling the Output Transform will display your footage in scene-linear color space, which will appear dark. This is expected. 
-
+ - **Set color space to ACES2065 (AP0)** This done in Resolve by disabling the ACES Output Transform (setting it to "No Output Transorm") as shown below.
+ 
 ![img](img/Netflix5.jpg)
+
+This puts the clip in ACES2065-1 used for interchange if images between facilities or softwares in an ACES pipeline, such as VFX plates.
+
+**Note:** This will make the image appear dark. This is expected, as you are viewing the image in scene-linear ACES2065-1 without the output transform. This scene-linear data is what needs to be used for interchange so that all of dynamics range and wide color gamut of the raw camera data is preserved.
 
  - **Disable all grades** To disable the grade for your VFX render, the **Enable Flat Pass** option on the **Deliver** page can be used. See screenshot from the DaVinci Resolve Manual below. The basic idea is that VFX returns the ungraded plate to DI, with the VFX added, so that DI gets the full quality film plate back *as if it were filmed that way*. DI can then seamlessly insert it back into the conform and color grade everything together. 
 
