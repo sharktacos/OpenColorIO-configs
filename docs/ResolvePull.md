@@ -35,13 +35,13 @@ Notes:
 
 By default, for RAW clips, Resolve will automatically debayer images into ACES and you should see a normal looking image. 
 
-For non-RAW formats (such as MXF, DPX, ProRes, XAVC, etc), Resolve may not automatically detect the color space, and read the footage in with the native camera log color space. An indication of this is if your image looks washed out, which is typical of log footage. 
+For non-RAW formats (such as MXF, DPX, ProRes, XAVC, etc), Resolve may not automatically detect the color space, and read the footage in with the native camera log color space. An indication of this is if your image looks washed out, which is typical of log footage. Here we see an example of ARRI footage saved as ProRes 4444. It's pretty easy to recognize that the image is overly bright and washed out:
 
-In such cases you will need to manually select your ACES Input Device Transform (IDT). You can do this by right-clicking on a shot or group of shots in the Media Pool, as shown in the screenshot below. 
+![img](img/Resolve8.jpg)
 
-*Example: you shot XAVC on the Sony F55 using the SLog3-SGamut3.CINE color space, and bring these clips into the Media Pool. Resolve is not able to recognize this based on the metadata, so you must manually select “Sony SLog3 SGamut3CINE” from the ACES Input Device Transform dropdown list.*
+In such cases you will need to manually select your ACES Input Device Transform (IDT). You can do this by right-clicking on a shot or group of shots in the Media Pool, and setting the ACES input transform to the appropriate camera log color space. In this example ARRI LogC. 
 
-![img](img/Netflix3.jpg)
+![img](img/Resolve9.jpg)
 
 You may also set your Project to *default* to a specific ACES Input Device Transform. This may be handy if the majority of your clips will be in a common color space and cannot be auto-detected. 
 
@@ -55,13 +55,19 @@ When you are ready to render your deliverables, open up the Deliver page.
  
 **IMF Master, Video Display Master (VDM) or Quicktime references**
 
-When rendering images in display color spaces, such as those required for IMF Master deliverables, a VDM source for IMF creation, or Quicktime references, make sure your ACES Output Transform is enabled and matches the intended display type. For example if sending clips to editorial for offline editing of proxy media viewed on a broadcast reference monitor, the Output Transform would be set to "Rec709" (HDTV). If sending clips to VFX as reference the Output Transform would be set to "sRGB" for display on a computer monitor.
+When rendering images in display color spaces, such as those required for IMF Master deliverables, a VDM source for IMF creation, or Quicktime references, make sure your ACES Output Transform is enabled and matches the intended display type. For example if sending clips to editorial for offline editing of proxy media viewed on a broadcast reference monitor, the Output Transform would be set to "Rec709" (HDTV). If sending clips to VFX as reference the Output Transform would likewise be set to Rec709.
  
 **VFX Pulls**
 
- - **Set color space to ACES2065 (AP0)** This done in Resolve by disabling the ACES Output Transform in order to output ACES AP0/Linear data as shown below. This puts the clip in ACES2065-1 used for interchange if images between facilities or softwares in an ACES pipeline, such as VFX plates. Disabling the Output Transform will display your footage in scene-linear color space, which will appear dark. This is expected. 
-
+ - **Set color space to ACES2065 (AP0)** This done in Resolve by disabling the ACES Output Transform (setting it to "No Output Transorm") as shown below.
+ 
 ![img](img/Netflix5.jpg)
+
+This puts the clip in ACES2065-1 used for interchange if images between facilities or softwares in an ACES pipeline, such as VFX plates. This will make the image appear dark, as we can see with our example ARRI footage:
+
+![img](img/Resolve10.jpg)
+
+This is expected, as you are viewing the image in scene-linear ACES2065-1 without the output transform. This scene-linear data is what needs to be used for interchange so that all of dynamics range and wide color gamut of the raw camera data is preserved.
 
  - **Disable all grades** To disable the grade for your VFX render, the **Enable Flat Pass** option on the **Deliver** page can be used. See screenshot from the DaVinci Resolve Manual below. The basic idea is that VFX returns the ungraded plate to DI, with the VFX added, so that DI gets the full quality film plate back *as if it were filmed that way*. DI can then seamlessly insert it back into the conform and color grade everything together. 
 
