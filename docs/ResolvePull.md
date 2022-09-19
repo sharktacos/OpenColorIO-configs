@@ -91,7 +91,9 @@ Ensure you have the following render settings:
 
 *Tip: The setting ‘Force debayer to highest quality’  will automatically select what Resolve considers to be the highest debayering quality for each RAW file on the timeline. This may differ from your own findings. Please feel free to select your preferred debayering algorithm instead, and untick this option if you prefer.*
 
+**Reference Quicktimes**
 
+For the reference Quicktime movie everything that was turned off for the VFX pull above should be turned back on. The Output Transform should be set back to Rec709, the grades (if any) should be enabled. In other words, the Quicktime is a reference of how the image should look. An MP4 works great for these files as it keeps the file size down. Also the resolution can be set to a max of 1080 HD for the reference Quicktime.
 
 
 [Back to VFX Pulls](VFXpulls.md)
