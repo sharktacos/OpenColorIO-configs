@@ -32,13 +32,13 @@ The guide below will walk you through the process:
   - *A reference quicktime for checking color against existing dailies.* <br> See the above *VFX Pulls with Resolve* link for details.
   - *A "shot LUT" to achieve dailies color, along with the working color space.* <br> Note that this assumes you have shot LUTs from on set dailies. Some productions do not. In Resolve the "generate LUT" command can be used to export all enabled color grades, both in the timeline and the clip, including any CDLs, all into a single *Shot LUT* for VFX to use. The LUT's working color space, i.e. the color space it was created in, should be noted in the file name, (for example ````shot01_ACEScct.cube```` for Resolve). VFX needs to know this in order to properly process the LUT in comp.
 
-**VFX integration tools
+**VFX integration tools**
 
 If integrating CG elemenent into a shot it's helpful to have a frame for the shot with a MacBeth color checker. This is used to calibrate our CG render's color gamut to match the white balence and color characteristics of your camera.
 
-[img](img/Macbeth.jpg
+[img](img/Macbeth.jpg)
 
-Additionally, here is the [Weta Digital guide to shooting HDR panoramas](https://www.fxguide.com/fxfeatured/the-definitive-weta-digital-guide-to-ibl/) that we will need for image based lighting. This is typically done by the onset VFX supervisor. 
+Additionally, here is the [Weta Digital IBL Video](https://www.fxguide.com/fxfeatured/the-definitive-weta-digital-guide-to-ibl/) that we will need for capturing HDR panoramas used for image based lighting (IBL). This is typically done by the onset VFX supervisor. 
 
 # <a name="vfx-deliver"></a>VFX Delivery
 
