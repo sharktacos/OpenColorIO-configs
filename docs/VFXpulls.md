@@ -16,6 +16,7 @@ Additionally, these are 16-bit float files with a dynamic range of over 30 expos
 
 **Debayering to OpenEXR.** VFX pulls should be debayered from the original RAW camera files and exported in the ACES file interchange format (ACES2065-1) with PIZ lossless compression. 
 
+ - Resolution: UHD 4k is the maximum resolution we can accomidate at this time. If you need to have a larger size then please discuss this with us.
  - Format: OpenEXR 16-bit half float
  - Compression: PIZ lossless compression
  - Color Space: ACES2065-1 (AP0)
