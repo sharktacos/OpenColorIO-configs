@@ -34,7 +34,7 @@ The guide below will walk you through the process:
 
 **VFX integration tools**
 
-If integrating CG elemenent into a shot it's helpful to have a frame for the shot with a MacBeth color checker. This is used to calibrate our CG render's color gamut to match the white balence and color characteristics of your camera.
+If integrating CG elemenent into a shot it's helpful to have a frame for the shot with a *MacBeth color checker*. This is used to calibrate our CG render's color gamut to match the white balence and color characteristics of your camera.
 
 [img](img/Macbeth.jpg)
 
