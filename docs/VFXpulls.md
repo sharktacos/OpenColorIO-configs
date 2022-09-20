@@ -36,7 +36,9 @@ The guide below will walk you through the process:
 
 If integrating CG elemenent into a shot it's helpful to have a frame for the shot with a *MacBeth color checker*. This is used to calibrate our CG render's color gamut to match the white balence and color characteristics of your camera.
 
-[img](img/Macbeth.jpg)
+<p align="center">
+<img src="img/Macbeth.jpg">
+</p>
 
 Additionally, here is the [Weta Digital IBL Video](https://www.fxguide.com/fxfeatured/the-definitive-weta-digital-guide-to-ibl/) that we will need for capturing HDR panoramas used for image based lighting (IBL). This is typically done by the onset VFX supervisor. 
 
