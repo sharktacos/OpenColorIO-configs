@@ -82,7 +82,7 @@ Ensure you have the following render settings:
  - **Render:** 	Single Clip
  - **File Type:** 	EXR
  - **Codec:** 	RGB half, PIZ lossless compression (note: this is 16-bit half float)
- - **Render Resolution:** 	Equal to the scene’s Working Format
+ - **Render Resolution:** 	UHD 4k is the maximum resolution we can accomidate at this time.
  - **ACES Output Device Transform (in Project Settings):** 	No Output Transform (ACES2065-1)
  - **Apply ACES Referece Gamut Compress (in Project Settings):** OFF
  - **Enable Flat Pass:** 	Always On
