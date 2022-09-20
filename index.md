@@ -5,7 +5,7 @@ OCIO Configs are provided for an ACES workflow for both [CG Animation and VFX pi
 
 ## VFX Pulls
 
-Check out requirements for [VFX Pulls](docs/VFXpulls.md), as well as an overview of ACES color management for the indie filmmaker! Included are detailed instructions of how to do a VFX Pull in DaVinci Resolve.
+Check out the [VFX Pulls](docs/VFXpulls.md), page for requirements, as well as an overview of ACES color management for the indie filmmaker! Included are detailed instructions of how to do a VFX Pull in DaVinci Resolve.
 
 
 ## AcesNext
