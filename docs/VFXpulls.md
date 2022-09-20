@@ -16,7 +16,7 @@ Additionally, these are 16-bit float files with a dynamic range of over 30 expos
 
 **Debayering to OpenEXR.** VFX pulls should be debayered from the original RAW camera files and exported in the ACES file interchange format (ACES2065-1) with PIZ lossless compression. 
 
- - Resolution: UHD 4k is the maximum resolution we can accomidate at this time. If you need to have a larger size then please discuss this with us.
+ - Resolution: UHD 4k is the maximum resolution we can accomidate at this time.
  - Format: OpenEXR 16-bit half float
  - Compression: PIZ lossless compression
  - Color Space: ACES2065-1 (AP0)
@@ -29,8 +29,16 @@ The guide below will walk you through the process:
  - [VFX Pulls with Resolve](ResolvePull.md)
 
 **Color Reference and LUTs.** VFX pulls should include:
-  - *A reference frame for checking color against existing dailies.* <br>This should be an 8-bit JPG or PNG in sRGB color space. A screengrab works fine.
-  - *A "shot LUT" to achieve dailies color, along with the working color space.* <br>In Resolve the "generate LUT" command can be used to export all enabled color grades, both in the timeline and the clip, including any CDLs, all into a single *Shot LUT* for VFX to use. The LUT's working color space, i.e. the color space it was created in, should be noted in the file name, (for example ````shot01_ACEScct.cube```` for Resolve). VFX needs to know this in order to properly process the LUT in comp.
+  - *A reference quicktime for checking color against existing dailies.* <br> See the above *VFX Pulls with Resolve* link for details.
+  - *A "shot LUT" to achieve dailies color, along with the working color space.* <br> Note that this assumes you have shot LUTs from on set dailies. Some productions do not. In Resolve the "generate LUT" command can be used to export all enabled color grades, both in the timeline and the clip, including any CDLs, all into a single *Shot LUT* for VFX to use. The LUT's working color space, i.e. the color space it was created in, should be noted in the file name, (for example ````shot01_ACEScct.cube```` for Resolve). VFX needs to know this in order to properly process the LUT in comp.
+
+**VFX integration tools
+
+If integrating CG elemenent into a shot it's helpful to have a frame for the shot with a MacBeth color checker. This is used to calibrate our CG render's color gamut to match the white balence and color characteristics of your camera.
+
+[img](img/Macbeth.jpg
+
+Additionally, here is the [Weta Digital guide to shooting HDR panoramas](https://www.fxguide.com/fxfeatured/the-definitive-weta-digital-guide-to-ibl/) that we will need for image based lighting. This is typically done by the onset VFX supervisor. 
 
 # <a name="vfx-deliver"></a>VFX Delivery
 
