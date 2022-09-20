@@ -40,7 +40,7 @@ The guide below will walk you through the process:
 <img src="img/Macbeth.jpg">
 </p>
 
- - **HDR Panorama camture** Here's the [Weta Digital IBL Video](https://www.fxguide.com/fxfeatured/the-definitive-weta-digital-guide-to-ibl/) that covers the process for capturing HDR panoramas used for image based lighting (IBL). Note this is typically done by the on set VFX supervisor. 
+ - **HDR Panorama capture** Here's the [Weta Digital IBL Video](https://www.fxguide.com/fxfeatured/the-definitive-weta-digital-guide-to-ibl/) that covers the process for capturing HDR panoramas used for image based lighting (IBL). Note this is typically done by the on set VFX supervisor. 
 
 # <a name="vfx-deliver"></a>VFX Delivery
 
