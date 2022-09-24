@@ -56,7 +56,7 @@ roles:
   substance_3d_painter_substance_material: Color sRGB Texture
   
 
-  mari_monitor: Low Contrast Look - RGC (Gamma 2.2)
+  mari_monitor: ACES 1.0 SDR-video (Gamma 2.2)
   mari_scaler_monitor: Raw
   mari_color_picker: hdr 
   mari_blending: Raw 
@@ -79,7 +79,7 @@ shared_views:
 
   - !<View> {name: ACES 1.0 - SDR-video - RGC, view_transform: SDR Video - ACES 1.0, looks: LMT_gamut, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: ACES 1.0 - SDR-video, view_transform: SDR Video - ACES 1.0, display_colorspace: <USE_DISPLAY_NAME>}
-  - !<View> {name: RED IPP2 Look, view_transform: SDR Video - ACES 1.0, looks: "LMT_gamut, ACESLooks LMT - RED IPP2 Look", display_colorspace: <USE_DISPLAY_NAME>} 
+  - !<View> {name: RED IPP2 Look, view_transform: SDR Video - ACES 1.0, looks: "RedExp, LMT_gamut, ACESLooks LMT - RED IPP2 Look", display_colorspace: <USE_DISPLAY_NAME>} 
   - !<View> {name: Neutral Look - RGC, view_transform: SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_neutral", display_colorspace: <USE_DISPLAY_NAME>}  
   - !<View> {name: Low Contrast Look - RGC, view_transform: SDR Video - ACES 1.0, looks: "LMT_gamut, LowContrastCDL", display_colorspace: <USE_DISPLAY_NAME>} 
 
