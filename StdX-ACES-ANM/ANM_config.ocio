@@ -79,7 +79,7 @@ shared_views:
 
   - !<View> {name: ACES 1.0 - SDR-video - RGC, view_transform: SDR Video - ACES 1.0, looks: LMT_gamut, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: ACES 1.0 - SDR-video, view_transform: SDR Video - ACES 1.0, display_colorspace: <USE_DISPLAY_NAME>}
-  - !<View> {name: RED IPP2 Look, view_transform: SDR Video - ACES 1.0, looks: "RedExp, LMT_gamut, ACESLooks LMT - RED IPP2 Look", display_colorspace: <USE_DISPLAY_NAME>} 
+  - !<View> {name: RED IPP2 Look - RGC, view_transform: SDR Video - ACES 1.0, looks: "RedExp, LMT_gamut, ACESLooks LMT - RED IPP2 Look", display_colorspace: <USE_DISPLAY_NAME>} 
   - !<View> {name: Neutral Look - RGC, view_transform: SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_neutral", display_colorspace: <USE_DISPLAY_NAME>}  
   - !<View> {name: Low Contrast Look - RGC, view_transform: SDR Video - ACES 1.0, looks: "LMT_gamut, LowContrastCDL", display_colorspace: <USE_DISPLAY_NAME>} 
 
@@ -97,13 +97,13 @@ shared_views:
 displays:
 
   Gamma 2.2:
-    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Low Contrast Look - RGC", "Neutral Look - RGC", "Shot Look - RGC", "Show Look - RGC", RED IPP2 Look, Un-tone-mapped]
+    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Low Contrast Look - RGC", "Neutral Look - RGC", "Shot Look - RGC", "Show Look - RGC", RED IPP2 Look - RGC, Un-tone-mapped]
   Apple Display P3:
-    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "P3-500 nits - HDR-video", "P3-1000 nits - HDR-video", "Low Contrast Look - RGC", "Neutral Look - RGC", RED IPP2 Look,  Un-tone-mapped]
+    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "P3-500 nits - HDR-video", "P3-1000 nits - HDR-video", RED IPP2 Look - RGC, Show Look - RGC, Un-tone-mapped]
   DCI-P3 D65:
     - !<Views> ["ACES 1.0 - SDR-video", "P3-500 nits - HDR-video", "P3-1000 nits - HDR-video", "Low Contrast Look - RGC", "Neutral Look - RGC", "Shot Look - RGC", "Show Look - RGC", Un-tone-mapped]
   Rec709:
-    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Low Contrast Look - RGC", "Shot Look - RGC", "Show Look - RGC", RED IPP2 Look, Un-tone-mapped]
+    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Low Contrast Look - RGC", "Shot Look - RGC", "Show Look - RGC", RED IPP2 Look - RGC, Un-tone-mapped]
   USE ONLY FOR CHECKING COMPS:
     - !<View> {name: Log, colorspace: camera_log}
   USE ONLY FOR CHECKING RENDERS:
@@ -114,8 +114,8 @@ displays:
 
 #-- ANM config:
 
-active_displays: [Gamma 2.2, "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS"]
-active_views: [RED IPP2 Look, "ACES 1.0 - SDR-video - RGC", Show Look, Log, Raw]
+active_displays: [Gamma 2.2, Apple Display P3, "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS"]
+active_views: [RED IPP2 Look - RGC, "ACES 1.0 - SDR-video - RGC", Show Look - RGC, Log, Raw]
 inactive_colorspaces: [CIE-XYZ D65, Gamut Shaper, DCI-P3 D65, ST2084-P3-D65, P3-D65, Pick Rec709-sRGB Desat, Shot_shaper, "Shot Look - RGC (Gamma 2.2)", "Shot Look - RGC (Rec709)", "ACES 1.0 SDR-video (Rec709)", "DPX Shot Look (Non-Color Managed)", "Gamma 2.2", "Rec709", "Apple Display P3", Low Contrast Look - RGC (Gamma 2.2), Neutral Look - RGC (Gamma 2.2), RED IPP2 Look (Rec709), camera_log]
 
 
@@ -404,13 +404,13 @@ colorspaces:
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
-    name: RED IPP2 Look (Gamma 2.2)
+    name: RED IPP2 Look - RGC (Gamma 2.2)
     family: Baked View Output
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "RED IPP2 Look"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2", view: "RED IPP2 Look - RGC"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
