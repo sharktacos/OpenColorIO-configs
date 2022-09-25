@@ -51,7 +51,7 @@ Finally, observe how the client film footage is returned in the same color space
 
 ### Non-color managed show using DPX footage (in this example from an ARRI camera)
 
-Our final example is where a client is not working color managed, but instead using the older DPX workflow. This would not be an ACES complient show, because the film footage coming in and going out is in DPX. However, we need to work in ACES in order to integrate the CG using physically based rendering. IOn this example for footage shot on an ARRI camera, the view transform (as well as the dailies proxy output) uses the ARRI's classic DRT called K1S1, which the client can also use as a LUT (available on the ARRI website). 
+Our final example is where a client is not working color managed, but instead using the older DPX workflow. This would not be an ACES complient show, because the film footage coming in and going out is in DPX. However, we need to work in ACES in order to integrate the CG using physically based rendering. In this example our footage shot on an ARRI camera, so the view transform (as well as the dailies proxy output) uses the ARRI's classic DRT called K1S1, which the client can also use as a LUT (available on the ARRI website) for use in an offline editing program like Premiere. 
 
 ![nk](img/ACESpipeline_DPX2A.jpg)
 
