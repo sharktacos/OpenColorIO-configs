@@ -10,12 +10,14 @@ All View Transforms in the ANM config contain the ACES [Referrence Gamut Compres
 
 ### View Transforms
 
+- **Show Look - RGC** <br> Look transform for the show specific look LUT decided on by the director for the ANM config. See "Defining Shot & Show LUT contextual variables" below for setup.
 - **ACES 1.0 SDR - RGC** <br> The standard ACES [tone mapping](tonemap.md) with added RGC (see above). 
 - **RED IPP2 Look** <br> The RED IPP2 display rendering transform implemented as an LMT. Additionally includes the RGC (see above), as well as exposure to match the levels of the ACES transform. The reason for using this transform is because it does a nicer job reproducing colors. Observe the differences in the following exposure sweeps of sRGB/Rec709 primaries. Note in particular how with ACES 1.0 RRT, the red skews into orange, and the blue skews into magenta with increased exposure, whereas the RED IPP2 does a much better job maintaining the hues in comparison.
 
-![img](img/ACESvIPP2.1.png) 
+<div style="text-align: center;">
+<img src="img/ACESvIPP2.1.png"  width="50%"> 
+</div>
 
-- **Show Look - RGC** <br> Look transform for the show specific look LUT decided on by the director for the ANM config. See "Shot LUTs" below for setup.
 
 ### Display Transforms
 In OCIO, a View Transform is paired with a Display Transform corresponding to the display it is being viewed on. As you can see in the image above, in Nuke these are all in a single drop-down menu with the display listed in parenthesis after the view. In Maya, the View and Display are separate drop-downs.
