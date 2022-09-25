@@ -59,6 +59,21 @@ Observe how again the CG input and output is in ACEScg, and the film footage is 
 
 ![nk](img/ACESpipeline_DPX2C.jpg)
 
+### input/output color spaces
+
+In summary then, it's critical to know the proper transforms to use for input, output and viewing.
+
+**Input**:
+- CG renders: Always ACEScg
+- Film footage: ACES2065-1 for an ACES show, DPX for legacy pipeline (make sure you know the camera used to determine the log space)
+- Matte Paintings
+- Graphics 
+
+**Output**:
+- Baked View (dailies proxy): Same as the view transform
+- Final Delivery: Same as recieved film footage
+- CG plates: Always ACEScg
+
 ## Gamut Compression and Nuke
 
 For an intro into Gamut Compression and what it is and why you need it, Check out the [gamut compression](gamut.md) doc for details and pretty pics. To use the Reference Gamut Compression node in Nuke copy the [Gizmo](../StdX_ACES/software/Nuke) located in the ```software/Nuke``` folder of the config into your *.nuke* folder (located in the home directory of your computer) and add the following to your menu.py file. 
