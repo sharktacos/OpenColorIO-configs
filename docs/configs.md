@@ -42,7 +42,7 @@ As noted above, in a VFX pipeline [gamut compression](Nuke.md#gamut-compression-
 Standard ACES Output Transform:
 - **ACES 1.0 SDR-video** <br> The standard ACES RRT [tone mapping](tonemap.md)
 
-ACES with ASC-CDL modifications:
+ACES with ASC-CDL (American Society of Cinematographers Color Decision List) modifications:
 - **Low Contrast** <br> An ASC CDL transform lowering contrast by 85% to give a more neutral look often preferred as a starting point for grading. Because this is an ASC CDL transform, this can easily be given to a client an applied in other color correction programs.
 - **Low Contrast +1 stop** <br> Low Contrast Look Transform with +1 exposure stop.
 - **Low Contrast +2 stops** <br> Low Contrast Look Transform with +2 exposure stops.
