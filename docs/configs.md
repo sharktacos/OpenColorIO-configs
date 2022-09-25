@@ -49,11 +49,15 @@ As noted above, in a VFX pipeline [gamut compression](Nuke.md#gamut-compression-
 
 It is common in many larger productions to use ACES for input and interchange format, but to not use the ACES output transform, instead preferring to use the DRT (display rendering transform) of popular camera vendors such as the ARRI K1S1. This is done by inverting the ACES output transform, essentially disabling it, and replacing it with the camera DRT. 
 
-![img](img/LMT1.png)
+![img](img/LMT1.jpg)
 
-This is problematic as it defeats one of the core goals of the ACES project. Instead the intended workflow is to use a Look Transform in front of the ACES output transform which modifies it to look as desired. This is exactly what these four camera Look transforms do (ARRI ALF-2, ARRI K1S1, RED IPP2, Sony S-gamut3 Cine), meaning clients can have the desired look of the K1S1 DRT, and still have the show be ACES compliant.
+This is problematic as it defeats one of the core goals of the ACES project. Instead the intended workflow is to use a Look Transform in front of the ACES output transform which modifies it to look as desired. 
 
-![img](img/LMT1.png)
+![img](img/LMT1.jpg)
+
+This is exactly what these four camera Look transforms do (ARRI ALF-2, ARRI K1S1, RED IPP2, Sony S-gamut3 Cine), meaning clients can have the desired look of the K1S1 DRT, and still have the show be ACES compliant.
+
+
 
 
 ### Display Transforms
