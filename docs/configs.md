@@ -53,7 +53,7 @@ It is common in many larger productions to use ACES for input and interchange fo
 
 This is problematic as it defeats one of the core goals of the ACES project. Instead the intended workflow is to use a Look Transform in front of the ACES output transform which modifies it to look as desired. 
 
-![img](img/LMT1.jpg)
+![img](img/LMT2.jpg)
 
 This is exactly what these four camera Look transforms do (ARRI ALF-2, ARRI K1S1, RED IPP2, Sony S-gamut3 Cine), meaning clients can have the desired look of the K1S1 DRT, and still have the show be ACES compliant.
 
