@@ -11,7 +11,7 @@ All View Transforms in the ANM config contain the ACES [Referrence Gamut Compres
 ### View Transforms
 
 - **ACES 1.0 SDR - RGC** <br> The standard ACES [tone mapping](tonemap.md) with added RGC (see above). 
-- **RED IPP2 Look** <br> The RED IPP2 display rendering transform implemented as an LMT. Additionally includes the RGC (see above), as well as exposure to match the levels of the ACES transform. The reason for using this transform is because it does a nicer job reproducing colors. Observe the differences in the following exposure sweeps. Note in particular how with ACES 1.0 RRT, the red collums skews into orange, and the blue skews into magenta, whereas in comparison the RED IPP2 does a much better job maintaining the hue.
+- **RED IPP2 Look** <br> The RED IPP2 display rendering transform implemented as an LMT. Additionally includes the RGC (see above), as well as exposure to match the levels of the ACES transform. The reason for using this transform is because it does a nicer job reproducing colors. Observe the differences in the following exposure sweeps. Note in particular how with ACES 1.0 RRT, the red collums skews into orange, and the blue skews into magenta with increased exposure, whereas the RED IPP2 does a much better job maintaining the hue in comparison.
 
 ![img](img/ACESvIPP2.1.png) 
 
