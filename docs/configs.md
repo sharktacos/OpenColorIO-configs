@@ -11,16 +11,16 @@ All View Transforms in the ANM config contain the ACES [Referrence Gamut Compres
 ### View Transforms
 
 - **ACES 1.0 SDR - RGC** <br> The standard ACES [tone mapping](tonemap.md) with added RGC (see above). 
-- **RED IPP2 Look** <br> The RED IPP2 display rendering transform implemented as an LMT. Additionally includes the RGC (see above), as well as exposure to match the levels of the ACES transform. The reason for using this transform is because it does a nicer job reproducing colors. Observe the differences in the following exposure sweeps. Note in particular how with ACES 1.0 RRT, the red collums skews into orange, and the blue skews into magenta with increased exposure, whereas the RED IPP2 does a much better job maintaining the hue in comparison.
+- **RED IPP2 Look** <br> The RED IPP2 display rendering transform implemented as an LMT. Additionally includes the RGC (see above), as well as exposure to match the levels of the ACES transform. The reason for using this transform is because it does a nicer job reproducing colors. Observe the differences in the following exposure sweeps of sRGB/Rec709 primaries. Note in particular how with ACES 1.0 RRT, the red skews into orange, and the blue skews into magenta with increased exposure, whereas the RED IPP2 does a much better job maintaining the hues in comparison.
 
 ![img](img/ACESvIPP2.1.png) 
 
 - **Show Look - RGC** <br> Look transform for the show specific look LUT decided on by the director for the ANM config. See "Shot LUTs" below for setup.
 
 ### Display Transforms
-In OCIO, a View Transform is paired with a Display Transform corresponding to the display it is being viewed on. As you can see in the image above, in Nuke these are all in a single drop-down menu with the display listed in parenthesis after the view. In Maya, the View and Display are seperate drop-downs.
+In OCIO, a View Transform is paired with a Display Transform corresponding to the display it is being viewed on. As you can see in the image above, in Nuke these are all in a single drop-down menu with the display listed in parenthesis after the view. In Maya, the View and Display are separate drop-downs.
 
-- **Gamma 2.0** <br> For viewing on artist's computer monitors. This uses the pure gamma 2.2, rather than the piece-wise sRGB EOTF. If an image is encoded for a 2.2 display, but shown on a piece-wise sRGB display in can appear a bit low contrast. Conversely if an image is encoded for a piece-wsie sRGB display, but shown on a pure gamma 2.2 display the shadows will appear crushed. Since there is no way to control the calibration of a viewers computer monitor, best practice is for artists  to work in pure gamma 2.2.
+- **Gamma 2.0** <br> For viewing on artist's computer monitors. This uses the pure gamma 2.2, rather than the piece-wise sRGB EOTF. If an image is encoded for a 2.2 display, but shown on a piece-wise sRGB display in can appear a bit low contrast. Conversely if an image is encoded for a piece-wise sRGB display, but shown on a pure gamma 2.2 display the shadows will appear crushed. Since there is no way to control the calibration of a viewers computer monitor, best practice is for artists  to work in pure gamma 2.2.
 - **Apple Display P3** <br> Display transform for the MacBookPro M1 XDR display in the wider P3 gamut used for film with a pure 2.2 gamma. This display transform also contains options for HDR display.
 
 The remaining view transforms are the same as the default Maya 2022 config and are used for diagnostic purposes.
@@ -37,28 +37,25 @@ As noted above, in a VFX pipeline [gamut compression](Nuke.md#gamut-compression-
 
 ### View Transforms
 
+Standard ACES Output Transform:
 - **ACES 1.0 SDR-video** <br> The standard ACES RRT [tone mapping](tonemap.md)
-- **Shot Look** <br> This view transform uses contextual variables to apply the shot-specific look LUT provided by the client to the view. The variables are defined in the config and can be set by the artist. See below.
-- **Low Contrast** <br> Same as the Low Constrast Look Transform in the ANM config above. Note that because this is based on an ASC CDL transform, thbis can easily be given to a client an applied in other color correction programs.
+
+ACES with ASC-CDL modifications:
+- **Low Contrast** <br> An ASC CDL transform lowering contrast by 85% to give a more neutral look often preferred as a starting point for grading. Because this is an ASC CDL transform, this can easily be given to a client an applied in other color correction programs.
 - **Low Contrast +1 stop** <br> Low Contrast Look Transform with +1 exposure stop.
 - **Low Contrast +2 stops** <br> Low Contrast Look Transform with +2 exposure stops.
+
+Client supplied looks:
+- **Shot Look** <br> This view transform uses contextual variables to apply the shot-specific look LUT provided by the client to the view. The variables are defined in the config and can be set by the artist. See "Defining Shot & Show LUT contextual variables" below for details.
+- **DPX Shot Look** for displaying client LUTS from a display-referred non-color managed pipeline. See "Defining Shot & Show LUT contextual variables" below for details.
+
+Camera vendor DRT as ACES Looks:
 - **ARRI ALF-2 Look** <br> An ACES compliant LMT emulating the look of the ARRI camera RRT of the same name.
 - **ARRI K1S1 Look** <br> An ACES compliant LMT emulating the look of the classic ARRI camera RRT of the same name.
 - **RED IPP2 Look** <br> An ACES compliant LMT emulating the look of the RED camera RRT of the same name.
 - **Sony S-gamut3 Cine Look** <br> An ACES compliant LMT emulating the look of the Sony camera RRT of the same name.
 
-It is common in many larger productions to use ACES for input and interchange format, but to not use the ACES output transform, instead preferring to use the DRT (display rendering transform) of popular camera vendors such as the ARRI K1S1. This is done by inverting the ACES output transform, essentially disabling it, and replacing it with the camera DRT. 
-
-![img](img/LMT1.jpg)
-
-This is problematic as it defeats one of the core goals of the ACES project. Instead the intended workflow is to use a Look Transform in front of the ACES output transform which modifies it to look as desired. 
-
-![img](img/LMT2.jpg)
-
-This is exactly what these four camera Look transforms do (ARRI ALF-2, ARRI K1S1, RED IPP2, Sony S-gamut3 Cine), meaning clients can have the desired look of the K1S1 DRT, and still have the show be ACES compliant.
-
-
-
+These are for clients who want to have an ACES compliant show, but with the look of popular camera vendor DRTs (display rendering transform) such as ARRI's classic K1S1.
 
 ### Display Transforms
 
@@ -72,12 +69,11 @@ There are again transforms for diagnostic purposes.
 - **Log** For checking comps. This uses the camera log space defined in the contextual variable, described below.
 - **Raw** For checking renders
 
-And finally there is 
-- **DPX Shot Look** for displaying client LUTS from a display-referred non-color managed pipeline. See below.
+
 
 # Defining Shot & Show LUT contextual variables
 
-Both the **Show Look** from the ANM config and the **Shot Look** and **DPX Shot Look** view transforms from the VFX config use contextual variables to apply the shot-specific look LUT provided by the client to the view. The variables are defined in the config and can be set by the artist. **Shot Look** is intended for LUTs in an ACES pipline (the client is delivering EXR files in ACES2065-1 color space) and **DPX Shot Look** is for LUTs in a non-color managed display-referred pipeline (ther client is delivering DPX in the log space of the oroiginal camera raw).
+Both the **Show Look** from the ANM config and the **Shot Look** and **DPX Shot Look** view transforms from the VFX config use contextual variables to apply the shot-specific look LUT provided by the client to the view. The variables are defined in the config and can be set by the artist. **Shot Look** is intended for LUTs in an ACES pipeline (the client is delivering EXR files in ACES2065-1 color space) and **DPX Shot Look** is for LUTs in a non-color managed display-referred pipeline (the client is delivering DPX in the log space of the original camera raw).
 
 The config has the following section at the top.
 
