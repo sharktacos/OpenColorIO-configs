@@ -45,11 +45,11 @@ Next, notice that input CG as well as output CG is always in the ACEScg color sp
 
 ![nk](img/ACESpipeline_VFX2B.jpg) 
 
-Finally, observe how the client film footage is returned in the same color space as it was recieved. This is a core principle in VFX where the film footage is unchanged, other than to add the VFX on top, as if it was shot that way.
+Finally, observe how the client film footage is returned in the same color space as it was received. This is a core principle in VFX where the film footage is unchanged, other than to add the VFX on top, as if it was shot that way.
 
 ![nk](img/ACESpipeline_VFX2C.jpg) 
 
-In addition to these imnputs you may also have input images of graphics elements and matte paintings. For the graphics elements, where the idea is to incorporate the grapical elements into the plate as if it was shot that way (say a cornerpin monitor display in a space ship, or a poster on a wall) the approach would be the same as used for color texture maps in [Maya](Maya.md):
+In addition to these inputs you may also have input images of graphics elements and matte paintings. For graphics, where the idea is to incorporate graphical elements into the plate as if it was shot that way (say a cornerpin monitor display in a space ship, or a poster on a wall) the approach would be the same as used for color texture maps in [Maya](Maya.md) where 8-bit sRGB images such as JPG or PNG are read in with a Color sRGB texture input transform:
 
 <div style="text-align: center;">
 <img src="img/ACESpipeline_VFX2G.jpg"  width="70%"> 
