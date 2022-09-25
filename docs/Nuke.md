@@ -42,7 +42,7 @@ This is more complex as it it involves mutiple inputs and outputs. Notice that t
 
 This is intended for proxy media for an offline edit. Again the image sequence would be converted to a movie in Media Encoder. Because this is proxy media (i.e. a place-holder for the final image which are EXR files) you can use a movie codec like H.264 in a MP4 wrapper which will produce a nice quality image with a small file size. Alternately, if the client prefers Prores, then a Prores 4:2:2 Proxy should be fine. What you want to avoid is a massively huge format like Prores 4444 which is intended for storing the full range data directly from a camera in log, not for viewing.
 
-Notice also that input CG as well as output CG is always in the ACEScg color space. This is also the working space for all VFX software (Nuke, Maya, Houdini, Substance Painter, etc.)
+Next, notice that input CG as well as output CG is always in the ACEScg color space. This is also the working space for all VFX software (Nuke, Maya, Houdini, Substance Painter, etc.)
 
 ![nk](img/ACESpipeline_VFX2B.jpg) 
 
