@@ -59,7 +59,8 @@ For [matte paintings](Photoshop.md) the input transform would depend on the colo
 
 In summary then, it's critical to know the proper transforms to use for input, output and viewing. For ACES show most of these are constants:
 
-For an ACES show
+For an ACES show...
+
 **Input**:
 - CG renders: ACEScg
 - Film footage: ACES2065-1
