@@ -90,16 +90,9 @@ Observe how again the CG input and output is in ACEScg, and the film footage is 
 
 ## Gamut Compression and Nuke
 
-For an intro into Gamut Compression and what it is and why you need it, Check out the [gamut compression](gamut.md) doc for details and pretty pics. To use the Reference Gamut Compression node in Nuke copy the [Gizmo](../StdX_ACES/software/Nuke) located in the ```software/Nuke``` folder of the config into your *.nuke* folder (located in the home directory of your computer) and add the following to your menu.py file. 
-
-````
-toolbar = nuke.toolbar("Nodes")
-toolbar.addCommand( "Color/OCIO/ACES Ref Gamut Compress", "nuke.createNode('ACES_ref_gamut_compress')")
-````
-This adds an item labeled "ACES Ref Gamut Compress" to the Color/OCIO/ menu which creates an instance of the *ACES Reference Gamut Compression* node.
+For an intro into Gamut Compression and what it is and why you need it, Check out the [gamut compression](gamut.md) doc for details and pretty pics. To use the Reference Gamut Compression node in Nuke, this in included in my [studio tools for Nuke](https://github.com/sharktacos/VFX-software-prefs/blob/main/docs/Nuke.md).
 
 ![nk](img/Nuke3.png)
-
 
 Let's have a look at the Gamut Compression node in action in Nuke in the context of doing VFX work on film footage. We begin with some footage with colors that are out of gamut. 
 
