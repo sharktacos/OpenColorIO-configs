@@ -51,9 +51,11 @@ Finally, observe how the client film footage is returned in the same color space
 
 In addition to these imnputs you may also have input images of graphics elements and matte paintings. For the graphics elements, where the idea is to incorporate the grapical elements into the plate as if it was shot that way (say a cornerpin monitor display in a space ship, or a poster on a wall) the approach would be the same as used for color texture maps in [Maya](Maya.md):
 
-![nk](img/ACESpipeline_VFX2G.jpg)
+<div style="text-align: center;">
+<img src="img/ACESpipeline_VFX2G.jpg"  width="70%"> 
+</div>
 
-For [matte paintings](Photoshop.md) the input transform would depend on the color space that the image is in. Typlically for EXRs this would be ACEScg, for log files ACEScct. Good practice is to tag the file name with the color space. For example, ```shot01_matte_v01_cct.dpx```
+For [matte paintings](Photoshop.md) the input transform would depend on the color space that the image is in. Typlically for EXRs this would be ACEScg, and for log files ACEScct. Good practice is to tag the file name with the color space to remove the guesswork. For example, ```shot01_matte_v01_cct.dpx```
 
 ### Non-color managed show using DPX footage (in this example from an ARRI camera)
 
@@ -65,6 +67,7 @@ Observe how again the CG input and output is in ACEScg, and the film footage is 
 
 ![nk](img/ACESpipeline_DPX2C.jpg)
 
+  
 ### input/output color spaces
 
 In summary then, it's critical to know the proper transforms to use for input, output and viewing.
