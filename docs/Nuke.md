@@ -26,7 +26,7 @@ Based on the above understandings, let's look at the input and output  color pip
 
 ### ACES CG Animation pipeline
 
-There are a number of different view transforms in the [ANM config](configs.md) that produce different looks. The basic idea is to set the output transorm to match the view transform so your output will look the same as what you are viewing in Nuke. We output an image sequence, which we can then convert to a movie with Media Encoder. 
+There are a number of different view transforms in the [ANM config](configs.md) that produce different looks. The basic idea is to set the output transform to match the view transform so your output will look the same as what you are viewing in Nuke. We output an image sequence, which we can then convert to a movie with Media Encoder. 
 
 ![nk](img/ACESpipeline_ANM.jpg)
 
@@ -35,7 +35,7 @@ We are viewing on an sRGB monitor so the view transform is set to a gamma 2.2 di
 
 ### ACES VFX pipeline
 
-This is more complex as it it involves mutiple inputs and outputs. First, notice that the Dailies Proxy output uses the same "baked view" approach as the ANM color i/o above. 
+This is more complex as it it involves multiple inputs and outputs. First, notice that the Dailies Proxy output uses the same "baked view" approach as the ANM color i/o above. 
 
 ![nk](img/ACESpipeline_VFX2A.jpg)
 
@@ -67,7 +67,7 @@ In summary then, it's critical to know the proper transforms to use for input, o
 
 **Output**:
 - Baked View (dailies proxy): Same as the view transform
-- Final Delivery: Same as recieved film footage
+- Final Delivery: Same as received film footage
 - CG plates: ACEScg
 
 What is variable, and needs to be noted in the show guide, is the [view transform](config.md) used, which as discussed corresponds to dailies output. For clarity here we have a Nuke gizmo called [Write Dailies Sequence](https://github.com/sharktacos/VFX-software-prefs/blob/main/docs/Nuke.md) that automatically creates a burn-in text on the image documenting the shot name and output transform.
@@ -75,11 +75,11 @@ What is variable, and needs to be noted in the show guide, is the [view transfor
 
 ### Non-color managed show using DPX footage (in this example from an ARRI camera)
 
-Our final example is where a client is not working color managed, but instead using the older DPX workflow. This would not be an ACES complient show, because the film footage coming in and going out is in DPX. However, we need to work in ACES in order to integrate the CG using physically based rendering. In this example our footage shot on an ARRI camera, so the view transform (as well as the dailies proxy output) uses the ARRI's classic DRT called K1S1, which the client can also use as a LUT (available on the ARRI website) for use in an offline editing program like Premiere. 
+Our final example is where a client is not working color managed, but instead using the older DPX workflow. This would not be an ACES compliant show, because the film footage coming in and going out is in DPX. However, we need to work in ACES in order to integrate the CG using physically based rendering. In this example our footage shot on an ARRI camera, so the view transform (as well as the dailies proxy output) uses the ARRI's classic DRT called K1S1, which the client can also use as a LUT (available on the ARRI website) for use in an offline editing program like Premiere. 
 
 ![nk](img/ACESpipeline_DPX2A.jpg)
 
-Observe how again the CG input and output is in ACEScg, and the film footage is returned in the same color space as it was recieved.
+Observe how again the CG input and output is in ACEScg, and the film footage is returned in the same color space as it was received.
 
 ![nk](img/ACESpipeline_DPX2C.jpg)
 
