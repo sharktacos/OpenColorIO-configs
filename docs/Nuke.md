@@ -26,11 +26,11 @@ Based on the above understandings, let's look at the input and output  color pip
 
 ### ACES CG Animation pipeline
 
-There are a number of different view transforms in the ANM config that produce different looks. The idea is to set the output transorm to match the view transform so your output will look the same as what you are viewing in Nuke. We output an image sequence, which we can then convert to a movie with Media Encoder. 
+There are a number of different view transforms in the [ANM config](configs.md) that produce different looks. The basic idea is to set the output transorm to match the view transform so your output will look the same as what you are viewing in Nuke. We output an image sequence, which we can then convert to a movie with Media Encoder. 
 
 ![nk](img/ACESpipeline_ANM.jpg)
 
-We are viewing on an sRGB monitor so the view transform is set to a gamma 2.2 display. If this were going to be broadcast on a TV then we'd want to output in Rec709 like below in an
+We are viewing on an sRGB monitor so the view transform is set to a gamma 2.2 display. If this were going to be broadcasting this on a HDTV then we'd want to output in Rec709 like below in an
 
 
 ### ACES VFX pipeline
