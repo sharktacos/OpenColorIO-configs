@@ -48,14 +48,22 @@ VFX can deliver two types of files:
   - *High resolution ungraded OpenEXR files with VFX added are sent to DI for the final color grade and finishing.* <br>The EXR files are returned to DI in the same interchange format they were received: ACES2065-1 AP0. 
   - *Proxy media to editorial for inclusion in the offline edit.* <br> The ACES transform (as well as any client provided shot LUTs) are baked into the proxy media in the color space of the reference monitor used by editorial (typically Rec.709 with Rec.1886 gamma). Editorial should provide proxy media format requirements to VFX. There are a number of options here:
 
-## Proxy Output Transforms
   - *ACES 1.0 SDR (Rec709)* This is the standard ACES Output Transform for a Rec709 display.
   - *Low Contrast Look* The ACES look with lowered contrast of 0.85 using an ASC-CDL transform.
-  - *ARRI ALF-2 Look (Rec709)* An emulation of the ARRI ALF-2 Look. This is applied as an LMT so that the show remains ACES compliant.
-  - *ARRI K1S1 Look (Rec709)* An emulation of the ARRI classic K1S1 Look. This is applied as an LMT so that the show remains ACES compliant.
-  - *ARRI RED IPP2 Look (Rec709)* An emulation of the RED IPP2 Look. This is applied as an LMT so that the show remains ACES compliant.
+  - *ARRI ALF-2 Look (Rec709)* An emulation of the ARRI camera DRT of the same name. This is applied as an LMT so that the show remains ACES compliant.
+  - *ARRI K1S1 Look (Rec709)* An emulation of the classic ARRI camera DRT of the same name. This is applied as an LMT so that the show remains ACES compliant.
+  - *ARRI RED IPP2 Look (Rec709)* An emulation of the RED camera DRT of the same name. This is applied as an LMT so that the show remains ACES compliant.
+  - *Sony S-gamut3 Cine Look (Rec709)* An emulation of the Sony camera DRT of the same name. This is applied as an LMT so that the show remains ACES compliant.
 
-All of the above Look Transforms are available as CLF and DCTL files for use in an ACES workflow in programs such as Davinci Resolve. That is, they are ACES Look Transforms that allow the show to remain ACES compliant, and still have the desired DRT that colorists love to grade with, such as the ARRI K1S1.
+Regarding the above four camera Looks (ARRI ALF-2, ARRI K1S1, RED IPP2, Sony S-gamut3 Cine), it is common in many larger productions to use ACES for input and interchange format, but to not use the ACES output transform, instead preferring to use the DRT (display rendering transform) of popular camera vendors such as the ARRI K1S1. This is done by inverting the ACES output transform, essentially disabling it, and replacing it with the camera DRT. 
+
+![img](img/LMT1.jpg)
+
+This is problematic as it defeats one of the core goals of the ACES project. Instead the intended workflow is to use a Look Transform in front of the ACES output transform which modifies it to look as desired. 
+
+![img](img/LMT2.jpg)
+
+This is exactly what these four camera Look transforms do, meaning clients can have the desired look of the K1S1 DRT that colorists love to grade with, and still have the show remain ACES compliant. With that in mind, we can supply all of the these camera DRT Look Transforms as CLF and DCTL files for use in an ACES workflow in programs such as Davinci Resolve. 
 
 
 # Offline Edit
