@@ -8,7 +8,7 @@ The ANM config ````ANM_config.ocio```` is designed for work on CG animation shor
 
 ### View Transforms
 
-All View Transforms in the ANM config contain the ACES [Referrence Gamut Compression (RGC)](gamut.md) applied. Note that this is not the case for the VFX config below, where the RGC is applied as a comp node in Nuke.
+All View Transforms in the ANM config contain the ACES [Reference Gamut Compression (RGC)](gamut.md) applied. Note that this is not the case for the VFX config below, where the RGC is applied as a comp node in Nuke.
 
 - **ACES 1.0 SDR - RGC** <br> The standard ACES [tone mapping](tonemap.md) with added RGC (see above). 
 - **Show Look - RGC** <br> Look transform for the show specific look LUT decided on by the director for the ANM config. See "Defining Shot & Show LUT contextual variables" below for setup.
@@ -61,7 +61,7 @@ These are for clients who want to have an ACES compliant show, but with the look
 
 ### Display Transforms
 
-In OCIO, a View Transform is paired with a Display Transform corresponding to the display it is being viewed on. As you can see in the image above, in Nuke these are all in a single drop-down menu with the display listed in parenthesis after the view. In Maya, the View and Display are seperate drop-downs.
+In OCIO, a View Transform is paired with a Display Transform corresponding to the display it is being viewed on. As you can see in the image above, in Nuke these are all in a single drop-down menu with the display listed in parenthesis after the view. In Maya, the View and Display are separate drop-downs.
 
 - **Gamma 2.0** <br> For viewing on artist's computer monitors. This uses the pure gamma 2.2, rather than the piece-wise sRGB EOTF. If an image is encoded for a 2.2 display, but shown on a piece-wise sRGB display in can appear a bit low contrast. Conversely if an image is encoded for a piece-wsie sRGB display, but shown on a pure gamma 2.2 display the shadows will appear crushed. Since there is no way to control the calibration of a viewers computer monitor, best practice is for artists  to work in pure gamma 2.2.
 - **Rec.709 - BT.1886 HDTV** <br> For viewing in editorial on a Rec.709 (Gamma 2.4) reference monitor or on a HDTV display for dailies. 
