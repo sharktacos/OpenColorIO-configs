@@ -34,17 +34,35 @@ We are viewing on an sRGB monitor so the view transform is set to a gamma 2.2 di
 
 ### ACES VFX pipeline
 
-![nk](img/ACESpipeline_VFX.jpg)
+![nk](img/ACESpipeline_VFX2.jpg)
 
-This is more complex as it it involves mutiple inputs and outputs. Notice that the Dailies Proxy output uses the same "baked view" approach as the ANM color i/o above. This is intended for proxy media for an offline edit. Again the image sequence would be converted to a movie in Media Encoder. Because this is proxy media (i.e. a place-holder for the final image which are EXR files) you can use a movie codec like H.264 in a MP4 wrapper which will produce a nice quality image with a small file size. Alternately, if the client prefers Prores, then a Prores 4:2:2 Proxy should be fine. What you want to avoid is a massively huge format like Prores 4444 which is intended for storing the full range data directly from a camera in log, not for viewing.
+This is more complex as it it involves mutiple inputs and outputs. Notice that the Dailies Proxy output uses the same "baked view" approach as the ANM color i/o above. 
+
+![nk](img/ACESpipeline_VFX2A.jpg)
+
+This is intended for proxy media for an offline edit. Again the image sequence would be converted to a movie in Media Encoder. Because this is proxy media (i.e. a place-holder for the final image which are EXR files) you can use a movie codec like H.264 in a MP4 wrapper which will produce a nice quality image with a small file size. Alternately, if the client prefers Prores, then a Prores 4:2:2 Proxy should be fine. What you want to avoid is a massively huge format like Prores 4444 which is intended for storing the full range data directly from a camera in log, not for viewing.
+
+Notice also that input CG as well as output CG is always in the ACEScg color space. This is also the working space for all VFX software (Nuke, Maya, Houdini, Substance Painter, etc.)
+
+![nk](img/ACESpipeline_VFX2B.jpg) 
+
+Finally, observe how the client film footage is returned in the same color space as it was recieved. This is a core principle in VFX where the film footage is unchanged, other than to add the VFX on top, as if it was shot that way.
+
+![nk](img/ACESpipeline_VFX2C.jpg) 
 
 Finally, below is the color i/o pipeline for a 
 
 ### Non-color managed show using DPX footage (in this example from an ARRI camera)
 
-![nk](img/ACESpipeline_DPX.jpg)
+![nk](img/ACESpipeline_DPX2.jpg)
 
-This would not be an ACES complient show, because the film footage coming in and going out is in DPX. However, we need to work in ACES in order to integrate the CG using physically based rendering. For the view transform (as well as the dailies proxy output) we are using ARRI's classic DRT called K1S1 which the client can also use as a LUT (available on the ARRI website).
+This would not be an ACES complient show, because the film footage coming in and going out is in DPX. However, we need to work in ACES in order to integrate the CG using physically based rendering. 
+
+For the view transform (as well as the dailies proxy output) we are using ARRI's classic DRT called K1S1 which the client can also use as a LUT (available on the ARRI website).
+
+![nk](img/ACESpipeline_DPX2A.jpg)
+
+Observe how again the CG input and output is in ACEScg, and the film footage is returned in the same color space as it was recieved.
 
 
 ## Gamut Compression and Nuke
