@@ -30,7 +30,7 @@ There are a number of different view transforms in the [ANM config](configs.md) 
 
 ![nk](img/ACESpipeline_ANM.jpg)
 
-We are viewing on an sRGB monitor so the view transform is set to a gamma 2.2 display. If this were going to be broadcasting this on a HDTV then we'd want to output in Rec709 like below in an
+We are viewing on an sRGB monitor so the view transform is set to a gamma 2.2 display. If we were going to be broadcasting this on an HDTV then we'd want to output in Rec709 like below in an
 
 
 ### ACES VFX pipeline
