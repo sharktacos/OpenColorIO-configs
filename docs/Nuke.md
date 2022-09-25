@@ -83,6 +83,10 @@ Observe how again the CG input and output is in ACEScg, and the film footage is 
 
 ![nk](img/ACESpipeline_DPX2C.jpg)
 
+Just for funsies, here is an example of the same DPX workflow, but this time for a RED camera.
+
+![nk](img/ACESpipeline_DPX2R.jpg)
+
   
 
 

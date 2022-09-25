@@ -47,9 +47,18 @@ As noted above, in a VFX pipeline [gamut compression](Nuke.md#gamut-compression-
 - **RED IPP2 Look** <br> An ACES compliant LMT emulating the look of the RED camera RRT of the same name.
 - **Sony S-gamut3 Cine Look** <br> An ACES compliant LMT emulating the look of the Sony camera RRT of the same name.
 
-In OCIO, a View Transform is paired with a Display Transform corresponding to the display it is being viewed on. As you can see in the image above, in Nuke these are all in a single drop-down menu with the display listed in parenthesis after the view. In Maya, the View and Display are seperate drop-downs.
+It is common in many larger productions to use ACES for input and interchange format, but to not use the ACES output transform, instead preferring to use the DRT (display rendering transform) of popular camera vendors such as the ARRI K1S1. This is done by inverting the ACES output transform, essentially disabling it, and replacing it with the camera DRT. 
+
+![img](img/LMT1.png)
+
+This is problematic as it defeats one of the core goals of the ACES project. Instead the intended workflow is to use a Look Transform in front of the ACES output transform which modifies it to look as desired. This is exactly what these four camera Look transforms do (ARRI ALF-2, ARRI K1S1, RED IPP2, Sony S-gamut3 Cine), meaning clients can have the desired look of the K1S1 DRT, and still have the show be ACES compliant.
+
+![img](img/LMT1.png)
+
 
 ### Display Transforms
+
+In OCIO, a View Transform is paired with a Display Transform corresponding to the display it is being viewed on. As you can see in the image above, in Nuke these are all in a single drop-down menu with the display listed in parenthesis after the view. In Maya, the View and Display are seperate drop-downs.
 
 - **Gamma 2.0** <br> For viewing on artist's computer monitors. This uses the pure gamma 2.2, rather than the piece-wise sRGB EOTF. If an image is encoded for a 2.2 display, but shown on a piece-wise sRGB display in can appear a bit low contrast. Conversely if an image is encoded for a piece-wsie sRGB display, but shown on a pure gamma 2.2 display the shadows will appear crushed. Since there is no way to control the calibration of a viewers computer monitor, best practice is for artists  to work in pure gamma 2.2.
 - **Rec.709 - BT.1886 HDTV** <br> For viewing in editorial on a Rec.709 (Gamma 2.4) reference monitor or on a HDTV display for dailies. 
