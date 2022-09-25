@@ -35,9 +35,7 @@ We are viewing on an sRGB monitor so the view transform is set to a gamma 2.2 di
 
 ### ACES VFX pipeline
 
-![nk](img/ACESpipeline_VFX2.jpg)
-
-This is more complex as it it involves mutiple inputs and outputs. Notice that the Dailies Proxy output uses the same "baked view" approach as the ANM color i/o above. 
+This is more complex as it it involves mutiple inputs and outputs. First, notice that the Dailies Proxy output uses the same "baked view" approach as the ANM color i/o above. 
 
 ![nk](img/ACESpipeline_VFX2A.jpg)
 
@@ -51,21 +49,30 @@ Finally, observe how the client film footage is returned in the same color space
 
 ![nk](img/ACESpipeline_VFX2C.jpg) 
 
-Finally, below is the color i/o pipeline for a 
-
 ### Non-color managed show using DPX footage (in this example from an ARRI camera)
 
-![nk](img/ACESpipeline_DPX2.jpg)
-
-This would not be an ACES complient show, because the film footage coming in and going out is in DPX. However, we need to work in ACES in order to integrate the CG using physically based rendering. 
-
-For the view transform (as well as the dailies proxy output) we are using ARRI's classic DRT called K1S1 which the client can also use as a LUT (available on the ARRI website).
+Our final example is where a client is not working color managed, but instead using the older DPX workflow. This would not be an ACES complient show, because the film footage coming in and going out is in DPX. However, we need to work in ACES in order to integrate the CG using physically based rendering. In this example our footage shot on an ARRI camera, so the view transform (as well as the dailies proxy output) uses the ARRI's classic DRT called K1S1, which the client can also use as a LUT (available on the ARRI website) for use in an offline editing program like Premiere. 
 
 ![nk](img/ACESpipeline_DPX2A.jpg)
 
 Observe how again the CG input and output is in ACEScg, and the film footage is returned in the same color space as it was recieved.
 
 ![nk](img/ACESpipeline_DPX2C.jpg)
+
+### input/output color spaces
+
+In summary then, it's critical to know the proper transforms to use for input, output and viewing.
+
+**Input**:
+- CG renders: Always ACEScg
+- Film footage: ACES2065-1 for an ACES show, DPX for legacy pipeline (make sure you know the camera used to determine the log space)
+- Matte Paintings
+- Graphics 
+
+**Output**:
+- Baked View (dailies proxy): Same as the view transform
+- Final Delivery: Same as recieved film footage
+- CG plates: Always ACEScg
 
 ## Gamut Compression and Nuke
 
