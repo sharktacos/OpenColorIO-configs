@@ -26,11 +26,11 @@ Based on the above understandings, let's look at the input and output  color pip
 
 ### ACES CG Animation pipeline
 
-There are a number of different view transforms in the ANM config that produce different looks. The idea is to set the output transorm to match the view transform so your output will look the same as what you are viewing in Nuke. We output an image sequence, which we can then convert to a movie with Media Encoder. 
+There are a number of different view transforms in the [ANM config](configs.md) that produce different looks. The basic idea is to set the output transorm to match the view transform so your output will look the same as what you are viewing in Nuke. We output an image sequence, which we can then convert to a movie with Media Encoder. 
 
 ![nk](img/ACESpipeline_ANM.jpg)
 
-We are viewing on an sRGB monitor so the view transform is set to a gamma 2.2 display. If this were going to be broadcast on a TV then we'd want to output in Rec709 like below in an
+We are viewing on an sRGB monitor so the view transform is set to a gamma 2.2 display. If this were going to be broadcasting this on a HDTV then we'd want to output in Rec709 like below in an
 
 
 ### ACES VFX pipeline
@@ -45,21 +45,20 @@ Next, notice that input CG as well as output CG is always in the ACEScg color sp
 
 ![nk](img/ACESpipeline_VFX2B.jpg) 
 
-Finally, observe how the client film footage is returned in the same color space as it was recieved. This is a core principle in VFX where the film footage is unchanged, other than to add the VFX on top, as if it was shot that way.
+Finally, observe how the client film footage is returned in the same color space as it was received. This is a core principle in VFX where the film footage is unchanged, other than to add the VFX on top, as if it was shot that way.
 
 ![nk](img/ACESpipeline_VFX2C.jpg) 
 
-In addition to these imnputs you may also have input images of graphics elements and matte paintings. For the graphics elements, where the idea is to incorporate the grapical elements into the plate as if it was shot that way (say a cornerpin monitor display in a space ship, or a poster on a wall) the approach would be the same as used for color texture maps in [Maya](Maya.md):
+In addition to these inputs you may also have input images of graphics elements and matte paintings. For graphics, where the idea is to incorporate graphical elements into the plate as if it was shot that way (say a cornerpin monitor display in a space ship, or a poster on a wall) the approach would be the same as used for color texture maps in [Maya](Maya.md) where 8-bit sRGB images such as JPG or PNG are read in with a Color sRGB texture input transform:
 
 <div style="text-align: center;">
 <img src="img/ACESpipeline_VFX2G.jpg"  width="70%"> 
 </div>
 
-For [matte paintings](Photoshop.md) the input transform would depend on the color space that the image is in. Typlically for EXRs this would be ACEScg, and for log files ACEScct. Good practice is to tag the file name with the color space to remove the guesswork. For example, ```shot01_matte_v01_cct.dpx```
+For [matte paintings](Photoshop.md) the input transform would depend on the color space that the image is in. In an ACES show for EXRs this would be ACEScg, and for log files ACEScct. Good practice is to tag the file name with the color space to remove the guesswork. For example, ```shot01_matte_v01_cct.dpx```
 
-In summary then, it's critical to know the proper transforms to use for input, output and viewing. For ACES show most of these are constants:
+In summary then, it's critical to know the proper transforms to use for input, output and viewing. For an ACES show most of these are constants:
 
-For an ACES show
 **Input**:
 - CG renders: ACEScg
 - Film footage: ACES2065-1
@@ -71,7 +70,7 @@ For an ACES show
 - Final Delivery: Same as recieved film footage
 - CG plates: ACEScg
 
-What is variable, and needs to be in the show guide, is the view transform used, which as discussed corresponds to dailies output. For clarity here we have a Nuke gizmo called [Write Dailies Sequence](https://github.com/sharktacos/VFX-software-prefs/blob/main/docs/Nuke.md) that automatically creates a burn-in text on the image documenting the shot name and output transform.
+What is variable, and needs to be noted in the show guide, is the [view transform](config.md) used, which as discussed corresponds to dailies output. For clarity here we have a Nuke gizmo called [Write Dailies Sequence](https://github.com/sharktacos/VFX-software-prefs/blob/main/docs/Nuke.md) that automatically creates a burn-in text on the image documenting the shot name and output transform.
 
 
 ### Non-color managed show using DPX footage (in this example from an ARRI camera)
@@ -89,16 +88,9 @@ Observe how again the CG input and output is in ACEScg, and the film footage is 
 
 ## Gamut Compression and Nuke
 
-For an intro into Gamut Compression and what it is and why you need it, Check out the [gamut compression](gamut.md) doc for details and pretty pics. To use the Reference Gamut Compression node in Nuke copy the [Gizmo](../StdX_ACES/software/Nuke) located in the ```software/Nuke``` folder of the config into your *.nuke* folder (located in the home directory of your computer) and add the following to your menu.py file. 
-
-````
-toolbar = nuke.toolbar("Nodes")
-toolbar.addCommand( "Color/OCIO/ACES Ref Gamut Compress", "nuke.createNode('ACES_ref_gamut_compress')")
-````
-This adds an item labeled "ACES Ref Gamut Compress" to the Color/OCIO/ menu which creates an instance of the *ACES Reference Gamut Compression* node.
+For an intro into Gamut Compression and what it is and why you need it, Check out the [gamut compression](gamut.md) doc for details and pretty pics. To use the Reference Gamut Compression node in Nuke, this in included in my [studio tools for Nuke](https://github.com/sharktacos/VFX-software-prefs/blob/main/docs/Nuke.md).
 
 ![nk](img/Nuke3.png)
-
 
 Let's have a look at the Gamut Compression node in action in Nuke in the context of doing VFX work on film footage. We begin with some footage with colors that are out of gamut. 
 
