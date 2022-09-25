@@ -42,6 +42,10 @@ As noted above, in a VFX pipeline [gamut compression](Nuke.md#gamut-compression-
 - **Low Contrast** <br> Same as the Low Constrast Look Transform in the ANM config above. Note that because this is based on an ASC CDL transform, thbis can easily be given to a client an applied in other color correction programs.
 - **Low Contrast +1 stop** <br> Low Contrast Look Transform with +1 exposure stop.
 - **Low Contrast +2 stops** <br> Low Contrast Look Transform with +2 exposure stops.
+- **ARRI ALF-2 Look** <br> An ACES compliant LMT emulating the look of the ARRI camera RRT of the same name.
+- **ARRI K1S1 Look** <br> An ACES compliant LMT emulating the look of the classic ARRI camera RRT of the same name.
+- **RED IPP2 Look** <br> An ACES compliant LMT emulating the look of the RED camera RRT of the same name.
+- **Sony S-gamut3 Cine Look** <br> An ACES compliant LMT emulating the look of the Sony camera RRT of the same name.
 
 In OCIO, a View Transform is paired with a Display Transform corresponding to the display it is being viewed on. As you can see in the image above, in Nuke these are all in a single drop-down menu with the display listed in parenthesis after the view. In Maya, the View and Display are seperate drop-downs.
 
