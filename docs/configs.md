@@ -6,13 +6,15 @@ The ANM config ````ANM_config.ocio```` is designed for work on CG animation shor
 
 ![img](img/Nuke_view_anm.png)
 
-All View Transforms in the ANM config contain the ACES [Referrence Gamut Compression (RGC)](gamut.md), indicated by "RGC" in their name. For CG renders this has the happy accident of [highlight desaturation](highlight.md) of blackbody color temperatures, and [reduced hue shifts](chroma.md). Note that this is not the case for the VFX config below, where the RGC is applied as a comp node in Nuke.
+All View Transforms in the ANM config contain the ACES [Referrence Gamut Compression (RGC)](gamut.md). For CG renders this has the happy accident of [highlight desaturation](highlight.md) of blackbody color temperatures, and [reduced hue shifts](chroma.md). Note that this is not the case for the VFX config below, where the RGC is applied as a comp node in Nuke.
 
 ### View Transforms
 
 - **ACES 1.0 SDR - RGC** <br> The standard ACES [tone mapping](tonemap.md) with added RGC (see above). 
-- **Low Contrast Look - RGC** <br> Look transform that lowers contrast of the ACES Output Transform by 85%. This is done using an ASC CDL transform which mirrors lowering contrast in Resolve to 0.85 in log space (ACEScct).
-- **Neutral Look - RGC** <br> Many folks feel that ACES has too strong of a look -- too harsh contrast, too saturated. This Neutral Look softens both the contrast and saturaturation in an attempt to provde a neutral starting point which feels more natural. The saturation is kept in the shadows but slightly reduced in the midtones and highlights to give a more natural appearance. In terms of color, the luminance of reds are lowered, the chroma of magenta is reduced, and green is shifted towards yellow slightly. 
+- **RED IPP2 Look** <br> The RED IPP2 display rendering transform implemented as an LMT. Additionally includes the RGC (see above), as well as exposure to match the levels of the ACES transform. The reason for using this transform is because it does a nicer job reproducing colors. Observe the differences in the following exposure sweeps. Note in particular how with ACES 1.0 RRT, the red collums skews into orange, and the blue skews into magenta, whereas in comparison the RED IPP2 does a much better job maintaining the hue.
+
+![img](img/ACESvIPP2.1.png) 
+
 - **Show Look - RGC** <br> Look transform for the show specific look LUT decided on by the director for the ANM config. See "Shot LUTs" below for setup.
 
 ### Display Transforms
