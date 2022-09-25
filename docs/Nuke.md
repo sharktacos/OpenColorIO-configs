@@ -49,6 +49,31 @@ Finally, observe how the client film footage is returned in the same color space
 
 ![nk](img/ACESpipeline_VFX2C.jpg) 
 
+In addition to these imnputs you may also have input images of graphics elements and matte paintings. For the graphics elements, where the idea is to incorporate the grapical elements into the plate as if it was shot that way (say a cornerpin monitor display in a space ship, or a poster on a wall) the approach would be the same as used for color texture maps in [Maya](Maya.md):
+
+<div style="text-align: center;">
+<img src="img/ACESpipeline_VFX2G.jpg"  width="70%"> 
+</div>
+
+For [matte paintings](Photoshop.md) the input transform would depend on the color space that the image is in. Typlically for EXRs this would be ACEScg, and for log files ACEScct. Good practice is to tag the file name with the color space to remove the guesswork. For example, ```shot01_matte_v01_cct.dpx```
+
+In summary then, it's critical to know the proper transforms to use for input, output and viewing. For ACES show most of these are constants:
+
+For an ACES show
+**Input**:
+- CG renders: ACEScg
+- Film footage: ACES2065-1
+- Matte Paintings: ACEScct for log DPX, ACEScg for EXR
+- Graphics: Color sRGB Texture
+
+**Output**:
+- Baked View (dailies proxy): Same as the view transform
+- Final Delivery: Same as recieved film footage
+- CG plates: ACEScg
+
+What is variable, and needs to be in the show guide, is the view transform used, which as discussed corresponds to dailies output. For clarity here we have a Nuke gizmo called [Write Dailies Sequence](https://github.com/sharktacos/VFX-software-prefs/blob/main/docs/Nuke.md) that automatically creates a burn-in text on the image documenting the shot name and output transform.
+
+
 ### Non-color managed show using DPX footage (in this example from an ARRI camera)
 
 Our final example is where a client is not working color managed, but instead using the older DPX workflow. This would not be an ACES complient show, because the film footage coming in and going out is in DPX. However, we need to work in ACES in order to integrate the CG using physically based rendering. In this example our footage shot on an ARRI camera, so the view transform (as well as the dailies proxy output) uses the ARRI's classic DRT called K1S1, which the client can also use as a LUT (available on the ARRI website) for use in an offline editing program like Premiere. 
@@ -59,20 +84,8 @@ Observe how again the CG input and output is in ACEScg, and the film footage is 
 
 ![nk](img/ACESpipeline_DPX2C.jpg)
 
-### input/output color spaces
+  
 
-In summary then, it's critical to know the proper transforms to use for input, output and viewing.
-
-**Input**:
-- CG renders: Always ACEScg
-- Film footage: ACES2065-1 for an ACES show, DPX for legacy pipeline (make sure you know the camera used to determine the log space)
-- Matte Paintings
-- Graphics 
-
-**Output**:
-- Baked View (dailies proxy): Same as the view transform
-- Final Delivery: Same as recieved film footage
-- CG plates: Always ACEScg
 
 ## Gamut Compression and Nuke
 
