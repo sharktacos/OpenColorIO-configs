@@ -91,7 +91,7 @@ shared_views:
   - !<View> {name: ARRI ALF-2 Look, view_transform: SDR Video - ACES 1.0, looks: "ACESLooks LMT - ARRI ALF-2 Look", display_colorspace: <USE_DISPLAY_NAME>} 
   - !<View> {name: ARRI K1S1 Look, view_transform: SDR Video - ACES 1.0, looks: "ACESLooks LMT - ARRI K1S1 Look", display_colorspace: <USE_DISPLAY_NAME>} 
   - !<View> {name: RED IPP2 Look, view_transform: SDR Video - ACES 1.0, looks: "ACESLooks LMT - RED IPP2 Look", display_colorspace: <USE_DISPLAY_NAME>} 
-  
+  - !<View> {name: Sony S-gamut3 Cine Look, view_transform: SDR Video - ACES 1.0, looks: "ACESLooks LMT - SONY S-Gamut3.Cine Look", display_colorspace: <USE_DISPLAY_NAME>} 
   - !<View> {name: Shot Look - RGC, view_transform: SDR Video - ACES 1.0, looks: LMT_shot, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: Show Look - RGC, view_transform: SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_shot", display_colorspace: <USE_DISPLAY_NAME>}
   
@@ -111,7 +111,7 @@ displays:
   DCI-P3 D65:
     - !<Views> ["ACES 1.0 - SDR-video", "P3-500 nits - HDR-video", "P3-1000 nits - HDR-video", "Low Contrast Look - RGC", "Neutral Look - RGC", "Shot Look - RGC", "Show Look - RGC", Un-tone-mapped, Low Contrast, "Low Contrast +1 Stops", "Low Contrast +2 Stops", Shot Look]
   Rec709:
-    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Low Contrast Look - RGC", "Shot Look - RGC", "Show Look - RGC", Un-tone-mapped, Low Contrast, "Low Contrast +1 Stops", "Low Contrast +2 Stops", Shot Look, ARRI ALF-2 Look, ARRI K1S1 Look, RED IPP2 Look]
+    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Low Contrast Look - RGC", "Shot Look - RGC", "Show Look - RGC", Un-tone-mapped, Low Contrast, "Low Contrast +1 Stops", "Low Contrast +2 Stops", Shot Look, ARRI ALF-2 Look, ARRI K1S1 Look, RED IPP2 Look, Sony S-gamut3 Cine Look]
   USE ONLY FOR CHECKING COMPS:
     - !<View> {name: Log, colorspace: camera_log}
   USE ONLY FOR CHECKING RENDERS:
@@ -125,7 +125,7 @@ displays:
 #-- VFX config:
 
 active_displays: ["Rec709", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS", "Non-Color Managed DPX Workflow"]
-active_views: [ACES 1.0 - SDR-video, Shot Look, Low Contrast, "Low Contrast +1 Stops", "Low Contrast +2 Stops", ARRI ALF-2 Look, ARRI K1S1 Look, RED IPP2 Look, Un-tone-mapped, Log, Raw, DPX Shot Look]
+active_views: [ACES 1.0 - SDR-video, Shot Look, Low Contrast, "Low Contrast +1 Stops", "Low Contrast +2 Stops", ARRI ALF-2 Look, ARRI K1S1 Look, RED IPP2 Look, Sony S-gamut3 Cine Look, Un-tone-mapped, Log, Raw, DPX Shot Look]
 inactive_colorspaces: [CIE-XYZ D65, Gamut Shaper, DCI-P3 D65, ST2084-P3-D65, P3-D65, Pick Rec709-sRGB Desat, Shot_shaper, "Gamma 2.2", "Rec709", "Apple P3", "Neutral Look - RGC (Gamma 2.2)", "Show Look - RGC (Gamma 2.2)", camera_log, "ACES 1.0 SDR-video (Gamma 2.2)", "Low Contrast Look - RGC (Gamma 2.2)", "Shot Look - RGC (Gamma 2.2)", RED IPP2 (Rec709) ]
 
 
@@ -960,6 +960,18 @@ colorspaces:
       children:
         - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec709", view: "RED IPP2 Look"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: Sony S-gamut3 Cine Look (Rec709)
+    family: Baked View Output
+    isdata: false
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec709", view: "Sony S-gamut3 Cine Look"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+      
+
 
 
 #-- DPX Non-Color Managed display:
