@@ -57,9 +57,7 @@ In addition to these inputs you may also have input images of graphics elements 
 
 For [matte paintings](Photoshop.md) the input transform would depend on the color space that the image is in. In an ACES show for EXRs this would be ACEScg, and for log files ACEScct. Good practice is to tag the file name with the color space to remove the guesswork. For example, ```shot01_matte_v01_cct.dpx```
 
-In summary then, it's critical to know the proper transforms to use for input, output and viewing. For ACES show most of these are constants:
-
-For an ACES show...
+In summary then, it's critical to know the proper transforms to use for input, output and viewing. For an ACES show most of these are constants:
 
 **Input**:
 - CG renders: ACEScg
