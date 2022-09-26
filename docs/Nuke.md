@@ -70,7 +70,7 @@ In summary then, it's critical to know the proper transforms to use for input, o
 - Final Delivery: Same as received film footage
 - CG plates: ACEScg
 
-What is variable, and needs to be noted in the show guide, is the [view transform](configs.md) used, which as discussed corresponds to dailies output. For clarity here we have a Nuke gizmo called [Write Dailies Sequence](https://sharktacos.github.io/VFX-software-prefs/docs/Nuke.html) that automatically creates a burn-in text on the image documenting the shot name and output transform.
+What is variable, and needs to be noted in the show guide, is the [view transform](configs.md) used, which as discussed corresponds to dailies output. For clarity here we have a Nuke gizmo called [Write Dailies Sequence](../VFX-software-prefs/docs/Nuke.md) that automatically creates a burn-in text on the image documenting the shot name and output transform.
 
 
 ### Non-color managed show using DPX footage (in this example from an ARRI camera)
