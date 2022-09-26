@@ -92,7 +92,7 @@ Just for funsies, here is an example of the same DPX workflow, but this time for
 
 ## Gamut Compression and Nuke
 
-For an intro into Gamut Compression and what it is and why you need it, Check out the [gamut compression](gamut.md) doc for details and pretty pics. To use the Reference Gamut Compression node in Nuke, this in included in my [studio tools for Nuke](https://github.com/sharktacos/VFX-software-prefs/blob/main/docs/Nuke.md).
+For an intro into Gamut Compression and what it is and why you need it, Check out the [gamut compression](gamut.md) doc for details and pretty pics. To use the Reference Gamut Compression node in Nuke, this in included in my [studio tools for Nuke](../VFX-software-prefs/docs/Nuke.md).
 
 ![nk](img/Nuke3.png)
 
