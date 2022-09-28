@@ -39,6 +39,8 @@ As noted above, in a VFX pipeline [gamut compression](Nuke.md#gamut-compression-
 
 ### View Transforms
 
+In the VFX config all the view transforms are paired with the Rec709 display transform.
+
 Standard ACES Output Transform:
 - **ACES 1.0 SDR-video** <br> The standard ACES RRT [tone mapping](tonemap.md)
 
@@ -58,14 +60,6 @@ Camera vendor DRT as ACES Looks:
 - **Sony S-gamut3 Cine Look** <br> An ACES compliant LMT emulating the look of the Sony camera RRT of the same name.
 
 These are for clients who want to have an ACES compliant show, but with the look of popular camera vendor DRTs (display rendering transform) such as ARRI's classic K1S1.
-
-### Display Transforms
-
-In OCIO, a View Transform is paired with a Display Transform corresponding to the display it is being viewed on. As you can see in the image above, in Nuke these are all in a single drop-down menu with the display listed in parenthesis after the view. In Maya, the View and Display are separate drop-downs.
-
-- **Gamma 2.0** <br> For viewing on artist's computer monitors. This uses the pure gamma 2.2, rather than the piece-wise sRGB EOTF. If an image is encoded for a 2.2 display, but shown on a piece-wise sRGB display in can appear a bit low contrast. Conversely if an image is encoded for a piece-wsie sRGB display, but shown on a pure gamma 2.2 display the shadows will appear crushed. Since there is no way to control the calibration of a viewers computer monitor, best practice is for artists  to work in pure gamma 2.2.
-- **Rec.709 - BT.1886 HDTV** <br> For viewing in editorial on a Rec.709 (Gamma 2.4) reference monitor or on a HDTV display for dailies. 
-- **Apple Display P3** <br> Display transform for the MacBookPro M1 XDR display in the wider P3 gamut used for film with a pure 2.2 gamma. This display transform also contains options for HDR display.
 
 There are again transforms for diagnostic purposes.
 - **Log** For checking comps. This uses the camera log space defined in the contextual variable, described below.
