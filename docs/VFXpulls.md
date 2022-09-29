@@ -29,7 +29,7 @@ The guide below will walk you through the process:
  - [VFX Pulls with Resolve](ResolvePull.md)
 
 **Color Reference and LUTs.** VFX pulls should include:
-  - *A reference quicktime for checking color against existing dailies.* <br> See the above *VFX Pulls with Resolve* link for details.
+  - *A reference quicktime for checking color against existing dailies.* <br> This represents how the final film is intended to look. See the above *VFX Pulls with Resolve* link for details.
   - *A "shot LUT" to achieve dailies color, along with the working color space.* <br> Note that this assumes you have shot LUTs from on set dailies. Some productions do not. In Resolve the "generate LUT" command can be used to export all enabled color grades, both in the timeline and the clip, including any CDLs, all into a single *Shot LUT* for VFX to use. The LUT's working color space, i.e. the color space it was created in, should be noted in the file name, (for example ````shot01_ACEScct.cube```` for Resolve). VFX needs to know this in order to properly process the LUT in comp.
 
 **VFX integration tools**
