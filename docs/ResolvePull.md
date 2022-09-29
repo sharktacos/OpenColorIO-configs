@@ -63,7 +63,7 @@ When rendering images in display color spaces, such as those required for IMF Ma
  
 ![img](img/Netflix5.jpg)
 
-This puts the clip in ACES2065-1 used for interchange if images between facilities or softwares in an ACES pipeline, such as VFX plates. This will make the image appear dark, as we can see with our example ARRI footage:
+This puts the clip in ACES2065-1 used for interchange of images between facilities or softwares in an ACES pipeline, such as VFX plates. This will make the image appear dark, as we can see with our example ARRI footage:
 
 ![img](img/Resolve10.jpg)
 
