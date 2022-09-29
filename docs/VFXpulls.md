@@ -72,7 +72,7 @@ Many editing programs (for example Premiere Pro) lack the ability to properly pr
 
 <img src="img/premiereB10.jpg">
 
-Images encoded in log are not meant to be viewed that way, rather log is a method to efficiently store the full dynamic range of the image as discussed above, similar to a photo negative. In the same way as one is not intended to view a negative, one should not view a log file (nor should one view a scene-linear EXR). Rather these scene-referred files need to be viewed with the appropriate DRT for the target display device. For example, below you can see the way the image looks with the ARRI classic K1S1 DRT for Rec709 applied to it.
+Images encoded in log are not meant to be viewed that way, rather log is a method to efficiently store the full dynamic range of the image as discussed above, similar to the purpose of a photo negative. Just as one is not intended to view a negative, one should not view a log file (nor should one view a scene-linear EXR). Rather these scene-referred files need to be "digitally developed" i.e. viewed with the appropriate DRT for the target display device. For example, below you can see the way the image looks with the ARRI classic K1S1 DRT for Rec709 applied to it.
 
 <img src="img/premiereB9.jpg">
 
