@@ -67,7 +67,7 @@ This puts the clip in ACES2065-1 used for interchange of images between faciliti
 
 ![img](img/Resolve10.jpg)
 
-This is expected, as you are viewing the image in scene-linear ACES2065-1 without the output transform. Scene-linear means that the pixel values have a 1:1 linear relationahip to the values of the light photons in the real world scene. Those light values are not what our eye sees, but rather for data storage of the physical values of light captured on the scene.
+Not to worry, this is expected and correct. Scene-linear files are not intended to be viewed in their raw state without the Output Transform. Rather the purpose is to store all of the information captured by the camera, independant of any particular display transform (Rec709, P3-DCI, etc.) which we have termporatily turned off for exporting the EXR files. This allows us to preserve all of the wide color gamut and dynamic range of the original camera RAW file.
 
  - **Disable all grades** To disable the grade for your VFX render, the **Enable Flat Pass** option on the **Deliver** page can be used. See screenshot from the DaVinci Resolve Manual below. The basic idea is that VFX returns the ungraded plate to DI, with the VFX added, so that DI gets the full quality film plate back *as if it were filmed that way*. DI can then seamlessly insert it back into the conform and color grade everything together. 
 
