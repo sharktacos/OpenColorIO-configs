@@ -57,7 +57,7 @@ roles:
   substance_3d_painter_substance_material: Color sRGB Texture
   
 
-  mari_monitor: Low Contrast Look - RGC (Gamma 2.2)
+  mari_monitor: ACES 1.0 SDR-video (Rec709)
   mari_scaler_monitor: Raw
   mari_color_picker: hdr 
   mari_blending: Raw 
@@ -770,6 +770,23 @@ colorspaces:
     allocation: uniform
     to_scene_reference: !<BuiltinTransform> {style: CANON_CLOG3-CGAMUT_to_ACES2065-1}
 
+  - !<ColorSpace>
+    name: Canon Linear Cinema Gamut (Daylight)
+    aliases: [canon_lin]
+    family: Camera Input/Canon
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Convert Linear Canon Cinema Gamut (Daylight) to ACES2065-1
+      
+      CLFtransformID: urn:aswf:ocio:transformId:1.0:Canon:Input:Linear-CinemaGamut-D55_to_ACES2065-1:1.0
+    isdata: false
+    encoding: scene-linear
+    allocation: uniform
+    to_scene_reference: !<GroupTransform>
+      name: Linear Canon Cinema Gamut (Daylight) to ACES2065-1
+      children:
+        - !<MatrixTransform> {matrix: [0.763064454775734, 0.14902116113706, 0.0879143840872056, 0, 0.00365745670512393, 1.10696038037622, -0.110617837081339, 0, -0.0094077940457189, -0.218383304989987, 1.22779109903571, 0, 0, 0, 0, 1]}
 
 # Panasonic --------
 
