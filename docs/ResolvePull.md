@@ -63,11 +63,11 @@ When rendering images in display color spaces, such as those required for IMF Ma
  
 ![img](img/Netflix5.jpg)
 
-This puts the clip in ACES2065-1 used for interchange if images between facilities or softwares in an ACES pipeline, such as VFX plates. This will make the image appear dark, as we can see with our example ARRI footage:
+This puts the clip in ACES2065-1 used for interchange of images between facilities or softwares in an ACES pipeline, such as VFX plates. This will make the image appear dark, as we can see with our example ARRI footage:
 
 ![img](img/Resolve10.jpg)
 
-This is expected, as you are viewing the image in scene-linear ACES2065-1 without the output transform. This scene-linear data is what needs to be used for interchange so that all of dynamics range and wide color gamut of the raw camera data is preserved.
+Not to worry, this is expected and correct. Scene-linear files are not intended to be viewed in their raw state without the Output Transform. Rather the purpose is to store all of the information captured by the camera, independant of any particular display transform (Rec709, P3-DCI, etc.) which we have termporatily turned off for exporting the EXR files. This allows us to preserve all of the wide color gamut and dynamic range of the original camera RAW file.
 
  - **Disable all grades** To disable the grade for your VFX render, the **Enable Flat Pass** option on the **Deliver** page can be used. See screenshot from the DaVinci Resolve Manual below. The basic idea is that VFX returns the ungraded plate to DI, with the VFX added, so that DI gets the full quality film plate back *as if it were filmed that way*. DI can then seamlessly insert it back into the conform and color grade everything together. 
 
@@ -93,7 +93,13 @@ Ensure you have the following render settings:
 
 **Reference Quicktimes**
 
-For the reference Quicktime movie everything that was turned off for the VFX pull above should be turned back on. The Output Transform should be set back to Rec709, the grades (if any) should be enabled. In other words, the Quicktime is a reference of how the image should look. An MP4 works great for these files as it keeps the file size down. Also the resolution can be set to a max of 1080 HD for the reference Quicktime.
+For the reference Quicktime movie everything that was turned off for the VFX pull above should be turned back on. The Output Transform should be set back to Rec709, the grades (if any) should be enabled. In other words, the Quicktime is a reference of how the image should look in your final film, including any grades done on the shot. So if the Quicktime looks really dark, like the ACES2065-1 scene-linear export above, or washed out like the log images above, then something went wrong. Looks good is good.
+
+An MP4 works great for these files as it keeps the file size down. Also the resolution can be set to a max of 1080 HD for the reference Quicktime. These reference Quicktimes should be a visual exact match to the proxy media you are sending to offline editorial, the only difference being is that they are smaller (proxy media for offline edit would be full resolution and typically ProRes).
+
+**Shot LUTs**
+
+If you do grade the shot (for example normalizing the exposure for continuity in a sequence), this should be exported as a LUT so VFX can achieve dailies color. In Resolve the "generate LUT" command can be used to export all enabled color grades, both in the timeline and the clip, including any CDLs, all into a single Shot LUT for VFX to use. The LUT's working color space, i.e. the color space it was created in, should be noted in the file name, (for example shot01_ACEScct.cube for Resolve). VFX needs to know this in order to properly process the LUT in comp. This is determined by the "color science" field in the Color Mangerment section of the Settings which, as discussed above, would typically be set to ACEScct.
 
 
 [Back to VFX Pulls](VFXpulls.md)

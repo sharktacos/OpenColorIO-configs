@@ -70,7 +70,7 @@ In summary then, it's critical to know the proper transforms to use for input, o
 - Final Delivery: Same as received film footage
 - CG plates: ACEScg
 
-What is variable, and needs to be noted in the show guide, is the [view transform](config.md) used, which as discussed corresponds to dailies output. For clarity here we have a Nuke gizmo called [Write Dailies Sequence](https://github.com/sharktacos/VFX-software-prefs/blob/main/docs/Nuke.md) that automatically creates a burn-in text on the image documenting the shot name and output transform.
+What is variable, and needs to be noted in the show guide, is the [view transform](configs.md) used, which as discussed corresponds to dailies output. For clarity here we have a Nuke gizmo called [Write Dailies Sequence](../VFX-software-prefs/docs/Nuke.md) that automatically creates a burn-in text on the image documenting the shot name and output transform.
 
 
 ### Non-color managed show using DPX footage (in this example from an ARRI camera)
@@ -92,7 +92,7 @@ Just for funsies, here is an example of the same DPX workflow, but this time for
 
 ## Gamut Compression and Nuke
 
-For an intro into Gamut Compression and what it is and why you need it, Check out the [gamut compression](gamut.md) doc for details and pretty pics. To use the Reference Gamut Compression node in Nuke, this in included in my [studio tools for Nuke](https://github.com/sharktacos/VFX-software-prefs/blob/main/docs/Nuke.md).
+For an intro into Gamut Compression and what it is and why you need it, Check out the [gamut compression](gamut.md) doc for details and pretty pics. To use the Reference Gamut Compression node in Nuke, this in included in my [studio tools for Nuke](../VFX-software-prefs/docs/Nuke.md).
 
 ![nk](img/Nuke3.png)
 

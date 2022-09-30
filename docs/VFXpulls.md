@@ -29,12 +29,12 @@ The guide below will walk you through the process:
  - [VFX Pulls with Resolve](ResolvePull.md)
 
 **Color Reference and LUTs.** VFX pulls should include:
-  - *A reference quicktime for checking color against existing dailies.* <br> See the above *VFX Pulls with Resolve* link for details.
-  - *A "shot LUT" to achieve dailies color, along with the working color space.* <br> Note that this assumes you have shot LUTs from on set dailies. Some productions do not. In Resolve the "generate LUT" command can be used to export all enabled color grades, both in the timeline and the clip, including any CDLs, all into a single *Shot LUT* for VFX to use. The LUT's working color space, i.e. the color space it was created in, should be noted in the file name, (for example ````shot01_ACEScct.cube```` for Resolve). VFX needs to know this in order to properly process the LUT in comp.
+  - *A reference quicktime for checking color against existing dailies.* <br> This represents how the final film is intended to look, and includes any shot grades. See the above *VFX Pulls with Resolve* link for details.
+  - *A "shot LUT" to achieve dailies color, along with the working color space.* <br> Where applicable. Again, the above *VFX Pulls with Resolve* link for details.
 
-**VFX integration tools**
+**Not Required, but nice to have**
 
- - **Macbeth Color Checker** When integrating CG into a shot it's helpful to have a frame for the shot with a MacBeth color checker. This is used to calibrate our CG render's color gamut to match the white balence and color characteristics of your camera.
+ - **Macbeth Color Checker** When integrating CG into a shot it's helpful to have a frame for the shot with a MacBeth color checker. This is used to calibrate our CG render's color gamut to match the white balance and color characteristics of your camera.
 
 <p align="center">
 <img src="img/Macbeth.jpg">
@@ -63,7 +63,7 @@ This is problematic as it defeats one of the core goals of the ACES project. Ins
 
 ![img](img/LMT2.jpg)
 
-This is exactly what these four camera Look transforms do, meaning clients can have the desired look of the K1S1 DRT that colorists love to grade with, and still have the show remain ACES compliant. With that in mind, we can supply all of the these camera DRT Look Transforms as CLF and DCTL files for use in an ACES workflow in programs such as Davinci Resolve. 
+This is exactly what these four camera Look transforms do, meaning clients can have the desired look of the K1S1 DRT that colorists love to grade with, and still have the show remain ACES compliant. With that in mind, we can supply all of the these camera DRT Look Transforms as CLF and DCTL files for use in an ACES workflow in programs such as DaVinci Resolve. 
 
 
 # Offline Edit
@@ -72,11 +72,11 @@ Many editing programs (for example Premiere Pro) lack the ability to properly pr
 
 <img src="img/premiereB10.jpg">
 
-Images encoded in log are not meant to be viewed that way, rather log is a method to efficiently store the full dynamic range of the image as discussed above, similar to a photo negative. In the same way as one is not intended to view a negative, one should not view a log file (nor should one view a scene-linear EXR). Rather these scene-referred files need to be viewed with the appropriate DRT for the target display device. For example, below you can see the way the image looks with the ARRI classic K1S1 DRT for Rec709 applied to it.
+Images encoded in log are not meant to be viewed that way, rather log is a method to efficiently store the full dynamic range of the image as discussed above, similar to the purpose of a photo negative. Just as one is not intended to view a negative, one should not view a log file (nor should one view a scene-linear EXR). Rather these scene-referred files need to be "digitally developed" i.e. viewed with the appropriate DRT for the target display device. For example, below you can see the way the image looks with the ARRI classic K1S1 DRT for Rec709 applied to it.
 
 <img src="img/premiereB9.jpg">
 
-For this reason, a preferred workflow for Premiere is an offline edit. This involves the shots from set dailies being written out from a program like Davinci Resolve as display-encoded proxy media with the look baked into them, and for these to be sent to (offline) editorial. Typically this would be Prores or DNxHD files in Rec709 color space, which is the standard for broadcast HDTV. Editorial works with these proxy files, allowing everyone to view the files as they were intended to look in editorial, which of course is important for editorial as the color affects the emotional mood of the film. Friends don't let friends view their camera footage in log! Later in the conform these proxy files are swapped out for the camera RAW files as well as the EXR files from VFX for finalling. This workflow is shown in the diagram below. The advantage of this workflow is that it preserves the image integrity of the master, while allowing filmmakers to view their movie as they intend for it to look throughout every stage of the filmmaking process. 
+For this reason, a preferred workflow for Premiere is an offline edit. This involves the shots from set dailies being written out from a program like DaVinci Resolve as display-encoded proxy media with the look baked into them, and for these to be sent to (offline) editorial. Typically this would be Prores or DNxHD files in Rec709 color space, which is the standard for broadcast HDTV. Editorial works with these proxy files, allowing everyone to view the files as they were intended to look in editorial, which of course is important for editorial as the color affects the emotional mood of the film. Friends don't let friends view their camera footage in log! Later in the conform these proxy files are swapped out for the camera RAW files as well as the EXR files from VFX for finalling. This workflow is shown in the diagram below. The advantage of this workflow is that it preserves the image integrity of the master, while allowing filmmakers to view their movie as they intend for it to look throughout every stage of the filmmaking process. 
 
 <p align="center">
 <img src="img/pipeline.jpg">
