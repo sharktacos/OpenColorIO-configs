@@ -57,7 +57,7 @@ roles:
   substance_3d_painter_substance_material: Color sRGB Texture
   
 
-  mari_monitor: Low Contrast Look - RGC (Gamma 2.2)
+  mari_monitor: ACES 1.0 SDR-video (Rec709)
   mari_scaler_monitor: Raw
   mari_color_picker: hdr 
   mari_blending: Raw 
