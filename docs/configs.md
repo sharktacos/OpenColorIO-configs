@@ -8,11 +8,11 @@ The ANM config ````ANM_config.ocio```` is designed for work on CG animation shor
 
 ### View Transforms
 
-All View Transforms in the ANM config contain the ACES [Reference Gamut Compression (RGC)](gamut.md) applied. Note that this is not the case for the VFX config below, where the RGC is applied as a comp node in Nuke.
+All View Transforms in the ANM config contain the ACES [Reference Gamut Compression (RGC)](gamut.md) applied. This is indicated in the transform name with the suffix "RGC". Note that this is not the case for the VFX config below, where the RGC is applied as a comp node in Nuke.
 
 - **ACES 1.0 SDR - RGC** <br> The standard ACES [tone mapping](tonemap.md) with added RGC (see above). 
-- **Show Look - RGC** <br> Look transform for the show specific look LUT decided on by the director for the ANM config. See "Defining Shot & Show LUT contextual variables" below for setup.
-- **RED IPP2 Look** <br> The RED IPP2 display rendering transform implemented as an LMT. Additionally includes the RGC (see above), as well as exposure to match the levels of the ACES transform. The reason for using this transform is because it does a nicer job reproducing colors. Observe the differences in the following exposure sweeps of sRGB/Rec709 primaries. Note in particular how with ACES 1.0 RRT, the red skews into orange, and the blue skews into magenta with increased exposure, whereas the RED IPP2 does a much better job maintaining the hues in comparison.
+- **Show Look - RGC** <br> Look transform for the show specific look LUT decided on by the director for the ANM config. See "Defining Shot & Show LUT contextual variables" below for setup. Note that this look used the ANM Studio Look below as it's starting point.
+- **ANM Studio Look** <br>This look is intended for CG animation work. The ANM Studio Look is based on the RED IPP2 display rendering transform implemented as an LMT. Additionally includes the RGC (see above), as well as exposure to match the levels of the ACES transform. The reason for using this transform is because it does a nicer job reproducing colors due to the REDWideGamut color space. Observe the differences in the following exposure sweeps of sRGB/Rec709 primaries. Note in particular how with ACES 1.0 RRT, the red skews into orange, and the blue skews into magenta with increased exposure, whereas the RED IPP2 does a much better job maintaining the hues in comparison.
 
 <div style="text-align: center;">
 <img src="img/ACESvIPP2.1.png"  width="50%"> 
