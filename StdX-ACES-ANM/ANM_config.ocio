@@ -85,7 +85,7 @@ shared_views:
 
   
   - !<View> {name: Shot Look - RGC, view_transform: SDR Video - ACES 1.0, looks: LMT_shot, display_colorspace: <USE_DISPLAY_NAME>}
-  - !<View> {name: Show Look - RGC, view_transform: SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_shot", display_colorspace: <USE_DISPLAY_NAME>}
+  - !<View> {name: Show Look - RGC, view_transform: SDR Video - ACES 1.0, looks: "RedExp, LMT_gamut, ACESLooks LMT - RED IPP2 Look, LMT_shot", display_colorspace: <USE_DISPLAY_NAME>}
   
   - !<View> {name: P3-500 nits - HDR-video, view_transform: HDR Video (500 nits & P3 lim) - ACES, looks: LMT_gamut, display_colorspace: <USE_DISPLAY_NAME>}   
   - !<View> {name: P3-1000 nits - HDR-video, view_transform: HDR Video (1000 nits & P3 lim) - ACES 1.1, looks: LMT_gamut, display_colorspace: <USE_DISPLAY_NAME>}
