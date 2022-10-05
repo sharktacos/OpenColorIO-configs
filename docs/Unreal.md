@@ -14,4 +14,6 @@ https://docs.unrealengine.com/4.26/en-US/AnimatingObjects/Sequencer/Workflow/Ren
 settings, color output:
 https://docs.unrealengine.com/4.26/en-US/AnimatingObjects/Sequencer/Workflow/RenderAndExport/HighQualityMediaExport/Reference/
 
-default tonemapper is ACES. Does EXR export in linear sRGB? (test in Nuke)
+default tonemapper is ACES. 
+Does EXR export in linear sRGB? (test in Nuke)
+disable tone curve for exr export
