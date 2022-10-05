@@ -13,3 +13,5 @@ output: Movie Render Queue:
 https://docs.unrealengine.com/4.26/en-US/AnimatingObjects/Sequencer/Workflow/RenderAndExport/HighQualityMediaExport/
 settings, color output:
 https://docs.unrealengine.com/4.26/en-US/AnimatingObjects/Sequencer/Workflow/RenderAndExport/HighQualityMediaExport/Reference/
+
+default tonemapper is ACES. Does EXR export in linear sRGB? (test in Nuke)
