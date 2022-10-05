@@ -1,5 +1,7 @@
 load config:
 https://docs.unrealengine.com/4.27/en-US/WorkingWithMedia/ManagingColor/OpenColorIO/
+5.0
+https://docs.unrealengine.com/5.0/en-US/opencolorio-quick-start-for-unreal-engine/
 
 input?
 
