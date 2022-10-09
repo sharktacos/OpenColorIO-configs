@@ -10,7 +10,7 @@ This replaces the older workaround described below.
 
 ## Color picker
 
-As of version 8.1 the color picker can correctly pick the channel color if you hold down the shift key, otherwise it will pick the color that is displayed in the viewport, including shading. The colors are blended in the working color space, ACEScg. The OCIO color picking role is still not respected.
+As of version 8.1.2 the color picker can correctly pick the channel color if you hold down the shift key, otherwise it will pick the color that is displayed in the viewport, including shading. The colors are blended in the working color space, ACEScg. The OCIO color picking role is still not respected.
 
 ## Earlier versions
 
