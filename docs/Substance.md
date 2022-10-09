@@ -10,7 +10,7 @@ This replaces the older workaround described below.
 
 ## Color picker
 
-The color picker works in the working color space (ACEScg). Therefore in order to pick a color from the viewport, the Display color space needs to temporarily be set to Raw to sample the color. Note that this works in single channel mode (eg viewing Base Color) rather than in material mode which displays the color plus lighting. 
+As of version 8.1 the color picker can correctly pick the channel color if you hold down the shift key, otherwise it will pick the color that is displayed in the viewport, including shading. The colors are blended in the working color space, ACEScg. The OCIO color picking role is still not respected.
 
 ## Earlier versions
 
