@@ -273,6 +273,20 @@ colorspaces:
     to_reference: !<MatrixTransform> {matrix: [ 0.439632981919, 0.382988698152, 0.177378319929, 0, 0.089776442959, 0.813439428749, 0.096784128292, 0, 0.017541170383, 0.111546553302, 0.870912276314, 0, 0, 0, 0, 1 ]}
 
   - !<ColorSpace>
+    name: Unreal Engine
+    family: Texture Input
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Unreal Engine Scene-linear Rec.709 or sRGB primaries to ACES primaries with gain boost of 1.45
+    isdata: false
+    encoding: scene-linear
+    to_reference: !<GroupTransform>
+      children:
+        - !<MatrixTransform> {matrix: [ 0.439632981919, 0.382988698152, 0.177378319929, 0, 0.089776442959, 0.813439428749, 0.096784128292, 0, 0.017541170383, 0.111546553302, 0.870912276314, 0, 0, 0, 0, 1 ]}
+        - !<CDLTransform> {slope: [1.45, 1.45, 1.45], offset: [0.0, 0.0, 0.0], power: [1.0, 1.0, 1.0]}
+
+  - !<ColorSpace>
     name: Gamut Shaper
     family: Texture Input
     equalitygroup: ""
