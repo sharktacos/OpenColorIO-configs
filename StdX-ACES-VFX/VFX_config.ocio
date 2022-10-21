@@ -126,7 +126,7 @@ displays:
 
 active_displays: ["Rec709", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS", "Non-Color Managed DPX Workflow"]
 active_views: [ACES 1.0 - SDR-video, Shot Look, Low Contrast, "Low Contrast +1 Stops", "Low Contrast +2 Stops", ARRI ALF-2 Look, ARRI K1S1 Look, RED IPP2 Look, Sony S-gamut3 Cine Look, Un-tone-mapped, Log, Raw, DPX Shot Look]
-inactive_colorspaces: [CIE-XYZ D65, Gamut Shaper, DCI-P3 D65, ST2084-P3-D65, P3-D65, Pick Rec709-sRGB Desat, Shot_shaper, "Gamma 2.2", "Apple P3", "Neutral Look - RGC (Gamma 2.2)", "Show Look - RGC (Gamma 2.2)", camera_log, "Low Contrast Look - RGC (Gamma 2.2)", "Shot Look - RGC (Gamma 2.2), Rec709", "ACES 1.0 SDR-video (Gamma 2.2)"]
+inactive_colorspaces: [CIE-XYZ D65, Gamut Shaper, DCI-P3 D65, ST2084-P3-D65, P3-D65, Pick Rec709-sRGB Desat, Shot_shaper, "Apple P3", "Neutral Look - RGC (Gamma 2.2)", "Show Look - RGC (Gamma 2.2)", camera_log, "Low Contrast Look - RGC (Gamma 2.2)", "Shot Look - RGC (Gamma 2.2)", "ACES 1.0 SDR-video (Gamma 2.2)"]
 
 view_transforms:
 
@@ -324,7 +324,6 @@ colorspaces:
       children:
         - !<MatrixTransform> {matrix: [ 0.439632981919, 0.382988698152, 0.177378319929, 0, 0.089776442959, 0.813439428749, 0.096784128292, 0, 0.017541170383, 0.111546553302, 0.870912276314, 0, 0, 0, 0, 1 ]}
         - !<CDLTransform> {slope: [1.45, 1.45, 1.45], offset: [0.0, 0.0, 0.0], power: [1.0, 1.0, 1.0]}
-#        - !<GradingPrimaryTransform> {style: linear, gain: 1.45, pivot: 0.18}
 
   - !<ColorSpace>
     name: Gamut Shaper
@@ -923,6 +922,21 @@ colorspaces:
         - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec709", view: "ACES 1.0 - SDR-video"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
+  - !<ColorSpace>
+    name: Output ACES 1.0 SDR - Unreal Engine
+    family: Display EOTF
+    description: |
+      ACES ACES 1.0 SDR-video for Rec.709 EOTF with gain 1.45 for Unreal Engine emulation
+    isdata: false
+    categories: [ file-io ]
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<CDLTransform> {slope: [1.45, 1.45, 1.45], offset: [0.0, 0.0, 0.0], power: [1.0, 1.0, 1.0]}
+        - !<BuiltinTransform> {style: ACES-OUTPUT - ACES2065-1_to_CIE-XYZ-D65 - SDR-VIDEO_1.0}
+        - !<MatrixTransform> {matrix: [ 3.240969941905, -1.537383177570, -0.498610760293, 0, -0.969243636281, 1.875967501508, 0.041555057407, 0, 0.055630079697, -0.203976958889, 1.056971514243, 0, 0, 0, 0, 1 ]}
+#        - !<ExponentTransform> {value: 2.4, offset: 0.055, direction: inverse}         
+        - !<ExponentWithLinearTransform> {gamma: 2.4, offset: 0.055, direction: inverse}
  
   - !<ColorSpace>
     name: Shot Look - RGC (Rec709)

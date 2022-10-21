@@ -1,0 +1,148 @@
+#! /Applications/Nuke13.1v1/Nuke13.1v1.app/Contents/MacOS/libnuke-13.1.1.dylib -nx
+version 13.1 v1
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="38" w="1728" h="995" maximized="1" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1185" stretch="1"/>
+            <splitter orientation="2">
+                <split size="975"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="0"/>
+                <dock id="" activePageId="Curve Editor.1">
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
+            </splitter>
+            <split size="495"/>
+            <dock id="" activePageId="DAG.1" focus="true">
+                <page id="DAG.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name /Users/Derek/Documents/GitHub/OpenColorIO-configs/software/Premiere/CameraLog_to_ACESRec709_LUT.nk
+ frame 86474
+ first_frame 86474
+ last_frame 86519
+ lock_range true
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement OCIO
+ OCIO_config custom
+ customOCIOConfigPath /Users/Derek/Documents/GitHub/OpenColorIO-configs/StdX-ACES-VFX/VFX_config.ocio
+ defaultViewerLUT "OCIO LUTs"
+ workingSpaceLUT scene_linear
+ monitorLut "Rec709/ACES 1.0 - SDR-video"
+ monitorOutLUT "ACES 1.0 - SDR-video (Rec709)"
+ int8Lut matte_paint
+ int16Lut texture_paint
+ logLut compositing_log
+ floatLut scene_linear
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode1
+ tile_color 0x388e8e00
+ label "Camera Log to \nACES Rec709"
+ note_font_size 42
+ xpos -258
+ ypos -347
+ bdwidth 351
+ bdheight 605
+}
+Read {
+ inputs 0
+ file_type dpx
+ file "/Users/Derek/OneDrive - Academy of Art University/D/VFX/Golden/arri/dpx/Arri_raw_LogC.########.dpx"
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ first 86474
+ last 86519
+ origfirst 86474
+ origlast 86519
+ origset true
+ colorspace Raw
+ name Read1
+ xpos -381
+ ypos -101
+ addUserKnob {20 User}
+ addUserKnob {22 selLayer l "Select your Layers" -STARTLINE T "\{mylayerPanel()\}"}
+ addUserKnob {26 names l "Create shuffle nodes from all layers"}
+ addUserKnob {22 setShuffle l "Create Shuffle nodes" -STARTLINE T "\{newNode()\}"}
+ addUserKnob {26 name l "Select the layers needed to create shuffle nodes"}
+ addUserKnob {22 selLayer l "Select your Layers" -STARTLINE T "\{mylayerPanel()\}"}
+ addUserKnob {26 names l "Create shuffle nodes from all layers"}
+ addUserKnob {22 setShuffle l "Create Shuffle nodes" -STARTLINE T "\{newNode()\}"}
+}
+OCIOFileTransform {
+ file /Users/Derek/Documents/GitHub/OpenColorIO-configs/software/Premiere/ARRILogC3_to_ACES-Rec709_v6.cube
+ working_space Raw
+ name OCIOFileTransform1
+ xpos -381
+ ypos 2
+}
+Viewer {
+ frame 86474
+ frame_range 86474-86519
+ viewerProcess "Raw (USE ONLY FOR CHECKING RENDERS)"
+ name Viewer1
+ xpos 45
+ ypos 215
+}
+StickyNote {
+ inputs 0
+ name StickyNote1
+ label "Read Raw\nCamera Log to Raw\nCamera Log to RRT\nRaw to Camera Log"
+ xpos -22
+ ypos -149
+}
+CMSTestPattern {
+ inputs 0
+ cube_size 33
+ name CMSTestPattern_4
+ xpos -129
+ ypos -222
+}
+OCIOColorSpace {
+ in_colorspace "ARRI LogC3 (EI800)"
+ out_colorspace Raw
+ name log2lin
+ label "\[value in_colorspace]\n\[value out_colorspace]"
+ xpos -129
+ ypos -92
+}
+OCIOColorSpace {
+ in_colorspace "ARRI LogC3 (EI800)"
+ out_colorspace "Low Contrast +1 Stop (Rec709)"
+ name log2lin1
+ label "\[value in_colorspace]\n\[value out_colorspace]"
+ xpos -129
+ ypos 4
+}
+OCIOColorSpace {
+ in_colorspace Raw
+ out_colorspace "ARRI LogC3 (EI800)"
+ name log2lin2
+ label "\[value in_colorspace]\n\[value out_colorspace]\n"
+ xpos -129
+ ypos 92
+}
+GenerateLUT {
+ file /Users/Derek/Documents/GitHub/OpenColorIO-configs/software/Premiere/ARRILogC3_to_ACES-Rec709_LowCon-1Stop_Premiere.cube
+ file_type .cube
+ lut1d 4098
+ name GenerateLUT
+ tile_color 0x7a7affff
+ xpos -129
+ ypos 202
+}
