@@ -126,7 +126,7 @@ displays:
 
 #-- VFX config:
 
-active_displays: ["Rec709", Gamma 2.2, Apple P3, "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS", "Non-Color Managed DPX Workflow"]
+active_displays: ["Rec709", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS", "Non-Color Managed DPX Workflow"]
 active_views: [ACES 1.0 - SDR-video, ANM Studio Look - RGC, Shot Look, Log, Raw, DPX Shot Look]
 inactive_colorspaces: [CIE-XYZ D65, Gamut Shaper, DCI-P3 D65, ST2084-P3-D65, P3-D65, Pick Rec709-sRGB Desat, Shot_shaper, "Apple P3", "Neutral Look - RGC (Gamma 2.2)", "Show Look - RGC (Gamma 2.2)", camera_log, "Low Contrast Look - RGC (Gamma 2.2)", "Shot Look - RGC (Gamma 2.2)", "ACES 1.0 SDR-video (Gamma 2.2)", Gamma 2.2, Rec709, "Color sRGB Texture lowCon"]
 
