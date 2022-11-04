@@ -4,7 +4,7 @@
 
 
 ocio_profile_version: 2
-
+luma: [0.2126, 0.7152, 0.0722]
 description: Maya 2022 default config, modified by Derek Flood for StudioX
 name: Maya_2022_default
 
@@ -36,7 +36,7 @@ roles:
   compositing_linear: ACEScg  
   compositing_log: ACEScct
   data: Raw
-  default: Raw
+#  default: Raw
 # --- set reference to ap0 for VFX:
   reference: ap0
   rendering: ACEScg
@@ -73,7 +73,7 @@ file_rules:
   - !<Rule> {name: hdr, colorspace: scene-linear Rec.709-sRGB, pattern: "*", extension: hdr}
   - !<Rule> {name: exr, colorspace: Raw, pattern: "*", extension: exr}
   - !<Rule> {name: ColorSpaceNamePathSearch}
-  - !<Rule> {name: Default, colorspace: default}
+  - !<Rule> {name: Default, colorspace: Raw}
 
 
 shared_views:
@@ -126,7 +126,7 @@ displays:
 
 active_displays: ["Rec709", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS", "Non-Color Managed DPX Workflow"]
 active_views: [ACES 1.0 - SDR-video, Shot Look, Low Contrast, "Low Contrast +1 Stops", "Low Contrast +2 Stops", ARRI ALF-2 Look, ARRI K1S1 Look, RED IPP2 Look, Sony S-gamut3 Cine Look, Un-tone-mapped, Log, Raw, DPX Shot Look]
-inactive_colorspaces: [CIE-XYZ D65, Gamut Shaper, DCI-P3 D65, ST2084-P3-D65, P3-D65, Pick Rec709-sRGB Desat, Shot_shaper, "Apple P3", "Neutral Look - RGC (Gamma 2.2)", "Show Look - RGC (Gamma 2.2)", camera_log, "Low Contrast Look - RGC (Gamma 2.2)", "Shot Look - RGC (Gamma 2.2)", "ACES 1.0 SDR-video (Gamma 2.2)"]
+inactive_colorspaces: [CIE-XYZ D65, Gamut Shaper, DCI-P3 D65, ST2084-P3-D65, P3-D65, Pick Rec709-sRGB Desat, Shot_shaper, "Apple P3", "Neutral Look - RGC (Gamma 2.2)", "Show Look - RGC (Gamma 2.2)", camera_log, "Low Contrast Look - RGC (Gamma 2.2)", "Shot Look - RGC (Gamma 2.2)", "ACES 1.0 SDR-video (Gamma 2.2)", Gamma 2.2, Rec709]
 
 view_transforms:
 
@@ -300,7 +300,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: scene-linear Rec.709-sRGB
-    aliases: [ hdr ]
+    aliases: [ hdr, Unreal input ]
     family: Texture Input
     equalitygroup: ""
     bitdepth: 32f
@@ -924,7 +924,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Output ACES 1.0 SDR - Unreal Engine
-    family: Display EOTF
+    family: Unreal Output
     description: |
       ACES ACES 1.0 SDR-video for Rec.709 EOTF with gain 1.45 for Unreal Engine emulation
     isdata: false

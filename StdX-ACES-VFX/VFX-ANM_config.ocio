@@ -4,7 +4,7 @@
 
 
 ocio_profile_version: 2
-
+luma: [0.2126, 0.7152, 0.0722]
 description: Maya 2022 default config, modified by Derek Flood for StudioX
 name: Maya_2022_default
 
@@ -16,11 +16,12 @@ environment:
   LUT_PATH: path_to/shot_lut/
   LUT_NAME: clientShotLUTname_ACEScct.cube
 #--------------
-# Camera aliases are: ARRI, RED, CLog2, CLog3, Panasonic,
-# Sony, SonyCine, SonyVenice, SonyVeniceCine, ADX10.
+# Camera aliases are: ARRIv3_log, ARRIv3_lin, ARRIv4_log, ARRIv4_log
+# RED_log, RED_lin, CLog2, CLog3, Panasonic_log, Panasonic_lin, ADX10
+# Sony_log, SonyCine_log, SonyVenice_log, SonyVeniceCine_log, Sony_lin, SonyCine_lin, SonyVenice_lin, SonyVeniceCine_lin, 
 # CAMERA variable is set to ACEScct for ACES EXR workflow, and to camera for DPX for display-referred workflow
 #--------------
-  CAMERA: ARRI
+  CAMERA: ARRIv3_log
   SHAPER: ACEScct
 # ------------------------------------------------------------------- # 
 
@@ -35,9 +36,9 @@ roles:
   compositing_linear: ACEScg  
   compositing_log: ACEScct
   data: Raw
-  default: Raw
+#  default: Raw
 # --- set reference to ap0 for VFX:
-  reference: ap0
+  reference: ap1
   rendering: ACEScg
   scene_linear: ACEScg
   
@@ -56,7 +57,7 @@ roles:
   substance_3d_painter_substance_material: Color sRGB Texture
   
 
-  mari_monitor: Low Contrast Look - RGC (Gamma 2.2)
+  mari_monitor: ACES 1.0 SDR-video (Rec709)
   mari_scaler_monitor: Raw
   mari_color_picker: hdr 
   mari_blending: Raw 
@@ -72,7 +73,7 @@ file_rules:
   - !<Rule> {name: hdr, colorspace: scene-linear Rec.709-sRGB, pattern: "*", extension: hdr}
   - !<Rule> {name: exr, colorspace: Raw, pattern: "*", extension: exr}
   - !<Rule> {name: ColorSpaceNamePathSearch}
-  - !<Rule> {name: Default, colorspace: default}
+  - !<Rule> {name: Default, colorspace: Raw}
 
 
 shared_views:
@@ -82,6 +83,8 @@ shared_views:
   - !<View> {name: Neutral Look - RGC, view_transform: SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_neutral", display_colorspace: <USE_DISPLAY_NAME>}  
   - !<View> {name: Low Contrast Look - RGC, view_transform: SDR Video - ACES 1.0, looks: "LMT_gamut, LowContrastCDL", display_colorspace: <USE_DISPLAY_NAME>} 
 
+  - !<View> {name: ANM Studio Look - RGC, view_transform: SDR Video - ACES 1.0, looks: "RedExp, LMT_gamut, ACESLooks LMT - RED IPP2 Look", display_colorspace: <USE_DISPLAY_NAME>} 
+
   - !<View> {name: Low Contrast, view_transform: SDR Video - ACES 1.0, looks: LowContrastCDL, display_colorspace: <USE_DISPLAY_NAME>} 
   - !<View> {name: "Low Contrast +1 Stops", view_transform: SDR Video - ACES 1.0, looks: "Exposure1Stop, LowContrastCDL", display_colorspace: <USE_DISPLAY_NAME>} 
   - !<View> {name: "Low Contrast +2 Stops", view_transform: SDR Video - ACES 1.0, looks: "Exposure1Stop, Exposure1Stop, LowContrastCDL", display_colorspace: <USE_DISPLAY_NAME>} 
@@ -90,7 +93,7 @@ shared_views:
   - !<View> {name: ARRI ALF-2 Look, view_transform: SDR Video - ACES 1.0, looks: "ACESLooks LMT - ARRI ALF-2 Look", display_colorspace: <USE_DISPLAY_NAME>} 
   - !<View> {name: ARRI K1S1 Look, view_transform: SDR Video - ACES 1.0, looks: "ACESLooks LMT - ARRI K1S1 Look", display_colorspace: <USE_DISPLAY_NAME>} 
   - !<View> {name: RED IPP2 Look, view_transform: SDR Video - ACES 1.0, looks: "ACESLooks LMT - RED IPP2 Look", display_colorspace: <USE_DISPLAY_NAME>} 
-  
+  - !<View> {name: Sony S-gamut3 Cine Look, view_transform: SDR Video - ACES 1.0, looks: "ACESLooks LMT - SONY S-Gamut3.Cine Look", display_colorspace: <USE_DISPLAY_NAME>} 
   - !<View> {name: Shot Look - RGC, view_transform: SDR Video - ACES 1.0, looks: LMT_shot, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: Show Look - RGC, view_transform: SDR Video - ACES 1.0, looks: "LMT_gamut, LMT_shot", display_colorspace: <USE_DISPLAY_NAME>}
   
@@ -104,13 +107,13 @@ shared_views:
 displays:
 
   Gamma 2.2:
-    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Low Contrast Look - RGC", "Neutral Look - RGC", "Shot Look - RGC", "Show Look - RGC", Un-tone-mapped, Low Contrast, "Low Contrast +1 Stops", "Low Contrast +2 Stops", Shot Look]
+    - !<Views> ["ACES 1.0 - SDR-video", ANM Studio Look - RGC, "ACES 1.0 - SDR-video - RGC", "Low Contrast Look - RGC", "Neutral Look - RGC", "Shot Look - RGC", "Show Look - RGC", Un-tone-mapped, Low Contrast, "Low Contrast +1 Stops", "Low Contrast +2 Stops", Shot Look]
   Apple P3:
-    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "P3-500 nits - HDR-video", "P3-1000 nits - HDR-video", "Low Contrast Look - RGC", "Neutral Look - RGC", Un-tone-mapped, Low Contrast, "Low Contrast +1 Stops", "Low Contrast +2 Stops", Shot Look]
+    - !<Views> ["ACES 1.0 - SDR-video", ANM Studio Look - RGC, "ACES 1.0 - SDR-video - RGC", "P3-500 nits - HDR-video", "P3-1000 nits - HDR-video", "Low Contrast Look - RGC", "Neutral Look - RGC", Un-tone-mapped, Low Contrast, "Low Contrast +1 Stops", "Low Contrast +2 Stops", Shot Look]
   DCI-P3 D65:
     - !<Views> ["ACES 1.0 - SDR-video", "P3-500 nits - HDR-video", "P3-1000 nits - HDR-video", "Low Contrast Look - RGC", "Neutral Look - RGC", "Shot Look - RGC", "Show Look - RGC", Un-tone-mapped, Low Contrast, "Low Contrast +1 Stops", "Low Contrast +2 Stops", Shot Look]
   Rec709:
-    - !<Views> ["ACES 1.0 - SDR-video", "ACES 1.0 - SDR-video - RGC", "Low Contrast Look - RGC", "Shot Look - RGC", "Show Look - RGC", Un-tone-mapped, Low Contrast, "Low Contrast +1 Stops", "Low Contrast +2 Stops", Shot Look, ARRI ALF-2 Look, ARRI K1S1 Look, RED IPP2 Look]
+    - !<Views> ["ACES 1.0 - SDR-video", ANM Studio Look - RGC, "ACES 1.0 - SDR-video - RGC", "Low Contrast Look - RGC", "Shot Look - RGC", "Show Look - RGC", Un-tone-mapped, Low Contrast, "Low Contrast +1 Stops", "Low Contrast +2 Stops", Shot Look, ARRI ALF-2 Look, ARRI K1S1 Look, RED IPP2 Look, Sony S-gamut3 Cine Look]
   USE ONLY FOR CHECKING COMPS:
     - !<View> {name: Log, colorspace: camera_log}
   USE ONLY FOR CHECKING RENDERS:
@@ -123,11 +126,9 @@ displays:
 
 #-- VFX config:
 
-active_displays: ["Rec709", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS", "Non-Color Managed DPX Workflow"]
-active_views: [ACES 1.0 - SDR-video, Shot Look, Low Contrast, "Low Contrast +1 Stops", "Low Contrast +2 Stops", ARRI ALF-2 Look, ARRI K1S1 Look, RED IPP2 Look, Un-tone-mapped, Log, Raw, DPX Shot Look]
-inactive_colorspaces: [CIE-XYZ D65, Gamut Shaper, DCI-P3 D65, ST2084-P3-D65, P3-D65, Pick Rec709-sRGB Desat, Shot_shaper, "Gamma 2.2", "Rec709", "Apple P3", "Neutral Look - RGC (Gamma 2.2)", "Show Look - RGC (Gamma 2.2)", camera_log, "ACES 1.0 SDR-video (Gamma 2.2)", "Low Contrast Look - RGC (Gamma 2.2)", "Shot Look - RGC (Gamma 2.2)", RED IPP2 (Rec709) ]
-
-
+active_displays: ["Rec709", Gamma 2.2, Apple P3, "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS", "Non-Color Managed DPX Workflow"]
+active_views: [ACES 1.0 - SDR-video, ANM Studio Look - RGC, Shot Look, Log, Raw, DPX Shot Look]
+inactive_colorspaces: [CIE-XYZ D65, Gamut Shaper, DCI-P3 D65, ST2084-P3-D65, P3-D65, Pick Rec709-sRGB Desat, Shot_shaper, "Apple P3", "Neutral Look - RGC (Gamma 2.2)", "Show Look - RGC (Gamma 2.2)", camera_log, "Low Contrast Look - RGC (Gamma 2.2)", "Shot Look - RGC (Gamma 2.2)", "ACES 1.0 SDR-video (Gamma 2.2)", Gamma 2.2, Rec709, "Color sRGB Texture lowCon"]
 
 view_transforms:
 
@@ -301,7 +302,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: scene-linear Rec.709-sRGB
-    aliases: [ hdr ]
+    aliases: [ hdr, Unreal input ]
     family: Texture Input
     equalitygroup: ""
     bitdepth: 32f
@@ -311,6 +312,20 @@ colorspaces:
     categories: [ file-io, working-space, scene_linear_working_space ]
     encoding: scene-linear
     to_reference: !<MatrixTransform> {matrix: [ 0.439632981919, 0.382988698152, 0.177378319929, 0, 0.089776442959, 0.813439428749, 0.096784128292, 0, 0.017541170383, 0.111546553302, 0.870912276314, 0, 0, 0, 0, 1 ]}
+
+  - !<ColorSpace>
+    name: Unreal Engine
+    family: Texture Input
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Unreal Engine Scene-linear Rec.709 or sRGB primaries to ACES primaries with gain boost of 1.45
+    isdata: false
+    encoding: scene-linear
+    to_reference: !<GroupTransform>
+      children:
+        - !<MatrixTransform> {matrix: [ 0.439632981919, 0.382988698152, 0.177378319929, 0, 0.089776442959, 0.813439428749, 0.096784128292, 0, 0.017541170383, 0.111546553302, 0.870912276314, 0, 0, 0, 0, 1 ]}
+        - !<CDLTransform> {slope: [1.45, 1.45, 1.45], offset: [0.0, 0.0, 0.0], power: [1.0, 1.0, 1.0]}
 
   - !<ColorSpace>
     name: Gamut Shaper
@@ -430,6 +445,8 @@ colorspaces:
 #---------------------- Cameras ----------------------#
 
 
+# BlackMagic -------
+
   - !<ColorSpace>
     name: DaVinci Intermediate WideGamut
     aliases: [davinci_intermediate_widegamut, Input - Blackmagic - DaVinci Intermediate - DaVinci Wide Gamut, davinci_intermediate_dwg]
@@ -468,27 +485,86 @@ colorspaces:
         - !<MatrixTransform> {matrix: [0.748270290272981, 0.167694659554328, 0.0840350501726906, 0, 0.0208421234689102, 1.11190474268894, -0.132746866157851, 0, -0.0915122574225729, -0.127746712807307, 1.21925897022988, 0, 0, 0, 0, 1]}
 
 
-
-
+# ARRI --------
 
   - !<ColorSpace>
-    name: ARRI LogC (v3-EI800) - AlexaWideGamut
-    aliases: [ ARRI ]
+    name: ARRI LogC3 (EI800)
+    aliases: [ARRIv3_log]
     family: Camera Input/ARRI
+    bitdepth: 32f
     description: |
-      Alexa-v3-LogC-EI800 (no camera black) to ACES2065-1 (SUP v3 color science)
+      Convert Alexa-v3-LogC-EI800 to ACES2065-1 
+      
+      CLFtransformID: urn:aswf:ocio:transformId:1.0:ARRI:Input:ARRI_LogC3_EI800_to_ACES2065-1:1.0
     isdata: false
     encoding: log
-    to_reference: !<BuiltinTransform> {style: "ARRI_ALEXA-LOGC-EI800-AWG_to_ACES2065-1"}
-
-
-
-
-
+    allocation: uniform
+    to_scene_reference: !<GroupTransform>
+      name: ARRI LogC3 (EI800) to ACES2065-1
+      children:
+        - !<LogCameraTransform> {base: 10, log_side_slope: 0.247189638318671, log_side_offset: 0.385536998692443, lin_side_slope: 5.55555555555556, lin_side_offset: 0.0522722750251688, lin_side_break: 0.0105909904954696, direction: inverse}
+        - !<MatrixTransform> {matrix: [0.680205505106279, 0.236136601606481, 0.0836578932872399, 0, 0.0854149797421404, 1.01747087860704, -0.102885858349182, 0, 0.00205652166929683, -0.0625625003847921, 1.0605059787155, 0, 0, 0, 0, 1]}
 
   - !<ColorSpace>
-    name: Linear REDWideGamutRGB
-    aliases: [linredwidegamutrgb, Input - RED - Linear - REDWideGamutRGB, lin_rwg]
+    name: ARRI Linear WideGamut 3
+    aliases: [ARRIv3_lin]
+    family: Camera Input/ARRI
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Convert ARRI Linear WideGamut 3 to ACES2065-1 
+      
+      CLFtransformID: urn:aswf:ocio:transformId:1.0:ARRI:Input:Linear_ARRI_Wide_Gamut_3_to_ACES2065-1:1.0
+    isdata: false
+    encoding: scene-linear
+    allocation: uniform
+    to_scene_reference: !<GroupTransform>
+      name: ARRI Linear WideGamut 3 to ACES2065-1
+      children:
+        - !<MatrixTransform> {matrix: [0.680205505106279, 0.236136601606481, 0.0836578932872399, 0, 0.0854149797421404, 1.01747087860704, -0.102885858349182, 0, 0.00205652166929683, -0.0625625003847921, 1.0605059787155, 0, 0, 0, 0, 1]}
+
+  - !<ColorSpace>
+    name: ARRI LogC4
+    aliases: [ARRIv4_log]
+    family: Camera Input/ARRI
+    bitdepth: 32f
+    description: |
+      Convert Alexa-v4-LogC to ACES2065-1 
+      
+      CLFtransformID: urn:aswf:ocio:transformId:1.0:ARRI:Input:ARRI_LogC4_to_ACES2065-1:1.0
+    isdata: false
+    encoding: log
+    allocation: uniform
+    to_scene_reference: !<GroupTransform>
+      name: ARRI LogC4 to ACES2065-1
+      children:
+        - !<LogCameraTransform> {base: 2, log_side_slope: 0.0647954196341293, log_side_offset: -0.295908392682586, lin_side_slope: 2231.82630906769, lin_side_offset: 64, lin_side_break: -0.0180569961199113, direction: inverse}
+        - !<MatrixTransform> {matrix: [0.750957362824734, 0.144422786709757, 0.104619850465509, 0, 0.000821837079380207, 1.007397584885, -0.00821942196438358, 0, -0.000499952143533471, -0.000854177231436971, 1.00135412937497, 0, 0, 0, 0, 1]}
+
+  - !<ColorSpace>
+    name: ARRI Linear WideGamut 4
+    aliases: [ARRIv4_lin]
+    family: Camera Input/ARRI
+    bitdepth: 32f
+    description: |
+      Convert ARRI Linear WideGamut 4 to ACES2065-1 
+      
+      CLFtransformID: urn:aswf:ocio:transformId:1.0:ARRI:Input:Linear_ARRI_Wide_Gamut_4_to_ACES2065-1:1.0
+    isdata: false
+    encoding: scene-linear
+    allocation: uniform
+    to_scene_reference: !<GroupTransform>
+      name: ARRI Linear WideGamut 4 to ACES2065-1
+      children:
+        - !<MatrixTransform> {matrix: [0.750957362824734, 0.144422786709757, 0.104619850465509, 0, 0.000821837079380207, 1.007397584885, -0.00821942196438358, 0, -0.000499952143533471, -0.000854177231436971, 1.00135412937497, 0, 0, 0, 0, 1]}
+
+                                           
+
+# RED --------
+
+  - !<ColorSpace>
+    name: RED Linear REDWideGamutRGB
+    aliases: [RED_lin]
     family: Camera Input/RED
     equalitygroup: ""
     bitdepth: 32f
@@ -500,13 +576,13 @@ colorspaces:
     encoding: scene-linear
     allocation: uniform
     to_scene_reference: !<GroupTransform>
-      name: Linear REDWideGamutRGB to ACES2065-1
+      name: RED Linear REDWideGamutRGB to ACES2065-1
       children:
         - !<MatrixTransform> {matrix: [0.785058804068092, 0.0838587565440846, 0.131082439387823, 0, 0.0231738348454756, 1.08789754919233, -0.111071384037806, 0, -0.0737604353682082, -0.314590072290208, 1.38835050765842, 0, 0, 0, 0, 1]}
 
   - !<ColorSpace>
-    name: Log3G10 REDWideGamutRGB
-    aliases: [log3g10_redwidegamutrgb, Input - RED - REDLog3G10 - REDWideGamutRGB, log3g10_rwg]
+    name: RED Log3G10 REDWideGamutRGB
+    aliases: [RED_log]
     family: Camera Input/RED
     equalitygroup: ""
     bitdepth: 32f
@@ -524,67 +600,161 @@ colorspaces:
         - !<MatrixTransform> {matrix: [0.785058804068092, 0.0838587565440846, 0.131082439387823, 0, 0.0231738348454756, 1.08789754919233, -0.111071384037806, 0, -0.0737604353682082, -0.314590072290208, 1.38835050765842, 0, 0, 0, 0, 1]}
 
 
-  - !<ColorSpace>
-    name: RED Log3G10 - REDWideGamutRGB
-    aliases: [ RED ]
-    family: Camera Input/RED
-    description: |
-      RED Log3G10 / REDWideGamutRGB (no camera black)
-    isdata: false
-    encoding: log
-    to_reference: !<BuiltinTransform> {style: "RED_LOG3G10-RWG_to_ACES2065-1"}
+# Sony --------
 
   - !<ColorSpace>
-    name: Sony SLog3 - SGamut3
-    aliases: [ Sony ]
+    name: Sony S-Log3 S-Gamut3
+    aliases: [Sony_log]
     family: Camera Input/Sony
+    equalitygroup: ""
+    bitdepth: 32f
     description: |
-      Sony SLog3 / SGamut3 (no camera black)
+      Convert Sony S-Log3 S-Gamut3 to ACES2065-1
+      
+      CLFtransformID: urn:aswf:ocio:transformId:1.0:Sony:Input:SLog3_SGamut3_to_ACES2065-1:1.0
     isdata: false
     encoding: log
-    to_reference: !<BuiltinTransform> {style: "SONY_SLOG3-SGAMUT3_to_ACES2065-1"}
+    allocation: uniform
+    to_scene_reference: !<GroupTransform>
+      name: Sony S-Log3 S-Gamut3 to ACES2065-1
+      children:
+        - !<LogCameraTransform> {base: 10, log_side_slope: 0.255620723362659, log_side_offset: 0.410557184750733, lin_side_slope: 5.26315789473684, lin_side_offset: 0.0526315789473684, lin_side_break: 0.01125, linear_slope: 6.62194371177582, direction: inverse}
+        - !<MatrixTransform> {matrix: [0.75298259539984, 0.143370216235557, 0.103647188364603, 0, 0.0217076974414429, 1.01531883550528, -0.0370265329467195, 0, -0.00941605274963355, 0.00337041785882367, 1.00604563489081, 0, 0, 0, 0, 1]}
 
   - !<ColorSpace>
-    name: Sony SLog3 - SGamut3Cine
-    aliases: [ SonyCine ]
+    name: Sony Linear S-Gamut3
+    aliases: [Sony_lin]
+    family: Camera Input/Sony
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Convert Linear S-Gamut3 to ACES2065-1
+      
+      CLFtransformID: urn:aswf:ocio:transformId:1.0:Sony:Input:Linear_SGamut3_to_ACES2065-1:1.0
+    isdata: false
+    encoding: scene-linear
+    allocation: uniform
+    to_scene_reference: !<GroupTransform>
+      name: Linear S-Gamut3 to ACES2065-1
+      children:
+        - !<MatrixTransform> {matrix: [0.75298259539984, 0.143370216235557, 0.103647188364603, 0, 0.0217076974414429, 1.01531883550528, -0.0370265329467195, 0, -0.00941605274963355, 0.00337041785882367, 1.00604563489081, 0, 0, 0, 0, 1]}
+
+  - !<ColorSpace>
+    name: Sony S-Log3 S-Gamut3.Cine
+    aliases: [SonyCine_log]
     family: Camera Input/Sony
     equalitygroup: ""
     bitdepth: 32f
     description: |
       Convert Sony S-Log3 S-Gamut3.Cine to ACES2065-1
-      ACEStransformID: urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.SLog3_SGamut3Cine_to_ACES.a1.1.0
+      
+      CLFtransformID: urn:aswf:ocio:transformId:1.0:Sony:Input:SLog3_SGamut3Cine_to_ACES2065-1:1.0
     isdata: false
     encoding: log
     allocation: uniform
-    to_scene_reference: !<BuiltinTransform> {style: SONY_SLOG3-SGAMUT3.CINE_to_ACES2065-1}
+    to_scene_reference: !<GroupTransform>
+      name: Sony S-Log3 S-Gamut3.Cine to ACES2065-1
+      children:
+        - !<LogCameraTransform> {base: 10, log_side_slope: 0.255620723362659, log_side_offset: 0.410557184750733, lin_side_slope: 5.26315789473684, lin_side_offset: 0.0526315789473684, lin_side_break: 0.01125, linear_slope: 6.62194371177582, direction: inverse}
+        - !<MatrixTransform> {matrix: [0.638788667185978, 0.272351433711262, 0.0888598991027595, 0, -0.00391590602528224, 1.0880732308974, -0.0841573248721177, 0, -0.0299072021239151, -0.0264325799101947, 1.05633978203411, 0, 0, 0, 0, 1]}
 
   - !<ColorSpace>
-    name: Sony SLog3 - Venice SGamut3
-    aliases: [ SonyVenice ]
+    name: Sony Linear S-Gamut3.Cine
+    aliases: [SonyCine_lin]
     family: Camera Input/Sony
     equalitygroup: ""
     bitdepth: 32f
     description: |
-      Convert Sony S-Log3 S-Gamut3 for the Venice camera to ACES2065-1
-      ACEStransformID: urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.SLog3_Venice_SGamut3_to_ACES.a1.1.0
+      Convert Linear S-Gamut3.Cine to ACES2065-1
+      
+      CLFtransformID: urn:aswf:ocio:transformId:1.0:Sony:Input:Linear_SGamut3Cine_to_ACES2065-1:1.0
     isdata: false
-    encoding: log
+    encoding: scene-linear
     allocation: uniform
-    to_scene_reference: !<BuiltinTransform> {style: SONY_SLOG3-SGAMUT3-VENICE_to_ACES2065-1}
+    to_scene_reference: !<GroupTransform>
+      name: Linear S-Gamut3.Cine to ACES2065-1
+      children:
+        - !<MatrixTransform> {matrix: [0.638788667185978, 0.272351433711262, 0.0888598991027595, 0, -0.00391590602528224, 1.0880732308974, -0.0841573248721177, 0, -0.0299072021239151, -0.0264325799101947, 1.05633978203411, 0, 0, 0, 0, 1]}
+
 
   - !<ColorSpace>
-    name: Sony SLog3 - Venice SGamut3Cine
-    aliases: [ SonyVeniceCine ]
+    name: Sony S-Log3 Venice S-Gamut3
+    aliases: [SonyVenice_log]
     family: Camera Input/Sony
     equalitygroup: ""
     bitdepth: 32f
     description: |
-      Convert Sony S-Log3 S-Gamut3.Cine for the Venice camera to ACES2065-1
-      ACEStransformID: urn:ampas:aces:transformId:v1.5:ACEScsc.Academy.SLog3_Venice_SGamut3Cine_to_ACES.a1.1.0
+      Convert Sony S-Log3 Venice S-Gamut3 to ACES2065-1
+      
+      CLFtransformID: urn:aswf:ocio:transformId:1.0:Sony:Input:SLog3_Venice_SGamut3_to_ACES2065-1:1.0
     isdata: false
     encoding: log
     allocation: uniform
-    to_scene_reference: !<BuiltinTransform> {style: SONY_SLOG3-SGAMUT3.CINE-VENICE_to_ACES2065-1}
+    to_scene_reference: !<GroupTransform>
+      name: Sony S-Log3 Venice S-Gamut3 to ACES2065-1
+      children:
+        - !<LogCameraTransform> {base: 10, log_side_slope: 0.255620723362659, log_side_offset: 0.410557184750733, lin_side_slope: 5.26315789473684, lin_side_offset: 0.0526315789473684, lin_side_break: 0.01125, linear_slope: 6.62194371177582, direction: inverse}
+        - !<MatrixTransform> {matrix: [0.793329741146434, 0.089078625620677, 0.117591633232888, 0, 0.0155810585252582, 1.03271230692988, -0.0482933654551394, 0, -0.0188647477991488, 0.0127694120973433, 1.00609533570181, 0, 0, 0, 0, 1]}
+
+  - !<ColorSpace>
+    name: Sony Linear Venice S-Gamut3
+    aliases: [SonyVenice_lin]
+    family: Camera Input/Sony
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Convert Linear Venice S-Gamut3 to ACES2065-1
+      
+      CLFtransformID: urn:aswf:ocio:transformId:1.0:Sony:Input:Linear_Venice_SGamut3_to_ACES2065-1:1.0
+    isdata: false
+    encoding: scene-linear
+    allocation: uniform
+    to_scene_reference: !<GroupTransform>
+      name: Linear Venice S-Gamut3 to ACES2065-1
+      children:
+        - !<MatrixTransform> {matrix: [0.674257092126512, 0.220571735923397, 0.10517117195009, 0, -0.00931360607857167, 1.10595886142466, -0.0966452553460855, 0, -0.0382090673002312, -0.017938376600236, 1.05614744390047, 0, 0, 0, 0, 1]}
+
+  - !<ColorSpace>
+    name: Sony S-Log3 Venice S-Gamut3.Cine
+    aliases: [SonyVeniceCine_log]
+    family: Camera Input/Sony
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Convert Sony S-Log3 Venice S-Gamut3.Cine to ACES2065-1
+      
+      CLFtransformID: urn:aswf:ocio:transformId:1.0:Sony:Input:SLog3_Venice_SGamut3Cine_to_ACES2065-1:1.0
+    isdata: false
+    encoding: log
+    allocation: uniform
+    to_scene_reference: !<GroupTransform>
+      name: Sony S-Log3 Venice S-Gamut3.Cine to ACES2065-1
+      children:
+        - !<LogCameraTransform> {base: 10, log_side_slope: 0.255620723362659, log_side_offset: 0.410557184750733, lin_side_slope: 5.26315789473684, lin_side_offset: 0.0526315789473684, lin_side_break: 0.01125, linear_slope: 6.62194371177582, direction: inverse}
+        - !<MatrixTransform> {matrix: [0.674257092126512, 0.220571735923397, 0.10517117195009, 0, -0.00931360607857167, 1.10595886142466, -0.0966452553460855, 0, -0.0382090673002312, -0.017938376600236, 1.05614744390047, 0, 0, 0, 0, 1]}
+
+  - !<ColorSpace>
+    name: Sony Linear Venice S-Gamut3.Cine
+    aliases: [SonyVeniceCine_lin]
+    family: Camera Input/Sony
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Convert Linear Venice S-Gamut3.Cine to ACES2065-1
+      
+      CLFtransformID: urn:aswf:ocio:transformId:1.0:Sony:Input:Linear_Venice_SGamut3Cine_to_ACES2065-1:1.0
+    isdata: false
+    encoding: scene-linear
+    allocation: uniform
+    to_scene_reference: !<GroupTransform>
+      name: Linear Venice S-Gamut3.Cine to ACES2065-1
+      children:
+        - !<MatrixTransform> {matrix: [0.674257092126512, 0.220571735923397, 0.10517117195009, 0, -0.00931360607857167, 1.10595886142466, -0.0966452553460855, 0, -0.0382090673002312, -0.017938376600236, 1.05614744390047, 0, 0, 0, 0, 1]}
+
+
+
+
+# Cannon --------
 
   - !<ColorSpace>
     name: Canon CLog2 CGamut
@@ -615,14 +785,63 @@ colorspaces:
     to_scene_reference: !<BuiltinTransform> {style: CANON_CLOG3-CGAMUT_to_ACES2065-1}
 
   - !<ColorSpace>
-    name: Panasonic - VLog VGamut
-    aliases: [ Panasonic ]
-    family: Camera Input/Panasonic
+    name: Canon Linear Cinema Gamut (Daylight)
+    aliases: [canon_lin]
+    family: Camera Input/Canon
+    equalitygroup: ""
+    bitdepth: 32f
     description: |
-      Convert Panasonic Varicam V-Log V-Gamut to ACES2065-1
+      Convert Linear Canon Cinema Gamut (Daylight) to ACES2065-1
+      
+      CLFtransformID: urn:aswf:ocio:transformId:1.0:Canon:Input:Linear-CinemaGamut-D55_to_ACES2065-1:1.0
+    isdata: false
+    encoding: scene-linear
+    allocation: uniform
+    to_scene_reference: !<GroupTransform>
+      name: Linear Canon Cinema Gamut (Daylight) to ACES2065-1
+      children:
+        - !<MatrixTransform> {matrix: [0.763064454775734, 0.14902116113706, 0.0879143840872056, 0, 0.00365745670512393, 1.10696038037622, -0.110617837081339, 0, -0.0094077940457189, -0.218383304989987, 1.22779109903571, 0, 0, 0, 0, 1]}
+
+# Panasonic --------
+
+  - !<ColorSpace>
+    name: Panasonic V-Log V-Gamut
+    aliases: [Panasonic_log]
+    family: Camera Input/Panasonic
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Convert Panasonic V-Log - V-Gamut (SUP v3) to ACES2065-1
+      
+      CLFtransformID: urn:aswf:ocio:transformId:1.0:Panasonic:Input:VLog_VGamut_to_ACES2065-1:1.0
     isdata: false
     encoding: log
-    to_reference: !<BuiltinTransform> {style: PANASONIC_VLOG-VGAMUT_to_ACES2065-1}
+    allocation: uniform
+    to_scene_reference: !<GroupTransform>
+      name: Panasonic V-Log - V-Gamut (SUP v3) to ACES2065-1
+      children:
+        - !<LogCameraTransform> {base: 10, log_side_slope: 0.241514, log_side_offset: 0.598206, lin_side_offset: 0.00873, lin_side_break: 0.01, direction: inverse}
+        - !<MatrixTransform> {matrix: [0.72461670413153, 0.166915288193706, 0.108468007674764, 0, 0.021390245413146, 0.984908155703054, -0.00629840111620089, 0, -0.00923556287076561, -0.00105690563900513, 1.01029246850977, 0, 0, 0, 0, 1]}
+    
+  - !<ColorSpace>
+    name: Panasonic Linear V-Gamut
+    aliases: [Panasonic_lin]
+    family: Camera Input/Panasonic
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      Convert Linear Panasonic V-Gamut (SUP v3) to ACES2065-1
+      
+      CLFtransformID: urn:aswf:ocio:transformId:1.0:Panasonic:Input:Linear_VGamut_to_ACES2065-1:1.0
+    isdata: false
+    encoding: scene-linear
+    allocation: uniform
+    to_scene_reference: !<GroupTransform>
+      name: Linear Panasonic V-Gamut (SUP v3) to ACES2065-1
+      children:
+        - !<MatrixTransform> {matrix: [0.72461670413153, 0.166915288193706, 0.108468007674764, 0, 0.021390245413146, 0.984908155703054, -0.00629840111620089, 0, -0.00923556287076561, -0.00105690563900513, 1.01029246850977, 0, 0, 0, 0, 1]}
+
+# Log Film ADX -----
 
   - !<ColorSpace>
     name: Log film scan (ADX10)
@@ -695,11 +914,40 @@ colorspaces:
   - !<ColorSpace>
     name: ACES 1.0 SDR-video (Rec709)
     family: Baked View Output
+    description: |
+      ACES ACES 1.0 SDR-video for Rec.709 broadcast monitor with Rec.1886 gamma (2.4)
     isdata: false
+    categories: [ file-io ]
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
         - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec709", view: "ACES 1.0 - SDR-video"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: Output ACES 1.0 SDR - Unreal Engine
+    family: Unreal Output
+    description: |
+      ACES ACES 1.0 SDR-video for Rec.709 EOTF with gain 1.45 for Unreal Engine emulation
+    isdata: false
+    categories: [ file-io ]
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<CDLTransform> {slope: [1.45, 1.45, 1.45], offset: [0.0, 0.0, 0.0], power: [1.0, 1.0, 1.0]}
+        - !<BuiltinTransform> {style: ACES-OUTPUT - ACES2065-1_to_CIE-XYZ-D65 - SDR-VIDEO_1.0}
+        - !<MatrixTransform> {matrix: [ 3.240969941905, -1.537383177570, -0.498610760293, 0, -0.969243636281, 1.875967501508, 0.041555057407, 0, 0.055630079697, -0.203976958889, 1.056971514243, 0, 0, 0, 0, 1 ]}
+#        - !<ExponentTransform> {value: 2.4, offset: 0.055, direction: inverse}         
+        - !<ExponentWithLinearTransform> {gamma: 2.4, offset: 0.055, direction: inverse}
+
+  - !<ColorSpace>
+    name: ANM Studio Look - RGC (Rec709)
+    family: Baked View Output
+    isdata: false
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec709", view: "ANM Studio Look - RGC"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
@@ -709,69 +957,9 @@ colorspaces:
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec709", view: "Shot Look - RGC"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec709", view: "Shot Look"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
-  - !<ColorSpace>
-    name: Low Contrast (Rec709)
-    family: Baked View Output
-    isdata: false
-    encoding: sdr-video
-    from_reference: !<GroupTransform>
-      children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec709", view: "Low Contrast"}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
-
-
-  - !<ColorSpace>
-    name: Low Contrast +1 Stop (Rec709)
-    family: Baked View Output
-    isdata: false
-    encoding: sdr-video
-    from_reference: !<GroupTransform>
-      children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec709", view: "Low Contrast +1 Stops"}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
-
-  - !<ColorSpace>
-    name: Low Contrast +2 Stops (Rec709)
-    family: Baked View Output
-    isdata: false
-    encoding: sdr-video
-    from_reference: !<GroupTransform>
-      children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec709", view: "Low Contrast +2 Stops"}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
-
-  - !<ColorSpace>
-    name: ARRI ALF-2 Look (Rec709)
-    family: Baked View Output
-    isdata: false
-    encoding: sdr-video
-    from_reference: !<GroupTransform>
-      children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec709", view: "ARRI ALF-2 Look"}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
-
-  - !<ColorSpace>
-    name: ARRI K1S1 Look (Rec709)
-    family: Baked View Output
-    isdata: false
-    encoding: sdr-video
-    from_reference: !<GroupTransform>
-      children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec709", view: "ARRI K1S1 Look"}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
-
-  - !<ColorSpace>
-    name: RED IPP2 Look (Rec709)
-    family: Baked View Output
-    isdata: false
-    encoding: sdr-video
-    from_reference: !<GroupTransform>
-      children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec709", view: "RED IPP2 Look"}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
 
 #-- DPX Non-Color Managed display:
@@ -787,20 +975,6 @@ colorspaces:
         - !<FileTransform> {src: "${LUT_NAME}", interpolation: linear}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
-  - !<ColorSpace>
-    name: RED IPP2 (Rec709)
-    family: Display EOTF
-    description: |
-      RED IPP2 DRT for Rec709 Display
-    isdata: false
-#    categories: [ file-io ]
-    encoding: sdr-video
-    from_reference: !<GroupTransform>
-      children:
-        - !<BuiltinTransform> {style: "RED_LOG3G10-RWG_to_ACES2065-1", direction: inverse}
-#        - !<MatrixTransform> {matrix: [ 1.26597452, -0.13733399, -0.12864085, 0, -0.01987531, 0.94153333, 0.07834250, 0, 0.06245933, 0.20903273, 0.72850806, 0, 0, 0, 0, 1 ]}
-#        - !<LogCameraTransform> {base: 10.0, lin_side_offset: 2.55975327, lin_side_slope: 155.975327, log_side_offset: 0.0, log_side_slope: 0.224282, lin_side_break: -0.01, direction: forward}
-#        - !<FileTransform> {src: RWG_Log3G10 to REC709_BT1886 with HIGH_CONTRAST and R_2_Medium size_33 v1.13.cube, interpolation: tetrahedral} 
 
 
 #------------------------ Displays (EOTF) --------------------------
