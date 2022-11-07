@@ -40,8 +40,11 @@ roles:
   rendering: ACEScg
   scene_linear: ACEScg
   
+#  bakeView_anm: ANM Studio Look - RGC (Gamma 2.2 - Display)
+#  bakeView_vfx: ACES 1.0 SDR-video (Rec.709 - Display)
+  
 #   Nuke 8-bit default:  
-  matte_paint: Color sRGB Texture  
+  matte_paint: ANM Studio Look - RGC (Gamma 2.2 - Display)  
 #   Nuke 16-bit log default:  
   texture_paint: ACEScct
   
@@ -55,7 +58,7 @@ roles:
   substance_3d_painter_substance_material: Color sRGB Texture
   
 
-  mari_monitor: ACES 1.0 SDR-video (Rec.1886 Rec.709 - Display)
+  mari_monitor: ACES 1.0 SDR-video (Rec.709 - Display)
   mari_scaler_monitor: Raw
   mari_color_picker: hdr 
   mari_blending: Raw 
@@ -107,7 +110,7 @@ displays:
 
 active_displays: ["Rec.1886 Rec.709 - Display", Gamma 2.2 - Display, "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS", "Non-Color Managed DPX Workflow"]
 active_views: [ACES 1.0 - SDR-video, ANM Studio Look - RGC, Log, Raw]
-inactive_colorspaces: [CIE-XYZ-D65, Gamut Shaper, camera_log, Shot_shaper, Pick Rec709-sRGB Desat, "Color sRGB Texture lowCon", "Apple P3 - Display", Gamma 2.2 - Display, Rec.1886 Rec.709 - Display, Unreal Engine sRGB Display, Shot Look (Rec.1886 Rec.709 - Display), Shot Look (Gamma 2.2 - Display), DPX Shot Look (Non-Color Managed), Color Rec.709 Texture, Color Gamma 2.2 Texture, ANM Studio Look - RGC (Rec.1886 Rec.709 - Display)]
+inactive_colorspaces: [CIE-XYZ-D65, Gamut Shaper, camera_log, Shot_shaper, Pick Rec709-sRGB Desat, "Color sRGB Texture lowCon", "Apple P3 - Display", Gamma 2.2 - Display, Rec.1886 Rec.709 - Display, Unreal Engine sRGB Display, Shot Look (Rec.709 - Display), Shot Look (Gamma 2.2 - Display), DPX Shot Look (Non-Color Managed), Color Rec.709 Texture, Color Gamma 2.2 Texture, ANM Studio Look - RGC (Rec.709 - Display)]
 
 
 
@@ -895,7 +898,7 @@ colorspaces:
 #-- BT.1886 Video display:
 
   - !<ColorSpace>
-    name: ACES 1.0 SDR-video (Rec.1886 Rec.709 - Display)
+    name: ACES 1.0 SDR-video (Rec.709 - Display)
     family: Baked View Output
     description: |
       ACES ACES 1.0 SDR-video for Rec.709 broadcast monitor with Rec.1886 gamma (2.4)
@@ -924,7 +927,7 @@ colorspaces:
         - !<ExponentWithLinearTransform> {gamma: 2.4, offset: 0.055, direction: inverse}
 
   - !<ColorSpace>
-    name: ANM Studio Look - RGC (Rec.1886 Rec.709 - Display)
+    name: ANM Studio Look - RGC (Rec.709 - Display)
     family: Baked View Output
     isdata: false
     encoding: sdr-video
@@ -934,7 +937,7 @@ colorspaces:
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
-    name: Shot Look (Rec.1886 Rec.709 - Display)
+    name: Shot Look (Rec.709 - Display)
     family: Baked View Output
     isdata: false
     encoding: sdr-video
@@ -1021,7 +1024,7 @@ display_colorspaces:
 
   - !<ColorSpace>
     name: Rec.1886 Rec.709 - Display
-    aliases: [ Rec709, Rec.709 ]
+    aliases: [ Rec709, Rec.709, Rec.1886 Rec.709 - Display, rec1886_rec709_display, Rec.709 - Display ]
     family: Display EOTF
     bitdepth: 32f
     description: |
