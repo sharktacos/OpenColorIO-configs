@@ -17,7 +17,7 @@ Additionally, these are 16-bit float files with a dynamic range of over 30 expos
 **Debayering to OpenEXR.** VFX pulls should be debayered from the original RAW camera files and exported in the ACES file interchange format (ACES2065-1) with PIZ lossless compression. 
 
  - Resolution: UHD 4k is the maximum resolution we can accomidate at this time.
- - naming: File sequences must have a dot (.) delimiter before and after the numbering.<br> 
+ - Naming Syntax: File sequences must have a dot (.) delimiter before and after the numbering.<br> 
      RIGHT: File_name.0001.exr
      WRONG: File_name0001.exr
  - Format: OpenEXR 16-bit half float
