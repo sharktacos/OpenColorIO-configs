@@ -77,7 +77,11 @@ Not to worry, this is expected and correct. Scene-linear files are not intended 
 
 ![img](img/Netflix8.jpg)
 
-Ensure you have the following render settings:
+When writing an image sequence it is critical that 
+
+![img](img/Netflix7.jpg)
+
+Additionally, ensure you have the following render settings:
 
  - **Render:** 	Single Clip
  - **File Type:** 	EXR
@@ -90,6 +94,9 @@ Ensure you have the following render settings:
 ![img](img/Netflix7.jpg)
 
 *Tip: The setting ‘Force debayer to highest quality’  will automatically select what Resolve considers to be the highest debayering quality for each RAW file on the timeline. This may differ from your own findings. Please feel free to select your preferred debayering algorithm instead, and untick this option if you prefer.*
+
+
+
 
 **Reference Quicktimes**
 
