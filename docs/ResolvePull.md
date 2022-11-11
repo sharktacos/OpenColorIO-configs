@@ -77,9 +77,13 @@ Not to worry, this is expected and correct. Scene-linear files are not intended 
 
 ![img](img/Netflix8.jpg)
 
-When writing an image sequence it is critical that 
+**Required naming syntax** for image sequences is a dot (.) delimiter before and after the numbering. 
+     RIGHT: File_name.0001.exr
+     WRONG: File_name0001.exr
 
-![img](img/Netflix7.jpg)
+This can be done in Resolve by placing a period after your filename as shown below:
+
+![img](img/Resolve14.png)
 
 Additionally, ensure you have the following render settings:
 
@@ -94,9 +98,6 @@ Additionally, ensure you have the following render settings:
 ![img](img/Netflix7.jpg)
 
 *Tip: The setting ‘Force debayer to highest quality’  will automatically select what Resolve considers to be the highest debayering quality for each RAW file on the timeline. This may differ from your own findings. Please feel free to select your preferred debayering algorithm instead, and untick this option if you prefer.*
-
-
-
 
 **Reference Quicktimes**
 
