@@ -44,7 +44,7 @@ roles:
 #  bakeView_vfx: ACES 1.0 SDR-video (Rec.709 - Display)
   
 #   Nuke 8-bit default:  
-  matte_paint: ANM Studio Look - RGC (Gamma 2.2 - Display)  
+  matte_paint: bake-2.2
 #   Nuke 16-bit log default:  
   texture_paint: ACEScct
   
@@ -952,6 +952,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: ANM Studio Look - RGC (Gamma 2.2 - Display)
+    aliases: [bake-studio]
     family: Baked View Output
     isdata: false
     encoding: sdr-video
@@ -962,6 +963,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: ACES 1.0 SDR-video (Gamma 2.2 - Display)
+    aliases: [bake-2.2]
     family: Baked View Output
     isdata: false
     encoding: sdr-video
