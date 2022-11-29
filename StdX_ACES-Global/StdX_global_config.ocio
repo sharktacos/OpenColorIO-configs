@@ -95,7 +95,7 @@ shared_views:
 displays:
 
   Gamma 2.2 - Display:
-    - !<Views> ["ACES 1.0 - SDR-video", ANM Studio Look - RGC, Un-tone-mapped, Shot Look, ARRI ALF-2 Look, ARRI K1S1 Look, RED IPP2 Look, Sony S-gamut3 Cine Look]
+    - !<Views> ["ACES 1.0 - SDR-video", ANM Studio Look - RGC, Un-tone-mapped, Shot Look]
   Apple P3 - Display:
     - !<Views> ["ACES 1.0 - SDR-video", ANM Studio Look - RGC, Un-tone-mapped, Shot Look, ARRI ALF-2 Look, ARRI K1S1 Look, RED IPP2 Look, Sony S-gamut3 Cine Look]
   Rec.1886 Rec.709 - Display:
@@ -109,7 +109,7 @@ displays:
 
 
 active_displays: [Gamma 2.2 - Display, "Rec.1886 Rec.709 - Display",  "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS"]
-active_views: [ACES 1.0 - SDR-video, ANM Studio Look - RGC, Log, Raw]
+active_views: [ACES 1.0 - SDR-video, ANM Studio Look - RGC, ARRI K1S1 Look, Log, Raw]
 inactive_colorspaces: [CIE-XYZ-D65, Gamut Shaper, camera_log, Shot_shaper, Pick Rec709-sRGB Desat, "Color sRGB Texture lowCon", "Apple P3 - Display", Gamma 2.2 - Display, Rec.1886 Rec.709 - Display, Unreal Engine sRGB Display, Shot Look (Rec.709 - Display), Shot Look (Gamma 2.2 - Display), DPX Shot Look (Non-Color Managed), Color Rec.709 Texture, Color Gamma 2.2 Texture, ANM Studio Look - RGC (Rec.709 - Display)]
 
 
@@ -894,20 +894,38 @@ colorspaces:
 
 #--------------- Output --------------------------------#
 
-
-#-- BT.1886 Video display:
+#-- 2.2 Gamma Display:
 
   - !<ColorSpace>
-    name: ACES 1.0 SDR-video (Rec.709 - Display)
+    name: ACES 1.0 SDR-video (Gamma 2.2 - Display)
+    aliases: [bake-2.2]
     family: Baked View Output
-    description: |
-      ACES ACES 1.0 SDR-video for Rec.709 broadcast monitor with Rec.1886 gamma (2.4)
     isdata: false
-    categories: [ file-io ]
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec.1886 Rec.709 - Display", view: "ACES 1.0 - SDR-video"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2 - Display", view: "ACES 1.0 - SDR-video"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: ANM Studio Look - RGC (Gamma 2.2 - Display)
+    aliases: [bake-studio]
+    family: Baked View Output
+    isdata: false
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2 - Display", view: "ANM Studio Look - RGC"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: Shot Look (Gamma 2.2 - Display)
+    family: Baked View Output
+    isdata: false
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2 - Display", view: "Shot Look"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
@@ -925,6 +943,22 @@ colorspaces:
         - !<MatrixTransform> {matrix: [ 3.240969941905, -1.537383177570, -0.498610760293, 0, -0.969243636281, 1.875967501508, 0.041555057407, 0, 0.055630079697, -0.203976958889, 1.056971514243, 0, 0, 0, 0, 1 ]}
 #        - !<ExponentTransform> {value: 2.4, offset: 0.055, direction: inverse}         
         - !<ExponentWithLinearTransform> {gamma: 2.4, offset: 0.055, direction: inverse}
+
+
+#-- BT.1886 Video display:
+
+  - !<ColorSpace>
+    name: ACES 1.0 SDR-video (Rec.709 - Display)
+    family: Baked View Output
+    description: |
+      ACES ACES 1.0 SDR-video for Rec.709 broadcast monitor with Rec.1886 gamma (2.4)
+    isdata: false
+    categories: [ file-io ]
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec.1886 Rec.709 - Display", view: "ACES 1.0 - SDR-video"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
     name: ANM Studio Look - RGC (Rec.709 - Display)
@@ -946,41 +980,16 @@ colorspaces:
         - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec.1886 Rec.709 - Display", view: "Shot Look"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
-
-
-#-- 2.2 Gamma Display:
-
   - !<ColorSpace>
-    name: ANM Studio Look - RGC (Gamma 2.2 - Display)
-    aliases: [bake-studio]
+    name: ARRI K1S1 Look (Rec.709 - Display)
     family: Baked View Output
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2 - Display", view: "ANM Studio Look - RGC"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec709", view: "ARRI K1S1 Look"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
-  - !<ColorSpace>
-    name: ACES 1.0 SDR-video (Gamma 2.2 - Display)
-    aliases: [bake-2.2]
-    family: Baked View Output
-    isdata: false
-    encoding: sdr-video
-    from_reference: !<GroupTransform>
-      children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2 - Display", view: "ACES 1.0 - SDR-video"}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
-
-  - !<ColorSpace>
-    name: Shot Look (Gamma 2.2 - Display)
-    family: Baked View Output
-    isdata: false
-    encoding: sdr-video
-    from_reference: !<GroupTransform>
-      children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2 - Display", view: "Shot Look"}
-        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
 
 
