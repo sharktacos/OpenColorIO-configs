@@ -108,7 +108,7 @@ displays:
     - !<View> {name: "DPX Shot Look", colorspace: "DPX Shot Look (Non-Color Managed)"}
 
 
-active_displays: [Gamma 2.2 - Display, "Rec.1886 Rec.709 - Display",  "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS", "Non-Color Managed DPX Workflow"]
+active_displays: [Gamma 2.2 - Display, "Rec.1886 Rec.709 - Display",  "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS"]
 active_views: [ACES 1.0 - SDR-video, ANM Studio Look - RGC, Log, Raw]
 inactive_colorspaces: [CIE-XYZ-D65, Gamut Shaper, camera_log, Shot_shaper, Pick Rec709-sRGB Desat, "Color sRGB Texture lowCon", "Apple P3 - Display", Gamma 2.2 - Display, Rec.1886 Rec.709 - Display, Unreal Engine sRGB Display, Shot Look (Rec.709 - Display), Shot Look (Gamma 2.2 - Display), DPX Shot Look (Non-Color Managed), Color Rec.709 Texture, Color Gamma 2.2 Texture, ANM Studio Look - RGC (Rec.709 - Display)]
 
