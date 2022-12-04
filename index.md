@@ -10,7 +10,7 @@ The config is for OCIO v2 with older versions in the "legacy" folder. Currently 
 Check out the [VFX Pulls](docs/VFXpulls.md), page for requirements, as well as an overview of ACES color management for the indie filmmaker! Included are detailed instructions of how to do a VFX Pull in DaVinci Resolve.
 
 ## ACES 1.3
-The ACES Next Project has identified several changes and improvements to the Output Transform that will be available at some future date. Inspired by that work,  this config is to attempt to implement some of those changes as Look Transforms, to the extent that this is possible, as a stop-gap until ACES 2.0 is released. For details check out the pages on [tone mapping](docs/tonemap.md), [highlight desaturation](docs/highlight.md), [reduced hue shifts](docs/chroma.md), and the new [Reference Gamut Compression](docs/gamut.md). 
+ACES introduced [Reference Gamut Compression](docs/gamut.md) which requires OCIO 2.1 and is thus currently not compatible with most DCC apps. While waiting for this, the config contains both a 3D LUT for viewing with the gamut compression (applied to the [ANM - Studio Look](docs/configs.md)) as well as an analytic Nuke node.
 
 ## <a name="software"></a>Software
 Instructions for use of the config in various software, including those that do not support OCIO:
