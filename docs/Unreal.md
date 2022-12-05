@@ -8,7 +8,13 @@ What UE does not do as well is render hero elements, whether that's animated cha
 
 ## Image based lighting
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/a5hy4QdcFGU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+You can use the [Panoramic Capture plugin](https://docs.unrealengine.com/5.0/en-US/panoramic-capture-tool-quick-start-for-unreal-engine/). The output bitdepth needs to be set to 32 which will then export an EXR. 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/a5hy4QdcFGU" title="YouTube video player" frameborder="0" allow="accele rometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+https://forums.unrealengine.com/t/free-360-spherical-panorama-capture-tool-and-getting-trolled-by-marketplace-staff/212902/9
+
+
 
 ## Comping UE
 
