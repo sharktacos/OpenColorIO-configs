@@ -8,6 +8,8 @@ What UE does not do as well is render hero elements, whether that's animated cha
 
 ## Image based lighting
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/a5hy4QdcFGU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Comping UE
 
 1. Render the background environment in Unreal
