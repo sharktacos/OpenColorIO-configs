@@ -1,6 +1,6 @@
 ocio_profile_version: 2
 luma: [0.2126, 0.7152, 0.0722]
-name: StudioX Gloabal ACES config - Author Derek Flood
+name: StudioX Shot LUT ACES config - Author Derek Flood
 description: |
   Academy Color Encoding System - StudioX Global Config 
   Based on the studio-config-v1.0.0_aces-v1.3_ocio-v2.0 config from "OpenColorIO-Config-ACES" [COLORSPACES v1.0.0] [ACES v1.3] [OCIO v2.0]
@@ -26,7 +26,7 @@ environment:
 # ------------------------------------------------------------------- # 
 
 
-search_path: "Looks:${LUT_PATH}"
+search_path: "${LUT_PATH}"
 
 roles:
   aces_interchange: ACES2065-1
@@ -90,7 +90,6 @@ shared_views:
     
   - !<View> {name: Un-tone-mapped, view_transform: Un-tone-mapped, display_colorspace: <USE_DISPLAY_NAME>}
 
-
   
 displays:
 
@@ -100,17 +99,18 @@ displays:
     - !<Views> ["ACES 1.0 - SDR-video", ANM - Studio Look - RGC, Un-tone-mapped, VFX - ACES Shot Look, ARRI ALF-2 Look, VFX - ARRI K1S1 Look, RED IPP2 Look, Sony S-gamut3 Cine Look]
   Rec.1886 Rec.709 - Display:
     - !<Views> ["ACES 1.0 - SDR-video", Un-tone-mapped, VFX - ACES Shot Look, ARRI ALF-2 Look, VFX - ARRI K1S1 Look, RED IPP2 Look, Sony S-gamut3 Cine Look]
+  Non-Color Managed DPX Workflow:
+    - !<View> {name: "VFX - DPX Shot Look", colorspace: "VFX - DPX Shot Look (Non-Color Managed)"}
   USE ONLY FOR CHECKING COMPS:
     - !<View> {name: Log, colorspace: camera_log}
   USE ONLY FOR CHECKING RENDERS:
     - !<View> {name: Raw, colorspace: Raw}
-  Non-Color Managed DPX Workflow:
-    - !<View> {name: "VFX - DPX Shot Look", colorspace: "VFX - DPX Shot Look (Non-Color Managed)"}
 
 
-active_displays: [Gamma 2.2 - Display, "Rec.1886 Rec.709 - Display",  "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS", "Non-Color Managed DPX Workflow"]
-active_views: [ACES 1.0 - SDR-video, ANM - Studio Look - RGC, VFX - ARRI K1S1 Look, Log, Raw]
-inactive_colorspaces: [CIE-XYZ-D65, Gamut Shaper, camera_log, Shot_shaper, Pick Rec709-sRGB Desat, "Color sRGB Texture lowCon", "Apple P3 - Display", Gamma 2.2 - Display, Rec.1886 Rec.709 - Display, Unreal Engine sRGB Display, VFX - ACES Shot Look (Gamma 2.2 - Display), Color Rec.709 Texture, Color Gamma 2.2 Texture, ANM - Studio Look - RGC (Rec.709 - Display), VFX - ACES Shot Look (Rec.709 - Display), VFX - DPX Shot Look (Non-Color Managed)]
+
+active_displays: ["Rec.1886 Rec.709 - Display", "Non-Color Managed DPX Workflow", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS"]
+active_views: [ACES 1.0 - SDR-video, VFX - ACES Shot Look, VFX - DPX Shot Look, Log, Raw]
+inactive_colorspaces: [CIE-XYZ-D65, Gamut Shaper, camera_log, Shot_shaper, Pick Rec709-sRGB Desat, "Color sRGB Texture lowCon", "Apple P3 - Display", Gamma 2.2 - Display, Rec.1886 Rec.709 - Display, Unreal Engine sRGB Display, VFX - ACES Shot Look (Gamma 2.2 - Display), Color Rec.709 Texture, Color Gamma 2.2 Texture, ANM - Studio Look - RGC (Rec.709 - Display), ACES 1.0 SDR-video (Gamma 2.2 - Display), ANM - Studio Look - RGC (Gamma 2.2 - Display), VFX - ARRI K1S1 Look (Rec.709 - Display)]
 
 
 
@@ -895,6 +895,8 @@ colorspaces:
 #--------------- Output --------------------------------#
 
 #-- 2.2 Gamma Display:
+
+
 
   - !<ColorSpace>
     name: ACES 1.0 SDR-video (Gamma 2.2 - Display)
