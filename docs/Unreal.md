@@ -28,7 +28,7 @@ https://forums.unrealengine.com/t/free-360-spherical-panorama-capture-tool-and-g
 
 During the capture process, the editor might appear to be frozen or unresponsive for a few seconds up to a few minutes. This is due to the demanding rendering requirements of the Panoramic Capture plugin. When the editor becomes responsive again, you will be able to find the screenshots in the following location.
 
-    C:\PanoramicCaptureFrames\[Date & Time]\FinalColor\Frame_00000_FinalColor.png 
+    Unreal Projects\[Project Name]\Saved\SterioPanorama\[Date & Time]\FinalColor\Frame_00000_FinalColor.png 
 
 
 ## Comping UE
