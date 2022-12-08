@@ -58,7 +58,7 @@ What UE does not do as well is render hero elements, whether that's animated cha
 
 ## Nuke
 
-In Nuke, read in thew file with a ```linear Rec.709 (sRGB)``` input transform. As UE's postprocess volume exposure adjustments are not applied to panoramic renders, you will need to make these in Nuke. You can then write out the file in ```ACEScg``` output transform. 
+In Nuke, read in thew file with a ```linear Rec.709 (sRGB)``` input transform. As UE's postprocess volume exposure adjustments are not applied to panoramic renders, you will need to make these in Nuke. In this example from the Matrix City Sample an exposure node of -5 stops has been applied. You can then write out the file in ```ACEScg``` output transform. 
 
 ![ue](img/UE9.jpg)
 <br><br>
