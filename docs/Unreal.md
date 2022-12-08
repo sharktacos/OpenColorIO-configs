@@ -4,7 +4,7 @@ Unreal Engine (UE) applies an ACES sRGB display transform by default ````ACES 1.
 
 The larger issue is how to incorporate UE with the rest of a VFX pipeline. For this we take the LED wall approach, and translate this into a purely digital environment. This begins with recognizing that what UE does best is render massive enviornments photrealistically in realtime. In other words, it makes a great 3D matte painting program i.e. it's great for generating background enviornments. 
 
-What UE does not do as well is render hero elements, whether that's animated characters or FX like explosions. Therefore, we use Maya to render the hero elements and UE to render the environment. The part where we parallel the LED wall approach is in using the UE environment to light our hero elements. We do this through image based lighting (IBL).
+What UE does not do as well is render hero elements, whether that's animated characters or FX like explosions. Therefore, we use Maya to render the hero elements and UE to render the environment. The part where we parallel the LED wall approach is in using the UE environment to *light* our hero elements. We do this through image based lighting (IBL). The first step here is to generate a 360 Panorama from Unreal.
 
 ## Rendering a 360 Panorama from Unreal
 
