@@ -8,7 +8,41 @@ What UE does not do as well is render hero elements, whether that's animated cha
 
 ## Image based lighting
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/a5hy4QdcFGU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+1. ```edit > plugins``` and load the "Movie Render Queue Additional Render Passes" plugin (search for "render" to find it). [UE1.jpg]
+2. ```edit > project settings``` and set *Enable alpha channel support for post processing* to "Linear coloer space only" (search for "alpha" to find it. [UE2.jpg]
+3. Restart Unreal for both of these to take effect.
+4. In the *Sequencer* click the movie icon to open the *Movie Render Queue*. [UE3.jpg]
+5. In the *Movie Render Queue* click the sequence to open the *Settings*. [UE4.jpg]
+6. In the *Settings* click *Load/Save Presets* and select "Ultra" [UE5.jpg]
+7. 
+
+Render settings still-ultra + --color output-- + panorama, set 4x2k
+
+expot ground and buildings, import cam
+
+You can use the [Panoramic Capture plugin](https://docs.unrealengine.com/5.0/en-US/panoramic-capture-tool-quick-start-for-unreal-engine/). The output bitdepth needs to be set to 32 which will then export an EXR. 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/a5hy4QdcFGU" title="YouTube video player" frameborder="0" allow="accele rometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+https://forums.unrealengine.com/t/free-360-spherical-panorama-capture-tool-and-getting-trolled-by-marketplace-staff/212902/9
+
+1. With your project open, select Edit > Plugins from the main menu. 
+2. From the Plugins menu, under Movie Capture, enable the Panoramic Capture plugin. Restart the editor when prompted. 
+3. By default, the Content Drawer does not show plugin content. To change this, select Settings (located in the top right corner of the Content Browser), then enable Show Engine Content and Show Plugin Content.
+4. In the Content Drawer, browse to ```EngineData > Plugins > PanoramicCapture Content > Assets```
+5. Drag the BP_Capture Blueprint onto the scene.
+6. Double-click BP_Capture Blueprint to open the blueprint.
+7. In the blueprint, change the Output Bitdepth to 32. This will generate an EXR render. The default output of the BP_Capture Blueprint is 8-bit (.png), with 32-bit (.exr) as an optional setting in the Blueprint.  
+8. Set the SP.OutputDir to ```SP.OutputDir``` which will output the render somewhere next to your unreal engine folder. Then, you’ll get the images in your project folder/Saved/StereoPanorama by default. For UE 5 there is a problem with the OutputDir string checking inside SceneCapturer.cpp that the devs should look into.
+9. has a valid path for saving the render to disc. Note that on Windows you need to use back slashes (\).
+10. Set the 
+11. Click Play to kick off the BP_Capture and start the capture process. 
+
+During the capture process, the editor might appear to be frozen or unresponsive for a few seconds up to a few minutes. This is due to the demanding rendering requirements of the Panoramic Capture plugin. When the editor becomes responsive again, you will be able to find the screenshots in the following location.
+
+    Unreal Projects\[Project Name]\Saved\SterioPanorama\[Date & Time]\FinalColor\Frame_00000_FinalColor.png 
+
 
 ## Comping UE
 
@@ -16,6 +50,6 @@ What UE does not do as well is render hero elements, whether that's animated cha
 2. Generate an IBL from that enviornment
 3. Render CG hero elements in Maya, using the IBL
 4. Comp the Unreal environment with the Maya CG in Nuke using the [Bridge](https://learn.foundry.com/nuke/content/comp_environment/unrealreader/unreal-intro.html)
-
+5. 
 
 
