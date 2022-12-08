@@ -8,6 +8,19 @@ What UE does not do as well is render hero elements, whether that's animated cha
 
 ## Image based lighting
 
+
+1. ```edit > plugins``` and load the "Movie Render Queue Additional Render Passes" plugin (search for "render" to find it). [UE1.jpg]
+2. ```edit > project settings``` and set *Enable alpha channel support for post processing* to "Linear coloer space only" (search for "alpha" to find it. [UE2.jpg]
+3. Restart Unreal for both of these to take effect.
+4. In the *Sequencer* click the movie icon to open the *Movie Render Queue*. [UE3.jpg]
+5. In the *Movie Render Queue* click the sequence to open the *Settings*. [UE4.jpg]
+6. In the *Settings* click *Load/Save Presets* and select "Ultra" [UE5.jpg]
+7. 
+
+Render settings still-ultra + --color output-- + panorama, set 4x2k
+
+expot ground and buildings, import cam
+
 You can use the [Panoramic Capture plugin](https://docs.unrealengine.com/5.0/en-US/panoramic-capture-tool-quick-start-for-unreal-engine/). The output bitdepth needs to be set to 32 which will then export an EXR. 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/a5hy4QdcFGU" title="YouTube video player" frameborder="0" allow="accele rometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
