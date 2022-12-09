@@ -54,7 +54,7 @@ What UE does not do as well is render hero elements, whether that's animated cha
 
 12. Click the green ```Accept``` button followed by the green ```Render (local)``` button. During the rendering process, the editor might appear to be frozen or unresponsive for a few seconds up to a few minutes. This is due to the demanding rendering requirements of the Panoramic render. When the editor becomes responsive again, you will be able to find the screenshots in the following location.
 
-```Unreal Projects\[Project Name]\Saved\FinalColor\Frame_00000_ultra.exr```
+```Unreal Projects\[Project Name]\Saved\MovieRenders\NewLevelSequence_0001_Ultra.exr```
 
 ## Nuke
 
