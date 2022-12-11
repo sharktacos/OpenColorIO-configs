@@ -64,11 +64,18 @@ In Nuke, read in thew file with a ```linear Rec.709 (sRGB)``` input transform. A
 <br><br>
 
 
+## Importing & Exporting Eeometry and Cameras in UE and Maya
+
 expot ground and buildings, import cam
 
+Exporting in Unreal is done by right-clicking on the item in the *Sequencer* and choosing "export" from the menu. To export a geo you can select it in the viewport, which will highlight it in the Outliner, and you can then drag it into the Sequencer. 
 
+To import a camera you need to have a camera (i.e. a cinematic camera actor) in the sequencer to import it into. In the options window use the following settngs.
 
+![ue](img/UE10.jpg)
+<br><br>
 
+imported geo will appear in the *Content Browser* and can then be draged into the view port. 
 
 
 ## Comping UE
