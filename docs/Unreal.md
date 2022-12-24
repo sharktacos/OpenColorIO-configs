@@ -84,6 +84,34 @@ imported geo will appear in the *Content Browser* and can then be draged into th
 2. Generate an IBL from that enviornment
 3. Render CG hero elements in Maya, using the IBL
 4. Comp the Unreal environment with the Maya CG in Nuke using the [Bridge](https://learn.foundry.com/nuke/content/comp_environment/unrealreader/unreal-intro.html)
-5. 
+
+
+## Materials
+
+try master material instance
+
+is "expose to library" in every project?
+how to make starter assets, reuse materials
+
+import object with textures
+
+"share to a common library "
+
+workflow:
+import textures into folder in UE
+import geo. comes in as separate elements. 
+- Can I assign shader instances for each from master?
+then connect textures to instances 
+
+"create new instanced materials" in "FBX import options" not working.
+
+alt: "do not create material," 
+1. make instance from master and rename, 
+2. drag material onto geo, 
+3. connect textures to shader. (like in Maya)
+
+maybe shotgrid integration for UE?
+or does Maya live link? no cuz it links existing.
+   
 
 
