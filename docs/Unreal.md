@@ -123,3 +123,5 @@ if combine mesh option is on can you get elements for materials?
 
 Import with quixel bridge?
 https://dev.epicgames.com/community/learning/courses/eER/unreal-engine-technical-guide-to-linear-content-creation-production/GxWX/unreal-engine-look-development
+
+Fix Sp2M to work with albedo naming 
