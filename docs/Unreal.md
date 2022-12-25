@@ -119,3 +119,5 @@ change multiple textures at once? = asset actions>bulk edit
 create master material using material properties, 
 modify MegaScan to add in roughness and get rid of channel packing, use Ai names.
 
+if combine mesh option is on can you get elements for materials?
+
