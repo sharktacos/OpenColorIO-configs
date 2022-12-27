@@ -127,4 +127,5 @@ https://dev.epicgames.com/community/learning/courses/eER/unreal-engine-technical
 Fix Sp2M to work with albedo naming 
 
 Review Slay master materials and compare with MegaScans and to aiStandard.
+https://www.unrealengine.com/marketplace/en-US/learn/slay-animation-sample
 Use ORM (just don't hook up O).
