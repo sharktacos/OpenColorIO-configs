@@ -129,5 +129,5 @@ Fix Sp2M to work with albedo naming
 Review Slay master materials and compare with MegaScans and to aiStandard.
 https://www.unrealengine.com/marketplace/en-US/learn/slay-animation-sample
 
-Include default textures for MM? How to export this?
+Include default textures for MM? How to export this? Hook color to emissive and SSS? Or should SSS be seperate master?
 Use ORM (just don't hook up O).
