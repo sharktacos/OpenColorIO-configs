@@ -125,3 +125,6 @@ Import with quixel bridge?
 https://dev.epicgames.com/community/learning/courses/eER/unreal-engine-technical-guide-to-linear-content-creation-production/GxWX/unreal-engine-look-development
 
 Fix Sp2M to work with albedo naming 
+
+Review Slay master materials and compare with MegaScans and to aiStandard.
+Use ORM (just don't hook up O).
