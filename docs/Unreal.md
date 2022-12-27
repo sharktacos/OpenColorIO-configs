@@ -128,4 +128,6 @@ Fix Sp2M to work with albedo naming
 
 Review Slay master materials and compare with MegaScans and to aiStandard.
 https://www.unrealengine.com/marketplace/en-US/learn/slay-animation-sample
+
+Include default textures for MM? How to export this?
 Use ORM (just don't hook up O).
