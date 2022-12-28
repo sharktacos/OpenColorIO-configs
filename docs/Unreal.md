@@ -135,7 +135,7 @@ Use ORM (just don't hook up O).
 ## Lighting
 
 **Sun & Sky Lights**
-(set all to moveable, enabled)
+(set all to moveable, enabled, hardware raytrace shadows)
 - directional (atmosphere sun light: ON)
 - skylight (cast ray tracing shadows: ON)
 
