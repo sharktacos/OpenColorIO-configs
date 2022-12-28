@@ -131,3 +131,22 @@ https://www.unrealengine.com/marketplace/en-US/learn/slay-animation-sample
 
 Include default textures for MM? How to export this? Hook color to emissive and SSS? Or should SSS be seperate master?
 Use ORM (just don't hook up O).
+
+## Lighting
+
+# Sun & Sky Lights 
+(set all to moveable, enabled)
+- directional (atmosphere sun light: ON)
+- skylight (cast ray tracing shadows: ON)
+
+- sky atmosphere (arial perspective)
+- volumetric clouds 
+
+
+# Visual Effects:
+- exponential hight fog
+
+
+# post process volume 
+- infinite extent unbound: ON
+- exposure min/max: 0
