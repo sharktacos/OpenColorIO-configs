@@ -138,6 +138,7 @@ Use ORM (just don't hook up O).
 (set all to moveable, enabled, hardware raytrace shadows)
 - directional (atmosphere sun light: ON)
 - skylight (cast ray tracing shadows: ON)
+- HDRI convert latlong to cube
 
 - sky atmosphere (arial perspective)
 - volumetric clouds 
