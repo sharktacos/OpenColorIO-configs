@@ -134,7 +134,7 @@ Use ORM (just don't hook up O).
 
 ## Lighting
 
-# Sun & Sky Lights 
+**Sun & Sky Lights**
 (set all to moveable, enabled)
 - directional (atmosphere sun light: ON)
 - skylight (cast ray tracing shadows: ON)
@@ -143,10 +143,15 @@ Use ORM (just don't hook up O).
 - volumetric clouds 
 
 
-# Visual Effects:
+**Visual Effects:**
 - exponential hight fog
 
 
-# post process volume 
+**post process volume**
 - infinite extent unbound: ON
 - exposure min/max: 0
+
+## Levels
+  Make root level ("Persistent Level") with sub levels for each department (modeling/layout, lookdev, lighting)
+  https://youtu.be/CnZIyfB9ZVo?t=3355
+  
