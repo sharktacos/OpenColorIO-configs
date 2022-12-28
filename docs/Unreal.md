@@ -150,6 +150,7 @@ Use ORM (just don't hook up O).
 **post process volume**
 - infinite extent unbound: ON
 - exposure min/max: 0
+- Lumen quality controls (quality, details, view distance...)
 
 ## Levels
   Make root level ("Persistent Level") with sub levels for each department (modeling/layout, lookdev, lighting)
