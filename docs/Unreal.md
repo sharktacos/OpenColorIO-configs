@@ -135,6 +135,8 @@ Use ORM (just don't hook up O).
 ## Lighting
 
 **Sun & Sky Lights**
+*Windows>Env Light mixer*
+ctr-L move directional light
 (set all to moveable, enabled, hardware raytrace shadows)
 - directional (atmosphere sun light: ON)
 - skylight (cast ray tracing shadows: ON)
@@ -145,7 +147,7 @@ Use ORM (just don't hook up O).
 
 
 **Visual Effects:**
-- exponential hight fog
+- exponential hight fog (volumetric fog: ON)
 
 
 **post process volume**
