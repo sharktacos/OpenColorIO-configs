@@ -137,7 +137,8 @@ Use ORM (just don't hook up O).
 **Sun & Sky Lights**
 *Windows>Env Light mixer*
 ctr-L move directional light
-(set all to moveable, enabled, hardware raytrace shadows)
+(set all to moveable, enabled, hardware raytrace shadows). [light mixer](https://docs.unrealengine.com/5.1/en-US/using-the-light-mixer-in-unreal-engine/)
+
 - directional (atmosphere sun light: ON)
 - skylight (cast ray tracing shadows: ON)
 - HDRI convert latlong to cube
