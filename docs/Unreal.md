@@ -143,7 +143,7 @@ ctr-L move directional light
 - HDRI convert latlong to cube
 
 - sky atmosphere (arial perspective)
-- volumetric clouds 
+- volumetric clouds ([cinematic quality settings](https://docs.unrealengine.com/5.1/en-US/volumetric-cloud-component-in-unreal-engine/#cloudocclusionandshadowing))
 
 
 **Visual Effects:**
