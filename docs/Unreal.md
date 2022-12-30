@@ -137,26 +137,26 @@ Use ORM (just don't hook up O).
 ## Lighting
 
 **Sun & Sky Lights**
-*Windows > [Env Light mixer](https://docs.unrealengine.com/5.1/en-US/environment-light-mixer-in-unreal-engine/)*
 ctr-L move directional light
 (set all to moveable, enabled, hardware raytrace shadows). [light mixer](https://docs.unrealengine.com/5.1/en-US/using-the-light-mixer-in-unreal-engine/)
 
-- point light
+- **Light types:** point, rect, spot, directional, sky, HDRI backdrop
+- 
+**sky setup**
+*Windows > [Env Light mixer](https://docs.unrealengine.com/5.1/en-US/environment-light-mixer-in-unreal-engine/)*
 - directional (atmosphere sun light: ON)
 - sky light (cast ray tracing shadows: ON)
-- rect light
-- spot light
-- HDRI backdrop (convert latlong to cube?)
-
-- sky atmosphere (Aerial perspective, or atmospheric perspective)[page](https://docs.unrealengine.com/5.1/en-US/sky-atmosphere-component-in-unreal-engine/)
-- volumetric clouds ([cinematic quality settings](https://docs.unrealengine.com/5.1/en-US/volumetric-cloud-component-in-unreal-engine/#cloudocclusionandshadowing))
 
 
 ## Visual Effects
-
+- sky atmosphere (Aerial perspective, or atmospheric perspective)[page](https://docs.unrealengine.com/5.1/en-US/sky-atmosphere-component-in-unreal-engine/)
+- volumetric clouds ([cinematic quality settings](https://docs.unrealengine.com/5.1/en-US/volumetric-cloud-component-in-unreal-engine/#cloudocclusionandshadowing))
 - exponential hight fog (volumetric fog: ON)
 - atmospheric fog: [video](https://dev.epicgames.com/community/learning/courses/Xwp/unreal-engine-lighting-essential-concepts-and-effects/ZWv/fog-and-volumetric-light)
 -  Sphere reflection capture
+
+
+
 
 
 **post process volume**
