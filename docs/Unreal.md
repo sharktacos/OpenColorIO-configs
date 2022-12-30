@@ -146,13 +146,14 @@ ctr-L move directional light
 *Windows > [Env Light mixer](https://docs.unrealengine.com/5.1/en-US/environment-light-mixer-in-unreal-engine/)*
 - directional (atmosphere sun light: ON)
 - sky light (cast ray tracing shadows: ON)
+- volumetric clouds
+- sky atmpsphere
 
 
 ## Visual Effects
 - sky atmosphere (Aerial perspective, or atmospheric perspective)[page](https://docs.unrealengine.com/5.1/en-US/sky-atmosphere-component-in-unreal-engine/)
 - volumetric clouds ([cinematic quality settings](https://docs.unrealengine.com/5.1/en-US/volumetric-cloud-component-in-unreal-engine/#cloudocclusionandshadowing))
 - exponential hight fog (volumetric fog: ON)
-- atmospheric fog: [video](https://dev.epicgames.com/community/learning/courses/Xwp/unreal-engine-lighting-essential-concepts-and-effects/ZWv/fog-and-volumetric-light)
 -  Sphere reflection capture
 
 
