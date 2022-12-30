@@ -137,7 +137,7 @@ Use ORM (just don't hook up O).
 ## Lighting
 
 **Sun & Sky Lights**
-*Windows > Env Light mixer*
+*Windows > [Env Light mixer](https://docs.unrealengine.com/5.1/en-US/environment-light-mixer-in-unreal-engine/)*
 ctr-L move directional light
 (set all to moveable, enabled, hardware raytrace shadows). [light mixer](https://docs.unrealengine.com/5.1/en-US/using-the-light-mixer-in-unreal-engine/)
 
