@@ -137,13 +137,16 @@ Use ORM (just don't hook up O).
 ## Lighting
 
 **Sun & Sky Lights**
-*Windows>Env Light mixer*
+*Windows > Env Light mixer*
 ctr-L move directional light
 (set all to moveable, enabled, hardware raytrace shadows). [light mixer](https://docs.unrealengine.com/5.1/en-US/using-the-light-mixer-in-unreal-engine/)
 
+- point light
 - directional (atmosphere sun light: ON)
-- skylight (cast ray tracing shadows: ON)
-- HDRI convert latlong to cube
+- sky light (cast ray tracing shadows: ON)
+- rect light
+- spot light
+- HDRI backdrop (convert latlong to cube?)
 
 - sky atmosphere (Aerial perspective, or atmospheric perspective)[page](https://docs.unrealengine.com/5.1/en-US/sky-atmosphere-component-in-unreal-engine/)
 - volumetric clouds ([cinematic quality settings](https://docs.unrealengine.com/5.1/en-US/volumetric-cloud-component-in-unreal-engine/#cloudocclusionandshadowing))
