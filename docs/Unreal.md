@@ -88,6 +88,8 @@ imported geo will appear in the *Content Browser* and can then be draged into th
 
 ## Materials
 
+Try Exporting Maya standard rather than AiStandard
+
 try master material instance
 
 is "expose to library" in every project?
