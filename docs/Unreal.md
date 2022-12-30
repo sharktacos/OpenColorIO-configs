@@ -154,8 +154,8 @@ ctr-L move directional light
 
 ## Other Visual Effects
 - exponential hight fog (volumetric fog: ON)
-- Sphere reflection capture
-- cube reflection capture
+- Sphere & cube reflection capture [docs](https://docs.unrealengine.com/5.1/en-US/reflections-captures-in-unreal-engine/)
+
 
 **post process volume**
 - infinite extent unbound: ON
