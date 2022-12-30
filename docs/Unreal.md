@@ -147,11 +147,13 @@ ctr-L move directional light
 
 - sky atmosphere (Aerial perspective, or atmospheric perspective)[page](https://docs.unrealengine.com/5.1/en-US/sky-atmosphere-component-in-unreal-engine/)
 - volumetric clouds ([cinematic quality settings](https://docs.unrealengine.com/5.1/en-US/volumetric-cloud-component-in-unreal-engine/#cloudocclusionandshadowing))
-- atmospheric fog: [video](https://dev.epicgames.com/community/learning/courses/Xwp/unreal-engine-lighting-essential-concepts-and-effects/ZWv/fog-and-volumetric-light)
 
 
-**Visual Effects:**
+## Visual Effects
+
 - exponential hight fog (volumetric fog: ON)
+- atmospheric fog: [video](https://dev.epicgames.com/community/learning/courses/Xwp/unreal-engine-lighting-essential-concepts-and-effects/ZWv/fog-and-volumetric-light)
+-  Sphere reflection capture
 
 
 **post process volume**
