@@ -148,19 +148,14 @@ ctr-L move directional light
 [build](https://docs.unrealengine.com/5.1/en-US/sky-atmosphere-component-in-unreal-engine/)
 - directional (atmosphere sun light: ON, index 0 for Sun & 1 for Moon)
 - sky light (cast ray tracing shadows: ON, to capture Sky Atmosphere and have it contribute to the scene lighting)
-- sky atmosphere
-- volumetric clouds
-
-
-## Visual Effects
-- sky atmosphere (Aerial perspective, or atmospheric perspective)
+- sky atmosphere (Aerial perspective or atmospheric perspective, mie scattering, raleigh scattering)
 - volumetric clouds ([cinematic quality settings](https://docs.unrealengine.com/5.1/en-US/volumetric-cloud-component-in-unreal-engine/#cloudocclusionandshadowing))
+
+
+## Other Visual Effects
 - exponential hight fog (volumetric fog: ON)
--  Sphere reflection capture
-
-
-
-
+- Sphere reflection capture
+- cube reflection capture
 
 **post process volume**
 - infinite extent unbound: ON
