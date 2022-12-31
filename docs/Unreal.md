@@ -88,7 +88,8 @@ imported geo will appear in the *Content Browser* and can then be draged into th
 
 ## Materials
 
-Try Exporting Maya standard rather than AiStandard
+Try Exporting Maya standard rather than AiStandard, try embed media on lambert
+https://issues.unrealengine.com/issue/UE-36286
 
 try master material instance
 
