@@ -88,7 +88,9 @@ imported geo will appear in the *Content Browser* and can then be draged into th
 
 ## Materials
 
-Maya export FBX, geometry options: smoothing groups, triangulate.
+1. Maya export FBX, geometry options: smoothing groups, triangulate.
+2. Export textueres to same folder as mesh. Save as Targa using Unreal 4 (packed) preset (baseColor is RGBA with A: opacity, ORM is OcclusionRoughnessMetallic, Normal is DirectX.
+3. Create new folder "staticMeshes" in Content Browser, double click to go in it. Open File Explorer and drag in asset folder (containing the mesh and textures). "Import All"
 
 Try Exporting Maya standard rather than AiStandard, try embed media on lambert
 https://issues.unrealengine.com/issue/UE-36286
