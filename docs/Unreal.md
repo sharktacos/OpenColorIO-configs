@@ -93,6 +93,8 @@ imported geo will appear in the *Content Browser* and can then be draged into th
 3. **Unreal** Create new folder "staticMeshes" in Content Browser, double click to go in it. Open File Explorer and drag in asset folder (containing the mesh and textures). "Import All"
 4. **Unreal** Connect the maps to the material, save it. 
 5. **Unreal** Make Folder called "shared" and move the shader there as Substance_base_mtl. Make material instance.
+6. **Unreal** Drag in folder, set option to "Create Material Instances" and pick the instance (not the parent) for the base. No overrides. Press "import all"
+7. filter for ORM and select them. Right-click menu *asset actions > bulk editvia property matrix*. Select all and uncheck sRGB. (any way to do this with OCIO?)
 
 Try Exporting Maya standard rather than AiStandard, try embed media on lambert
 https://issues.unrealengine.com/issue/UE-36286
