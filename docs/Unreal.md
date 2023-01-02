@@ -94,7 +94,7 @@ imported geo will appear in the *Content Browser* and can then be draged into th
 4. **Unreal** Connect the maps to the material, save it. 
 5. **Unreal** Make Folder called "shared" and move the shader there as Substance_base_mtl. Make material instance.
 6. **Unreal** Drag in folder, set option to "Create Material Instances" and pick the instance (not the parent) for the base. No overrides **(shouldn't there be? How to do channel packing?)**. Press "import all"
-7. filter for ORM and select them. Right-click menu *asset actions > bulk editvia property matrix*. Select all and uncheck sRGB. (any way to do this with [OCIO](https://docs.unrealengine.com/5.0/en-US/converting-colors-in-unreal-engine-blueprints/)?). [Texture properties](https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Textures/Properties/) srgb gamma normal.
+7. filter for ORM and select them. Right-click menu *asset actions > bulk editvia property matrix*. Select all and uncheck sRGB. (any way to do this with [OCIO](https://docs.unrealengine.com/5.0/en-US/converting-colors-in-unreal-engine-blueprints/)?). [Texture properties](https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Textures/Properties/) srgb gamma normal. Can I write out ORM as EXR linear? Does it need to be linear sRGB? Can I set working space to ACEScg in UE?
 
 Try Exporting Maya standard rather than AiStandard, try embed media on lambert
 https://issues.unrealengine.com/issue/UE-36286
