@@ -88,6 +88,8 @@ imported geo will appear in the *Content Browser* and can then be draged into th
 
 ## Materials
 
+https://docs.unrealengine.com/5.0/en-US/content-examples-sample-project-for-unreal-engine/
+
 1. **Maya** export FBX, geometry options: smoothing groups, triangulate. Use Maya Surface shader, name MI_. Daryl does not use an instance in the base and does not load in a folder.
 2. **Substance** Export textueres to same folder as mesh. Save as Targa using Unreal 4 (packed) preset (baseColor is RGBA with A: opacity, ORM is OcclusionRoughnessMetallic, Normal is DirectX.
 3. **Unreal** Create new folder "staticMeshes" in Content Browser, double click to go in it. Open File Explorer and drag in asset folder (containing the mesh and textures). "Import All"
