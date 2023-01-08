@@ -1,6 +1,6 @@
 # Unreal Engine
 
-working [color space](https://dev.epicgames.com/community/learning/tutorials/KJZk/unreal-engine-color-pipeline-opencolorio) (UE5.1) and [post process](https://dev.epicgames.com/community/learning/tutorials/Zdew/unreal-engine-ue-to-nuke-to-davinci-aces-color-pipeline). If mega scans assets are in sRGB does it make sense to have an ACEScg working space? Can Mega scans be switched to ACEScg? Unreal Engine 5.1 supports OCIO v2.1
+working [color space](https://dev.epicgames.com/community/learning/tutorials/KJZk/unreal-engine-color-pipeline-opencolorio) (UE5.1) and [post process](https://dev.epicgames.com/community/learning/tutorials/Zdew/unreal-engine-ue-to-nuke-to-davinci-aces-color-pipeline). If mega scans assets are in sRGB does it make sense to have an ACEScg working space? Can Mega scans be switched to ACEScg? Unreal Engine 5.1 supports OCIO v2.1. Greyscale for roughness? metal in alpha?
 
 Unreal Engine (UE) applies an ACES sRGB display transform by default ````ACES 1.0 SDR (sRGB - Display)```` with an added 1.45 gain added in. Consequently you don't really need to load OCIO in UE. What you need to do is have a way to view renders from UE in other apps like Nuke. For this we have custom input transforms in the config. More on that below.
 
