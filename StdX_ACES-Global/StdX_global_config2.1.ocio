@@ -1,13 +1,5 @@
-ocio_profile_version: 2
-luma: [0.2126, 0.7152, 0.0722]
-name: StudioX Gloabal ACES config 2.0 - Author Derek Flood
-description: |
-  Academy Color Encoding System - StudioX Global Config 
-  Based on the studio-config-v1.0.0_aces-v1.3_ocio-v2.0 config from "OpenColorIO-Config-ACES" [COLORSPACES v1.0.0] [ACES v1.3] [OCIO v2.0]
-  ------------------------------------------------------------------------------------------
-  
-  This "OpenColorIO" config is geared toward studios requiring a config that includes a wide variety of camera colorspaces, displays and looks.
-  
+ocio_profile_version: 2.1
+
 # ---------------- Per Shot Grade Variables ------------------------- #
 environment:
 #--------------
@@ -24,9 +16,16 @@ environment:
   CAMERA: ARRIv3_log
   SHAPER: ACEScct
 # ------------------------------------------------------------------- # 
-
-
 search_path: "Looks:${LUT_PATH}"
+strictparsing: true
+luma: [0.2126, 0.7152, 0.0722]
+name: StudioX Gloabal ACES config 2.1 - Author Derek Flood
+description: |
+  Academy Color Encoding System - StudioX Global Config 
+  Based on the studio-config-v1.0.0_aces-v1.3_ocio-v2.1 config from "OpenColorIO-Config-ACES" [COLORSPACES v1.0.0] [ACES v1.3] [OCIO v2.0]
+  ------------------------------------------------------------------------------------------
+  
+  This "OpenColorIO" config is geared toward studios requiring a config that includes a wide variety of camera colorspaces, displays and looks.
 
 roles:
   aces_interchange: ACES2065-1
@@ -113,19 +112,16 @@ active_views: [ACES 1.0 - SDR-video, ANM - Studio Look - RGC, VFX - ARRI K1S1 Lo
 inactive_colorspaces: [CIE-XYZ-D65, Gamut Shaper, camera_log, Shot_shaper, Pick Rec709-sRGB Desat, "Color sRGB Texture lowCon", "Apple P3 - Display", Gamma 2.2 - Display, Rec.1886 Rec.709 - Display, Unreal Engine sRGB Display, VFX - ACES Shot Look (Gamma 2.2 - Display), Color Rec.709 Texture, Color Gamma 2.2 Texture, ANM - Studio Look - RGC (Rec.709 - Display), VFX - ACES Shot Look (Rec.709 - Display), VFX - DPX Shot Look (Non-Color Managed)]
 
 
-
-view_transforms:
-
-  - !<ViewTransform>
-    name: Un-tone-mapped
-    from_scene_reference: !<BuiltinTransform> {style: UTILITY - ACES-AP0_to_CIE-XYZ-D65_BFD}
-
-  - !<ViewTransform>
-    name: SDR Video - ACES 1.0
-    description: Component of ACES Output Transforms for SDR D65 video
-    from_scene_reference: !<BuiltinTransform> {style: ACES-OUTPUT - ACES2065-1_to_CIE-XYZ-D65 - SDR-VIDEO_1.0}
-        
 looks:
+
+  - !<Look>
+    name: ACES 1.3 Reference Gamut Compression
+    process_space: ACES2065-1
+    description: |
+      LMT (applied in ACES2065-1) to compress scene-referred values from common cameras into the AP1 gamut
+      
+      ACEStransformID: urn:ampas:aces:transformId:v1.5:LMT.Academy.GamutCompress.a1.3.0
+    transform: !<BuiltinTransform> {style: ACES-LMT - ACES 1.3 Reference Gamut Compression}
 
   - !<Look>
     name: LMT_gamut
@@ -177,6 +173,19 @@ looks:
     process_space: ACES2065-1
     transform: !<FileTransform> {src: M-SONY.clf}
 
+
+
+view_transforms:
+
+  - !<ViewTransform>
+    name: Un-tone-mapped
+    from_scene_reference: !<BuiltinTransform> {style: UTILITY - ACES-AP0_to_CIE-XYZ-D65_BFD}
+
+  - !<ViewTransform>
+    name: SDR Video - ACES 1.0
+    description: Component of ACES Output Transforms for SDR D65 video
+    from_scene_reference: !<BuiltinTransform> {style: ACES-OUTPUT - ACES2065-1_to_CIE-XYZ-D65 - SDR-VIDEO_1.0}
+        
 
 
 
