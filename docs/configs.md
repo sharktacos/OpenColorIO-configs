@@ -1,4 +1,4 @@
-# ANM and VFX Configs
+# ANM and VFX Global config
 
 The global config ````StdX_global_config.ocio```` is designed for work on both CG animation shorts and features, as well as on a VFX designed for integrating CG and VFX with live action film. 
 
@@ -17,21 +17,22 @@ In OCIO, a View Transform is paired with a Display Transform corresponding to th
 </div>
 
 - **ACES 1.0 SDR (Rec.1886 Rec.709 - Display)** <br> The standard ACES [tone mapping](tonemap.md) for a HDTV display, and used for delivery of proxy movies to clients for viewing in Rec.709 in editorial. This has 2.4 gamma making it appear brighter on an artist's monitor. In the case of a VFX show that can be desired as it lets you see the image a bit better.
-- **Shot Look (Rec.1886 Rec.709 - Display)** <br> This view transform uses contextual variables to apply the shot-specific look LUT provided by the client. This assumes the LUT was made in an ACES workflow in ACEScct working space (the log color space used for color corrections). The variables are defined in the config and can be set by the artist. See "Defining Shot & Show LUT contextual variables" below for details.
 - **ARRI K1S1 Look (Rec.1886 Rec.709 - Display)** <br> An ACES compliant LMT emulating the look of the classic ARRI camera RRT of the same name for a Rec.709 display. Intended for clients who want to have an ACES compliant show, but with the look of popular camera vendor DRTs (display rendering transform) such as ARRI's classic K1S1.
 - **Log (USE ONLY FOR CHECKING COMPS)** For diagnostic purposes only, i.e. for checking comps. This uses the camera log space defined in the contextual variable, described below.
 - **Raw (USE ONLY FOR CHECKING RENDERS)** For diagnostic purposes only, i.e. for checking renders in scene-linear space. This essentially turns off the view transform.
-- **DPX Shot Look (Non-color managed DPX workflow)** for displaying client LUTS from a display-referred non-color managed pipeline. See "Defining Shot & Show LUT contextual variables" below for details.
 
 Optional:
 - **Apple Display P3** <br> Display transform for the MacBookPro M1 XDR display in the wider P3 gamut used for film with a pure 2.2 gamma. This display transform also contains options for HDR display.
 
 
-# Defining Shot & Show LUT contextual variables
+# Shot & Show LUT Config & contextual variables
 
-Both the  **Shot Look** and **DPX Shot Look** view transforms use contextual variables to apply the shot-specific look LUT provided by the client to the view. The variables are defined in the config and can be set by the artist. **Shot Look** is intended for LUTs in an ACES pipeline (the client is delivering EXR files in ACES2065-1 color space) and **DPX Shot Look** is for LUTs in a non-color managed display-referred pipeline (the client is delivering DPX in the log space of the original camera raw).
+![img](img/Nuke_view_LUT.png)
 
-The config has the following section at the top.
+- **ACES Shot Look (Rec.1886 Rec.709 - Display)** <br> This view transform uses contextual variables to apply the show or shot-specific look LUT provided by the client. This assumes the LUT was made in an ACES workflow in ACEScct working space (the log color space used for color corrections). The variables are defined in the config and can be set by the artist. 
+- **Shot Look (Non-color managed DPX workflow)** for displaying client LUTS from a display-referred non-color managed pipeline. Here the camera native color space need to be defined as well as the process space for the LUT.
+
+Both the  **Shot Look** and **DPX Shot Look** view transforms use contextual variables to apply the show or shot-specific look LUT provided by the client to the view. These are defined in the following section at the top of the config file.
 
 ````
 # ---------------- Per Shot Grade Variables ------------------------- #
@@ -39,17 +40,19 @@ environment:
 #--------------
 # example path: ../shots/SM_020_018/01_Client_Original_Footage/5_LUT/
 #--------------
-  LUT_PATH: path_to/shot_lut/
+  LUT_PATH: shot_lut/
   LUT_NAME: clientShotLUTname_ACEScct.cube
 #--------------
-# Camera aliases are: ARRI, RED, CLog2, CLog3, 
-# Sony, SonyCine, SonyVenice, SonyVeniceCine, ADX10
+# Camera aliases are: ARRIv3_log, ARRIv3_lin, ARRIv4_log, ARRIv4_log
+# RED_log, RED_lin, CLog2, CLog3, Panasonic_log, Panasonic_lin, ADX10
+# Sony_log, SonyCine_log, SonyVenice_log, SonyVeniceCine_log, Sony_lin, SonyCine_lin, SonyVenice_lin, SonyVeniceCine_lin, 
+# CAMERA variable is set to ACEScct for ACES EXR workflow, and to camera for DPX for display-referred workflow
 #--------------
-  CAMERA: ARRI
+  CAMERA: ARRIv3_log
   SHAPER: ACEScct
 # ------------------------------------------------------------------- # 
 ````
-Because the config file uses OCIOv2 it is self-contained and does not require external LUTs, instead using built-in mathematical transforms. Therefore each artist can simply copy the ```VFX_config.ocio``` file into their local directory for the show they are working on, and edit the file setting the above variables to correspond to the location (*LUT_PATH*) and name (*LUT_NAME*) of the LUT for the shot they are working on. Additionally if the client is delivering a LUT for display-referred DPX footage, the color space of the original camera should be entered into the **CAMERA** variable to set the log space for the **Shot Look DPX** display transform. 
+Because the config file uses OCIOv2 it is self-contained and does not require external LUTs, instead using built-in mathematical transforms. Therefore each artist can simply copy the ```StudioX_ShotLUT.ocio``` file into their local directory for the show they are working on, and edit the file setting the above variables to correspond to the location (*LUT_PATH*) and name (*LUT_NAME*) of the LUT for the shot they are working on. Additionally if the client is delivering a LUT for display-referred footage, the color space of the original camera should be entered into the **CAMERA** variable to set the log space for the **Shot Look (Non-color managed DPX workflow)** display transform. 
 
 In the StudioX VFX directory structure, the OCIO config directory is parallel to the shots directory:
 
