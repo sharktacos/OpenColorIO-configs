@@ -29,10 +29,10 @@ Optional:
 
 ![img](img/Nuke_view_LUT.png)
 
-- **ACES Shot Look (Rec.1886 Rec.709 - Display)** <br> This view transform uses contextual variables to apply the show or shot-specific look LUT provided by the client. This assumes the LUT was made in an ACES workflow in ACEScct working space (the log color space used for color corrections). The variables are defined in the config and can be set by the artist. 
-- **Shot Look (Non-color managed DPX workflow)** for displaying client LUTS from a display-referred non-color managed pipeline. Here the camera native color space need to be defined as well as the process space for the LUT.
+- **VFX - ACES Shot Look (Rec.1886 Rec.709 - Display)** <br> This view transform uses contextual variables to apply the show or shot-specific look LUT provided by the client. This assumes the LUT was made in an ACES scene-referred workflow in ACEScct working space (the log color space used for color corrections). The variables are defined in the config and can be set by the artist. 
+- **VFX - DPX Shot Look (Non-color managed DPX workflow)** for displaying client LUTS from a display-referred non-color managed pipeline. This is typically the case with DPX footage, although a show can have a display-referred pipeline and use EXR files. The key issue is whether the target display EOTF (for example Rec.709) was baked into the LUT, making it display-referred. Here the camera native color space needs to be defined as well as the process space the LUT was generated in.
 
-Both the  **Shot Look** and **DPX Shot Look** view transforms use contextual variables to apply the show or shot-specific look LUT provided by the client to the view. These are defined in the following section at the top of the config file.
+Both the  **ACES Shot Look** and **DPX Shot Look** view transforms use contextual variables to apply the show or shot-specific look LUT provided by the client to the view. These are defined in the following section at the top of the config file.
 
 ````
 # ---------------- Per Shot Grade Variables ------------------------- #
