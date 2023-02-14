@@ -5,7 +5,7 @@ The global config ````StdX_global_config.ocio```` is designed for work on both C
 
 # View and Display Transforms 
 
-![img](img/Nuke_view_global2.png)
+![img](img/Nuke_view_global3.png)
 
 In OCIO, a View Transform is paired with a Display Transform corresponding to the display it is being viewed on. As you can see in the image above, in Nuke these are all in a single drop-down menu with the display listed in parenthesis after the view. In Maya, the View and Display are separate drop-downs.
 
