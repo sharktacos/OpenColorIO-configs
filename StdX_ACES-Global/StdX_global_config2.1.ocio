@@ -57,10 +57,10 @@ roles:
   substance_3d_painter_substance_material: Color sRGB Texture
   
 
-  mari_monitor: ACES 1.0 SDR-video (Rec.709 - Display)
-  mari_scaler_monitor: Raw
-  mari_color_picker: hdr 
-  mari_blending: Raw 
+#  mari_monitor: ACES 1.0 SDR-video (Rec.709 - Display)
+#  mari_scaler_monitor: Raw
+#  mari_color_picker: hdr 
+#  mari_blending: Raw 
   mari_int8: Color sRGB Texture
   mari_int16: ACEScct
   mari_int_scalar: Raw

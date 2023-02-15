@@ -81,7 +81,7 @@ shared_views:
 
   - !<View> {name: ACES 1.0 - SDR-video, view_transform: SDR Video - ACES 1.0, display_colorspace: <USE_DISPLAY_NAME>}
   - !<View> {name: ANM - Studio Look - RGC, view_transform: SDR Video - ACES 1.0, looks: "RedExp, LMT_gamut, ACESLooks LMT - RED IPP2 Look", display_colorspace: <USE_DISPLAY_NAME>} 
-  - !<View> {name: VFX - ACES Shot Look, view_transform: SDR Video - ACES 1.0, looks: LMT_shot, display_colorspace: <USE_DISPLAY_NAME>}
+  - !<View> {name: VFX - ACES Client Look, view_transform: SDR Video - ACES 1.0, looks: LMT_shot, display_colorspace: <USE_DISPLAY_NAME>}
 
   - !<View> {name: ARRI ALF-2 Look, view_transform: SDR Video - ACES 1.0, looks: "ACESLooks LMT - ARRI ALF-2 Look", display_colorspace: <USE_DISPLAY_NAME>} 
   - !<View> {name: VFX - ARRI K1S1 Look, view_transform: SDR Video - ACES 1.0, looks: "ACESLooks LMT - ARRI K1S1 Look", display_colorspace: <USE_DISPLAY_NAME>} 
@@ -96,11 +96,11 @@ displays:
   Gamma 2.2 - Display:
     - !<Views> ["ACES 1.0 - SDR-video", ANM - Studio Look - RGC, Un-tone-mapped]
   Apple P3 - Display:
-    - !<Views> ["ACES 1.0 - SDR-video", ANM - Studio Look - RGC, Un-tone-mapped, VFX - ACES Shot Look, ARRI ALF-2 Look, VFX - ARRI K1S1 Look, RED IPP2 Look, Sony S-gamut3 Cine Look]
+    - !<Views> ["ACES 1.0 - SDR-video", ANM - Studio Look - RGC, Un-tone-mapped, VFX - ACES Client Look, ARRI ALF-2 Look, VFX - ARRI K1S1 Look, RED IPP2 Look, Sony S-gamut3 Cine Look]
   Rec.1886 Rec.709 - Display:
-    - !<Views> ["ACES 1.0 - SDR-video", Un-tone-mapped, VFX - ACES Shot Look, ARRI ALF-2 Look, VFX - ARRI K1S1 Look, RED IPP2 Look, Sony S-gamut3 Cine Look]
-  Non-Color Managed DPX Workflow:
-    - !<View> {name: "VFX - DPX Shot Look", colorspace: "VFX - DPX Shot Look (Non-Color Managed)"}
+    - !<Views> ["ACES 1.0 - SDR-video", Un-tone-mapped, VFX - ACES Client Look, ARRI ALF-2 Look, VFX - ARRI K1S1 Look, RED IPP2 Look, Sony S-gamut3 Cine Look]
+  Display-Referred:
+    - !<View> {name: "VFX - Client Look", colorspace: "VFX - Client Look (Display-Referred)"}
   USE ONLY FOR CHECKING COMPS:
     - !<View> {name: Log, colorspace: camera_log}
   USE ONLY FOR CHECKING RENDERS:
@@ -108,9 +108,9 @@ displays:
 
 
 
-active_displays: ["Rec.1886 Rec.709 - Display", "Non-Color Managed DPX Workflow", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS"]
-active_views: [ACES 1.0 - SDR-video, VFX - ACES Shot Look, VFX - DPX Shot Look, Log, Raw]
-inactive_colorspaces: [CIE-XYZ-D65, Gamut Shaper, camera_log, Shot_shaper, Pick Rec709-sRGB Desat, "Color sRGB Texture lowCon", "Apple P3 - Display", Gamma 2.2 - Display, Rec.1886 Rec.709 - Display, Unreal Engine sRGB Display, VFX - ACES Shot Look (Gamma 2.2 - Display), Color Rec.709 Texture, Color Gamma 2.2 Texture, ANM - Studio Look - RGC (Rec.709 - Display), ACES 1.0 SDR-video (Gamma 2.2 - Display), ANM - Studio Look - RGC (Gamma 2.2 - Display), VFX - ARRI K1S1 Look (Rec.709 - Display)]
+active_displays: ["Rec.1886 Rec.709 - Display", "Display-Referred", "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS"]
+active_views: [ACES 1.0 - SDR-video, VFX - ACES Client Look, VFX - Client Look, Log, Raw]
+inactive_colorspaces: [CIE-XYZ-D65, Gamut Shaper, camera_log, Shot_shaper, Pick Rec709-sRGB Desat, "Color sRGB Texture lowCon", "Apple P3 - Display", Gamma 2.2 - Display, Rec.1886 Rec.709 - Display, Unreal Engine sRGB Display, VFX - ACES Client Look (Gamma 2.2 - Display), Color Rec.709 Texture, Color Gamma 2.2 Texture, ANM - Studio Look - RGC (Rec.709 - Display), ACES 1.0 SDR-video (Gamma 2.2 - Display), ANM - Studio Look - RGC (Gamma 2.2 - Display), VFX - ARRI K1S1 Look (Rec.709 - Display)]
 
 
 
@@ -921,13 +921,13 @@ colorspaces:
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
-    name: VFX - ACES Shot Look (Gamma 2.2 - Display)
+    name: VFX - ACES Client Look (Gamma 2.2 - Display)
     family: Baked View Output
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2 - Display", view: "VFX - ACES Shot Look"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2 - Display", view: "VFX - ACES Client Look"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
@@ -973,13 +973,13 @@ colorspaces:
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
-    name: VFX - ACES Shot Look (Rec.709 - Display)
+    name: VFX - ACES Client Look (Rec.709 - Display)
     family: Baked View Output
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec.1886 Rec.709 - Display", view: "VFX - ACES Shot Look"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec.1886 Rec.709 - Display", view: "VFX - ACES Client Look"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
@@ -995,10 +995,10 @@ colorspaces:
 
 
 
-#-- DPX Non-Color Managed display:
+#-- DPX Display-Referred display:
 
   - !<ColorSpace>
-    name: VFX - DPX Shot Look (Non-Color Managed)
+    name: VFX - Client Look (Display-Referred)
     family: Baked View Output
     isdata: false
     encoding: sdr-video
