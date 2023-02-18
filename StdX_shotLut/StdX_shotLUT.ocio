@@ -430,7 +430,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Gamma2.2
-    family: Texture Input
+    family: Utility
     description: |
       sRGB monitor (pure 2.2 gamma). Here so movie files will work in Nuke.
     isdata: false
@@ -440,7 +440,6 @@ colorspaces:
 
   - !<ColorSpace>
     name: Inverse Rec709 Display
-    alias: 
     family: Texture Input
     description: |
       Rec.709 Display
@@ -449,6 +448,15 @@ colorspaces:
     encoding: sdr-video
     to_reference: !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: Rec.1886 Rec.709 - Display, view: "ACES 1.0 - SDR-video"}
 
+  - !<ColorSpace>
+    name: rec709
+    family: Utility
+    description: |
+      Rec.709 Display
+    isdata: false
+    categories: [ file-io ]
+    encoding: sdr-video
+    to_reference: !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: Rec.1886 Rec.709 - Display, view: "ACES 1.0 - SDR-video"}
 
 
 
@@ -1048,7 +1056,7 @@ display_colorspaces:
 
   - !<ColorSpace>
     name: Rec.1886 Rec.709 - Display
-    aliases: [ Rec709, Rec.709, Rec.1886 Rec.709 - Display, rec1886_rec709_display, Rec.709 - Display ]
+    aliases: [ Rec.709, Rec.1886 Rec.709 - Display, rec1886_rec709_display, Rec.709 - Display ]
     family: Display EOTF
     bitdepth: 32f
     description: |
