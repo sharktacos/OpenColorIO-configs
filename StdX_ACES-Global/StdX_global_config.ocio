@@ -428,6 +428,16 @@ colorspaces:
     to_reference: !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: "Gamma 2.2 - Display", view: "ACES 1.0 - SDR-video"}
 
   - !<ColorSpace>
+    name: Gamma2.2
+    family: Texture Input
+    description: |
+      sRGB monitor (pure 2.2 gamma). Here so movie files will work in Nuke.
+    isdata: false
+    categories: [ file-io ]
+    encoding: sdr-video
+    to_reference: !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: "Gamma 2.2 - Display", view: "ACES 1.0 - SDR-video"}
+
+  - !<ColorSpace>
     name: Inverse Rec709 Display
     alias: 
     family: Texture Input
