@@ -1006,7 +1006,7 @@ colorspaces:
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec709", view: "VFX - ARRI K1S1 Look"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec.1886 Rec.709 - Display", view: "VFX - ARRI K1S1 Look"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
 
