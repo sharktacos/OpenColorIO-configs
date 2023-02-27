@@ -32,10 +32,9 @@ The guide below will walk you through the process:
  - [VFX Pulls with Resolve](ResolvePull.md)
 
 **Color Reference and LUTs.** VFX pulls should include:
-  - *A reference quicktime for checking color against existing dailies.* <br> This represents how the final film is intended to look, and includes any shot grades. See the above *VFX Pulls with Resolve* link for details.
-  - *A "shot LUT" to achieve dailies color, along with the working color space.* <br> Where applicable. Again, the above *VFX Pulls with Resolve* link for details.
+  - *VFX pulls should always include dailies color reference (QuickTime or reference frames) representing how the footage looks in editorial so we can ensure a roundtrip from vfx to editorial of the proxy media.
 
-**Not Required, but nice to have**
+  - *The show look (typically a cube LUT, along with the working color space used) and/or per shot CDL files used in the dailies process should be included. This is to help ensure that editorial proxies of VFX shots can easily be matched to the original dailies proxy in editorial. See the above *VFX Pulls with Resolve* link for details on exporting LUTs from Resolve.
 
  - **Macbeth Color Checker** When integrating CG into a shot it's helpful to have a frame for the shot with a MacBeth color checker. This is used to calibrate our CG render's color gamut to match the white balance and color characteristics of your camera.
 
