@@ -19,13 +19,13 @@
   <summary><b>shots</b></summary>
 
 - **anim**<br>
-  ```[ShotName]/[ShotName]_anim_[artist]_[ver].ma```<br>
+  ```maya/[ShotName]/[ShotName]_anim_[artist]_[ver].ma```<br>
   example: *GG_Sc20_50/GG_Sc20_50_anim_jdoe_v01.ma*
 - **fx**<br>
-  ```[ShotName]/[ShotName]_fx_[artist]_[ver].ma```<br>
+  ```maya/[ShotName]/[ShotName]_fx_[artist]_[ver].ma```<br>
   example: *GG_Sc20_50/GG_Sc20_50_fx_bsmith_v01.ma*
 - **light**<br>
-  ```[ShotName]/[ShotName]_light_[artist]_[ver].ma```<br>
+  ```maya/[ShotName]/[ShotName]_light_[artist]_[ver].ma```<br>
   example: *GG_Sc20_50/GG_Sc20_50_light_bsmith_v01.ma*
 - **publish**<br>
   dffg
