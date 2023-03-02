@@ -1,6 +1,6 @@
 # Project Directory Structure and Naming Conventions
 
-Project directory structure for CG in a VFX pipeline. Assets folder for the modeling, rigging, and lookdev departments. Shots folder for the animation, FX, and lighting departments. Published assets so in the shots/published folder. Expand each section below for details and naming convensions.
+Project directory structure for CG in a VFX pipeline. Assets folder for the modeling, rigging, and lookdev departments. Shots folder for the animation, FX, and lighting departments. Published per shot assets so in the shots/published folder. Expand each section below for details and naming convensions.
 
 ## assets/
   
@@ -79,7 +79,7 @@ Project directory structure for CG in a VFX pipeline. Assets folder for the mode
 
 
 
-
+<br><br>
 ## shots/
 
 <details>
@@ -210,7 +210,7 @@ Project directory structure for CG in a VFX pipeline. Assets folder for the mode
 
 
 
-
+<br><br>
 ## textures/
 
 <details>
@@ -228,10 +228,12 @@ example:
 ```
  </details>
 
+
+<br><br>
 ## farm/
 
 <details>
- <summary><b>farm/</b></summary>
+ <summary><b>renders/</b></summary>
 
 - *renders*
 
@@ -243,6 +245,10 @@ example:
    GG_Sc20_50/
      GG_Sc20_50_light_jdoe_v01.0001.exr/
 ```
+</details>
+  
+<details>
+ <summary><b>comps/</b></summary>
 
 - *comps*
   
