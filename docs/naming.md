@@ -263,4 +263,4 @@ example:
 </details>
 
 
-![nk](img/Lighting_Shot_Build.png")
+![nk](img/Lighting_Shot_Build.png)
