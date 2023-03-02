@@ -61,6 +61,10 @@
   
 </details>
 
+
+
+
+
 ## shots/
 
 <details>
@@ -142,7 +146,7 @@
   
 - *published files: Alembic caches*
   
-  ```Alembic/[ShotName]/[AssetName]_[artist]_[ver].ma```
+  ```Alembic/[ShotName]/[AssetName]_[artist]_[ver].abc```
   
   example:
   ```
@@ -151,25 +155,89 @@
       GG_Sc20_50/
         spaceShip_bsmith_v01.abc
   ```
+- *published files: OpenVDB*
+  
+  ```vdb/[ShotName]/[EffectName]_[artist]_[ver].vdb```
+  
+  example:
+  ```
+  publish/
+    vdb/
+      GG_Sc20_50/
+        smoke_bsmith_v01.vdb
+  ```
+
+- *published files: neutralized plates (ACEScg)*
+  
+  ```neut_footage/[ShotName]/[ShotName]_neutCG_[artist]_[ver].####.exr```
+  
+  example:
+  ```
+  neut_footage/
+    GG_Sc20_50/
+      GG_Sc20_50_neutCG_bsmith_v01.0001.exr
+  ```
+  
+- *published files: degrained plates (ACEScg)*
+  
+  ```degrained_footage/[ShotName]/[ShotName]_neutCG_[artist]_[ver].####.exr```
+  
+  example:
+  ```
+  degrained_footage/
+    GG_Sc20_50/
+      GG_Sc20_50_degrain_bsmith_v01.0001.exr
+  ```
+
 
 </details>
+
+
+
+
 
 ## textures/
-  
-  ```[AssetName]/[ShaderName]_[map]_[AssetName}_[artist]_[ver].[ext]```<br>
-  example:<br>
-  *spaceShip/leather_dif_spaceShip_kjones_v01.jpg*
-</details>
 
 <details>
-  <summary><b>farm</b></summary>
-
-- **renders**<br>
-  ```[ShotName]/[ShotName]_light_[artist]_[ver].####.exr```<br>
-  example:<br>
-  *GG_Sc20_50/GG_Sc20_50_light_jdoe_v01.0001.exr*
+  <summary><b>textures/</b></summary>
   
-- **comps**<br>
-  ```[ShotName]/[ShotName]_light_[artist]_[ver].####.jpg```<br>
-  example:<br>
-  *GG_Sc20_50/GG_Sc20_50_light_bsmith_v01.0001.jpg*
+- *texture maps (map naming: dif, spc, bmp, nor, dsp, met, msk, lyr)*
+
+```[AssetName]/[ShaderName]_[map]_[AssetName}_[artist]_[ver].[ext]```
+  
+example:
+```
+ textures/
+   spaceShip/
+     leather_dif_spaceShip_kjones_v01.jpg
+```
+ </details>
+
+## farm/
+
+<details>
+  <summary><b>farm/</b></summary>
+
+- *renders*
+
+```[ShotName]/[ShotName]_light_[artist]_[ver].####.exr```
+  
+example:
+```
+ renders/
+   GG_Sc20_50/
+     GG_Sc20_50_light_jdoe_v01.0001.exr/
+```
+
+- *comps*
+  
+```[ShotName]/[ShotName]_light_[artist]_[ver].####.jpg```
+  
+example:
+```
+ renders/
+   GG_Sc20_50/
+     GG_Sc20_50_light_jdoe_v01.0001.jpg/
+```
+ 
+ </details>
