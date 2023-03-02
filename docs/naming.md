@@ -262,5 +262,8 @@ example:
 ```
 </details>
 
+# Lighting Shot Build Flow Chart
+
+
 
 ![nk](img/Lighting_Shot_Build.png)
