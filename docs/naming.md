@@ -39,7 +39,7 @@ Project directory structure for CG in a VFX pipeline. Assets folder for the mode
   
 - *lookdev department: Maya turntable files*
   
-  ```[AssetName] / [AssetName]_tex_[artist]_TT_[ver].ma```
+  ```maya / [AssetName] / [AssetName]_tex_[artist]_TT_[ver].ma```
   
   example: 
   ```
@@ -51,7 +51,7 @@ Project directory structure for CG in a VFX pipeline. Assets folder for the mode
   
 - *lookdev department: Maya published assets*
   
-  ```[AssetName] / [AssetName]_tex_[artist]_[ver].ma```
+  ```painter / [AssetName] / [AssetName]_tex_[artist]_[ver].ma```
   
   example: 
   ```
