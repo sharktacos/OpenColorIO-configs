@@ -1,5 +1,7 @@
 # Project Directory Structure and Naming Conventions
 
+Project directory structure for CG in a VFX pipeline. Assets folder for the modeling, rigging, and lookdev departments. Shots folder for the animation, FX, and lighting departments. Published assets so in the shots/published folder. Expand each section below for details and naming convensions.
+
 ## assets/
   
 <details>
@@ -35,7 +37,19 @@
 <details>
   <summary><b>tex/</b></summary>
   
-- *lookdev department: Maya files*
+- *lookdev department: Maya turntable files*
+  
+  ```[AssetName] / [AssetName]_tex_[artist]_TT_[ver].ma```
+  
+  example: 
+  ```
+  tex/
+    maya/
+      spaceShip/
+        spaceShip_tex_kjones_TT_v01.ma
+  ```
+  
+- *lookdev department: Maya published assets*
   
   ```[AssetName] / [AssetName]_tex_[artist]_[ver].ma```
   
@@ -46,6 +60,7 @@
       spaceShip/
         spaceShip_tex_kjones_v01.ma
   ```
+
   
 - *lookdev department: Substance Painter files*
   
@@ -68,7 +83,7 @@
 ## shots/
 
 <details>
-  <summary><b>anim</b></summary>
+  <summary><b>anim/</b></summary>
 
 - *animation department: Maya files*
   
@@ -84,7 +99,7 @@
 </details>
 
 <details>
-  <summary><b>fx</b></summary>
+  <summary><b>fx/</b></summary>
   
 - *effects department: Maya files*
   
@@ -112,7 +127,7 @@
 </details>
 
 <details>
-  <summary><b>light</b></summary>
+  <summary><b>light/</b></summary>
   
 - *lighting department: Houdini files*
   
@@ -216,7 +231,7 @@ example:
 ## farm/
 
 <details>
-  <summary><b>farm/</b></summary>
+ <summary><b>farm/</b></summary>
 
 - *renders*
 
@@ -239,5 +254,4 @@ example:
    GG_Sc20_50/
      GG_Sc20_50_light_jdoe_v01.0001.jpg/
 ```
- 
- </details>
+</details>
