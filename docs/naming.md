@@ -261,3 +261,6 @@ example:
      GG_Sc20_50_light_jdoe_v01.0001.jpg/
 ```
 </details>
+
+
+![nk](img/Lighting Shot Build.png)
