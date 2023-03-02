@@ -105,9 +105,13 @@ For the reference Quicktime movie everything that was turned off for the VFX pul
 
 An MP4 works great for these files as it keeps the file size down. Also the resolution can be set to a max of 1080 HD for the reference Quicktime. These reference Quicktimes should be a visual exact match to the proxy media you are sending to offline editorial, the only difference being is that they are smaller (proxy media for offline edit would be full resolution and typically ProRes).
 
-**Shot LUTs**
+**Show Look LUT**
 
-If you do grade the shot (for example normalizing the exposure for continuity in a sequence), this should be exported as a LUT so VFX can achieve dailies color. In Resolve the "generate LUT" command can be used to export all enabled color grades, both in the timeline and the clip, including any CDLs, all into a single Shot LUT for VFX to use. The LUT's working color space, i.e. the color space it was created in, should be noted in the file name, (for example shot01_ACEScct.cube for Resolve). VFX needs to know this in order to properly process the LUT in comp. This is determined by the "color science" field in the Color Mangerment section of the Settings which, as discussed above, would typically be set to ACEScct.
+If you have a show look, this should be exported as a LUT so VFX can apply this to the VFX shots proxy media for editorial so everything matches in the edit. In Resolve the "generate LUT" command can be used to export all enabled color grades, both in the timeline and the clip, including any CDLs, all into a single Shot LUT for VFX to use. The LUT's working color space, i.e. the color space it was created in, should be noted in the file name, (for example shot01_ACEScct.cube for Resolve). VFX needs to know this in order to properly process the LUT in comp. This is determined by the "color science" field in the Color Mangerment section of the Settings which, as discussed above, would typically be set to ACEScct.
+
+**Shot Grades**
+
+Any shot grades (for example normalizing the exposure for continuity in a sequence) done by the DIT for onset dailies should be passes to VFX in the form of ASC-CDL files. These are typically included in the EDL.
 
 
 [Back to VFX Pulls](VFXpulls.md)
