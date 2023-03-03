@@ -5,6 +5,7 @@
 For VFX shows, the project directory is divided into **comp/** and **CG/** folders. Within **CG/** this is further divided into an **assets** folder for the modeling, rigging, and lookdev departments, and a **shots** folder for the animation, FX, and lighting departments. Additionally we have the **textures**, **farm**, and **publish** folders. 
 
 ## assets/
+
 ### &nbsp;&nbsp;&nbsp;mod/
    
 - *modeling department: Maya files*
@@ -241,22 +242,12 @@ For VFX shows, the project directory is divided into **comp/** and **CG/** folde
       AGM_067_0015_light_jdoe_v01.0001.jpg
   ```
 
-## Maya and Substance Painter
 
-Below is the Maya workspace.mel file for a project. We use this in two ways:
+## Naming Conventions
 
-Texture phase First, at the beginning of a project artists will have their project located on their home drive (the Z drive), but the render goes to a central location. That way we can review the work in RV for dailies.
+**VERSIONING** Always make sure you version up an asset when you do any work on it. The simple rule with versioning is "add 1" so if you are starting work as a modeler on a model already in progress that is v23, yours should start at (+1) v24. The only time versions should start at v01 is when it is the first version of that task. For example when model v24 gets passed to rigging it would begin at rig v01.
 
-Lighting phase Second, once we have lots of textures made we put these in the main project drive and set the project to there. Artist will still save their Maya scenes on their home drive (Z drive), but because the project is set to the central drive the textures will read from there and thus don't need to be copied to each home drive redundantly. This saves a ton of file space.
-
-The Maya scene file is set to "temp" in the project here so the batch render can write a temp file to the artist's home drive (Z drive) which has read/write permissions. The main drive only has read permission so things for safety (note: the farm does not need to do this, just the batch render). Again, this is just for the batch temp file, the artist's Maya scene files themselves should be saved to the appropriate assets or shots folder on their home drive (Z drive).
-
-```
-```
-
-## Shot and Asset Naming Conventions
-
-**ASSET NAME** If an *asset name* consists of multiple words (for example "bottle rocket") this should be written as one word without underscores, using capital letters for seperation (bottleRocket).
+**ASSET NAME** If an *asset name* consists of multiple word descriptors (for example  a bottle rocket) this should be written as one word without underscores, using capital letters for seperation (example "bottleRocket").
 
 **SHOT NAME** A *shot name* is composed of *fields* seperated by underscores. 
 
@@ -291,6 +282,8 @@ The following is based on the [Netflix VFX Shot and Version Naming Recommendatio
     Usage: Required.
     
 So for a show with no sequences the shot name would consist of ```showID_scene_shotID#``` for example ```AGM_067_0015```
+
+
 
 
 <br><br><br>
