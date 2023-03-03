@@ -215,7 +215,7 @@ Project directory structure for CG in a VFX pipeline. Assets folder for the mode
 
 ### &nbsp;&nbsp;&nbsp;renders/
 
-- *renders*
+- *lighting department: renders*
 
   ```[ShotName]/[ShotName]_light_[artist]_[ver].####.exr```
   
@@ -228,7 +228,7 @@ Project directory structure for CG in a VFX pipeline. Assets folder for the mode
   
 ### &nbsp;&nbsp;&nbsp;comps/
 
-- *comps*
+- *lighting department: slap comp tests*
   
   ```[ShotName]/[ShotName]_light_[artist]_[ver].####.jpg```
   
