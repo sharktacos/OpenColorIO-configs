@@ -37,11 +37,11 @@ The following is based on the [Netflix VFX Shot and Version Naming Recommendatio
     Example: 0010 = shot’s assigned ID number is 0010 
     Usage: Required.
     
-So for a show with no sequences the shot name would consist of ```showID_scene_shotID#``` for example ```AGM_067_0015```. 
+So for a show with no sequences the shot name would consist of ```showID_scene_shotID#``` for example ```AGM_067_0015```. As detailed below, file names are either for Shots or Assets, and contain additional information including the task, version, and artist. 
 
 ## Directory Structure
 
-For VFX shows, the project directory is divided into **comp/** and **CG/** folders. The **CG/** folder is further divided into an **assets** folder for the [mod] = modeling, [rig] = rigging, and [tex] = lookdev tasks, and a **shots** folder for the [anim] = animation, [fx] = effects, and [light] = lighting tasks. Additionally we have the **textures**, **farm**, and **publish** folders. As detailed below, file names are either for shots or assets, and contain additional information including the task, version, and artist. 
+For VFX shows, the project directory is divided into **comp/** and **CG/** folders. The **CG/** folder is further divided into an **assets** folder for the [mod] = modeling, [rig] = rigging, and [tex] = lookdev tasks, and a **shots** folder for the [anim] = animation, [fx] = effects, and [light] = lighting tasks. Additionally, the **CG/** folder contains the **textures**, **farm**, and **publish** folders. Below is a breakdown of where CG files go and how they should be named.
 
 ## assets/
 
