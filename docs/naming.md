@@ -223,7 +223,7 @@ Project directory structure for the CG branch of a VFX pipeline. Assets folder f
   ```
   renders/
     GG_Sc20_50/
-      GG_Sc20_50_light_jdoe_v01.0001.exr/
+      GG_Sc20_50_light_jdoe_v01.0001.exr
   ```
   
 ### &nbsp;&nbsp;&nbsp;comps/
@@ -236,7 +236,7 @@ Project directory structure for the CG branch of a VFX pipeline. Assets folder f
   ```
   renders/
     GG_Sc20_50/
-      GG_Sc20_50_light_jdoe_v01.0001.jpg/
+      GG_Sc20_50_light_jdoe_v01.0001.jpg
   ```
 
 
