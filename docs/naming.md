@@ -45,7 +45,7 @@ Project directory structure for the CG branch of a VFX pipeline. Assets folder f
   
 - *lookdev department: Maya published assets*
   
-  ```painter / [AssetName] / [AssetName]_tex_[artist]_[ver].ma```
+  ```maya / [AssetName] / [AssetName]_tex_[artist]_[ver].ma```
   
   example: 
   ```
@@ -58,7 +58,7 @@ Project directory structure for the CG branch of a VFX pipeline. Assets folder f
   
 - *lookdev department: Substance Painter files*
   
-  ```[AssetName] / [AssetName]_[artist]_[ver].spp```
+  ```painter / [AssetName] / [AssetName]_[artist]_[ver].spp```
   
   example: 
   ```
@@ -91,7 +91,7 @@ Project directory structure for the CG branch of a VFX pipeline. Assets folder f
   
 - *effects department: Maya files*
   
-  ```[ShotName] / [ShotName]_fx_[artist]_[ver].ma```
+  ```maya / [ShotName] / [ShotName]_fx_[artist]_[ver].ma```
   
   example:
   ```
@@ -103,7 +103,7 @@ Project directory structure for the CG branch of a VFX pipeline. Assets folder f
 
 - *effects department: Houdini files*
   
-  ```[ShotName] / [ShotName]_fx_[artist]_[ver].hip```
+  ```houdini / [ShotName] / [ShotName]_fx_[artist]_[ver].hip```
   
   example:
   ```
