@@ -127,7 +127,7 @@ Project directory structure for CG in a VFX pipeline. Assets folder for the mode
         GG_Sc20_50_light_bsmith_v01.ma
   ```
   
- - *lighting department: Nuke files*
+- *lighting department: Nuke files*
   
   ```nuke/[ShotName]/[ShotName]_light_[artist]_[ver].ma```
   
@@ -188,62 +188,55 @@ Project directory structure for CG in a VFX pipeline. Assets folder for the mode
   ```
 
 
-</details>
-
 
 
 
 <br><br>
 ## textures/
 
-<details>
-  <summary><b>textures/</b></summary>
+### &nbsp;&nbsp;&nbsp;textures/
   
 - *texture maps (map naming: dif, spc, bmp, nor, dsp, met, msk, lyr)*
 
-```[AssetName]/[ShaderName]_[map]_[AssetName}_[artist]_[ver].[ext]```
+  ```[AssetName]/[ShaderName]_[map]_[AssetName}_[artist]_[ver].[ext]```
   
-example:
-```
- textures/
-   spaceShip/
-     leather_dif_spaceShip_kjones_v01.jpg
-```
- </details>
+  example:
+  ```
+  textures/
+    spaceShip/
+      leather_dif_spaceShip_kjones_v01.jpg
+  ```
 
 
 <br><br>
 ## farm/
 
-<details>
- <summary><b>renders/</b></summary>
+### &nbsp;&nbsp;&nbsp;renders/
 
 - *renders*
 
-```[ShotName]/[ShotName]_light_[artist]_[ver].####.exr```
+  ```[ShotName]/[ShotName]_light_[artist]_[ver].####.exr```
   
-example:
-```
- renders/
-   GG_Sc20_50/
-     GG_Sc20_50_light_jdoe_v01.0001.exr/
-```
-</details>
+  example:
+  ```
+  renders/
+    GG_Sc20_50/
+      GG_Sc20_50_light_jdoe_v01.0001.exr/
+  ```
   
-<details>
- <summary><b>comps/</b></summary>
+### &nbsp;&nbsp;&nbsp;comps/
 
 - *comps*
   
-```[ShotName]/[ShotName]_light_[artist]_[ver].####.jpg```
+  ```[ShotName]/[ShotName]_light_[artist]_[ver].####.jpg```
   
-example:
-```
- renders/
-   GG_Sc20_50/
-     GG_Sc20_50_light_jdoe_v01.0001.jpg/
-```
-</details>
+  example:
+  ```
+  renders/
+    GG_Sc20_50/
+      GG_Sc20_50_light_jdoe_v01.0001.jpg/
+  ```
+
 
 <br><br><br>
 # Lighting Shot Build Flow Chart
