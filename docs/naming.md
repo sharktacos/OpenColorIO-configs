@@ -27,7 +27,7 @@ Project directory structure for CG in a VFX pipeline. Assets folder for the mode
     spaceShip/
       spaceShip_rig_jdoe_v01.ma
   ```
-</details>
+
 
 ### &nbsp;&nbsp;&nbsp;tex/
   
