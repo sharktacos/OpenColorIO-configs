@@ -84,7 +84,7 @@ Project directory structure for the CG branch of a VFX pipeline. Assets folder f
   ```
   anim/
     GG_Sc20_50/
-      GG_Sc20_50_anim_jdoe_v01.ma*
+      GG_Sc20_50_anim_jdoe_v01.ma
   ```
   
 ### &nbsp;&nbsp;&nbsp;fx/
