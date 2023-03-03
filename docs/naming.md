@@ -117,7 +117,7 @@ Project directory structure for the CG branch of a VFX pipeline. Assets folder f
   
 - *lighting department: Maya files*
   
-  ```maya/[ShotName]/[ShotName]_light_[artist]_[ver].ma```
+  ```maya / [ShotName] / [ShotName]_light_[artist]_[ver].ma```
   
   example:
   ```
@@ -129,7 +129,7 @@ Project directory structure for the CG branch of a VFX pipeline. Assets folder f
   
 - *lighting department: Nuke files*
   
-  ```nuke/[ShotName]/[ShotName]_light_[artist]_[ver].ma```
+  ```nuke / [ShotName] / [ShotName]_light_[artist]_[ver].ma```
   
   example:
   ```
@@ -144,7 +144,7 @@ Project directory structure for the CG branch of a VFX pipeline. Assets folder f
   
 - *published files: Alembic caches*
   
-  ```Alembic/[ShotName]/[AssetName]_[artist]_[ver].abc```
+  ```Alembic / [ShotName] / [AssetName]_[artist]_[ver].abc```
   
   example:
   ```
@@ -155,7 +155,7 @@ Project directory structure for the CG branch of a VFX pipeline. Assets folder f
   ```
 - *published files: OpenVDB*
   
-  ```vdb/[ShotName]/[EffectName]_[artist]_[ver].vdb```
+  ```vdb / [ShotName]/  [EffectName]_[artist]_[ver].vdb```
   
   example:
   ```
@@ -167,7 +167,7 @@ Project directory structure for the CG branch of a VFX pipeline. Assets folder f
 
 - *published files: neutralized plates (ACEScg)*
   
-  ```neut_footage/[ShotName]/[ShotName]_neutCG_[artist]_[ver].####.exr```
+  ```neut_footage / [ShotName] / [ShotName]_neutCG_[artist]_[ver].####.exr```
   
   example:
   ```
@@ -179,7 +179,7 @@ Project directory structure for the CG branch of a VFX pipeline. Assets folder f
   
 - *published files: degrained plates (ACEScg)*
   
-  ```degrained_footage/[ShotName]/[ShotName]_neutCG_[artist]_[ver].####.exr```
+  ```degrained_footage / [ShotName] / [ShotName]_neutCG_[artist]_[ver].####.exr```
   
   example:
   ```
@@ -200,7 +200,7 @@ Project directory structure for the CG branch of a VFX pipeline. Assets folder f
   
 - *texture maps (map naming: dif, spc, bmp, nor, dsp, met, msk, lyr)*
 
-  ```[AssetName]/[ShaderName]_[map]_[AssetName}_[artist]_[ver].[ext]```
+  ```[AssetName] / [ShaderName]_[map]_[AssetName}_[artist]_[ver].[ext]```
   
   example:
   ```
@@ -217,7 +217,7 @@ Project directory structure for the CG branch of a VFX pipeline. Assets folder f
 
 - *lighting department: renders*
 
-  ```[ShotName]/[ShotName]_light_[artist]_[ver].####.exr```
+  ```[ShotName] / [ShotName]_light_[artist]_[ver].####.exr```
   
   example:
   ```
@@ -230,7 +230,7 @@ Project directory structure for the CG branch of a VFX pipeline. Assets folder f
 
 - *lighting department: slap comp tests*
   
-  ```[ShotName]/[ShotName]_light_[artist]_[ver].####.jpg```
+  ```[ShotName] / [ShotName]_light_[artist]_[ver].####.jpg```
   
   example:
   ```
