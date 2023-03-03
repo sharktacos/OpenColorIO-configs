@@ -289,7 +289,7 @@ The following is based on the [Netflix VFX Shot and Version Naming Recommendatio
 So for a show with no sequences the ShotName would consist of ```[showID]_[scene]_[shotID#]``` for example ```AGM_067_0015```. 
 
 
-
+ 
 <br><br><br>
 # Lighting Shot Build Flow Chart
 
