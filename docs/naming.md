@@ -115,7 +115,7 @@ Project directory structure for CG in a VFX pipeline. Assets folder for the mode
 
 ### &nbsp;&nbsp;&nbsp;light/
   
-- *lighting department: Houdini files*
+- *lighting department: Maya files*
   
   ```maya/[ShotName]/[ShotName]_light_[artist]_[ver].ma```
   
