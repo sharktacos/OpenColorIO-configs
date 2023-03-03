@@ -1,6 +1,6 @@
-# Project Directory Structure and Naming Conventions
+# VFX Show Project Directory Structure and Naming Conventions
 
-Project directory structure for the CG branch of a VFX pipeline. Assets folder for the modeling, rigging, and lookdev departments. Shots folder for the animation, FX, and lighting departments. Published per shot assets so in the shots/published folder. 
+For VFX shows, the project directory is divided into **comp/** and **CG/** folders. Within **CG/** this is further divided into an **assets** folder for the modeling, rigging, and lookdev departments, and a **shots** folder for the animation, FX, and lighting departments. Additionally we have the **textures**, **farm**, and **publish** folders. 
 
 ## assets/
 ### &nbsp;&nbsp;&nbsp;mod/
@@ -83,8 +83,8 @@ Project directory structure for the CG branch of a VFX pipeline. Assets folder f
   example:
   ```
   anim/
-    GG_Sc20_50/
-      GG_Sc20_50_anim_jdoe_v01.ma
+    AGM_067_0015/
+      AGM_067_0015_anim_jdoe_v01.ma
   ```
   
 ### &nbsp;&nbsp;&nbsp;fx/
@@ -97,8 +97,8 @@ Project directory structure for the CG branch of a VFX pipeline. Assets folder f
   ```
   fx/
     maya/
-      GG_Sc20_50/
-        GG_Sc20_50_fx_bsmith_v01.ma
+      AGM_067_0015/
+        AGM_067_0015_fx_bsmith_v01.ma
   ```
 
 - *effects department: Houdini files*
@@ -109,8 +109,8 @@ Project directory structure for the CG branch of a VFX pipeline. Assets folder f
   ```
   fx/
     houdini/
-      GG_Sc20_50/
-        GG_Sc20_50_fx_bsmith_v01.hip
+      AGM_067_0015/
+        AGM_067_0015_fx_bsmith_v01.hip
   ```
 
 ### &nbsp;&nbsp;&nbsp;light/
@@ -123,8 +123,8 @@ Project directory structure for the CG branch of a VFX pipeline. Assets folder f
   ```
   light/
     maya/
-      GG_Sc20_50/
-        GG_Sc20_50_light_bsmith_v01.ma
+      AGM_067_0015/
+        AGM_067_0015_light_bsmith_v01.ma
   ```
   
 - *lighting department: Nuke files*
@@ -135,8 +135,8 @@ Project directory structure for the CG branch of a VFX pipeline. Assets folder f
   ```
   light/
     nuke/
-      GG_Sc20_50/
-        GG_Sc20_50_light_bsmith_v01.nk
+      AGM_067_0015/
+        AGM_067_0015_light_bsmith_v01.nk
   ```
 
   
@@ -144,25 +144,25 @@ Project directory structure for the CG branch of a VFX pipeline. Assets folder f
   
 - *published files: Alembic caches*
   
-  ```Alembic / [ShotName] / [AssetName]_[artist]_[ver].abc```
+  ```Alembic / [ShotName] / [ShotName]_[AssetName]_[artist]_[ver].abc```
   
   example:
   ```
   publish/
     Alembic/
-      GG_Sc20_50/
-        spaceShip_bsmith_v01.abc
+      AGM_067_0015/
+        AGM_067_0015_spaceShip_bsmith_v01.abc
   ```
 - *published files: OpenVDB*
   
-  ```vdb / [ShotName]/  [EffectName]_[artist]_[ver].vdb```
+  ```vdb / [ShotName]/  [ShotName]_[EffectName]_[artist]_[ver].vdb```
   
   example:
   ```
   publish/
     vdb/
-      GG_Sc20_50/
-        smoke_bsmith_v01.vdb
+      AGM_067_0015/
+        AGM_067_0015_smoke_bsmith_v01.vdb
   ```
 
 - *published files: neutralized plates (ACEScg)*
@@ -173,8 +173,8 @@ Project directory structure for the CG branch of a VFX pipeline. Assets folder f
   ```
   publish/
     neut_footage/
-      GG_Sc20_50/
-        GG_Sc20_50_neutCG_bsmith_v01.0001.exr
+      AGM_067_0015/
+        AGM_067_0015_neutCG_bsmith_v01.0001.exr
   ```
   
 - *published files: degrained plates (ACEScg)*
@@ -185,8 +185,8 @@ Project directory structure for the CG branch of a VFX pipeline. Assets folder f
   ```
   publish/
     degrained_footage/
-      GG_Sc20_50/
-        GG_Sc20_50_degrain_bsmith_v01.0001.exr
+      AGM_067_0015/
+        AGM_067_0015_degrain_bsmith_v01.0001.exr
   ```
 
 
@@ -222,8 +222,8 @@ Project directory structure for the CG branch of a VFX pipeline. Assets folder f
   example:
   ```
   renders/
-    GG_Sc20_50/
-      GG_Sc20_50_light_jdoe_v01.0001.exr
+    AGM_067_0015/
+      AGM_067_0015_light_jdoe_v01.0001.exr
   ```
   
 ### &nbsp;&nbsp;&nbsp;comps/
@@ -235,9 +235,47 @@ Project directory structure for the CG branch of a VFX pipeline. Assets folder f
   example:
   ```
   renders/
-    GG_Sc20_50/
-      GG_Sc20_50_light_jdoe_v01.0001.jpg
+    AGM_067_0015/
+      AGM_067_0015_light_jdoe_v01.0001.jpg
   ```
+
+## Shot and Asset Naming Conventions
+
+**ASSET NAME** If an *asset name* consists of multiple words (for example "bottle rocket") this should be written as one word without underscores, using capital letters for seperation (bottleRocket).
+
+**SHOT NAME** A *shot name* is composed of *fields* seperated by underscores. 
+
+The following is based on the [Netflix VFX Shot and Version Naming Recommendations](https://partnerhelp.netflixstudios.com/hc/en-us/articles/360057627473-VFX-Shot-and-Version-Naming-Recommendations)
+
+**shot fields**
+
+- showID
+
+    A 2-3 character abbreviation for the project name.
+    Example: AGM = A Great Movie
+    Usage: Required for series projects (except optional for IO). Optional for all other project types.                                                  
+
+- sequence
+
+    A sequence is a 2-3 character abbreviation for a collection of scenes that are considered a VFX sequence. Sequences can also be assigned to numbers.
+    Example: TCC = The Car Chase
+    Usage: Optional. (Not all projects get broken down by sequence)
+
+- scene
+
+    Scene number from the portion of the script that a VFX shot came from. Usually appears on the slate.
+    Example: 067 = shot comes from scene 67
+    Usage: Optional but required if project naming does not use sequences.
+    Note: Sometimes scene numbers will appear with letters appended to them to indicate inserted scenes, camera setups or plate shoots. Letters can be ignored for shot naming purposes. It's usually simpler to manage shot names without including any scene letters for overall consistency of file naming.
+
+- shotID#
+
+    3-4 digit identifying number assigned chronologically by sequence or by scene.
+    Numbers are typically assigned chronologically by sequence or scene and usually increments by 10s, so if a VFX shot is later identified between ID 0010 and ID 0020 it can be given an ID in between, such as 0015
+    Example: 0010 = shot’s assigned ID number is 0010 
+    Usage: Required.
+    
+So for a show with no sequences the shot name would consist of ```showID_scene_shotID#``` for example ```AGM_067_0015```
 
 
 <br><br><br>
