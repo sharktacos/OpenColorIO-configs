@@ -252,9 +252,9 @@ See the "Naming Conventions" section below for details on the fields that make u
 
 CG files are categorized into either Assets or Shots.
 
-**ASSET NAME** If an *asset name* consists of multiple word descriptors (for example  a bottle rocket) this should be written as one word without underscores, using capital letters for separation (example "bottleRocket").
+**ASSET NAME** If an *assetName* consists of multiple word descriptors (for example  a bottle rocket) this should be written as one word without underscores, using capital letters for separation (example "bottleRocket").
 
-**SHOT NAME** A *shot name* is composed of *fields* separated by underscores. 
+**SHOT NAME** A *shotName* is composed of *fields* separated by underscores. 
 
 The following is based on the [Netflix VFX Shot and Version Naming Recommendations](https://partnerhelp.netflixstudios.com/hc/en-us/articles/360057627473-VFX-Shot-and-Version-Naming-Recommendations)
 
@@ -286,13 +286,13 @@ The following is based on the [Netflix VFX Shot and Version Naming Recommendatio
     Example: 0010 = shot’s assigned ID number is 0010 
     Usage: Required.
     
-So for a show with no sequences the shot name would consist of ```showID_scene_shotID#``` for example ```AGM_067_0015```. 
+So for a show with no sequences the ShotName would consist of ```[showID]_[scene]_[shotID#]``` for example ```AGM_067_0015```. 
 
 
 
 <br><br><br>
 # Lighting Shot Build Flow Chart
 
-
+The following flow-chart shows the path that assets take in the construction of a lighting shot build.
 
 ![nk](img/Lighting_Shot_Build.png)
