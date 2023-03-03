@@ -1,5 +1,7 @@
 # VFX Show Project Directory Structure and Naming Conventions
 
+## Directory Structure
+
 For VFX shows, the project directory is divided into **comp/** and **CG/** folders. Within **CG/** this is further divided into an **assets** folder for the modeling, rigging, and lookdev departments, and a **shots** folder for the animation, FX, and lighting departments. Additionally we have the **textures**, **farm**, and **publish** folders. 
 
 ## assets/
@@ -151,7 +153,7 @@ For VFX shows, the project directory is divided into **comp/** and **CG/** folde
   publish/
     Alembic/
       AGM_067_0015/
-        AGM_067_0015_spaceShip_bsmith_v01.abc
+        AGM_067_0015_bottleRocket_bsmith_v01.abc
   ```
 - *published files: OpenVDB*
   
@@ -206,7 +208,7 @@ For VFX shows, the project directory is divided into **comp/** and **CG/** folde
   ```
   textures/
     spaceShip/
-      leather_dif_spaceShip_kjones_v01.jpg
+      plastic_dif_bottleRocket_kjones_v01.jpg
   ```
 
 
@@ -238,6 +240,19 @@ For VFX shows, the project directory is divided into **comp/** and **CG/** folde
     AGM_067_0015/
       AGM_067_0015_light_jdoe_v01.0001.jpg
   ```
+
+## Maya and Substance Painter
+
+Below is the Maya workspace.mel file for a project. We use this in two ways:
+
+Texture phase First, at the beginning of a project artists will have their project located on their home drive (the Z drive), but the render goes to a central location. That way we can review the work in RV for dailies.
+
+Lighting phase Second, once we have lots of textures made we put these in the main project drive and set the project to there. Artist will still save their Maya scenes on their home drive (Z drive), but because the project is set to the central drive the textures will read from there and thus don't need to be copied to each home drive redundantly. This saves a ton of file space.
+
+The Maya scene file is set to "temp" in the project here so the batch render can write a temp file to the artist's home drive (Z drive) which has read/write permissions. The main drive only has read permission so things for safety (note: the farm does not need to do this, just the batch render). Again, this is just for the batch temp file, the artist's Maya scene files themselves should be saved to the appropriate assets or shots folder on their home drive (Z drive).
+
+```
+```
 
 ## Shot and Asset Naming Conventions
 
