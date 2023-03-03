@@ -1,47 +1,10 @@
 # VFX Show Project Directory Structure and Naming Conventions
 
-## Naming Conventions
 
 
-**ASSET NAME** If an *asset name* consists of multiple word descriptors (for example  a bottle rocket) this should be written as one word without underscores, using capital letters for seperation (example "bottleRocket").
+## CG Directory Structure
 
-**SHOT NAME** A *shot name* is composed of *fields* seperated by underscores. 
-
-The following is based on the [Netflix VFX Shot and Version Naming Recommendations](https://partnerhelp.netflixstudios.com/hc/en-us/articles/360057627473-VFX-Shot-and-Version-Naming-Recommendations)
-
-**shot fields**
-
-- showID
-
-    A 2-3 character abbreviation for the project name.
-    Example: AGM = A Great Movie
-    Usage: Required for series projects (except optional for IO). Optional for all other project types.                                                  
-
-- sequence
-
-    A sequence is a 2-3 character abbreviation for a collection of scenes that are considered a VFX sequence. Sequences can also be assigned to numbers.
-    Example: TCC = The Car Chase
-    Usage: Optional. (Not all projects get broken down by sequence)
-
-- scene
-
-    Scene number from the portion of the script that a VFX shot came from. Usually appears on the slate.
-    Example: 067 = shot comes from scene 67
-    Usage: Optional but required if project naming does not use sequences.
-    Note: Sometimes scene numbers will appear with letters appended to them to indicate inserted scenes, camera setups or plate shoots. Letters can be ignored for shot naming purposes. It's usually simpler to manage shot names without including any scene letters for overall consistency of file naming.
-
-- shotID#
-
-    3-4 digit identifying number assigned chronologically by sequence or by scene.
-    Numbers are typically assigned chronologically by sequence or scene and usually increments by 10s, so if a VFX shot is later identified between ID 0010 and ID 0020 it can be given an ID in between, such as 0015
-    Example: 0010 = shot’s assigned ID number is 0010 
-    Usage: Required.
-    
-So for a show with no sequences the shot name would consist of ```showID_scene_shotID#``` for example ```AGM_067_0015```. As detailed below, file names are either for Shots or Assets, and contain additional information including the task, version, and artist. 
-
-## Directory Structure
-
-For VFX shows, the project directory is divided into **comp/** and **CG/** folders. The **CG/** folder is further divided into an **assets** folder for the [mod] = modeling, [rig] = rigging, and [tex] = lookdev tasks, and a **shots** folder for the [anim] = animation, [fx] = effects, and [light] = lighting tasks. Additionally, the **CG/** folder contains the **textures**, **farm**, and **publish** folders. Below is a breakdown of where CG files go and how they should be named.
+For VFX shows, the project directory is divided into **comp/** and **CG/** folders. Below is a breakdown of where CG files go and how they should be named. 
 
 ## assets/
 
@@ -115,6 +78,8 @@ For VFX shows, the project directory is divided into **comp/** and **CG/** folde
 
 <br><br>
 ## shots/
+
+See the "Naming Conventions" section below for details on the fields that make up a Shot Name.
 
 ### &nbsp;&nbsp;&nbsp;anim/
 
@@ -283,7 +248,45 @@ For VFX shows, the project directory is divided into **comp/** and **CG/** folde
 
 
 
+## Naming Conventions
 
+CG files are categorized into either Assets or Shots.
+
+**ASSET NAME** If an *asset name* consists of multiple word descriptors (for example  a bottle rocket) this should be written as one word without underscores, using capital letters for seperation (example "bottleRocket").
+
+**SHOT NAME** A *shot name* is composed of *fields* seperated by underscores. 
+
+The following is based on the [Netflix VFX Shot and Version Naming Recommendations](https://partnerhelp.netflixstudios.com/hc/en-us/articles/360057627473-VFX-Shot-and-Version-Naming-Recommendations)
+
+**shot fields**
+
+- showID
+
+    A 2-3 character abbreviation for the project name.
+    Example: AGM = A Great Movie
+    Usage: Required for series projects (except optional for IO). Optional for all other project types.                                                  
+
+- sequence
+
+    A sequence is a 2-3 character abbreviation for a collection of scenes that are considered a VFX sequence. Sequences can also be assigned to numbers.
+    Example: TCC = The Car Chase
+    Usage: Optional. (Not all projects get broken down by sequence)
+
+- scene
+
+    Scene number from the portion of the script that a VFX shot came from. Usually appears on the slate.
+    Example: 067 = shot comes from scene 67
+    Usage: Optional but required if project naming does not use sequences.
+    Note: Sometimes scene numbers will appear with letters appended to them to indicate inserted scenes, camera setups or plate shoots. Letters can be ignored for shot naming purposes. It's usually simpler to manage shot names without including any scene letters for overall consistency of file naming.
+
+- shotID#
+
+    3-4 digit identifying number assigned chronologically by sequence or by scene.
+    Numbers are typically assigned chronologically by sequence or scene and usually increments by 10s, so if a VFX shot is later identified between ID 0010 and ID 0020 it can be given an ID in between, such as 0015
+    Example: 0010 = shot’s assigned ID number is 0010 
+    Usage: Required.
+    
+So for a show with no sequences the shot name would consist of ```showID_scene_shotID#``` for example ```AGM_067_0015```. 
 
 
 
