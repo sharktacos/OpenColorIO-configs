@@ -15,7 +15,8 @@ Project directory structure for CG in a VFX pipeline. Assets folder for the mode
     spaceShip/
       spaceShip_mod_bsmith_v01.ma
   ```
-  
+### &nbsp;&nbsp;&nbsp;rig/
+
 - *rigging department: Maya files*
 
   ```[AssetName] / [AssetName]_rig_[artist]_[ver].ma```
@@ -28,8 +29,7 @@ Project directory structure for CG in a VFX pipeline. Assets folder for the mode
   ```
 </details>
 
-<details>
-  <summary><b>tex/</b></summary>
+### &nbsp;&nbsp;&nbsp;tex/
   
 - *lookdev department: Maya turntable files*
   
@@ -68,16 +68,13 @@ Project directory structure for CG in a VFX pipeline. Assets folder for the mode
         spaceShip_kjones_v01.spp
   ```
   
-</details>
-
 
 
 
 <br><br>
 ## shots/
 
-<details>
-  <summary><b>anim/</b></summary>
+### &nbsp;&nbsp;&nbsp;anim/
 
 - *animation department: Maya files*
   
@@ -90,10 +87,7 @@ Project directory structure for CG in a VFX pipeline. Assets folder for the mode
       GG_Sc20_50_anim_jdoe_v01.ma*
   ```
   
-</details>
-
-<details>
-  <summary><b>fx/</b></summary>
+### &nbsp;&nbsp;&nbsp;fx/
   
 - *effects department: Maya files*
   
@@ -118,10 +112,8 @@ Project directory structure for CG in a VFX pipeline. Assets folder for the mode
       GG_Sc20_50/
         GG_Sc20_50_fx_bsmith_v01.hip
   ```
-</details>
 
-<details>
-  <summary><b>light/</b></summary>
+### &nbsp;&nbsp;&nbsp;light/
   
 - *lighting department: Houdini files*
   
@@ -148,10 +140,7 @@ Project directory structure for CG in a VFX pipeline. Assets folder for the mode
   ```
 
   
-</details>
-
-<details>
-  <summary><b>publish/</b></summary>
+### &nbsp;&nbsp;&nbsp;publish/
   
 - *published files: Alembic caches*
   
