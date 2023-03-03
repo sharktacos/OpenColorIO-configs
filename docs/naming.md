@@ -252,9 +252,9 @@ See the "Naming Conventions" section below for details on the fields that make u
 
 CG files are categorized into either Assets or Shots.
 
-**ASSET NAME** If an *asset name* consists of multiple word descriptors (for example  a bottle rocket) this should be written as one word without underscores, using capital letters for seperation (example "bottleRocket").
+**ASSET NAME** If an *asset name* consists of multiple word descriptors (for example  a bottle rocket) this should be written as one word without underscores, using capital letters for separation (example "bottleRocket").
 
-**SHOT NAME** A *shot name* is composed of *fields* seperated by underscores. 
+**SHOT NAME** A *shot name* is composed of *fields* separated by underscores. 
 
 The following is based on the [Netflix VFX Shot and Version Naming Recommendations](https://partnerhelp.netflixstudios.com/hc/en-us/articles/360057627473-VFX-Shot-and-Version-Naming-Recommendations)
 
