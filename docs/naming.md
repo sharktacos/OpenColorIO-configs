@@ -1,6 +1,6 @@
 # Project Directory Structure and Naming Conventions
 
-Project directory structure for CG in a VFX pipeline. Assets folder for the modeling, rigging, and lookdev departments. Shots folder for the animation, FX, and lighting departments. Published per shot assets so in the shots/published folder. Expand each section below for details and naming convensions.
+Project directory structure for the CG branch of a VFX pipeline. Assets folder for the modeling, rigging, and lookdev departments. Shots folder for the animation, FX, and lighting departments. Published per shot assets so in the shots/published folder. 
 
 ## assets/
 ### &nbsp;&nbsp;&nbsp;mod/
