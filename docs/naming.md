@@ -171,9 +171,10 @@ Project directory structure for CG in a VFX pipeline. Assets folder for the mode
   
   example:
   ```
-  neut_footage/
-    GG_Sc20_50/
-      GG_Sc20_50_neutCG_bsmith_v01.0001.exr
+  publish/
+    neut_footage/
+      GG_Sc20_50/
+        GG_Sc20_50_neutCG_bsmith_v01.0001.exr
   ```
   
 - *published files: degrained plates (ACEScg)*
@@ -182,9 +183,10 @@ Project directory structure for CG in a VFX pipeline. Assets folder for the mode
   
   example:
   ```
-  degrained_footage/
-    GG_Sc20_50/
-      GG_Sc20_50_degrain_bsmith_v01.0001.exr
+  publish/
+    degrained_footage/
+      GG_Sc20_50/
+        GG_Sc20_50_degrain_bsmith_v01.0001.exr
   ```
 
 
