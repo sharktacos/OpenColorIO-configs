@@ -3,10 +3,8 @@
 Project directory structure for CG in a VFX pipeline. Assets folder for the modeling, rigging, and lookdev departments. Shots folder for the animation, FX, and lighting departments. Published per shot assets so in the shots/published folder. Expand each section below for details and naming convensions.
 
 ## assets/
-  
-<details>
-  <summary><b>mod/</b></summary>
-  
+### &nbsp;&nbsp;&nbsp;mod/
+   
 - *modeling department: Maya files*
   
   ```[AssetName] / [AssetName]_mod_[artist]_[ver].ma```
@@ -17,10 +15,6 @@ Project directory structure for CG in a VFX pipeline. Assets folder for the mode
     spaceShip/
       spaceShip_mod_bsmith_v01.ma
   ```
-</details>
-
-<details>
-  <summary><b>rig/</b></summary>
   
 - *rigging department: Maya files*
 
