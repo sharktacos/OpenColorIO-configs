@@ -4,7 +4,23 @@
 
 ## CG Directory Structure
 
-For VFX shows, the project directory is divided into **comp/** and **CG/** folders. Below is a breakdown of where CG files go and how they should be named. 
+For VFX shows, the project directory is divided into **comp/** and **CG/** folders. Below is a breakdown of where CG files go and how they should be named.
+
+```
+CG/
+  assets/
+     mod/
+     rig
+     tex/
+  shots/
+     anim/
+     fx/
+     light/
+  textures/
+  farm/
+     renders/
+     comps/
+```
 
 ## assets/
 
