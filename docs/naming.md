@@ -23,7 +23,12 @@ CG/
         neut_footage/
         degrained_footage/
   textures/
-  farm/
+```
+
+Additionally, renders and lighting slap-comps go on the farm exchange. These are then transfered to the appropriate **comp/** directory (CG_elements/) by the VFX lead.
+
+```
+[CollabEXCHANGE path]/
      renders/
      comps/
 ```
