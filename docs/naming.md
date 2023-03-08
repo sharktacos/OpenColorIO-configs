@@ -16,6 +16,7 @@ CG/
      anim/
      fx/
      light/
+     publish/
   textures/
   farm/
      renders/
@@ -187,6 +188,19 @@ See the "Naming Conventions" section below for details on the fields that make u
       AGM_067_0015/
         AGM_067_0015_smoke_v01_bsmith.vdb
   ```
+  
+- *published files: downsized JPG sequence for animation (baked view)*
+  
+  ```ref_footage / [ShotName] / [ShotName]_ref_[ver]_[artist].####.jpg```
+  
+  example:
+  ```
+  publish/
+    ref_footage/
+      AGM_067_0015/
+        AGM_067_0015_ref_v01_bsmith.0001.jpg
+  ```
+
 
 - *published files: neutralized plates (ACEScg)*
   
