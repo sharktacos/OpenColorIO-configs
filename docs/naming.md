@@ -17,6 +17,11 @@ CG/
      fx/
      light/
      publish/
+        Alembic/
+        vdb/
+        ref_footage/
+        neut_footage/
+        degrained_footage/
   textures/
   farm/
      renders/
