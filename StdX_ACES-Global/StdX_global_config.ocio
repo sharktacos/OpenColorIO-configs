@@ -44,7 +44,7 @@ roles:
 #  bakeView_vfx: ACES 1.0 SDR-video (Rec.709 - Display)
   
 #   Nuke 8-bit default:  
-  matte_paint: bake-2.2
+  matte_paint: Color sRGB Texture
 #   Nuke 16-bit log default:  
   texture_paint: ACEScct
   
