@@ -22,6 +22,8 @@ CG/
         ref_footage/
         neut_footage/
         degrained_footage/
+      renders/
+      slap_comps/
   textures/
 ```
 
@@ -237,13 +239,32 @@ See the "Naming Conventions" section below for details on the fields that make u
   ```
 
 
+## renders/
 
+- *lighting department: rendered EXR sequence*
+  
+  ```[ShotName] / [ShotName]_light_[ver]_[artist].####.exr```
+  
+  example:
+  ```
+    AGM_067_0015/
+      AGM_067_0015_light_v01_jdoe.0001.exr
+  ```
 
+## slapcomp/
+
+- *lighting department: JPG sequqnce of slap comp of render*
+  
+  ```[ShotName] / [ShotName]_light_[ver]_[artist].####.jpg```
+  
+  example:
+  ```
+    AGM_067_0015/
+      AGM_067_0015_light_v01_jdoe.0001.jpg
+  ```
 
 <br><br>
 ## textures/
-
-### &nbsp;&nbsp;&nbsp;textures/
   
 - *texture maps (map naming: dif, spc, bmp, nor, dsp, met, msk, lyr)*
 
@@ -257,34 +278,6 @@ See the "Naming Conventions" section below for details on the fields that make u
   ```
 
 
-<br><br>
-## farm/
-
-### &nbsp;&nbsp;&nbsp;renders/
-
-- *lighting department: renders*
-
-  ```[ShotName] / [ShotName]_light_[ver]_[artist].####.exr```
-  
-  example:
-  ```
-  renders/
-    AGM_067_0015/
-      AGM_067_0015_light_v01_jdoe.0001.exr
-  ```
-  
-### &nbsp;&nbsp;&nbsp;comps/
-
-- *lighting department: slap comp tests*
-  
-  ```[ShotName] / [ShotName]_light_[ver]_[artist].####.jpg```
-  
-  example:
-  ```
-  renders/
-    AGM_067_0015/
-      AGM_067_0015_light_v01_jdoe.0001.jpg
-  ```
 
 
 
