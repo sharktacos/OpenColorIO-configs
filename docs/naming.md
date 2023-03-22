@@ -239,7 +239,7 @@ See the "Naming Conventions" section below for details on the fields that make u
   ```
 
 
-## renders/
+### &nbsp;&nbsp;&nbsp;renders/
 
 - *lighting department: rendered EXR sequence*
   
@@ -251,7 +251,7 @@ See the "Naming Conventions" section below for details on the fields that make u
       AGM_067_0015_light_v01_jdoe.0001.exr
   ```
 
-## slapcomp/
+### &nbsp;&nbsp;&nbsp;slapcomps/
 
 - *lighting department: JPG sequqnce of slap comp of render*
   
