@@ -17,11 +17,11 @@ CG/
      fx/
      light/
      publish/
-        Alembic/
-        vdb/
-        ref_footage/
-        neut_footage/
-        degrained_footage/
+         Alembic/
+         vdb/
+         ref_footage/
+         neut_footage/
+         degrained_footage/
       renders/
       slap_comps/
   textures/
