@@ -322,3 +322,7 @@ So for a show with no sequences the ShotName would consist of ```[showID]_[scene
 The following flow-chart shows the path that assets take in the construction of a lighting shot build.
 
 ![nk](img/Lighting_Shot_Build.png)
+
+# Show Guide
+
+A PDF form listing the color spaces for a show. [Show Guide](img/vfx_showGuide_form_v14.pdf)
