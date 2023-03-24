@@ -41,9 +41,7 @@ VFX pulls should include:
 
  - **Framing Charts**
 
-# VFX Round Trip
-
-A VFX Round Trip should be performed with all of the above to ensure that everything is working according to the specifications of the show. The following video from Netflix Studios provides a nice overview of the process and why it's important:
+A **VFX Round Trip** should be performed with all of the above to ensure that everything is working according to the specifications of the show. The following video from Netflix Studios provides a nice overview of the process and why it's important:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/qlqiBNsqNps" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
