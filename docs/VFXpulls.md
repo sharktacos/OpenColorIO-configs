@@ -43,7 +43,7 @@ VFX pulls should include:
 
  - **Framing Charts** Based on the framing charts shot by production the pulls facility scales the frames to a common working resolution prior to delivery to the VFX vendor. The pulls facility should deliver all necessary framing charts to the VFX vendor. We will reference these charts along with the production's specifications to verify correctness.
 
-A **VFX Round Trip** should be performed with all of the above to ensure that everything is working according to the specifications decided on by the production and imaging teams. VFX will return a proxy movie "VFX Quicktime" made from the EXR sequence, applying any show look LUT and a Rec.709 transform to the Quicktime. This will be compared to the Reference Quicktime sent from editorial to ensure an exact match in color and framing. The following video from Netflix Studios provides a nice overview of the process and why it's important:
+A **VFX Round Trip** should be performed with all of the above to ensure that everything is working according to the specifications decided on by the production and imaging teams. VFX will return a proxy movie "VFX Quicktime" made from the EXR sequence, applying any provided show look and/or shot grade with a Rec.709 transform to the Quicktime. This will be compared to the Reference Quicktime sent from editorial to ensure an exact match in color and framing. The following video from Netflix Studios provides a nice overview of the process and why it's important:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/qlqiBNsqNps" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
