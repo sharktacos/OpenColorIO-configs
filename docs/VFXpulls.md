@@ -39,16 +39,15 @@ Additionally, if the following exists, we'd like it:
 
  - **The show look** If there is a show look LUT (typically a cube LUT, along with the working color space used) and/or per shot CDL files used in the dailies process these should be given to VFX. This is to help ensure that editorial proxies of VFX shots can easily be matched to the original dailies proxy in editorial. See the above *VFX Pulls with Resolve* link for details on exporting LUTs from Resolve.
 
- - **CDL Shot Grades** Any per-shot grades (for example normalizing the exposure for continuity in a sequence) done by the DIT for on set dailies should be passed to VFX in the form of ASC-CDL files. These are typically included in the EDL. This is likewise to help ensure that editorial proxies of VFX shots can easily be matched to the original dailies proxy in editorial. 
+ - **CDL Shot Grades** Any per-shot grades (for example normalizing the exposure for continuity in a sequence) done by the DIT for on set dailies should be passed to VFX in the form of ASC-CDL files. These are typically included in the EDL. This is likewise to help ensure that editorial proxies of VFX shots can easily be matched to the original dailies proxy in editorial. Here's a helpful [video explaining this](https://youtu.be/yjyUEnACMGY) as well as [this video](https://youtu.be/uaynELBZdSE) which provides a detailed walk-through this color pipeline in Davinci Resolve.
 
- - **Macbeth Color Checker** When integrating CG into a shot it's helpful to have a frame for the shot with a MacBeth color checker. This is used to calibrate our CG render's color gamut to match the white balance and color characteristics of your camera.
+ - **Macbeth Color Checker and Chrome ball** When integrating CG into a shot it's helpful to have a frame for the shot with a MacBeth color checker. This is used to calibrate our CG render's color gamut to match the white balance and color characteristics of your camera. Likewise When integrating CG into a shot it's important to have a frame for the shot with a chrome ball. This is for matching the ligntig of the CG to the shot. 
 
 <p align="center">
 <img src="img/Macbeth.jpg">
 </p>
 
- - **HDR Panorama capture** Here's the [Weta Digital IBL Video](https://www.fxguide.com/fxfeatured/the-definitive-weta-digital-guide-to-ibl/) that covers the process for capturing HDR panoramas used for image based lighting (IBL). Note this is typically done by the on set VFX supervisor. 
-
+ - **HDR Panorama capture** Even better than a chrome ball is a capture of and HDR panorama. Here's the [Weta Digital IBL Video](https://www.fxguide.com/fxfeatured/the-definitive-weta-digital-guide-to-ibl/) that covers the process for capturing HDR panoramas used for image based lighting (IBL). 
 # <a name="vfx-deliver"></a>VFX Delivery
 
 VFX can deliver two types of files:

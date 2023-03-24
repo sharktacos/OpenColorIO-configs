@@ -70,7 +70,7 @@ CG/
         spaceShip_tex_TT_v01_kjones.ma
   ```
   
-- *lookdev department: Maya published assets*
+- *lookdev department: Maya published assets* (note that the version of the published file should echo the corresponding turntable file)
   
   ```maya / [AssetName] / [AssetName]_tex_[ver]_[artist].ma```
   
@@ -156,7 +156,7 @@ See the "Naming Conventions" section below for details on the fields that make u
         AGM_067_0015_light_v01_bsmith.ma
   ```
   
-- *lighting department: Nuke files*
+- *lighting department: Nuke files for slapcomps* (note that the version of the Nuke file should echo the corresponding Maya file)
   
   ```nuke / [ShotName] / [ShotName]_light_[ver]_[artist].ma```
   
@@ -246,7 +246,7 @@ See the "Naming Conventions" section below for details on the fields that make u
 
 ### &nbsp;&nbsp;&nbsp;slapcomps/
 
-- *lighting department: JPG sequqnce of slap comp of render*
+- *lighting department: JPG sequqnce of slap comp of render* (note that the version of the slapcomp should echo the corresponding render)
   
   ```[ShotName] / [ShotName]_light_[ver]_[artist].####.jpg```
   
@@ -322,3 +322,7 @@ So for a show with no sequences the ShotName would consist of ```[showID]_[scene
 The following flow-chart shows the path that assets take in the construction of a lighting shot build.
 
 ![nk](img/Lighting_Shot_Build.png)
+
+# Show Guide
+
+A PDF form listing the color spaces for a show. [Show Guide](img/vfx_showGuide_form_v14.pdf)
