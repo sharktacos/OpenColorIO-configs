@@ -35,11 +35,21 @@ VFX pulls should include:
 
  - **Color Reference** VFX pulls should always include dailies color reference (QuickTime or reference frames) representing how the footage looks in editorial. This is so we can ensure a roundtrip from vfx to editorial of the proxy media.
 
-Additionally, if the following exists, we'd like it:
-
  - **The show look** If there is a show look LUT (typically a cube LUT, along with the working color space used) and/or per shot CDL files used in the dailies process these should be given to VFX. This is to help ensure that editorial proxies of VFX shots can easily be matched to the original dailies proxy in editorial. See the above *VFX Pulls with Resolve* link for details on exporting LUTs from Resolve.
 
  - **CDL Shot Grades** Any per-shot grades (for example normalizing the exposure for continuity in a sequence) done by the DIT for on set dailies should be passed to VFX in the form of ASC-CDL files. These are typically included in the EDL. This is likewise to help ensure that editorial proxies of VFX shots can easily be matched to the original dailies proxy in editorial. Here's a helpful [video explaining this](https://youtu.be/yjyUEnACMGY) as well as [this video](https://youtu.be/uaynELBZdSE) which provides a detailed walk-through this color pipeline in Davinci Resolve.
+
+ - **Framing Charts**
+
+# VFX Round Trip
+
+A VFX Round Trip should be performed with all of the above to ensure that everything is working according to the specifications of the show. The following video from Netflix Studios provides a nice overview of the process and why it's important:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/qlqiBNsqNps" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
+
+Additionally for VFX work that includes CG:
 
  - **Macbeth Color Checker and Chrome and Grey Balls** When integrating CG into a shot it's helpful to have a frame for the shot with a MacBeth color checker. This is used to calibrate our CG render's color gamut to match the white balance and color characteristics of your camera. Likewise When integrating CG into a shot it's important to have a frame for the shot with a chrome ball and a 18% Grey Ball. This is for matching the lighting of the CG to the shot. 
 
