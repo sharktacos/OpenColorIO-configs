@@ -41,7 +41,7 @@ Additionally, if the following exists, we'd like it:
 
  - **CDL Shot Grades** Any per-shot grades (for example normalizing the exposure for continuity in a sequence) done by the DIT for on set dailies should be passed to VFX in the form of ASC-CDL files. These are typically included in the EDL. This is likewise to help ensure that editorial proxies of VFX shots can easily be matched to the original dailies proxy in editorial. Here's a helpful [video explaining this](https://youtu.be/yjyUEnACMGY) as well as [this video](https://youtu.be/uaynELBZdSE) which provides a detailed walk-through this color pipeline in Davinci Resolve.
 
- - **Macbeth Color Checker and Chrome Ball** When integrating CG into a shot it's helpful to have a frame for the shot with a MacBeth color checker. This is used to calibrate our CG render's color gamut to match the white balance and color characteristics of your camera. Likewise When integrating CG into a shot it's important to have a frame for the shot with a chrome ball. This is for matching the ligntig of the CG to the shot. 
+ - **Macbeth Color Checker and Chrome and Grey Balls** When integrating CG into a shot it's helpful to have a frame for the shot with a MacBeth color checker. This is used to calibrate our CG render's color gamut to match the white balance and color characteristics of your camera. Likewise When integrating CG into a shot it's important to have a frame for the shot with a chrome ball and a 18% Grey Ball. This is for matching the lighting of the CG to the shot. 
 
 <p align="center">
 <img src="img/Macbeth2.jpg">
