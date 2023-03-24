@@ -39,7 +39,7 @@ Additionally, if the following exists, we'd like it:
 
  - **The show look** If there is a show look LUT (typically a cube LUT, along with the working color space used) and/or per shot CDL files used in the dailies process these should be given to VFX. This is to help ensure that editorial proxies of VFX shots can easily be matched to the original dailies proxy in editorial. See the above *VFX Pulls with Resolve* link for details on exporting LUTs from Resolve.
 
- - **CDL Shot Grades** Any per-shot grades (for example normalizing the exposure for continuity in a sequence) done by the DIT for on set dailies should be passed to VFX in the form of ASC-CDL files. These are typically included in the EDL. This is likewise to help ensure that editorial proxies of VFX shots can easily be matched to the original dailies proxy in editorial. 
+ - **CDL Shot Grades** Any per-shot grades (for example normalizing the exposure for continuity in a sequence) done by the DIT for on set dailies should be passed to VFX in the form of ASC-CDL files. These are typically included in the EDL. This is likewise to help ensure that editorial proxies of VFX shots can easily be matched to the original dailies proxy in editorial. Here's a helpful [video explaining this](https://youtu.be/yjyUEnACMGY).
 
  - **Macbeth Color Checker** When integrating CG into a shot it's helpful to have a frame for the shot with a MacBeth color checker. This is used to calibrate our CG render's color gamut to match the white balance and color characteristics of your camera.
 
