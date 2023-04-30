@@ -6,27 +6,24 @@
 
 For VFX shows, the project directory is divided into **comp/** and **CG/** folders. Below is a breakdown of where CG files go and how they should be named.
 
-```
-CG/
-  assets/
-     mod/
-     rig
-     tex/
-  shots/
-     anim/
-     fx/
-     light/
-     publish/
-         Alembic/
-         vdb/
-         ref_footage/
-         neut_footage/
-         degrained_footage/
-      renders/
-      slap_comps/
-  textures/
-```
-
+CG/<br>
+- [assets](#assets)/
+    - mod/
+    - rig
+    - tex/
+- [shots](#shots)/
+    - anim/
+    - fx/
+    - light/
+    - [publish](#publish)/
+        - Alembic/
+        - vdb/
+        - ref_footage/
+        - neut_footage/
+        - degrained_footage/
+   - [renders](#renders)/
+   - [slap_comps](#slapcomps)/
+- [textures](#textures)/
 
 ## assets/
 
@@ -101,7 +98,7 @@ CG/
 <br><br>
 ## shots/
 
-See the "Naming Conventions" section below for details on the fields that make up a Shot Name.
+See the [Naming Conventions](#naming-conventions) section below for details on the fields that make up a Shot Name.
 
 ### &nbsp;&nbsp;&nbsp;anim/
 
