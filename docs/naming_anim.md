@@ -30,7 +30,7 @@ Below is a breakdown of the project directory structure. This includes USD files
   - comps/
 
 
-## assets 
+## assets/ 
 
 (characters and props)
 
@@ -100,7 +100,7 @@ Below is a breakdown of the project directory structure. This includes USD files
   ```
   
 
-## set
+## set/
 
 ### MODELING
 
