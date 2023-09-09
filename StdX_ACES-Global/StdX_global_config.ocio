@@ -142,7 +142,8 @@ looks:
     process_space: ACEScct
     transform: !<CDLTransform> {slope: [0.85, 0.85, 0.85], offset: [0.06525, 0.06525, 0.06525], power: [1.0, 1.0, 1.0]}
 
-#-- Emulates the look of Camera vendor DRTs
+#-- Emulates the look of Camera vendor DRTs. By Pekka Riikonen https://github.com/priikone/aces-looks
+
  
   - !<Look>
     name: ACESLooks LMT - ARRI ALF-2 Look
