@@ -1,36 +1,40 @@
-# VFX Show Project Directory Structure and Naming Conventions
+# CG Animation Project Directory Structure and Naming Conventions
 
 
 
 ## CG Directory Structure
 
-For VFX shows, the project directory is divided into **comp/** and **CG/** folders. Below is a breakdown of where CG files go and how they should be named.
+Below is a breakdown of the project directory structure. This includes USD files, which we are gradually transitioning to. Currently, USD is used primarily for set building.
 
 ```
-CG/
-  assets/
-     mod/
-     rig
-     tex/
-  shots/
+assets/
+  char/
+       mod/
+       rig
+       tex/
+  prop/
+       mod/
+       rig
+       tex/
+  set/
+       SetName/
+             mod/
+             tex/
+shots/
      anim/
      fx/
      light/
-     publish/
-         Alembic/
-         vdb/
-         ref_footage/
-         neut_footage/
-         degrained_footage/
-      renders/
-      slap_comps/
-  textures/
+textures/
+farm/
+     renders/
+     comps/
 ```
 
 
-## assets/
+## characters and props
 
-### &nbsp;&nbsp;&nbsp;mod/
+### &nbsp;&nbsp;&nbsp;assets/char/mod/
+### &nbsp;&nbsp;&nbsp;assets/prop/mod/
    
 - *modeling department: Maya files*
   
@@ -39,10 +43,11 @@ CG/
   example:
   ```
   mod/
-    spaceShip/
-      spaceShip_mod_v01_bsmith.ma
+    Monkey/
+      Monkey_mod_v01_bsmith.ma
   ```
-### &nbsp;&nbsp;&nbsp;rig/
+### &nbsp;&nbsp;&nbsp;assets/char/rig/
+### &nbsp;&nbsp;&nbsp;assets/prop/rig/
 
 - *rigging department: Maya files*
 
@@ -51,12 +56,13 @@ CG/
   example: 
   ```
   rig/
-    spaceShip/
-      spaceShip_rig_v01_jdoe.ma
+    Monkey/
+      Monkey_rig_v01_jdoe.ma
   ```
 
 
-### &nbsp;&nbsp;&nbsp;tex/
+### &nbsp;&nbsp;&nbsp;assets/char/tex/
+### &nbsp;&nbsp;&nbsp;assets/prop/tex/
   
 - *lookdev department: Maya turntable files*
   
@@ -66,8 +72,8 @@ CG/
   ```
   tex/
     maya/
-      spaceShip/
-        spaceShip_tex_TT_v01_kjones.ma
+      Monkey/
+        Monkey_tex_TT_v01_kjones.ma
   ```
   
 - *lookdev department: Maya published assets* (note that the version of the published file should echo the corresponding turntable file)
@@ -78,8 +84,8 @@ CG/
   ```
   tex/
     maya/
-      spaceShip/
-        spaceShip_tex_v01_kjones.ma
+      Monkey/
+        Monkey_tex_v01_kjones.ma
   ```
 
   
@@ -91,17 +97,115 @@ CG/
   ```
   tex/
     painter/
-      spaceShip/
-        spaceShip_v01_kjones.spp
+      Monkey/
+        Monkey_v01_kjones.spp
   ```
   
 
+## Sets
 
+### &nbsp;&nbsp;&nbsp;assets/set/*SetName*/mod/
 
+   
+- *modeling department: Maya files*
+  
+  ```[setName] / mod / Maya / [SetName]_MODEL_[ver]_[artist].ma```
+  
+  example:
+  ```
+  shipCabin/
+    mod/
+      Maya/
+        shipCabin_MODEL_v01_bsmith.ma
+  ```
+
+- *modeling department: USD set file*
+  
+  ```[setName] / mod / USD / [SetName]_MODEL.usda```
+  
+  example:
+  ```
+  shipCabin/
+    mod/
+      USD/
+        shipCabin_MODEL.usda
+  ```
+
+- *modeling department: USD set element files*
+  
+  ```[setName] / mod / USD / elements / [elementName]_mod.usda      (main asset file)```
+  Note that the corresponding payload and geometry files are automatically generated with our USD Geo Export tool. See the example below.
+  
+  example:
+  ```
+  shipCabin/  
+    mod/
+      USD/
+        desk_mod.usda
+        desk_mod.geom.usd
+        desk_mod_payload.usda
+  ```
+### &nbsp;&nbsp;&nbsp;assets/set/*SetName*/tex/
+
+   
+- *lookdev department: Maya files*
+  
+  ```[setName] / tex / Maya / [SetName]_LOOK_[ver]_[artist].ma```
+  
+  example:
+  ```
+  shipCabin/
+    tex/
+      Maya/
+        shipCabin_LOOK_v01_bsmith.ma
+  ```
+- *lookdev department: Substance Painter set files*
+  
+  ```[setName] / tex / painter / [SetName]_[ver]_[artist].spp```
+  
+  example: 
+  ```
+  shipCabin/
+    tex/
+      painter/
+        shipCabin_v01_kjones.spp
+  
+- *lookdev department: USD set file*
+  
+  ```[setName] / tex / USD / [SetName]_LOOK.usda```
+  
+  example:
+  ```
+  shipCabin/
+    tex/
+      USD/
+        shipCabin_LOOK.usda
+  ```
+
+- *lookdev department: USD set element files*
+  
+  ```[setName] / tex / USD / elements / [elementName]_tex.usda```
+  
+  example:
+  ```
+  shipCabin/
+    tex/
+      USD/
+        desk_tex.usda
+
+  ```
+- *GLOBAL ASSET: USD set files*
+  
+  ```[setName] / SET_[setName].usda```
+  
+  example:
+  ```
+  shipCabin/
+      SET_shipCabin.usda
+
+  ```
 <br><br>
 ## shots/
-
-See the "Naming Conventions" section below for details on the fields that make up a Shot Name.
 
 ### &nbsp;&nbsp;&nbsp;anim/
 
@@ -112,34 +216,20 @@ See the "Naming Conventions" section below for details on the fields that make u
   example:
   ```
   anim/
-    AGM_067_0015/
-      AGM_067_0015_anim_v01_jdoe.ma
-  ```
-  
-### &nbsp;&nbsp;&nbsp;fx/
-  
-- *effects department: Maya files*
-  
-  ```maya / [ShotName] / [ShotName]_fx_[ver]_[artist].ma```
-  
-  example:
-  ```
-  fx/
     maya/
-      AGM_067_0015/
-        AGM_067_0015_fx_v01_bsmith.ma
+      WB010/
+        WB010_anim_v01_jdoe.ma
   ```
-
-- *effects department: Houdini files*
+- *animation department: Alembic caches*
   
-  ```houdini / [ShotName] / [ShotName]_fx_[ver]_[artist].hip```
+  ```Alembic / [ShotName] / [ShotName]_[AssetName]_[ver]_[artist].abc```
   
   example:
   ```
-  fx/
-    houdini/
-      AGM_067_0015/
-        AGM_067_0015_fx_v01_bsmith.hip
+  anim/
+    cache/
+      WB010/
+        WB010_Monkey_v01_bsmith.abc
   ```
 
 ### &nbsp;&nbsp;&nbsp;light/
@@ -152,84 +242,9 @@ See the "Naming Conventions" section below for details on the fields that make u
   ```
   light/
     maya/
-      AGM_067_0015/
-        AGM_067_0015_light_v01_bsmith.ma
-  ```
-  
-- *lighting department: Nuke files for slapcomps* (note that the version of the Nuke file should echo the corresponding Maya file)
-  
-  ```nuke / [ShotName] / [ShotName]_light_[ver]_[artist].ma```
-  
-  example:
-  ```
-  light/
-    nuke/
-      AGM_067_0015/
-        AGM_067_0015_light_v01_bsmith.nk
-  ```
-
-  
-### &nbsp;&nbsp;&nbsp;publish/
-  
-- *published files: Alembic caches*
-  
-  ```Alembic / [ShotName] / [ShotName]_[AssetName]_[ver]_[artist].abc```
-  
-  example:
-  ```
-  publish/
-    Alembic/
-      AGM_067_0015/
-        AGM_067_0015_bottleRocket_v01_bsmith.abc
-  ```
-- *published files: OpenVDB*
-  
-  ```vdb / [ShotName]/  [ShotName]_[EffectName]_[artist]_[ver].vdb```
-  
-  example:
-  ```
-  publish/
-    vdb/
-      AGM_067_0015/
-        AGM_067_0015_smoke_v01_bsmith.vdb
-  ```
-  
-- *published files: downsized JPG sequence for animation (baked view)*
-  
-  ```ref_footage / [ShotName] / [ShotName]_ref_[ver]_[artist].####.jpg```
-  
-  example:
-  ```
-  publish/
-    ref_footage/
-      AGM_067_0015/
-        AGM_067_0015_ref_v01_bsmith.0001.jpg
-  ```
-
-
-- *published files: neutralized plates (ACEScg)*
-  
-  ```neut_footage / [ShotName] / [ShotName]_neutCG_[ver]_[artist].####.exr```
-  
-  example:
-  ```
-  publish/
-    neut_footage/
-      AGM_067_0015/
-        AGM_067_0015_neutCG_v01_bsmith.0001.exr
-  ```
-  
-- *published files: degrained plates (ACEScg)*
-  
-  ```degrained_footage / [ShotName] / [ShotName]_neutCG_[ver]_[artist].####.exr```
-  
-  example:
-  ```
-  publish/
-    degrained_footage/
-      AGM_067_0015/
-        AGM_067_0015_degrain_v01_bsmith.0001.exr
-  ```
+      WB010/
+        WB010_light_v01_bsmith.ma
+  ``` 
 
 
 ### &nbsp;&nbsp;&nbsp;renders/
@@ -240,8 +255,8 @@ See the "Naming Conventions" section below for details on the fields that make u
   
   example:
   ```
-    AGM_067_0015/
-      AGM_067_0015_light_v01_jdoe.0001.exr
+    WB010/
+      WB010_light_v01_jdoe.0001.exr
   ```
 
 ### &nbsp;&nbsp;&nbsp;slapcomps/
@@ -252,8 +267,8 @@ See the "Naming Conventions" section below for details on the fields that make u
   
   example:
   ```
-    AGM_067_0015/
-      AGM_067_0015_light_v01_jdoe.0001.jpg
+    WB010/
+      WB010_light_v01_jdoe.0001.jpg
   ```
 
 <br><br>
@@ -266,54 +281,9 @@ See the "Naming Conventions" section below for details on the fields that make u
   example:
   ```
   textures/
-    spaceShip/
-      plastic_dif_bottleRocket_v01_kjones.jpg
+    Monkey/
+      teeth_dif_Monkey_v01_kjones.jpg
   ```
-
-
-
-
-
-## Naming Conventions
-
-CG files are categorized into either Assets or Shots.
-
-**ASSET NAME** If an *assetName* consists of multiple word descriptors (for example  a bottle rocket) this should be written as one word without underscores, using capital letters for separation (example "bottleRocket").
-
-**SHOT NAME** A *shotName* is composed of *fields* separated by underscores. 
-
-The following is based on the [Netflix VFX Shot and Version Naming Recommendations](https://partnerhelp.netflixstudios.com/hc/en-us/articles/360057627473-VFX-Shot-and-Version-Naming-Recommendations)
-
-**shot fields**
-
-- showID
-
-    A 2-3 character abbreviation for the project name.
-    Example: AGM = A Great Movie
-    Usage: Required for series projects (except optional for IO). Optional for all other project types.                                                  
-
-- sequence
-
-    A sequence is a 2-3 character abbreviation for a collection of scenes that are considered a VFX sequence. Sequences can also be assigned to numbers.
-    Example: TCC = The Car Chase
-    Usage: Optional. (Not all projects get broken down by sequence)
-
-- scene
-
-    Scene number from the portion of the script that a VFX shot came from. Usually appears on the slate.
-    Example: 067 = shot comes from scene 67
-    Usage: Optional but required if project naming does not use sequences.
-    Note: Sometimes scene numbers will appear with letters appended to them to indicate inserted scenes, camera setups or plate shoots. Letters can be ignored for shot naming purposes. It's usually simpler to manage shot names without including any scene letters for overall consistency of file naming.
-
-- shotID#
-
-    3-4 digit identifying number assigned chronologically by sequence or by scene.
-    Numbers are typically assigned chronologically by sequence or scene and usually increments by 10s, so if a VFX shot is later identified between ID 0010 and ID 0020 it can be given an ID in between, such as 0015
-    Example: 0010 = shot’s assigned ID number is 0010 
-    Usage: Required.
-    
-So for a show with no sequences the ShotName would consist of ```[showID]_[scene]_[shotID#]``` for example ```AGM_067_0015```. 
-
 
  
 <br><br><br>
@@ -323,6 +293,4 @@ The following flow-chart shows the path that assets take in the construction of 
 
 ![nk](img/Lighting_Shot_Build.png)
 
-# Show Guide
 
-A PDF form listing the color spaces for a show. [Show Guide](img/vfx_showGuide_form_v14.pdf)
