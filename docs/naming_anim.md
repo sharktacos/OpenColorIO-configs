@@ -20,11 +20,11 @@ Below is a breakdown of the project directory structure. This includes USD files
       - tex/
         - maya/
         - usd/
-- shots/
+- [shots](#shots)/
   - anim/
   - fx/
   - light/
-- textures/
+- [textures](#textures)/
 - farm/
   - renders/
   - comps/
