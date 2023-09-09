@@ -204,6 +204,22 @@ colorspaces:
 
 
   - !<ColorSpace>
+    name: Color P3-D65 sRGB Texture
+#    aliases: [srgb_tx, Utility - sRGB - Texture, srgb_texture, Input - Generic - sRGB - Texture, sRGB - Texture, dif, BaseColor]
+    family: Texture Input
+    equalitygroup: ""
+    bitdepth: 32f
+    description: Convert ACES2065-1 to P3-D65 with sRGB EOTF
+    isdata: false
+    categories: [file-io]
+    allocation: uniform
+    from_scene_reference: !<GroupTransform>
+      name: AP0 to P3-D65 with sRGB
+      children:
+        - !<MatrixTransform> {matrix: [2.04936115, -0.67820197, -0.37115918, 0, -0.18201788, 1.28351221, -0.10149433, 0, 0.00786579, -0.05546615, 1.04760037, 0, 0, 0, 0, 1]}
+        - !<ExponentWithLinearTransform> {gamma: 2.4, offset: 0.055, direction: inverse}
+
+  - !<ColorSpace>
     name: Raw
     family: Texture Input
     equalitygroup: ""
@@ -231,6 +247,22 @@ colorspaces:
       name: AP0 to Linear Rec.709 (sRGB)
       children:
         - !<MatrixTransform> {matrix: [2.52168618674388, -1.13413098823972, -0.387555198504164, 0, -0.276479914229922, 1.37271908766826, -0.096239173438334, 0, -0.0153780649660342, -0.152975335867399, 1.16835340083343, 0, 0, 0, 0, 1]}
+
+  - !<ColorSpace>
+    name: Linear P3-D65
+    aliases: [lin_p3d65]
+    family: Texture Input
+    equalitygroup: ""
+    bitdepth: 32f
+    description: Convert ACES2065-1 to linear P3 primaries, D65 white point
+    isdata: false
+    categories: [file-io, working-space]
+    encoding: scene-linear
+    allocation: uniform
+    from_scene_reference: !<GroupTransform>
+      name: AP0 to Linear P3-D65
+      children:
+        - !<MatrixTransform> {matrix: [2.04936115, -0.67820197, -0.37115918, 0, -0.18201788, 1.28351221, -0.10149433, 0, 0.00786579, -0.05546615, 1.04760037, 0, 0, 0, 0, 1]}
 
   - !<ColorSpace>
     name: Unreal Engine input (1.45 gain)
