@@ -33,8 +33,7 @@ farm/
 
 ## characters and props
 
-### &nbsp;&nbsp;&nbsp;assets/char/mod/
-### &nbsp;&nbsp;&nbsp;assets/prop/mod/
+### MODELING
    
 - *modeling department: Maya files*
   
@@ -46,8 +45,7 @@ farm/
     Monkey/
       Monkey_mod_v01_bsmith.ma
   ```
-### &nbsp;&nbsp;&nbsp;assets/char/rig/
-### &nbsp;&nbsp;&nbsp;assets/prop/rig/
+### RIGGING
 
 - *rigging department: Maya files*
 
@@ -61,8 +59,7 @@ farm/
   ```
 
 
-### &nbsp;&nbsp;&nbsp;assets/char/tex/
-### &nbsp;&nbsp;&nbsp;assets/prop/tex/
+### LOOKDEV
   
 - *lookdev department: Maya turntable files*
   
@@ -104,7 +101,7 @@ farm/
 
 ## Sets
 
-### &nbsp;&nbsp;&nbsp;assets/set/*SetName*/mod/
+### MODELING
 
    
 - *modeling department: Maya files*
@@ -145,7 +142,7 @@ farm/
         desk_mod.geom.usd
         desk_mod_payload.usda
   ```
-### &nbsp;&nbsp;&nbsp;assets/set/*SetName*/tex/
+### LOOKDEV
 
    
 - *lookdev department: Maya files*
@@ -194,7 +191,7 @@ farm/
         desk_tex.usda
 
   ```
-- *GLOBAL ASSET: USD set files*
+### GLOBAL ASSET: USD set files*
   
   ```[setName] / SET_[setName].usda```
   
@@ -259,17 +256,6 @@ farm/
       WB010_light_v01_jdoe.0001.exr
   ```
 
-### &nbsp;&nbsp;&nbsp;slapcomps/
-
-- *lighting department: JPG sequqnce of slap comp of render* (note that the version of the slapcomp should echo the corresponding render)
-  
-  ```[ShotName] / [ShotName]_light_[ver]_[artist].####.jpg```
-  
-  example:
-  ```
-    WB010/
-      WB010_light_v01_jdoe.0001.jpg
-  ```
 
 <br><br>
 ## textures/
