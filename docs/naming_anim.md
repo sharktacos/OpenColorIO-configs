@@ -25,7 +25,7 @@ Below is a breakdown of the project directory structure. This includes USD files
   - fx/
   - light/
 - [textures](#textures)/
-- farm/
+- [farm](#farm)/
   - renders/
   - comps/
 
@@ -248,19 +248,6 @@ Below is a breakdown of the project directory structure. This includes USD files
   ``` 
 
 
-### &nbsp;&nbsp;&nbsp;renders/
-
-- *lighting department: rendered EXR sequence*
-  
-  ```[ShotName] / [ShotName]_light_[ver]_[artist].####.exr```
-  
-  example:
-  ```
-    WB010/
-      WB010_light_v01_jdoe.0001.exr
-  ```
-
-
 <br><br>
 ## textures/
   
@@ -275,6 +262,32 @@ Below is a breakdown of the project directory structure. This includes USD files
       teeth_dif_Monkey_v01_kjones.jpg
   ```
 
+<br><br>
+## farm/
+
+### &nbsp;&nbsp;&nbsp;renders/
+
+- *lighting department: rendered EXR sequence*
+  
+  ```[ShotName] / [ShotName]_light_[ver]_[artist].####.exr```
+  
+  example:
+  ```
+    WB010/
+      WB010_light_v01_jdoe.0001.exr
+  ```
+
+### &nbsp;&nbsp;&nbsp;comp/
+
+- *lighting department: comp JPG sequence*
+  
+  ```[ShotName] / [ShotName]_comp_[ver]_[artist].####.jpg```
+  
+  example:
+  ```
+    WB010/
+      WB010_comp_v01_jdoe.0001.exr
+  ```
  
 <br><br><br>
 # Lighting Shot Build Flow Chart
