@@ -30,6 +30,8 @@ Below is a breakdown of the project directory structure. This includes USD files
   - comps/
 
 
+# Naming Conventions
+
 ## assets/ 
 
 (characters and props)
