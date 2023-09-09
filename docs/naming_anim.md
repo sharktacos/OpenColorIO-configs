@@ -1,37 +1,38 @@
 # CG Animation Project Directory Structure and Naming Conventions
 
-
-
 ## CG Directory Structure
 
 Below is a breakdown of the project directory structure. This includes USD files, which we are gradually transitioning to. Currently, USD is used primarily for set building.
+- [assets](#assets)/
+  - char/
+    - mod/
+    - rig
+    - tex/
+  - prop/
+    - mod/
+    - rig
+    - tex/
+  - [set](#set)/
+    - SetName/
+      - mod/
+        - maya/
+        - usd/
+      - tex/
+        - maya/
+        - usd/
+- shots/
+  - anim/
+  - fx/
+  - light/
+- textures/
+- farm/
+  - renders/
+  - comps/
 
-```
-assets/
-  char/
-       mod/
-       rig
-       tex/
-  prop/
-       mod/
-       rig
-       tex/
-  set/
-       SetName/
-             mod/
-             tex/
-shots/
-     anim/
-     fx/
-     light/
-textures/
-farm/
-     renders/
-     comps/
-```
 
+## assets 
 
-## characters and props
+(characters and props)
 
 ### MODELING
    
@@ -99,7 +100,7 @@ farm/
   ```
   
 
-## Sets
+## set
 
 ### MODELING
 
