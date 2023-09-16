@@ -121,14 +121,14 @@ Below is a breakdown of the project directory structure. This includes USD files
 
 - *modeling department: USD set file*
   
-  ```[setName] / mod / USD / [SetName]_MODEL.usda```
+  ```[setName] / mod / USD / [SetName]_MODEL_[ver].usda```
   
   example:
   ```
   shipCabin/
     mod/
       USD/
-        shipCabin_MODEL.usda
+        shipCabin_MODEL_v01.usda
   ```
 
 - *modeling department: USD set element files*
@@ -144,10 +144,13 @@ Below is a breakdown of the project directory structure. This includes USD files
   shipCabin/  
     mod/
       USD/
-        desk_mod.usda
-        desk_mod.geom.usd
-        desk_mod_payload.usda
+        v01/
+           desk_mod.usda
+           desk_mod.geom.usd
+           desk_mod_payload.usda
   ```
+Elements do not have a version in the name and instead have a version folder. This makes it easier to replace them in a set hierarchy. The above example only shows one element, but all of the elements that comprise the set would be under the v01/ folder and so on for each subsequent version.
+
 ### LOOKDEV
 
    
