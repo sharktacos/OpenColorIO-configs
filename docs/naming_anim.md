@@ -135,7 +135,7 @@ Below is a breakdown of the project directory structure. This includes USD files
   
   ```[setName] / mod / USD / elements / [elementName]_mod.usda      (main asset file)```
   
-  Note that the corresponding payload and geometry files are automatically generated with our USD Geo Export tool. See the example below as well as this video.
+Note too that the corresponding payload and geometry files are automatically generated with our USD Geo Export tool. See the example below as well as this video.
   
 <iframe width="560" height="315" src="https://www.youtube.com/embed/0yPsnPXGQWc?si=59a-jbsOdIVaaReX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
   
@@ -149,7 +149,7 @@ Below is a breakdown of the project directory structure. This includes USD files
            desk_mod.geom.usd
            desk_mod_payload.usda
   ```
-Elements do not have a version in the name and instead have a version folder. This makes it easier to replace them in a set hierarchy. The above example only shows one element, but all of the elements that comprise the set would be under the v01/ folder and so on for each subsequent version.
+Elements do not have a version in the name and instead have a version folder. This makes it easier to replace them in a set hierarchy. The above example only shows one element (consisting of an asset, geom, and payload file), but all of the elements that comprise the set would be under the v01/ folder and so on for each subsequent version of the elements.
 
 ### LOOKDEV
 
@@ -176,16 +176,16 @@ Elements do not have a version in the name and instead have a version folder. Th
       painter/
         shipCabin_v01_kjones.spp
   
-- *lookdev department: USD set file*
+- *lookdev department: USD look set file*
   
-  ```[setName] / tex / USD / [SetName]_LOOK.usda```
+  ```[setName] / tex / USD / [SetName]_LOOK_[ver].usda```
   
   example:
   ```
   shipCabin/
     tex/
       USD/
-        shipCabin_LOOK.usda
+        shipCabin_LOOK_v01.usda
   ```
 
 - *lookdev department: USD set element files*
@@ -197,17 +197,20 @@ Elements do not have a version in the name and instead have a version folder. Th
   shipCabin/
     tex/
       USD/
-        desk_tex.usda
+         v01/
+             desk_tex.usda
 
   ```
+Elements do not have a version in the name and instead have a version folder. This makes it easier to replace them in a set hierarchy. The above example only shows one element, but all of the elements that comprise the set would be under the v01/ folder and so on for each subsequent version.
+
 ### GLOBAL ASSET: USD set files*
   
-  ```[setName] / SET_[setName].usda```
+  ```[setName] / SET_[setName]_[ver].usda```
   
   example:
   ```
   shipCabin/
-      SET_shipCabin.usda
+      SET_shipCabin_v01.usda
 
   ```
 <br><br>
