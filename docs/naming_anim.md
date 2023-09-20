@@ -222,7 +222,7 @@ Elements do not have a version in the name and instead have a version folder. Th
   
 - *layout department: USD layout set file*
   
-  ```[setName] / tex / USD / [SetName]_LAYOUT_[ver].usda```
+  ```[setName] / layout / USD / [SetName]_LAYOUT_[ver].usda```
   
   example:
   ```
