@@ -15,11 +15,14 @@ Below is a breakdown of the project directory structure. This includes USD files
   - [set](#set)/
     - SetName/
       - mod/
-        - maya/
-        - usd/
+          - maya/
+          - usd/
       - tex/
-        - maya/
-        - usd/
+          - maya/
+          - usd/
+      - layout/
+          - maya/
+          - usd/
 - [shots](#shots)/
   - anim/
   - fx/
@@ -202,6 +205,32 @@ Elements do not have a version in the name and instead have a version folder. Th
 
   ```
 Elements do not have a version in the name and instead have a version folder. This makes it easier to replace them in a set hierarchy. The above example only shows one element, but all of the elements that comprise the set would be under the v01/ folder and so on for each subsequent version.
+
+### LAYOUT
+
+- *layout department: Maya files*
+  
+  ```[setName] / layout / Maya / [SetName]_LAYOUT_[ver]_[artist].ma```
+  
+  example:
+  ```
+  shipCabin/
+    layout/
+      Maya/
+        shipCabin_LAYOUT_v01_bsmith.ma
+  ```
+  
+- *lookdev department: USD layout set file*
+  
+  ```[setName] / tex / USD / [SetName]_LAYOUT_[ver].usda```
+  
+  example:
+  ```
+  shipCabin/
+    layout/
+      USD/
+        shipCabin_LAYOUT_v01.usda
+  ```
 
 ### GLOBAL ASSET: USD set files*
   
