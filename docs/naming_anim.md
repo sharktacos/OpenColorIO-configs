@@ -220,7 +220,7 @@ Elements do not have a version in the name and instead have a version folder. Th
         shipCabin_LAYOUT_v01_bsmith.ma
   ```
   
-- *lookdev department: USD layout set file*
+- *layout department: USD layout set file*
   
   ```[setName] / tex / USD / [SetName]_LAYOUT_[ver].usda```
   
