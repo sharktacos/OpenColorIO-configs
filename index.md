@@ -11,7 +11,7 @@ Check out the [VFX Pulls](docs/VFXpulls.md), page for requirements, as well as a
 
 ## CG & VFX Pipeline 
 
-Check out the [VFX directory structure and naming conventions](docs/naming.md).
+Check out the [VFX directory structure and naming conventions](docs/naming.md) for VFX shows, and [Animation directory structure](docs/naming_anim.md) for CG Animation shows, including USD.
 
 ## Reference Gamut Compression
 ACES 1.3 introduced [Reference Gamut Compression](docs/gamut.md) which requires OCIO 2.1 and is thus currently not compatible with most DCC apps. While waiting for this, the config contains both a 3D LUT for viewing with the gamut compression (applied to the [ANM - Studio Look](docs/configs.md) view transform) as well as an Nuke node.

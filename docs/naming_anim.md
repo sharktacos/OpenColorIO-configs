@@ -1,37 +1,43 @@
 # CG Animation Project Directory Structure and Naming Conventions
 
-
-
 ## CG Directory Structure
 
 Below is a breakdown of the project directory structure. This includes USD files, which we are gradually transitioning to. Currently, USD is used primarily for set building.
+- [assets](#assets)/
+  - char/
+    - mod/
+    - rig
+    - tex/
+  - prop/
+    - mod/
+    - rig
+    - tex/
+  - [set](#set)/
+    - SetName/
+      - mod/
+          - maya/
+          - usd/
+      - tex/
+          - maya/
+          - usd/
+      - layout/
+          - maya/
+          - usd/
+- [shots](#shots)/
+  - anim/
+  - fx/
+  - light/
+- [textures](#textures)/
+- [farm](#farm)/
+  - renders/
+  - comps/
 
-```
-assets/
-  char/
-       mod/
-       rig
-       tex/
-  prop/
-       mod/
-       rig
-       tex/
-  set/
-       SetName/
-             mod/
-             tex/
-shots/
-     anim/
-     fx/
-     light/
-textures/
-farm/
-     renders/
-     comps/
-```
 
+# Naming Conventions
 
-## characters and props
+## assets/ 
+
+(characters and props)
 
 ### MODELING
    
@@ -99,7 +105,7 @@ farm/
   ```
   
 
-## Sets
+## set/
 
 ### MODELING
 
@@ -118,30 +124,36 @@ farm/
 
 - *modeling department: USD set file*
   
-  ```[setName] / mod / USD / [SetName]_MODEL.usda```
+  ```[setName] / mod / USD / [SetName]_MODEL_[ver].usda```
   
   example:
   ```
   shipCabin/
     mod/
       USD/
-        shipCabin_MODEL.usda
+        shipCabin_MODEL_v01.usda
   ```
 
 - *modeling department: USD set element files*
   
   ```[setName] / mod / USD / elements / [elementName]_mod.usda      (main asset file)```
-  Note that the corresponding payload and geometry files are automatically generated with our USD Geo Export tool. See the example below.
+  
+Note too that the corresponding payload and geometry files are automatically generated with our USD Geo Export tool. See the example below as well as this video.
+  
+<iframe width="560" height="315" src="https://www.youtube.com/embed/0yPsnPXGQWc?si=59a-jbsOdIVaaReX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
   
   example:
   ```
   shipCabin/  
     mod/
       USD/
-        desk_mod.usda
-        desk_mod.geom.usd
-        desk_mod_payload.usda
+        v01/
+           desk_mod.usda
+           desk_mod.geom.usd
+           desk_mod_payload.usda
   ```
+Elements do not have a version in the name and instead have a version folder. This makes it easier to replace them in a set hierarchy. The above example only shows one element (consisting of an asset, geom, and payload file), but all of the elements that comprise the set would be under the v01/ folder and so on for each subsequent version of the elements.
+
 ### LOOKDEV
 
    
@@ -167,16 +179,16 @@ farm/
       painter/
         shipCabin_v01_kjones.spp
   
-- *lookdev department: USD set file*
+- *lookdev department: USD look set file*
   
-  ```[setName] / tex / USD / [SetName]_LOOK.usda```
+  ```[setName] / tex / USD / [SetName]_LOOK_[ver].usda```
   
   example:
   ```
   shipCabin/
     tex/
       USD/
-        shipCabin_LOOK.usda
+        shipCabin_LOOK_v01.usda
   ```
 
 - *lookdev department: USD set element files*
@@ -188,17 +200,46 @@ farm/
   shipCabin/
     tex/
       USD/
-        desk_tex.usda
+         v01/
+             desk_tex.usda
 
   ```
-### GLOBAL ASSET: USD set files*
+Elements do not have a version in the name and instead have a version folder. This makes it easier to replace them in a set hierarchy. The above example only shows one element, but all of the elements that comprise the set would be under the v01/ folder and so on for each subsequent version.
+
+### LAYOUT
+
+- *layout department: Maya files*
   
-  ```[setName] / SET_[setName].usda```
+  ```[setName] / layout / Maya / [SetName]_LAYOUT_[ver]_[artist].ma```
   
   example:
   ```
   shipCabin/
-      SET_shipCabin.usda
+    layout/
+      Maya/
+        shipCabin_LAYOUT_v01_bsmith.ma
+  ```
+  
+- *layout department: USD layout set file*
+  
+  ```[setName] / layout / USD / [SetName]_LAYOUT_[ver].usda```
+  
+  example:
+  ```
+  shipCabin/
+    layout/
+      USD/
+        shipCabin_LAYOUT_v01.usda
+  ```
+
+### GLOBAL ASSET: USD set files*
+  
+  ```[setName] / SET_[setName]_[ver].usda```
+  
+  example:
+  ```
+  shipCabin/
+      SET_shipCabin_v01.usda
 
   ```
 <br><br>
@@ -244,19 +285,6 @@ farm/
   ``` 
 
 
-### &nbsp;&nbsp;&nbsp;renders/
-
-- *lighting department: rendered EXR sequence*
-  
-  ```[ShotName] / [ShotName]_light_[ver]_[artist].####.exr```
-  
-  example:
-  ```
-    WB010/
-      WB010_light_v01_jdoe.0001.exr
-  ```
-
-
 <br><br>
 ## textures/
   
@@ -271,6 +299,32 @@ farm/
       teeth_dif_Monkey_v01_kjones.jpg
   ```
 
+<br><br>
+## farm/
+
+### &nbsp;&nbsp;&nbsp;renders/
+
+- *lighting department: rendered EXR sequence*
+  
+  ```[ShotName] / [ShotName]_light_[ver]_[artist].####.exr```
+  
+  example:
+  ```
+    WB010/
+      WB010_light_v01_jdoe.0001.exr
+  ```
+
+### &nbsp;&nbsp;&nbsp;comp/
+
+- *lighting department: comp JPG sequence*
+  
+  ```[ShotName] / [ShotName]_comp_[ver]_[artist].####.jpg```
+  
+  example:
+  ```
+    WB010/
+      WB010_comp_v01_jdoe.0001.exr
+  ```
  
 <br><br><br>
 # Lighting Shot Build Flow Chart
