@@ -44,25 +44,25 @@ roles:
 #  bakeView_vfx: ACES 1.0 SDR-video (Rec.709 - Display)
   
 #   Nuke 8-bit default:  
-  matte_paint: Color sRGB Texture
+  matte_paint: sRGB
 #   Nuke 16-bit log default:  
   texture_paint: ACEScct
   
 #     substance_3d_painter_standard_srgb: hdr
-  substance_3d_painter_bitmap_import_8bit: Color sRGB Texture
-  substance_3d_painter_bitmap_import_16bit: Color sRGB Texture
+  substance_3d_painter_bitmap_import_8bit: sRGB
+  substance_3d_painter_bitmap_import_16bit: sRGB
   substance_3d_painter_bitmap_import_floating: Raw
-  substance_3d_painter_bitmap_export_8bit: Color sRGB Texture
-  substance_3d_painter_bitmap_export_16bit: Color sRGB Texture
+  substance_3d_painter_bitmap_export_8bit: sRGB
+  substance_3d_painter_bitmap_export_16bit: sRGB
   substance_3d_painter_bitmap_export_floating: Raw
-  substance_3d_painter_substance_material: Color sRGB Texture
+  substance_3d_painter_substance_material: sRGB
   
 
 #  mari_monitor: ACES 1.0 SDR-video (Rec.709 - Display)
 #  mari_scaler_monitor: Raw
 #  mari_color_picker: hdr 
 #  mari_blending: Raw 
-  mari_int8: Color sRGB Texture
+  mari_int8: sRGB
   mari_int16: ACEScct
   mari_int_scalar: Raw
   mari_float: ACEScg
@@ -186,8 +186,8 @@ colorspaces:
 #---------------------- Rendering -------------------------------#
 
   - !<ColorSpace>
-    name: Color sRGB Texture
-    aliases: [srgb_tx, Utility - sRGB - Texture, srgb_texture, Input - Generic - sRGB - Texture, sRGB - Texture, dif, BaseColor]
+    name: sRGB
+    aliases: [srgb_tx, Utility - sRGB - Texture, srgb_texture, Input - Generic - sRGB - Texture, sRGB - Texture, dif, BaseColor, Color sRGB Texture]
     family: Texture Input
     equalitygroup: ""
     bitdepth: 32f
