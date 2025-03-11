@@ -186,8 +186,8 @@ colorspaces:
 #---------------------- Rendering -------------------------------#
 
   - !<ColorSpace>
-    name: sRGB
-    aliases: [srgb_tx, Utility - sRGB - Texture, srgb_texture, Input - Generic - sRGB - Texture, sRGB - Texture, dif, BaseColor, Color sRGB Texture]
+    name: srgb_texture
+    aliases: [srgb_tx, Utility - sRGB - Texture, sRGB, Input - Generic - sRGB - Texture, sRGB - Texture, dif, BaseColor, Color sRGB Texture]
     family: Texture Input
     equalitygroup: ""
     bitdepth: 32f
@@ -202,6 +202,7 @@ colorspaces:
       children:
         - !<MatrixTransform> {matrix: [2.52168618674388, -1.13413098823972, -0.387555198504164, 0, -0.276479914229922, 1.37271908766826, -0.096239173438334, 0, -0.0153780649660342, -0.152975335867399, 1.16835340083343, 0, 0, 0, 0, 1]}
         - !<ExponentWithLinearTransform> {gamma: 2.4, offset: 0.055, direction: inverse}
+
 
 
   - !<ColorSpace>
