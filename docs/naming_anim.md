@@ -298,6 +298,7 @@ Elements do not have a version in the name and instead have a version folder. Th
     Monkey/
       teeth_dif_Monkey_v01_kjones.jpg
   ```
+This is derived from the Substance Painter texture naming $textureSet_map_$project(.$udim)
 
 <br><br>
 ## farm/
