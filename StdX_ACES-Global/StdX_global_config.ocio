@@ -49,20 +49,20 @@ roles:
   texture_paint: ACEScct
   
 #     substance_3d_painter_standard_srgb: hdr
-  substance_3d_painter_bitmap_import_8bit: sRGB
-  substance_3d_painter_bitmap_import_16bit: sRGB
+  substance_3d_painter_bitmap_import_8bit: srgb_texture
+  substance_3d_painter_bitmap_import_16bit: srgb_texture
   substance_3d_painter_bitmap_import_floating: Raw
-  substance_3d_painter_bitmap_export_8bit: sRGB
-  substance_3d_painter_bitmap_export_16bit: sRGB
+  substance_3d_painter_bitmap_export_8bit: srgb_texture
+  substance_3d_painter_bitmap_export_16bit: srgb_texture
   substance_3d_painter_bitmap_export_floating: Raw
-  substance_3d_painter_substance_material: sRGB
+  substance_3d_painter_substance_material: srgb_texture
   
 
 #  mari_monitor: ACES 1.0 SDR-video (Rec.709 - Display)
 #  mari_scaler_monitor: Raw
 #  mari_color_picker: hdr 
 #  mari_blending: Raw 
-  mari_int8: sRGB
+  mari_int8: srgb_texture
   mari_int16: ACEScct
   mari_int_scalar: Raw
   mari_float: ACEScg
