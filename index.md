@@ -23,7 +23,7 @@ Instructions for use of the config in various software, including those that do 
 - [Nuke](docs/Nuke.md) 
 - [Mari](docs/Mari.md) 
 - [Substance Painter](docs/Substance.md) 
-- [Houdini](https://www.sidefx.com/docs/houdini/io/ocio.html) 
+- [Houdini](https://www.sidefx.com/docs/houdini/solaris/ocio.html) 
 - [Davinci Resolve](docs/Resolve.md) 
 - [Premiere Pro](docs/PremierePull.md)
 - [Photoshop](docs/Photoshop.md) 
