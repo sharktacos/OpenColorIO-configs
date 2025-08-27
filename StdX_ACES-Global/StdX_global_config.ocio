@@ -25,6 +25,7 @@ environment:
   SHAPER: ACEScct
 # ------------------------------------------------------------------- # 
 
+#ToDo:   AgX gamma 2.4 vs 2.6   add cameras   test inverse display read
 
 search_path: "Looks:${LUT_PATH}"
 
@@ -36,12 +37,10 @@ roles:
   compositing_linear: ACEScg  
   compositing_log: ACEScct
   data: Raw
-  reference: ap1
+  reference: ACES2065-1
   rendering: ACEScg
   scene_linear: ACEScg
-  
-#  bakeView_anm: ANM - Studio Look - RGC (Gamma 2.2 - Display)
-#  bakeView_vfx: ACES 1.0 SDR-video (Rec.709 - Display)
+
   
 #   Nuke 8-bit default:  
   matte_paint: srgb_texture
@@ -79,8 +78,9 @@ file_rules:
 
 shared_views:
 
-  - !<View> {name: ACES 1.0 - SDR-video, view_transform: SDR Video - ACES 1.0, display_colorspace: <USE_DISPLAY_NAME>}
-  - !<View> {name: ANM - Studio Look - RGC, view_transform: SDR Video - ACES 1.0, looks: "RedExp, LMT_gamut, ACESLooks LMT - RED IPP2 Look", display_colorspace: <USE_DISPLAY_NAME>} 
+  - !<View> {name: VFX - ACES 1.0, view_transform: SDR Video - ACES 1.0, display_colorspace: <USE_DISPLAY_NAME>}
+  - !<View> {name: ACES 1.0 - RGC, view_transform: SDR Video - ACES 1.0, looks: "LMT_gamut", display_colorspace: <USE_DISPLAY_NAME>}
+  - !<View> {name: ANM - RED-IPP2 + RGC, view_transform: SDR Video - ACES 1.0, looks: "RedExp, LMT_gamut, ACESLooks LMT - RED IPP2 Look", display_colorspace: <USE_DISPLAY_NAME>} 
   - !<View> {name: VFX - ACES Shot Look, view_transform: SDR Video - ACES 1.0, looks: LMT_shot, display_colorspace: <USE_DISPLAY_NAME>}
 
   - !<View> {name: ARRI ALF-2 Look, view_transform: SDR Video - ACES 1.0, looks: "ACESLooks LMT - ARRI ALF-2 Look", display_colorspace: <USE_DISPLAY_NAME>} 
@@ -91,15 +91,24 @@ shared_views:
   - !<View> {name: Un-tone-mapped, view_transform: Un-tone-mapped, display_colorspace: <USE_DISPLAY_NAME>}
 
 
-  
+
 displays:
 
-  Gamma 2.2 - Display:
-    - !<Views> ["ACES 1.0 - SDR-video", ANM - Studio Look - RGC, Un-tone-mapped]
-  Apple P3 - Display:
-    - !<Views> ["ACES 1.0 - SDR-video", ANM - Studio Look - RGC, Un-tone-mapped, VFX - ACES Shot Look, ARRI ALF-2 Look, VFX - ARRI K1S1 Look, RED IPP2 Look, Sony S-gamut3 Cine Look]
-  Rec.1886 Rec.709 - Display:
-    - !<Views> ["ACES 1.0 - SDR-video", Un-tone-mapped, VFX - ACES Shot Look, ARRI ALF-2 Look, VFX - ARRI K1S1 Look, RED IPP2 Look, Sony S-gamut3 Cine Look]
+  sRGB Display:
+    - !<Views> [VFX - ACES 1.0, ACES 1.0 - RGC, ANM - RED-IPP2 + RGC, Un-tone-mapped]
+    - !<View> {name: ACES 2.0, colorspace: ACES 2.0 (sRGB Display)}
+    - !<View> {name: ANM - OpenDRT, colorspace: OpenDRT (sRGB Display)}
+    - !<View> {name: TOON - OpenDRT Look, colorspace: OpenDRT-toon (sRGB Display)}
+    - !<View> {name: AgX, colorspace: AgX (sRGB Display)}
+  Apple P3 Display:
+    - !<Views> [VFX - ACES 1.0, ANM - RED-IPP2 + RGC, Un-tone-mapped]
+    - !<View> {name: ACES 2.0, colorspace: ACES 2.0 (P3 Display)}
+    - !<View> {name: ANM - OpenDRT, colorspace: OpenDRT (P3 Display)}
+    - !<View> {name: TOON - OpenDRT Look, colorspace: OpenDRT-toon (P3 Display)}
+    - !<View> {name: AgX, colorspace: AgX (P3 Display)}
+    
+  Rec.709 Display:
+    - !<Views> [VFX - ACES 1.0, Un-tone-mapped, VFX - ACES Shot Look, ARRI ALF-2 Look, VFX - ARRI K1S1 Look, RED IPP2 Look, Sony S-gamut3 Cine Look]
   USE ONLY FOR CHECKING COMPS:
     - !<View> {name: Log, colorspace: camera_log}
   USE ONLY FOR CHECKING RENDERS:
@@ -108,9 +117,11 @@ displays:
     - !<View> {name: "VFX - DPX Shot Look", colorspace: "VFX - DPX Shot Look (Non-Color Managed)"}
 
 
-active_displays: [Gamma 2.2 - Display, "Rec.1886 Rec.709 - Display",  "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS", "Non-Color Managed DPX Workflow"]
-active_views: [ACES 1.0 - SDR-video, ANM - Studio Look - RGC, VFX - ARRI K1S1 Look, Log, Raw]
-inactive_colorspaces: [CIE-XYZ-D65, Gamut Shaper, camera_log, Shot_shaper, Pick Rec709-sRGB Desat, "Color sRGB Texture lowCon", "Apple P3 - Display", Gamma 2.2 - Display, Rec.1886 Rec.709 - Display, Unreal Engine sRGB Display, VFX - ACES Shot Look (Gamma 2.2 - Display), Color Rec.709 Texture, Color Gamma 2.2 Texture, ANM - Studio Look - RGC (Rec.709 - Display), VFX - ACES Shot Look (Rec.709 - Display), VFX - DPX Shot Look (Non-Color Managed)]
+# ACES 2.0, ANM - RED-IPP2 + RGC, AgX, 
+# Apple P3 Display, sRGB Display
+active_displays: [sRGB Display, Rec.709 Display, "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS", "Non-Color Managed DPX Workflow"]
+active_views: [VFX - ACES 1.0, ANM - OpenDRT, TOON - OpenDRT Look, Log, Raw]
+inactive_colorspaces: [VFX - ARRI K1S1 Look (Rec.709 - Display), ACES 2.0 (P3 Display), ACES 2.0 (sRGB Display), AgX (P3 Display), AgX (sRGB Display), ANM - RED-IPP2 + RGC (sRGB Display), AgX Base Rec.2020, OpenDRT - Rec.1886, CIE-XYZ-D65, Gamut Shaper, camera_log, Shot_shaper, Pick Rec709-sRGB Desat, "Color sRGB Texture lowCon", "Apple P3 - Display", Gamma 2.2 - Display, Rec.1886 Rec.709 - Display, Unreal Engine sRGB Display, VFX - ACES Shot Look (sRGB Display), Color Rec.709 Texture, Color Gamma 2.2 Texture, ANM - RED-IPP2 + RGC (Rec.709 - Display), VFX - ACES Shot Look (Rec.709 - Display), VFX - DPX Shot Look (Non-Color Managed)]
 
 
 
@@ -130,7 +141,7 @@ looks:
   - !<Look>
     name: LMT_gamut
     process_space: Gamut Shaper
-    transform: !<FileTransform> {src: aces_RGC_33.clf, interpolation: linear}  
+    transform: !<FileTransform> {src: aces_RGC_33.cube, interpolation: linear}  
 
   - !<Look>
     name: LMT_shot
@@ -208,7 +219,7 @@ colorspaces:
   - !<ColorSpace>
     name: Color P3-D65 sRGB Texture
 #    aliases: [srgb_tx, Utility - sRGB - Texture, srgb_texture, Input - Generic - sRGB - Texture, sRGB - Texture, dif, BaseColor]
-    family: Texture Input
+    family: Utility
     equalitygroup: ""
     bitdepth: 32f
     description: Convert ACES2065-1 to P3-D65 with sRGB EOTF
@@ -223,6 +234,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Raw
+    aliases: [Non_Color, raw]
     family: Texture Input
     equalitygroup: ""
     bitdepth: 32f
@@ -234,7 +246,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Linear Rec.709 (sRGB)
-    aliases: [lin_rec709_srgb, Utility - Linear - Rec.709, lin_rec709, lin_srgb, Utility - Linear - sRGB, hdr]
+    aliases: [lin_rec709_srgb, Utility - Linear - Rec.709, lin_rec709, lin_srgb, Utility - Linear - sRGB, Linear Rec.709, hdr]
     family: Texture Input
     equalitygroup: ""
     bitdepth: 32f
@@ -253,7 +265,7 @@ colorspaces:
   - !<ColorSpace>
     name: Linear P3-D65
     aliases: [lin_p3d65]
-    family: Texture Input
+    family: Utility
     equalitygroup: ""
     bitdepth: 32f
     description: Convert ACES2065-1 to linear P3 primaries, D65 white point
@@ -460,7 +472,7 @@ colorspaces:
     isdata: false
     categories: [ file-io ]
     encoding: sdr-video
-    to_reference: !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: "Gamma 2.2 - Display", view: "ACES 1.0 - SDR-video"}
+    to_reference: !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: "Gamma 2.2 - Display", view: "VFX - ACES 1.0"}
 
   - !<ColorSpace>
     name: Gamma2.2
@@ -470,7 +482,7 @@ colorspaces:
     isdata: false
     categories: [ file-io ]
     encoding: sdr-video
-    to_reference: !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: "Gamma 2.2 - Display", view: "ACES 1.0 - SDR-video"}
+    to_reference: !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: "Gamma 2.2 - Display", view: "VFX - ACES 1.0"}
 
   - !<ColorSpace>
     name: Inverse Rec709 Display
@@ -480,7 +492,7 @@ colorspaces:
     isdata: false
     categories: [ file-io ]
     encoding: sdr-video
-    to_reference: !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: Rec.1886 Rec.709 - Display, view: "ACES 1.0 - SDR-video"}
+    to_reference: !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: Rec.1886 Rec.709 - Display, view: "VFX - ACES 1.0"}
 
 
   - !<ColorSpace>
@@ -491,7 +503,11 @@ colorspaces:
     isdata: false
     categories: [ file-io ]
     encoding: sdr-video
-    to_reference: !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: Rec.1886 Rec.709 - Display, view: "ACES 1.0 - SDR-video"}
+    to_reference: !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: Rec.1886 Rec.709 - Display, view: "VFX - ACES 1.0"}
+
+
+
+
 
 
 #---------------------- Cameras ----------------------#
@@ -951,28 +967,187 @@ colorspaces:
 
   - !<ColorSpace>
     name: ACES 1.0 SDR-video (Gamma 2.2 - Display)
-    aliases: [bake-2.2]
+    aliases: [ACES 1.0 SDR-video (sRGB Display), ACES 1.0 (sRGB Display)]
     family: Baked View Output
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2 - Display", view: "ACES 1.0 - SDR-video"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2 - Display", view: "VFX - ACES 1.0"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+
+# ACES 2.0
+  - !<ColorSpace>
+    name: ACES 2.0 (sRGB Display)
+    aliases: [aces2]
+    family: Baked View Output
+    description: |
+      ACES 2.0 LUT v60 from the ACES2.0 VWG https://github.com/alexfry/ACES_ODT_Candidates_Examples 
+    isdata: false
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<ColorSpaceTransform> {src: ACES2065-1, dst: ACEScct}
+        - !<FileTransform> {src: ACES2_Candidate_CAMDRT_rev060_Rec709.cube, interpolation: tetrahedral}
+        - !<ColorSpaceTransform> {src: Rec.709, dst: Gamma 2.2 - Display}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
-    name: ANM - Studio Look - RGC (Gamma 2.2 - Display)
+    name: ACES 2.0 (P3 Display)
+    family: Utility/P3 Display
+    description: |
+      ACES 2.0 LUT v60 from the ACES2.0 VWG https://github.com/alexfry/ACES_ODT_Candidates_Examples 
+    isdata: false
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<ColorSpaceTransform> {src: ACES2065-1, dst: ACEScct}
+        - !<FileTransform> {src: ACES2_Candidate_CAMDRT_rev060_P3D65.cube, interpolation: tetrahedral}
+        - !<ExponentTransform> {value: 0.8461538, direction: inverse} # target gamma (2.2) divided by source (2.6)
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+
+# RED IPP2 
+
+  - !<ColorSpace>
+    name: ANM - RED-IPP2 + RGC (sRGB Display)
     aliases: [bake-studio]
     family: Baked View Output
+    description: |
+      RED IPP2 Display Transform with ACES Reference Gamut Compression 
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2 - Display", view: "ANM - Studio Look - RGC"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2 - Display", view: "ANM - RED-IPP2 + RGC"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+
+# OpenDRT
+#-----------------------
+
+  - !<ColorSpace>
+    name: Filmlight - E-Gamut2 - Linear
+    aliases: [feg2ln]
+    family: Utility
+    description: |
+      Filmlight E-Gamut2 - Linear (from AP0 reference space)
+      Specified in the flspace file included with the Baselight software
+      /etc/colourspaces/FilmLight_Linear_EGamut2.flspace
+    encoding: scene-linear
+    to_reference: !<MatrixTransform> {matrix: [0.786790515916941, 0.147306196098427, 0.0659032879846326, 0, 0.00215467836930867, 1.06285338391537, -0.0650080622846749, 0, -0.114753108339674, -0.0810435489425106, 1.19579665728218, 0, 0, 0, 0, 1]}
+
+  - !<ColorSpace>
+    name: Filmlight - E-Gamut2 - T-LogE
+    aliases: [feg2lge]
+    family: Utility
+    description: |
+      Filmlight E-Gamut2 - T-LogE
+      Same as T-Log but upper range extended from 128 to 512.
+    encoding: log
+    to_reference: !<GroupTransform>
+      children:
+        #- !<FileTransform> {src: oetf_filmlight_tloge_to_linear.spi1d, interpolation: linear}
+        - !<LogCameraTransform> {log_side_slope: 0.055459048831, log_side_offset: 0.500867797955, lin_side_offset: 0.00487980885981, lin_side_break: 0, direction: inverse}
+        - !<ColorSpaceTransform> {src: Filmlight - E-Gamut2 - Linear, dst: reference}
+
+
+  - !<ColorSpace>
+    name: OpenDRT (P3 Display)
+    family: Utility/P3 Display
+    description: OpenDRT view transform for Display P3 display (P3-D65 gamut with 2.2 power EOTF).
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<ColorSpaceTransform> {src: ACES2065-1, dst: Filmlight - E-Gamut2 - T-LogE}
+        - !<FileTransform> {src: OpenDRT_v1.0.0_Default__filmlight-egamut2-tloge_to_display-p3.cube, interpolation: tetrahedral}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
-    name: VFX - ACES Shot Look (Gamma 2.2 - Display)
+    name: OpenDRT - Rec.1886
+    family: Baked View Output
+    description: OpenDRT view transform for Rec.1886 display (using OpenDRT__filmlight-egamut2-tloge_to_rec1886.cube).
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<ColorSpaceTransform> {src: ACES2065-1, dst: Filmlight - E-Gamut2 - T-LogE}
+        - !<FileTransform> {src: OpenDRT_v1.0.0_Default__filmlight-egamut2-tloge_to_rec1886.cube, interpolation: tetrahedral}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+
+  - !<ColorSpace>
+    name: ANM - OpenDRT (sRGB Display)
+    aliases: [OpenDRT (sRGB Display)]
+    family: Baked View Output
+    description: OpenDRT view transform for sRGB Display display.
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<ColorSpaceTransform> {src: ACES2065-1, dst: Filmlight - E-Gamut2 - T-LogE}
+        - !<FileTransform> {src: OpenDRT__FLlinWS-filmlight-egamut2-tloge_to_srgb-display.cube, interpolation: tetrahedral}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: TOON - OpenDRT Look (sRGB Display)
+    aliases: [OpenDRT-toon (sRGB Display)]
+    family: Baked View Output
+    description: | 
+      OpenDRT view transform for sRGB Display display. Modified from default look to have lower overall contrast,
+      and enable highlight contrast to increase highlight exposure at 2.5 stops above mid grey. 
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<ColorSpaceTransform> {src: ACES2065-1, dst: Filmlight - E-Gamut2 - T-LogE}
+        - !<FileTransform> {src: OpenDRT-toon__FLlinWS-filmlight-egamut2-tloge_to_srgb-display.cube, interpolation: tetrahedral}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: OpenDRT-toon (P3 Display)
+    family: Utility/P3 Display
+    description: | 
+      OpenDRT view transform for sRGB Display display. Modified from default look to have lower overall contrast,
+      and enable highlight contrast to increase highlight exposure at 2.5 stops above mid grey. 
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<ColorSpaceTransform> {src: ACES2065-1, dst: Filmlight - E-Gamut2 - T-LogE}
+        - !<FileTransform> {src: OpenDRT-toon__FLlinWS-filmlight-egamut2-tloge_to_p3-display.cube, interpolation: tetrahedral}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+# AgX
+
+  - !<ColorSpace> #AgX Base sRGB
+    name: AgX (sRGB Display)
+    family: Baked View Output
+    bitdepth: 32f
+    description: |
+      AgX Base Image Encoding for sRGB Display
+    isdata: false
+    from_scene_reference: !<GroupTransform>
+      children:
+        - !<ColorSpaceTransform> {src: ACES2065-1, dst: Filmlight - E-Gamut2 - T-LogE}
+        - !<FileTransform> {src: AgX__AP0-Egamut2-tloge_to_srgb-display.cube, interpolation: tetrahedral}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace> #AgX Base Display P3
+    name: AgX (P3 Display)
+    aliases: [AgX Base Display P3]
+    family: Utility/P3 Display #Imagery Display P3
+    equalitygroup:
+    bitdepth: 32f
+    description: |
+      AgX Base Image Encoding for Display P3 Display
+    isdata: false
+    from_scene_reference: !<GroupTransform>
+      children:
+        - !<ColorSpaceTransform> {src: ACES2065-1, dst: Filmlight - E-Gamut2 - T-LogE}
+        - !<FileTransform> {src: AgX__AP0-Egamut2-tloge_to_p3-display.cube, interpolation: tetrahedral}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+
+  - !<ColorSpace>
+    name: VFX - ACES Shot Look (sRGB Display)
     family: Baked View Output
     isdata: false
     encoding: sdr-video
@@ -998,10 +1173,14 @@ colorspaces:
         - !<ExponentWithLinearTransform> {gamma: 2.4, offset: 0.055, direction: inverse}
 
 
+
+
+
 #-- BT.1886 Video display:
 
   - !<ColorSpace>
     name: ACES 1.0 SDR-video (Rec.709 - Display)
+    aliases: [ACES 1.0 (Rec.709 Display)]
     family: Baked View Output
     description: |
       ACES ACES 1.0 SDR-video for Rec.709 broadcast monitor with Rec.1886 gamma (2.4)
@@ -1010,17 +1189,17 @@ colorspaces:
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec.1886 Rec.709 - Display", view: "ACES 1.0 - SDR-video"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec.1886 Rec.709 - Display", view: "VFX - ACES 1.0"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
-    name: ANM - Studio Look - RGC (Rec.709 - Display)
+    name: ANM - RED-IPP2 + RGC (Rec.709 - Display)
     family: Baked View Output
     isdata: false
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec.1886 Rec.709 - Display", view: "ANM - Studio Look - RGC"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec.1886 Rec.709 - Display", view: "ANM - RED-IPP2 + RGC"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
@@ -1077,6 +1256,7 @@ display_colorspaces:
 
   - !<ColorSpace>
     name: Gamma 2.2 - Display
+    aliases: [sRGB Display]
     family: Display EOTF
     bitdepth: 32f
     description: |
@@ -1088,7 +1268,7 @@ display_colorspaces:
 
   - !<ColorSpace>
     name: Rec.1886 Rec.709 - Display
-    aliases: [ Rec.709, Rec.1886 Rec.709 - Display, rec1886_rec709_display, Rec.709 - Display ]
+    aliases: [Rec.709, Rec.1886, Rec.1886 Rec.709 - Display, rec1886_rec709_display, Rec.709 - Display, Rec.709 Display]
     family: Display EOTF
     bitdepth: 32f
     description: |
@@ -1100,6 +1280,7 @@ display_colorspaces:
 
   - !<ColorSpace>
     name: Apple P3 - Display
+    aliases: [Apple P3 Display]
     family: Display EOTF
     equalitygroup: ""
     bitdepth: 32f
