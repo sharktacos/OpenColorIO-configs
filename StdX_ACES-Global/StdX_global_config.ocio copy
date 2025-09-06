@@ -121,7 +121,7 @@ displays:
 # Apple P3 Display, sRGB Display
 active_displays: [sRGB Display, Rec.709 Display, "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS", "Non-Color Managed DPX Workflow"]
 active_views: [VFX - ACES 1.0, ANM - OpenDRT, TOON - OpenDRT Look, Log, Raw]
-inactive_colorspaces: [VFX - ARRI K1S1 Look (Rec.709 - Display), ACES 2.0 (P3 Display), ACES 2.0 (sRGB Display), AgX (P3 Display), AgX (sRGB Display), ANM - RED-IPP2 + RGC (sRGB Display), OpenDRT - Rec.1886, CIE-XYZ-D65, Gamut Shaper, camera_log, Shot_shaper, Pick Rec709-sRGB Desat, "Color sRGB Texture lowCon", "Apple P3 - Display", Rec.1886 Rec.709 - Display, Unreal Engine sRGB Display, VFX - ACES Shot Look (sRGB Display), Color Rec.709 Texture, Color Gamma 2.2 Texture, ANM - RED-IPP2 + RGC (Rec.709 - Display), VFX - ACES Shot Look (Rec.709 - Display), VFX - DPX Shot Look (Non-Color Managed)]
+inactive_colorspaces: [VFX - ARRI K1S1 Look (Rec.709 - Display), ACES 2.0 (P3 Display), ACES 2.0 (sRGB Display), AgX (P3 Display), AgX (sRGB Display), ANM - RED-IPP2 + RGC (sRGB Display), OpenDRT - Rec.1886, CIE-XYZ-D65, Gamut Shaper, camera_log, Shot_shaper, Pick Rec709-sRGB Desat, "Color sRGB Texture lowCon", "Apple P3 - Display", Gamma 2.2 - Display, Rec.1886 Rec.709 - Display, Unreal Engine sRGB Display, VFX - ACES Shot Look (sRGB Display), Color Rec.709 Texture, Color Gamma 2.2 Texture, ANM - RED-IPP2 + RGC (Rec.709 - Display), VFX - ACES Shot Look (Rec.709 - Display), VFX - DPX Shot Look (Non-Color Managed)]
 
 
 
@@ -472,7 +472,7 @@ colorspaces:
     isdata: false
     categories: [ file-io ]
     encoding: sdr-video
-    to_reference: !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: "sRGB Display", view: "VFX - ACES 1.0"}
+    to_reference: !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: "Gamma 2.2 - Display", view: "VFX - ACES 1.0"}
 
   - !<ColorSpace>
     name: Gamma2.2
@@ -482,7 +482,7 @@ colorspaces:
     isdata: false
     categories: [ file-io ]
     encoding: sdr-video
-    to_reference: !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: "sRGB Display", view: "VFX - ACES 1.0"}
+    to_reference: !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: "Gamma 2.2 - Display", view: "VFX - ACES 1.0"}
 
   - !<ColorSpace>
     name: Inverse Rec709 Display
@@ -973,7 +973,7 @@ colorspaces:
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "sRGB Display", view: "VFX - ACES 1.0"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2 - Display", view: "VFX - ACES 1.0"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
 
@@ -990,7 +990,7 @@ colorspaces:
       children:
         - !<ColorSpaceTransform> {src: ACES2065-1, dst: ACEScct}
         - !<FileTransform> {src: ACES2_Candidate_CAMDRT_rev060_Rec709.cube, interpolation: tetrahedral}
-        - !<ColorSpaceTransform> {src: Rec.709, dst: sRGB Display}
+        - !<ColorSpaceTransform> {src: Rec.709, dst: Gamma 2.2 - Display}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
@@ -1020,7 +1020,7 @@ colorspaces:
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "sRGB Display", view: "ANM - RED-IPP2 + RGC"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2 - Display", view: "ANM - RED-IPP2 + RGC"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
 
@@ -1153,7 +1153,7 @@ colorspaces:
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "sRGB Display", view: "VFX - ACES Shot Look"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Gamma 2.2 - Display", view: "VFX - ACES Shot Look"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
