@@ -121,7 +121,7 @@ displays:
 # Apple P3 Display, sRGB Display
 active_displays: [sRGB Display, Rec.709 Display, "USE ONLY FOR CHECKING COMPS", "USE ONLY FOR CHECKING RENDERS", "Non-Color Managed DPX Workflow"]
 active_views: [VFX - ACES 1.0, ANM - OpenDRT, TOON - OpenDRT Look, Log, Raw]
-inactive_colorspaces: [VFX - ARRI K1S1 Look (Rec.709 - Display), ACES 2.0 (P3 Display), ACES 2.0 (sRGB Display), AgX (P3 Display), AgX (sRGB Display), ANM - RED-IPP2 + RGC (sRGB Display), OpenDRT - Rec.1886, CIE-XYZ-D65, Gamut Shaper, camera_log, Shot_shaper, Pick Rec709-sRGB Desat, "Color sRGB Texture lowCon", "Apple P3 - Display", Rec.1886 Rec.709 - Display, Unreal Engine sRGB Display, VFX - ACES Shot Look (sRGB Display), Color Rec.709 Texture, Color Gamma 2.2 Texture, ANM - RED-IPP2 + RGC (Rec.709 - Display), VFX - ACES Shot Look (Rec.709 - Display), VFX - DPX Shot Look (Non-Color Managed)]
+inactive_colorspaces: [VFX - ARRI K1S1 Look (Rec.709 - Display), ACES 2.0 (P3 Display), ACES 2.0 (sRGB Display), AgX (P3 Display), AgX (sRGB Display), ANM - RED-IPP2 + RGC (sRGB Display), OpenDRT - Rec.1886, CIE-XYZ-D65, Gamut Shaper, camera_log, Shot_shaper, Pick Rec709-sRGB Desat, "Color sRGB Texture lowCon", "Apple P3 - Display", Unreal Engine sRGB Display, VFX - ACES Shot Look (sRGB Display), Color Rec.709 Texture, Color Gamma 2.2 Texture, ANM - RED-IPP2 + RGC (Rec.709 - Display), VFX - ACES Shot Look (Rec.709 - Display), VFX - DPX Shot Look (Non-Color Managed)]
 
 
 
@@ -492,7 +492,7 @@ colorspaces:
     isdata: false
     categories: [ file-io ]
     encoding: sdr-video
-    to_reference: !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: Rec.1886 Rec.709 - Display, view: "VFX - ACES 1.0"}
+    to_reference: !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: Rec.709 Display, view: "VFX - ACES 1.0"}
 
 
   - !<ColorSpace>
@@ -503,7 +503,7 @@ colorspaces:
     isdata: false
     categories: [ file-io ]
     encoding: sdr-video
-    to_reference: !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: Rec.1886 Rec.709 - Display, view: "VFX - ACES 1.0"}
+    to_reference: !<DisplayViewTransform> {direction: inverse, src: ACES2065-1, display: Rec.709 Display, view: "VFX - ACES 1.0"}
 
 
 
@@ -966,8 +966,8 @@ colorspaces:
 #-- 2.2 Gamma Display:
 
   - !<ColorSpace>
-    name: ACES 1.0 SDR-video (Gamma 2.2 - Display)
-    aliases: [ACES 1.0 SDR-video (sRGB Display), ACES 1.0 (sRGB Display)]
+    name: ACES 1.0 (sRGB Display)
+    aliases: [ACES 1.0 SDR-video (sRGB Display), ACES 1.0 SDR-video (Gamma 2.2 - Display)]
     family: Baked View Output
     isdata: false
     encoding: sdr-video
@@ -1189,7 +1189,7 @@ colorspaces:
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec.1886 Rec.709 - Display", view: "VFX - ACES 1.0"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec.709 Display", view: "VFX - ACES 1.0"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
@@ -1199,7 +1199,7 @@ colorspaces:
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec.1886 Rec.709 - Display", view: "ANM - RED-IPP2 + RGC"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec.709 Display", view: "ANM - RED-IPP2 + RGC"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
@@ -1209,7 +1209,7 @@ colorspaces:
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec.1886 Rec.709 - Display", view: "VFX - ACES Shot Look"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec.709 Display", view: "VFX - ACES Shot Look"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
   - !<ColorSpace>
@@ -1219,7 +1219,7 @@ colorspaces:
     encoding: sdr-video
     from_reference: !<GroupTransform>
       children:
-        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec.1886 Rec.709 - Display", view: "VFX - ARRI K1S1 Look"}
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec.709 Display", view: "VFX - ARRI K1S1 Look"}
         - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
 
 
@@ -1255,8 +1255,8 @@ display_colorspaces:
     allocation: uniform
 
   - !<ColorSpace>
-    name: Gamma 2.2 - Display
-    aliases: [sRGB Display]
+    name: sRGB Display
+    aliases: [Gamma 2.2 - Display]
     family: Display EOTF
     bitdepth: 32f
     description: |
@@ -1267,8 +1267,8 @@ display_colorspaces:
     from_display_reference: !<BuiltinTransform> {style: DISPLAY - CIE-XYZ-D65_to_G2.2-REC.709}
 
   - !<ColorSpace>
-    name: Rec.1886 Rec.709 - Display
-    aliases: [Rec.709, Rec.1886, Rec.1886 Rec.709 - Display, rec1886_rec709_display, Rec.709 - Display, Rec.709 Display]
+    name: Rec.709 Display
+    aliases: [Rec.709, Rec.1886, rec1886_rec709_display, Rec.709 - Display, Rec.709 Display, Rec.1886 Rec.709 - Display]
     family: Display EOTF
     bitdepth: 32f
     description: |
